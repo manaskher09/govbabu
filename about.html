@@ -3,34 +3,33 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>About — FormReady</title>
+<title>About — GovtBabu</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f2440'/%3E%3Ctext x='32' y='45' font-family='Arial,sans-serif' font-size='34' font-weight='800' fill='%23d4af37' text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+<div class="gov-bar"><div class="wrap"><span class="gov-bar-clock" id="govClock"></span></div></div>
+<div class="tricolor-strip"><span></span><span></span><span></span></div>
 <header class="site-header">
   <div class="header-inner">
-    <a href="index.html" class="brand"><span class="brand-mark">FR</span>FormReady</a>
-    <nav class="main-nav" id="mainNav">
-      <a href="index.html">Home</a>
-      <a href="tools.html">Tools</a>
-      <a href="applications.html">Applications</a>
-      <a href="about.html" aria-current="page">About</a>
-    </nav>
+    <a href="index.html" class="brand"><span class="brand-mark"><svg viewBox="0 0 48 56"><path d="M4 4h40v27c0 13-20 21-20 21S4 44 4 31Z" fill="#0f2440"/><path d="M4 4h40v4H4Z" fill="#FF9933"/><path d="M4 8h40v3H4Z" fill="#f8f8f2"/><path d="M4 11h40v3H4Z" fill="#128807"/><text x="24" y="33" font-family="Georgia,serif" font-size="18" font-weight="700" fill="#d4af37" text-anchor="middle">GB</text><text x="24" y="45" font-family="Arial,sans-serif" font-size="5.5" font-weight="700" fill="#f4f0e6" text-anchor="middle" letter-spacing="1">GOVTBABU</text></svg></span>GovtBabu</a>
     <div class="header-actions">
+      <button class="icon-btn lang-toggle" id="langToggle" aria-label="Change language" title="भाषा बदलें / Change language">EN</button>
       <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
-      <a href="tools.html" class="btn btn-primary btn-sm">Open Tools</a>
-      <button class="icon-btn nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+      <a href="index.html" class="btn btn-primary btn-sm">Start</a>
     </div>
   </div>
 </header>
+
+<div class="notice-ticker" id="noticeTicker" aria-live="off"></div>
 
 <main>
   <section class="hero wrap" style="padding:44px 0 20px">
     <div class="about-hero">
       <span class="eyebrow">👋 About</span>
-      <h1 style="font-size:38px">Why <span class="grad">FormReady</span> exists</h1>
-      <p class="lead">Application forms for Indian exams and jobs are strict about file sizes and formats — FormReady is a small, focused tool to get a photo, signature or scan into shape in seconds, without handing your documents to a server.</p>
+      <h1 style="font-size:38px">Why <span class="grad">GovtBabu</span> exists</h1>
+      <p class="lead">Application forms for Indian exams and jobs are strict about file sizes and formats — GovtBabu is a small, focused tool to get a photo, signature or scan into shape in seconds, without handing your documents to a server.</p>
     </div>
   </section>
 
@@ -42,7 +41,7 @@
       </div>
       <div class="value-card">
         <h3>🎯 Built for real forms</h3>
-        <p>Target sizes and Application Mode are shaped around how Indian exam and job application portals actually ask for files — exact KB limits, specific formats.</p>
+        <p>Target sizes are shaped around how Indian exam and job application portals actually ask for files — exact KB limits, specific formats, per exam.</p>
       </div>
       <div class="value-card">
         <h3>🧭 Honest about gaps</h3>
@@ -57,10 +56,8 @@
       <h2>What's next</h2>
     </div>
     <ul class="roadmap">
-      <li><span class="dot"></span><div><b>PDF compression</b> — bring PDF-to-exact-KB online for admit cards and certificates.</div></li>
-      <li><span class="dot"></span><div><b>PDF to JPG</b> — extract a page from a PDF as an image.</div></li>
-      <li><span class="dot"></span><div><b>Verified exam specs</b> — cross-check Application Mode entries against current official notifications, exam by exam.</div></li>
-      <li><span class="dot"></span><div><b>Batch mode</b> — resize multiple files in one pass.</div></li>
+      <li><span class="dot"></span><div><b>Real payments</b> — currently runs on a mock Razorpay pipeline for testing; switches to real payments the moment API keys are added.</div></li>
+      <li><span class="dot"></span><div><b>Keep exam data current</b> — all 15 exams now have researched posts/pay/eligibility/promotion data, but application windows open and close constantly — dates and statuses will need periodic re-checking, not a one-time fix.</div></li>
     </ul>
   </section>
 
@@ -68,9 +65,9 @@
     <div class="appmode-banner" style="grid-template-columns:1fr;text-align:center">
       <div>
         <h2>Have a tool or exam to suggest?</h2>
-        <p>FormReady is a work in progress — reach out with what your application form needed that this didn't cover.</p>
+        <p>GovtBabu is a work in progress — reach out with what your application form needed that this didn't cover.</p>
         <div class="hero-cta" style="justify-content:center">
-          <a href="tools.html" class="btn btn-accent">Try the Tools</a>
+          <a href="index.html" class="btn btn-accent">Get Started</a>
         </div>
       </div>
     </div>
@@ -79,11 +76,11 @@
 
 <footer class="site-footer">
   <div class="wrap footer-inner">
-    <div class="footer-brand">FormReady</div>
+    <div class="footer-brand">GovtBabu</div>
     <nav class="footer-links">
-      <a href="index.html">Home</a><a href="tools.html">Tools</a><a href="applications.html">Applications</a><a href="about.html">About</a>
+      <a href="index.html">Home</a><a href="exams.html">Browse Exams</a><a href="calendar.html">Calendar</a><a href="about.html">About</a>
     </nav>
-    <p class="disclaimer">FormReady is an independent tool and is not affiliated with UPSC, SSC, IBPS, Railway, BPSC or any government body.</p>
+    <p class="disclaimer">GovtBabu is an independent tool and is not affiliated with UPSC, SSC, IBPS, Railway, BPSC or any government body.</p>
   </div>
 </footer>
 
