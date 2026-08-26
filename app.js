@@ -48,9 +48,10 @@ function $(id){return document.getElementById(id)}
 const LANG_STRINGS={
   en:{
     'nav.home':'Home','nav.browseExams':'Browse Exams','nav.calendar':'Calendar','nav.about':'About',
-    'home.title':'Get your exam documents ready',
-    'home.lead':'Search your exam, upload your photo &amp; signature, download files sized exactly right. Pay ₹29 only once you\'re ready to download.',
-    'home.privacy':'🔒 Processed entirely in your browser — nothing is uploaded until you choose to pay.',
+    'home.title':'Everything you need to apply for a government exam',
+    'home.lead':'Seats, eligibility, reservation policy and how to apply — researched and sourced for every exam. Then upload your photo &amp; signature and get them resized to the exact spec, ready to submit.',
+    'home.free':'🎉 Free for every aspirant right now — no login, no payment, for at least the next 2 months.',
+    'home.privacy':'🔒 Processed entirely in your browser — your photo and signature never leave your device.',
     'home.whichExam':'Which exam are you applying for?',
     'home.browseAll':'Browse all exams →','home.calendar':'Calendar →',
     'home.skip':'Skip — I just need to resize a file →',
@@ -69,9 +70,10 @@ const LANG_STRINGS={
   },
   hi:{
     'nav.home':'होम','nav.browseExams':'सभी परीक्षाएं','nav.calendar':'कैलेंडर','nav.about':'हमारे बारे में',
-    'home.title':'अपने परीक्षा दस्तावेज़ तैयार करें',
-    'home.lead':'अपनी परीक्षा खोजें, फोटो और हस्ताक्षर अपलोड करें, सही साइज़ में फ़ाइलें डाउनलोड करें। डाउनलोड के लिए तैयार होने पर ही ₹29 का भुगतान करें।',
-    'home.privacy':'🔒 पूरी तरह आपके ब्राउज़र में प्रोसेस होता है — जब तक आप भुगतान नहीं करते, कुछ भी अपलोड नहीं होता।',
+    'home.title':'सरकारी परीक्षा में आवेदन के लिए जो कुछ भी चाहिए',
+    'home.lead':'सीटें, पात्रता, आरक्षण नीति और आवेदन कैसे करें — हर परीक्षा के लिए शोध और स्रोत सहित। फिर अपनी फोटो और हस्ताक्षर अपलोड करें, सही साइज़ में तैयार, जमा करने के लिए तैयार।',
+    'home.free':'🎉 अभी सभी अभ्यर्थियों के लिए मुफ़्त — कम से कम अगले 2 महीनों के लिए कोई लॉगिन नहीं, कोई भुगतान नहीं।',
+    'home.privacy':'🔒 पूरी तरह आपके ब्राउज़र में प्रोसेस होता है — आपकी फोटो और हस्ताक्षर कभी आपके डिवाइस से बाहर नहीं जाते।',
     'home.whichExam':'आप किस परीक्षा के लिए आवेदन कर रहे हैं?',
     'home.browseAll':'सभी परीक्षाएं देखें →','home.calendar':'कैलेंडर →',
     'home.skip':'छोड़ें — मुझे बस फ़ाइल का साइज़ बदलना है →',
@@ -114,7 +116,7 @@ function tr(obj,path){
 // dictionary instead of a per-exam translation field.
 const CAT_HI={
   'Central Govt':'केंद्र सरकार','Banking':'बैंकिंग','Railway':'रेलवे',
-  'Defence':'रक्षा','State PSC':'राज्य लोक सेवा आयोग','Teaching':'शिक्षण'
+  'Defence':'रक्षा','State PSC':'राज्य लोक सेवा आयोग','Teaching':'शिक्षण','Police':'पुलिस'
 };
 function trCat(cat){ return currentLang==='hi'&&CAT_HI[cat]?CAT_HI[cat]:cat; }
 
@@ -150,10 +152,16 @@ document.addEventListener('DOMContentLoaded',()=>{
    pitch); paying only reveals the Download links for the current exam's
    bundle (photo + signature together, one payment). This is a UI-level
    gate, not content protection — fine for a small per-use price, not
-   meant to survive someone opening dev tools. */
+   meant to survive someone opening dev tools.
+
+   FREE_MODE: the site is free for every aspirant for its first two months
+   (no Razorpay account is even connected yet) — flip this back to false
+   once that period ends to re-enable the paywall. The order→verify→unlock
+   pipeline below is untouched and still works in mock mode for testing. */
+const FREE_MODE=true;
 function unlockKey(tool,examCode){return 'gb-unlock:'+tool+':'+examCode}
 function storeUnlock(tool,examCode,token){sessionStorage.setItem(unlockKey(tool,examCode),token)}
-function hasUnlock(tool,examCode){return Boolean(sessionStorage.getItem(unlockKey(tool,examCode)))}
+function hasUnlock(tool,examCode){return FREE_MODE||Boolean(sessionStorage.getItem(unlockKey(tool,examCode)))}
 
 function loadScript(src){
   return new Promise((resolve,reject)=>{
@@ -379,7 +387,7 @@ async function jpgFileToPdfBlob(file){
    "verified" = date this record was compiled. Always re-check the linked
    official notification before submitting — cycles, dates and specs change. */
 const APPLICATIONS=[
-  {code:'UPSC',name:'UPSC Civil Services',cat:'Central Govt',status:'closed',popularity:10,hi:{name:'यूपीएससी सिविल सेवा'},
+  {code:'UPSC',name:'UPSC Civil Services',cat:'Central Govt',status:'closed',popularity:13,hi:{name:'यूपीएससी सिविल सेवा'},
     notifTitle:'Civil Services Examination, 2026 — Notice No. 05/2026-CSE (Mains in progress; window for this cycle is closed)',
     applyStart:'04 Feb 2026',applyEnd:'27 Feb 2026 (extended)',
     officialUrl:'https://www.upsc.gov.in/sites/default/files/Notif-CSP-2026-Engl-060226Rev.pdf',
@@ -426,7 +434,7 @@ const APPLICATIONS=[
       howToApply:['Complete One-Time Registration (OTR) on ssc.gov.in with mobile, email, Aadhaar/ID and Class 10 details','Log in with your OTR credentials and fill the CGL application form','Select up to 3 exam centres and your category/post preferences','Upload your photo and signature to spec','Pay the fee online — ₹100 for General/OBC/EWS; free for women, SC, ST, PwBD, Ex-servicemen','Review and submit — download the confirmation page']
     },
     verified:'26 Aug 2026'},
-  {code:'SSC-CHSL',name:'SSC CHSL',cat:'Central Govt',status:'closed',popularity:2,hi:{name:'एसएससी सीएचएसएल',details:{
+  {code:'SSC-CHSL',name:'SSC CHSL',cat:'Central Govt',status:'closed',popularity:3,hi:{name:'एसएससी सीएचएसएल',details:{
       dataNote:'वर्तमान चक्र के लिए एसएससी सीएचएसएल अधिसूचना हमारी अंतिम जांच तक जारी नहीं हुई थी — नीचे दिए गए पद/वेतन आंकड़े सबसे हाल के पूर्ण हुए चक्र को दर्शाते हैं। जारी होने पर ssc.gov.in पर वर्तमान अधिसूचना से पुष्टि करें।',
       payGroups:[
         {level:'लेवल 4',band:'₹25,500–₹81,100',posts:'डाक सहायक / छँटाई सहायक, डाटा एंट्री ऑपरेटर, डाटा एंट्री ऑपरेटर ग्रेड ए'},
@@ -454,7 +462,52 @@ const APPLICATIONS=[
       howToApply:['Complete One-Time Registration (OTR) on ssc.gov.in, if not already done for another SSC exam','Log in and fill the CHSL-specific application — post preference, exam centres, category','Upload your photo and signature to spec','Pay the fee online — ₹100 for General/OBC/EWS; free for women, SC, ST, PwD, Ex-servicemen','Review, submit, and save your confirmation page']
     },
     verified:'26 Aug 2026'},
-  {code:'IBPS-PO',name:'IBPS PO',cat:'Banking',status:'closed',popularity:7,hi:{name:'आईबीपीएस पीओ'},
+  {code:'SSC-GD',name:'SSC GD Constable',cat:'Police',status:'closed',popularity:2,hi:{name:'एसएससी जीडी कांस्टेबल'},
+    notifTitle:'Constable (GD) in CAPFs and SSF, and Rifleman (GD) in Assam Rifles Examination, 2026 (F.No. HQ-C-3007/10/2025-C-3) — most recent completed cycle; SSC GD 2027 notification (per SSC\'s own tentative calendar) is due ~Sept 2026, not yet released as of verification',
+    applyStart:'01 Dec 2025',applyEnd:'31 Dec 2025 (23:00 hrs)',
+    officialUrl:'https://ssc.gov.in/api/attachment/uploads/masterData/NoticeBoards/Notice_of_CTGD_2026.pdf',
+    photo:{dims:'No separate upload — live webcam/front-camera capture during the Online Application Form itself (candidate cannot upload a pre-existing photo)',format:'Live capture',notes:'must be captured in good light against a plain background, no cap/mask/glasses/spectacles/earphones, full-frontal face inside the camera-delineated area; photographing an existing printed photo causes summary rejection — confirmed from the official 01.12.2025 Notice, Paras 8.4 and 13.12'},
+    signature:{dims:'6.0 cm × 2.0 cm',minKB:10,maxKB:20,format:'JPEG/JPG',notes:'scanned signature (not live-captured, unlike the photo) — the official Notice gives only cm × KB, no pixel dimension; blurred/miniature signatures are rejected summarily'},
+    details:{
+      dataNote:'(1) Photo is LIVE-CAPTURED via webcam during the application (RRB-style), not uploaded with a fixed px spec — this differs from SSC CGL/CHSL\'s upload-based photo. Only the signature is an uploaded scan. Confirmed directly from the official Notice of Examination dated 01.12.2025, Paras 8.3–8.7 and 13.9–13.12. (2) Applicant volume: coaching-site reporting (careerpower.in) cites "over 48.83 lakh candidates" for this 2026 cycle against 25,487 vacancies — a secondary figure, not an official SSC press release or RTI reply we could independently verify, but consistent with SSC\'s own multi-lakh scale for GD and clearing the >2 lakh threshold by a wide margin under any plausible reading. (3) PwBD/PwD candidates are explicitly NOT eligible for this exam (official Notice, Instruction 8) — an unusual exclusion worth flagging since most other exams on this site don\'t carry it. (4) Next cycle: per SSC\'s own official Tentative Calendar of Examinations 2026-27 (published 08.01.2026), the 2027 GD exam is scheduled for advertisement in September 2026 — not yet released as of this verification (26 Aug 2026).',
+      payGroups:[{level:'Level 3',band:'₹21,700 – ₹69,100 (basic, 7th CPC Pay Matrix; commonly reported starting in-hand ~₹23,527/month with allowances)',posts:'Constable (General Duty) in BSF, CISF, CRPF, ITBP, SSB and the Secretariat Security Force (SSF); Rifleman (GD) in Assam Rifles — one single notification and pay level covers all seven forces; candidates rank all seven as preferences and are allocated a force by merit-cum-preference after PST/PET/medical.'}],
+      payNote:'Confirmed from the official Notice, Para 2: a single Pay Level-3 band applies uniformly whichever of the seven forces a candidate is finally allotted to — there is no separate, higher-paying force. In-hand pay adds Dearness Allowance, House Rent Allowance and (for most CAPFs) Risk & Hardship Allowance on top of this basic band.',
+      promotion:'Not covered in the SSC notification (recruitment-only). Commonly cited, not officially confirmed here (coaching-site consensus): Constable → Head Constable (departmental exam/seniority, commonly reported ~8–10 years) → Assistant Sub-Inspector → Sub-Inspector, plus MACP pay-level upgrades at 10/20/30 years of service common to all central forces.',
+      eligibility:{age:'18–23 years as on 01 Jan 2026 for this cycle (born not before 02 Jan 2003 and not after 01 Jan 2008) — the cutoff date shifts every cycle; confirm against the next notification.',ageRelax:'SC/ST +5 years · OBC +3 years · Ex-servicemen +3 years after deducting military service · children/dependents of 1984 riot victims: UR/EWS +5, OBC +8, SC/ST +10 years. PwBD/PwD candidates are NOT eligible to apply for this exam at all (explicitly stated in the Notice) — unlike most other exams on this site.',qualification:'Matriculation / Class 10 pass from a recognized Board. Selection also requires a Physical Standard Test (PST) and Physical Efficiency Test (PET): minimum height 170 cm male / 157 cm female (relaxed for Scheduled Tribes and several hill/North-East categories, down to as low as 150 cm female ST of NE states); minimum chest 80 cm unexpanded with 5 cm expansion for male (not measured for female); PET race — male 5 km in 24 minutes, female 1.6 km in 8.5 minutes (relaxed timings for Ladakh-region candidates). Category-wise relaxation tables are extensive — see the official Notice, Paras 12.4–12.5, before assuming you qualify.'},
+      howToApply:['Complete One-Time Registration (OTR) on the new ssc.gov.in portal (an OTR from the old ssc.nic.in site will not carry over) — you can also apply via the official "mySSC" mobile app','Opt in to Aadhaar-Based Authentication during OTR if possible — this exempts you from carrying printed photos/ID at the exam centre and from strict photo/signature rejection rules','Log in and fill the Constable (GD) application — personal details, 10th-pass qualification, domicile State/UT, and up to three exam-centre preferences','Rank all seven forces (BSF, CISF, CRPF, SSB, ITBP, Assam Rifles, SSF) in strict order of priority — this cannot be changed after submission','When prompted, sit for the live in-application webcam photo capture (no photo upload option exists) — plain background, no cap/glasses, full-frontal view','Upload your scanned signature (6.0 cm × 2.0 cm, JPEG, 10–20 KB, black/blue ink on white paper)','Pay the ₹100 fee online (BHIM UPI/net banking/card) — waived for women, SC, ST and Ex-servicemen — by the fee deadline (one day after the application closes)','Use the 3-day correction window immediately after closing to fix any OTR/application errors (₹200 first correction, ₹500 second) — no changes allowed afterward','Download and save your Admission Certificate when released; sit the Computer Based Examination, then (if shortlisted) the PST/PET, Detailed Medical Examination and Document Verification stages in sequence']
+    },
+    verified:'26 Aug 2026'},
+  {code:'SSC-MTS',name:'SSC MTS',cat:'Central Govt',status:'closed',popularity:4,hi:{name:'एसएससी एमटीएस'},
+    notifTitle:'Multi-Tasking (Non-Technical) Staff and Havaldar (CBIC & CBN) Examination, 2025 (F.No. E/15/2025-C-2 Section) — most recent fully-confirmed cycle; SSC MTS 2026 notification (originally due ~30 Jun 2026 per SSC\'s own calendar) is reported by multiple trackers as delayed/not yet released as of our most recent check (~Aug 2026) — genuinely unresolved, see dataNote',
+    applyStart:'26 Jun 2025',applyEnd:'24 Jul 2025 (23:00 hrs)',
+    officialUrl:'https://ssc.gov.in/api/attachment/uploads/masterData/NoticeBoards/Notice_of_adv_mts_2025.pdf',
+    photo:{dims:'No separate upload — live webcam/front-camera capture during the Online Application Form itself',format:'Live capture',notes:'good light, plain background, no cap/mask/glasses/spectacles/earphones; face fully inside the camera-delineated area — confirmed from the official 26.06.2025 Notice, Paras 10.3–10.5'},
+    signature:{dims:'6.0 cm × 2.0 cm',minKB:10,maxKB:20,format:'JPEG/JPG',notes:'scanned signature only (photo is live-captured, not uploaded) — no pixel dimension given in the official Notice, cm × KB only'},
+    details:{
+      dataNote:'(1) Photo is live-captured via webcam (same as SSC GD/CPO), not an uploaded file with a px spec — confirmed from the official 26.06.2025 Notice (F.No. E/15/2025-C-2), Paras 10.3–10.6. (2) Applicant volume: coaching-site reporting (adda247) cites "36.17 lakh candidates applied... against 5,464 vacancies" for this cycle — a secondary figure, not an SSC press release or RTI reply we could independently verify, but far above the >2 lakh threshold under any plausible reading. MTS vacancies were reportedly revised upward in-cycle (one careers360 report cites a revised tentative total of 8,021, incl. 6,078 for the 18–25 age band, 732 for 18–27, and 1,211 Havaldar posts) — we could not independently confirm this revision against an official corrigendum, so treat the higher figure as provisional. (3) MTS 2026: per SSC\'s own official Tentative Calendar of Examinations 2026-27 (published 08.01.2026), this exam was due for advertisement in June 2026, closing July 2026, exam Sept–Nov 2026. Coaching-site trackers conflict on whether it was actually released — one claims a 30 June 2026 release, several others say it was postponed and "expected in August 2026." We could not resolve this against a primary SSC source, so we\'ve used the last FULLY CONFIRMED cycle (2025) here rather than guess at unconfirmed 2026 dates — re-verify directly against ssc.gov.in before relying on this for the current cycle.',
+      payGroups:[{level:'Level 1',band:'₹18,000 – ₹56,900 (basic, 7th CPC Pay Matrix)',posts:'Multi-Tasking Staff (Non-Technical) — Group C, non-gazetted, non-ministerial posts across central government Ministries/Departments/Offices and Constitutional/Statutory Bodies, in various States/UTs'},{level:'Level 1',band:'₹18,000 – ₹56,900 (basic; same Pay Level as MTS)',posts:'Havaldar — Central Board of Indirect Taxes & Customs (CBIC) and Central Bureau of Narcotics (CBN), Department of Revenue, Ministry of Finance. Recruited through the SAME notification/exam as MTS, but Havaldar candidates additionally must clear a Physical Efficiency Test (PET) and Physical Standard Test (PST) that MTS candidates do not.'}],
+      payNote:'Confirmed from the official Notice, Para 1: MTS and Havaldar are both Pay Level-1 posts despite the different departments/duties. In-hand pay adds Dearness Allowance, HRA and Transport Allowance depending on posting.',
+      promotion:'Not covered in the SSC notification (recruitment-only). Commonly cited, not officially confirmed here (coaching-site consensus): MTS/Havaldar promotion to higher Group C grades depends on seniority, departmental exams and vacancy availability in the specific cadre-controlling department; MACP pay-level upgrades apply at 10/20/30 years of service to all central government employees regardless of promotion.',
+      eligibility:{age:'18–25 years as on 01 Aug 2025 for most MTS posts (born not before 02 Aug 2000, not after 01 Aug 2007); 18–27 years for Havaldar in CBIC/CBN and a few specified MTS posts (born not before 02 Aug 1998) — exact age band is post-specific, confirm against the vacancy annexure for your target post.',ageRelax:'SC/ST +5 years · OBC +3 years · PwBD (Unreserved/EWS) +10 years · PwBD (OBC) +13 years · PwBD (SC/ST) +15 years · Ex-servicemen +3 years after deducting military service · defence personnel disabled in action +3 years (+8 for SC/ST) · Central Govt civilian employees with 3+ years\' service up to age 40 (45 for SC/ST) · widows/divorced/judicially-separated women up to age 35 (40 for SC/ST).',qualification:'Matriculation / Class 10 pass from a recognized Board. Havaldar candidates additionally must clear a Physical Efficiency Test (walking 1,600 m in 15 min male / 1 km in 20 min female) and Physical Standard Test (height 157.5 cm male, relaxable to 152.5 cm for Garhwali/Assamese/Gorkha/ST candidates — chest 81 cm expanded with 5 cm minimum expansion; height 152 cm female, weight 48 kg, both relaxable for the same categories). MTS itself carries no PET/PST requirement.'},
+      howToApply:['Complete One-Time Registration (OTR) on the new ssc.gov.in portal (an old ssc.nic.in OTR will not carry over) or via the official "mySSC" mobile app','Opt in to Aadhaar-Based Authentication if possible, to avoid strict photo/signature rejection rules and carrying printed ID to the exam','Log in and fill the MTS/Havaldar application — 10th-pass qualification, your age-group (18–25 or 18–27), and whether you wish to be considered for Havaldar (CBIC/CBN)','Give your Post-cum-State/UT/Cadre-Controlling-Authority preferences in strict priority order using the codes in the Notice\'s annexure — this cannot be changed later','Sit for the live in-application webcam photo capture when prompted (no photo upload option exists)','Upload your scanned signature (6.0 cm × 2.0 cm, JPEG/JPG, 10–20 KB)','Pay the ₹100 fee online — waived for women, SC, ST, PwBD and Ex-servicemen — by the fee deadline','Use the 3-day correction window right after closing to fix errors (₹200 first correction, ₹500 second)','Download your Admission Certificate and sit the two-session Computer Based Examination (Session-I: Numerical & Reasoning; Session-II: General Awareness & English — negative marking applies only in Session-II)','If shortlisted for Havaldar, additionally appear for the Physical Efficiency Test / Physical Standard Test at a CBIC/CBN-notified centre']
+    },
+    verified:'26 Aug 2026'},
+  {code:'SSC-CPO',name:'SSC CPO',cat:'Police',status:'closed',popularity:19,hi:{name:'एसएससी सीपीओ'},
+    notifTitle:'Sub-Inspector in Delhi Police and Central Armed Police Forces Examination, 2025 (F.No. E/13/2025-C-2 Section) — most recent fully-confirmed cycle (Paper-I held 09–12 Dec 2025; PET/PST qualifiers declared 30 Mar 2026); SSC CPO 2026 notification (originally due ~31 May 2026 per SSC\'s own calendar) had NOT been confirmed released as of our most recent check (~Aug 2026) — see dataNote',
+    applyStart:'26 Sep 2025',applyEnd:'16 Oct 2025 (23:00 hrs)',
+    officialUrl:'https://ssc.gov.in/api/attachment/uploads/masterData/NoticeBoards/Notice_of_adv_capf_2025.pdf',
+    photo:{dims:'No separate upload — live webcam/front-camera capture during the Online Application Form itself',format:'Live capture',notes:'good light, plain background, no cap/mask/glasses/spectacles; face fully inside the camera-delineated area — confirmed from the official 26.09.2025 Notice, Paras 8.1–8.5'},
+    signature:{dims:'6.0 cm × 2.0 cm',minKB:10,maxKB:20,format:'JPEG/JPG',notes:'scanned signature only (photo is live-captured, not uploaded) — no pixel dimension given in the official Notice, cm × KB only'},
+    details:{
+      dataNote:'(1) Photo is live-captured via webcam (same pattern as SSC GD/MTS), not uploaded with a px spec — confirmed from the official 26.09.2025 Notice (F.No. E/13/2025-C-2), Paras 8.1–8.6. (2) Applicant volume: this cycle\'s Paper-I attendance was unusually low — coaching-site analysis (pw.live) reports only ~1,76,634 candidates actually appeared (~30–31% turnout, said to be the lowest in 5–6 years) against an estimated ~5 lakh registered candidates; that ~5 lakh figure is a secondary/coaching-site estimate, not an SSC press release or RTI reply, but even the confirmed appeared-count plus normal no-show rates makes actual registrations comfortably clear 2 lakh. We could not independently verify an exact official registration total. (3) Vacancies: the notification opened with 3,073 posts (142 Delhi Police SI male + 70 female + 2,861 CAPF SI GD); secondary sources (careers360, adda247) later reported a revised tentative total of 5,308, which we could not independently confirm against an official corrigendum — treat the higher figure as provisional. (4) CPO 2026: per SSC\'s own official Tentative Calendar of Examinations 2026-27, this exam was due for advertisement in May 2026, closing June 2026. Multiple independent trackers confirm this date passed with no notice and that the notification was still "delayed"/"expected in August 2026" as of early-to-mid August 2026; we found no confirmation it had actually been released as of 26 Aug 2026. We have therefore used the last FULLY CONFIRMED cycle (2025) as the base entry rather than guess at unconfirmed 2026 dates — re-verify directly against ssc.gov.in before relying on this for the current cycle.',
+      payGroups:[{level:'Level 6',band:'₹35,400 – ₹1,12,400 (basic, 7th CPC Pay Matrix)',posts:'Sub-Inspector (Executive), male and female — Delhi Police (classified Group C by Delhi Police); Sub-Inspector (GD) — Central Armed Police Forces (CRPF, BSF, ITBP, CISF, SSB) (Group B, Non-Gazetted, Non-Ministerial). One common notification and exam covers both; candidates give ranked preferences between Delhi Police and the CAPFs.'}],
+      payNote:'Confirmed from the official Notice, Paras 1.1–1.2: both Delhi Police SI (Executive) and CAPF SI (GD) sit at the same Level-6 pay band despite different Group classifications (C vs B). Male candidates for Delhi Police SI additionally need a valid LMV (Motorcycle & Car) driving licence to be eligible for Delhi Police at all — without one, male candidates can only be considered for CAPF SI posts (Notice, Para 7.7).',
+      promotion:'Not covered in the SSC notification (recruitment-only). Commonly cited, not officially confirmed here (coaching-site consensus): SI → Inspector by seniority/departmental exam (commonly reported ~8–10+ years, force-dependent) → higher ranks via Limited Departmental Competitive Exams; MACP pay-level upgrades apply at 10/20/30 years of service.',
+      eligibility:{age:'20–25 years as on 01 Aug 2025 for this cycle (born not before 02 Aug 2000, not after 01 Aug 2005) — cutoff shifts every cycle. Departmental Delhi Police candidates (Constables/Head Constables/ASIs with 3+ years\' service) get a separate relaxed ceiling up to 30–35 depending on category.',ageRelax:'SC/ST +5 years · OBC +3 years · Ex-servicemen +3 years after deducting military service · widows/divorced/judicially-separated women (Delhi Police SI only) up to age 35 (40 for SC/ST) · departmental Delhi Police candidates up to 30 (UR/EWS), 33 (OBC) or 35 (SC/ST).',qualification:'Bachelor\'s degree in any discipline from a recognized university. Selection also requires a Physical Standard Test and Physical Endurance Test: height 170 cm male / 157 cm female (relaxed to 165/162.5 cm for hill-area/ST categories, down to 154 cm for female ST); chest 80→85 cm (unexpanded→expanded) for male, no chest requirement for female; PET — male 100 m in 16 sec, 1.6 km in 6.5 min, long jump 3.65 m, high jump 1.2 m, 16 lb shot put 4.5 m; female 100 m in 18 sec, 800 m in 4 min, long jump 2.7 m, high jump 0.9 m. Eyesight standard is unusually strict — 6/6 (better eye) and 6/9 (worse eye) distant vision WITHOUT any corrective lenses or surgery, plus no knock-knee/flat-foot/varicose-vein/squint — worth independently re-confirming if you wear glasses, since this could disqualify glasses-wearers outright.'},
+      howToApply:['Complete One-Time Registration (OTR) on the new ssc.gov.in portal (an old ssc.nic.in OTR will not carry over) or via the official "mySSC" mobile app','Opt in to Aadhaar-Based Authentication if possible, to avoid strict photo/signature rejection rules and carrying printed ID to the exam','Log in and fill the SI application — Bachelor\'s-degree qualification, and (male candidates) whether you hold a valid LMV driving licence, which gates Delhi Police eligibility','Choose up to three exam centres in order of preference','Sit for the live in-application webcam photo capture when prompted (no photo upload option exists)','Upload your scanned signature (6.0 cm × 2.0 cm, JPEG/JPG, 10–20 KB)','Pay the ₹100 fee online — waived for women, SC, ST and Ex-servicemen — by the fee deadline','Use the 3-day correction window right after closing to fix errors (₹200 first correction, ₹500 second)','Download your Admission Certificate and sit Paper-I (General Intelligence, GK, Quantitative Aptitude, English — 2 hours, sectional 30-minute timers per part)','If shortlisted, appear for PST/PET at a CAPF/Delhi-Police-notified centre, then Paper-II (English Language & Comprehension), and finally the Detailed Medical Examination']
+    },
+    verified:'26 Aug 2026'},
+  {code:'IBPS-PO',name:'IBPS PO',cat:'Banking',status:'closed',popularity:9,hi:{name:'आईबीपीएस पीओ'},
     notifTitle:'CRP PO/MT-XVI — Recruitment of Probationary Officers/Management Trainees (2027-28 vacancies). Window closed; prelims already held (22–23 Aug 2026), mains expected October 2026.',
     applyStart:'01 Jul 2026',applyEnd:'26 Jul 2026 (extended)',
     officialUrl:'https://www.ibps.in/wp-content/uploads/Detailed-Notification_CRP-PO-XVI_Final_V1_30.06.2026.pdf',
@@ -472,7 +525,7 @@ const APPLICATIONS=[
       howToApply:['Register at ibps.in under the CRP PO/MT link','Fill the application form and choose participating-bank/centre preferences','Upload photo, signature, left thumb impression, handwritten declaration and 10th certificate','Pay the fee online — ₹175 (SC/ST/PwBD), ₹850 (others)','Use the 2-day post-close edit window if needed (₹200 correction fee)','Download the call letter from ibps.in when released — no postal copies are sent']
     },
     verified:'26 Aug 2026'},
-  {code:'IBPS-CL',name:'IBPS Clerk',cat:'Banking',status:'open',popularity:5,hi:{name:'आईबीपीएस क्लर्क'},
+  {code:'IBPS-CL',name:'IBPS Clerk',cat:'Banking',status:'open',popularity:7,hi:{name:'आईबीपीएस क्लर्क'},
     notifTitle:'CRP CSA-XVI — Recruitment of Customer Service Associates (2027-28 vacancies)',
     applyStart:'01 Aug 2026',applyEnd:'28 Aug 2026 (extended)',
     officialUrl:'https://www.ibps.in/wp-content/uploads/Notification_CRP_CSA_XVI-Final.pdf',
@@ -489,7 +542,7 @@ const APPLICATIONS=[
       howToApply:['Register at ibps.in under the CRP CSA link, choosing one state/UT to apply for','Fill the form and upload photo, signature, left thumb impression and handwritten declaration','Pay the fee — ₹175 (SC/ST/PwBD/ESM), ₹850 (others)','Use the 2-day post-close edit window if needed (₹200 correction fee)','Download the call letter from ibps.in when released']
     },
     verified:'26 Aug 2026'},
-  {code:'SBI-PO',name:'SBI PO',cat:'Banking',status:'closed',popularity:8,hi:{name:'एसबीआई पीओ'},
+  {code:'SBI-PO',name:'SBI PO',cat:'Banking',status:'closed',popularity:10,hi:{name:'एसबीआई पीओ'},
     notifTitle:'Advt No. CRPD/PO/2026-27/09 — Recruitment of Probationary Officers. Window closed; prelims already held (1–2 Aug 2026), mains expected September 2026.',
     applyStart:'18 Jun 2026',applyEnd:'08 Jul 2026',
     officialUrl:'https://sbi.bank.in/csfile/18062026_1_Detailed_Adv.2026.pdf',
@@ -506,7 +559,7 @@ const APPLICATIONS=[
       howToApply:['Register at sbi.bank.in under Current Openings → this advertisement number','Fill the online form and upload photo, signature, thumb impression and handwritten declaration','Pay the fee — ₹750 (General/EWS/OBC), free for SC/ST/PwBD','Selection: Prelims → Mains → Psychometric Test, Group Exercise and Interview']
     },
     verified:'26 Aug 2026'},
-  {code:'SBI-CL',name:'SBI Clerk',cat:'Banking',status:'open',popularity:6,hi:{name:'एसबीआई क्लर्क'},
+  {code:'SBI-CL',name:'SBI Clerk',cat:'Banking',status:'open',popularity:8,hi:{name:'एसबीआई क्लर्क'},
     notifTitle:'Advt No. CRPD/CR/2026-27/17 — Recruitment of Junior Associates (Customer Support & Sales)',
     applyStart:'11 Aug 2026',applyEnd:'31 Aug 2026',
     officialUrl:'https://sbi.bank.in/webfiles/uploads/files_2627/08/JA_2026_Detailed_Advt_Eng.pdf',
@@ -524,7 +577,7 @@ const APPLICATIONS=[
       howToApply:['Register at sbi.bank.in under Current Openings → the relevant advertisement number','Choose one state/UT and fill the online form','Upload photo, signature and other required documents','Pay the fee — ₹750 (General/OBC/EWS), free for SC/ST/PwBD/Ex-servicemen','No personal interview for this post — selection is exam-based only']
     },
     verified:'26 Aug 2026'},
-  {code:'RRB-NTPC',name:'RRB NTPC',cat:'Railway',status:'closed',popularity:4,hi:{name:'आरआरबी एनटीपीसी'},
+  {code:'RRB-NTPC',name:'RRB NTPC',cat:'Railway',status:'closed',popularity:6,hi:{name:'आरआरबी एनटीपीसी'},
     notifTitle:'CEN 06/2025 (Graduate) & CEN 07/2025 (Undergraduate) — Non-Technical Popular Categories. Both windows closed since Nov 2025.',
     applyStart:'21 Oct 2025',applyEnd:'27 Nov 2025 (extended)',
     officialUrl:'https://rrbajmer.gov.in/Upload_PDF/CEN%2007-2025-NTPC%20(Under%20Graduate)%20English_compressed-638971975510934173.pdf',
@@ -543,7 +596,7 @@ const APPLICATIONS=[
       howToApply:['Create an account on rrbapply.gov.in (Aadhaar/DigiLocker verification recommended)','Fill the application for your post group (Graduate or Undergraduate)','Live-capture your photo during the application — there is no separate upload','Upload your signature to spec','Pay the fee — ₹500 for UR/OBC-NCL/EWS (₹400 refunded after appearing in CBT) or ₹250 for SC/ST/women/PwBD/Ex-servicemen/Transgender/Minorities/EBC (fully refunded after appearing in CBT); refund credited only to an Aadhaar-seeded bank account']
     },
     verified:'26 Aug 2026'},
-  {code:'RRB-GRP-D',name:'RRB Group D',cat:'Railway',status:'closed',popularity:3,hi:{name:'आरआरबी ग्रुप डी'},
+  {code:'RRB-GRP-D',name:'RRB Group D',cat:'Railway',status:'closed',popularity:5,hi:{name:'आरआरबी ग्रुप डी'},
     notifTitle:'CEN 09/2025 — Level-1 posts (Track Maintainer, Pointsman and others). Window closed; CBT held 3–25 Aug 2026.',
     applyStart:'31 Jan 2026',applyEnd:'02 Mar 2026',
     officialUrl:'https://rrbajmer.gov.in/Upload_PDF/Final-Detailed%20CEN%2009-2025%20Level-1-updated%20on%2030012026-639054049190206941.pdf',
@@ -559,7 +612,46 @@ const APPLICATIONS=[
       howToApply:['Create an account on rrbapply.gov.in (Aadhaar/DigiLocker verification recommended)','Fill the application form','Live-capture your photo during the application — there is no separate upload','Upload your signature to spec','Pay the fee — ₹500 for UR/OBC-NCL/EWS (₹400 refunded after appearing in CBT) or ₹250 for SC/ST/women/PwBD/Ex-servicemen/Transgender/Minorities/EBC (fully refunded after appearing in CBT); refund credited only to an Aadhaar-seeded bank account']
     },
     verified:'26 Aug 2026'},
-  {code:'NDA',name:'NDA',cat:'Defence',status:'closed',popularity:14,hi:{name:'एनडीए'},
+  {code:'RRB-ALP',name:'RRB ALP',cat:'Railway',status:'closed',popularity:17,hi:{name:'आरआरबी एएलपी'},
+    notifTitle:'CEN 01/2026 — Assistant Loco Pilot (ALP), 11,127 vacancies across 21 RRBs/17 railway zones. Application window closed 14 Jun 2026; CBT 1 reported as tentatively scheduled for August 2026 by secondary sources (exact date not independently confirmed).',
+    applyStart:'15 May 2026',applyEnd:'14 Jun 2026 (11:59 PM)',
+    officialUrl:'https://www.rrbchennai.gov.in/downloads/CEN%2001_2026%20english%20.pdf',
+    photo:{dims:'No separate upload — live webcam/front-camera capture during the application itself',format:'Live capture',notes:'no cap, mask or glasses/spectacles; eyes open; look straight ahead with neutral expression; non-white/dark clothing preferred; photographing a printed or digital photo causes rejection'},
+    signature:{dims:'35mm × 20mm scan box',px:{w:140,h:60},minKB:30,maxKB:49,format:'JPG/JPEG',notes:'black ink, cursive/running handwriting (not block/capital/disjointed letters), scanned at ≥100 DPI — sourced from a secondary summary of the official CEN 01/2026 Application FAQ document.'},
+    otherDocs:[{label:'SC/ST certificate (free travel pass claimants only)',notes:'PDF only, under 400 KB — confirmed pattern on other RRB CENs on the same portal, not independently reverified for this specific exam.'}],
+    details:{
+      dataNote:'Applicant volume for this exact cycle is confirmed: RRB\'s own zone-wise form fill-up data (as reported by secondary aggregators, e.g. Testbook) puts total applications at 8,40,944 for CEN 01/2026\'s 11,127 vacancies (≈76 applicants per vacancy), comfortably above the 2-lakh threshold. Age-limit reference date is disputed across secondary sources — one set states "as on 1 Jan 2026," another states "as on 1 Jul 2026." This was not resolved against the primary notification in this pass; verify the exact cut-off date before publishing.',
+      payGroups:[{level:'Level 2 (7th CPC)',band:'₹19,900 (basic, initial pay)',posts:'Assistant Loco Pilot (ALP) — single post, 11,127 vacancies'}],
+      payNote:'Pay Level 2 / ₹19,900 initial basic is consistently reported across secondary sources and matches the historical ALP pay level from prior cycles; not independently cross-checked against the primary CEN 01/2026 PDF text in this pass.',
+      promotion:'Not addressed in the official notification. Coaching-site consensus (not RRB-confirmed): Assistant Loco Pilot → Loco Pilot (Goods) [after a minimum ~2 years\' service and ~60,000 km running experience as an Assistant] → Loco Pilot (Mail/Express) → Senior Loco Pilot → Loco Inspector/Loco Supervisor, with further departmental exams opening routes to Power Controller, Crew Controller or Loco Foreman. Reported overall timelines to reach senior driving roles (e.g. Rajdhani/Shatabdi links) range widely, commonly cited as 8–10+ years.',
+      eligibility:{age:'18–30 years — reference date disputed across secondary sources ("as on 1 Jan 2026" vs "as on 1 Jul 2026"); not resolved against the primary notification this pass.',ageRelax:'OBC-NCL +3 yrs, SC/ST +5 yrs, Ex-servicemen per standard formula — consistent with RRB\'s general norms, exact figures not independently reverified against the CEN 01/2026 PDF text.',qualification:'Matriculation/SSLC plus ITI (NCVT/SCVT-recognized) in one of: Fitter, Electrician, Instrument Mechanic, Millwright/Maintenance Mechanic, Mechanic (Radio & TV), Electronics Mechanic, Mechanic (Motor Vehicle), Wireman, Tractor Mechanic, Armature & Coil Winder, Mechanic (Diesel), Heat Engine, Turner, Machinist, Refrigeration & Air-Conditioning Mechanic — OR Matriculation/SSLC plus a 3-year diploma in Mechanical/Electrical/Electronics/Automobile Engineering (or combination streams of these) in lieu of ITI, from a recognized institution.'},
+      howToApply:['Create an account on rrbapply.gov.in (Aadhaar/DigiLocker verification recommended)','Select CEN 01/2026 (ALP) and register with mobile number, email ID and personal details','Fill the application form, choosing preferred RRB zone(s) per the notification\'s option rules','Live-capture your photo during the application — there is no separate upload','Upload your signature to spec (35mm × 20mm, 140×60px, 30–49KB, JPG/JPEG, cursive black ink)','Upload ITI/diploma and category certificates as required','Pay the fee — ₹500 for UR/OBC-NCL/EWS (₹400 refunded after appearing in CBT 1) or ₹250 for SC/ST/women/PwBD/Ex-servicemen/Transgender/Minorities/EBC (fully refunded after appearing in CBT 1); refund credited only to an Aadhaar-seeded bank account','Review and submit before the 14 Jun 2026 deadline','Download and retain the application confirmation/registration slip; watch rrbapply.gov.in and your regional RRB site for CBT 1 city/date intimation']
+    },
+    verified:'26 Aug 2026'},
+  {code:'RRB-JE',name:'RRB JE',cat:'Railway',status:'open',popularity:18,hi:{name:'आरआरबी जेई'},
+    notifTitle:'CEN 04/2026 — Junior Engineer (JE), Junior Engineer (IT), Depot Material Superintendent (DMS) & Chemical and Metallurgical Assistant (CMA). Corrigendum-1 (18 Aug 2026) added the CMA post and revised vacancies from 3,993 to 4,029.',
+    applyStart:'14 Aug 2026',applyEnd:'13 Sep 2026 (fee payment allowed through 15 Sep; modification window 16–25 Sep, per secondary sources — not independently confirmed against the primary PDF)',
+    officialUrl:'https://rrb.indianrailways.gov.in/chandigarh',
+    photo:{dims:'No separate upload — live webcam/front-camera capture during the application itself (consistent with other current RRB CENs; not independently confirmed against the CEN 04/2026 PDF text itself this pass)',format:'Live capture',notes:'no cap, mask or glasses; eyes open; non-white clothing; photographing a printed photo causes summary rejection'},
+    signature:{dims:'35mm × 20mm scan box',px:{w:140,h:60},minKB:30,maxKB:49,format:'JPG/JPEG',notes:'black ink, cursive/running handwriting (not block letters), scanned at ≥100 DPI — sourced from secondary coverage consistent with other 2025–2026 RRB CENs; not independently confirmed against the CEN 04/2026 PDF text itself.'},
+    otherDocs:[{label:'SC/ST certificate (free travel pass claimants only)',notes:'PDF only, under 400 KB — confirmed pattern on other RRB CENs on the same portal, not independently reverified for this specific exam.'}],
+    details:{
+      dataNote:'The primary CEN 04/2026 notification PDF could not be directly retrieved in this research pass (network access to the .gov.in PDF hosts was unreliable in the research environment) — figures below are cross-checked across multiple secondary sources (Adda247, EngineersAcademy, Testbook, Careerpower) that agree with each other, but none is the primary document itself. Verify pay/eligibility specifics against the official CEN 04/2026 PDF (available via rrbapply.gov.in or the regional RRB sites, e.g. rrbcdg.gov.in, rrbchennai.gov.in) before publishing if possible.',
+      payGroups:[
+        {level:'Level 6 (7th CPC)',band:'₹35,400 (basic, initial pay) — reported consistently for JE, JE (IT) and DMS across secondary sources',posts:'Junior Engineer (JE), Junior Engineer (IT), Depot Material Superintendent (DMS)'},
+        {level:'Level 6 (7th CPC) — added by Corrigendum-1',band:'₹35,400 (basic, initial pay) — reported by secondary sources as the same Level 6 as the other three posts, but this specific figure for CMA was not independently cross-checked against a primary source',posts:'Chemical & Metallurgical Assistant (CMA) — new post added 18 Aug 2026, 35 vacancies'}
+      ],
+      payNote:'All four posts are reported at Pay Level 6 with ₹35,400 initial basic pay. This is consistent across several secondary sources but could not be verified against the primary CEN 04/2026 PDF directly in this pass.',
+      promotion:'Not addressed in the official notification. Coaching-site consensus (not RRB-confirmed): Junior Engineer (JE) → Senior Section Engineer (SSE) → Assistant Divisional Engineer (ADE) → Divisional Engineer (DE) → Senior Divisional Engineer (SDE), roughly 5–7 years per step based on seniority-cum-suitability and departmental exams.',
+      eligibility:{
+        age:'18–33 years for UR/EWS as on 1 Jan 2027 (reference date as reported by secondary sources — not independently confirmed against the primary notification); OBC-NCL 18–36 (+3 yrs); SC/ST 18–38 (+5 yrs). Further relaxation for Ex-servicemen and PwBD candidates per RRB\'s standard formula (specific figures not independently confirmed this pass).',
+        ageRelax:'OBC-NCL +3 yrs, SC/ST +5 yrs, PwBD up to +10/13/15 yrs depending on category, Ex-servicemen per standard formula — consistent with RRB\'s general norms but not independently reverified against the CEN 04/2026 PDF text.',
+        qualification:'JE / JE (IT): 3-year diploma OR BE/B.Tech in the engineering discipline mapped to the specific post/exam-group — reported streams include Mechanical, Production, Automobile, Manufacturing, Mechatronics, Industrial, Machining, Instrumentation & Control, Tools & Die Making, Electrical, Electronics, Communication, Computer Science/Engineering, Information Technology, and Civil Engineering (exact post-to-discipline mapping runs to dozens of sub-categories in the official notification — not reproduced in full here). DMS: 3-year diploma in any engineering discipline. CMA: B.Sc. with Physics and Chemistry as principal subjects, minimum 45% marks. Qualification must be completed on or before the application closing date; results-awaited candidates are not eligible per secondary sources.'
+      },
+      howToApply:['Create an account on rrbapply.gov.in (Aadhaar/DigiLocker verification recommended)','Select CEN 04/2026 and register with mobile number, email ID and personal details','Fill the application form and choose your preferred post(s)/RRB zone(s) per the notification\'s option rules','Live-capture your photo during the application — there is no separate upload','Upload your signature to spec (35mm × 20mm, 140×60px, 30–49KB, JPG/JPEG)','Upload educational/category certificates as required','Pay the fee — ₹500 for UR/OBC-NCL/EWS (₹400 refunded after appearing in CBT 1) or ₹250 for SC/ST/women/PwBD/Ex-servicemen/Transgender/Minorities/EBC (fully refunded after appearing in CBT 1); refund credited only to an Aadhaar-seeded bank account','Review and submit before the 13 Sep 2026 deadline; use the modification window afterward if corrections are needed','Download and retain the application confirmation/registration slip for future reference']
+    },
+    verified:'26 Aug 2026'},
+  {code:'NDA',name:'NDA',cat:'Defence',status:'closed',popularity:20,hi:{name:'एनडीए'},
     notifTitle:'NDA & NA Examination (II), 2026 — Notice No. 10/2026-NDA-II — window closed; exam scheduled 13 Sep 2026',
     applyStart:'20 May 2026',applyEnd:'11 Jun 2026 (secondary-sourced correction — the original notification implies 09 Jun)',
     officialUrl:'https://www.upsc.gov.in/sites/default/files/Notif-NDA-II-2026-Engl-200526.pdf',
@@ -577,7 +669,7 @@ const APPLICATIONS=[
       howToApply:['Register at upsconline.nic.in — the only official application site — via UPSC\'s 4-part system (account → Universal Registration Number → Common Application Form → exam-specific module)','Upload your photo and triple signature to spec','Pay the fee — ₹100, waived for SC/ST, all women, and wards of JCO/NCO/OR in Sainik Schools','Live photo capture is mandatory at the Common Application Form stage, in addition to the uploaded photo','Download your e-admit card when released — no postal or emailed admit cards are sent']
     },
     verified:'26 Aug 2026'},
-  {code:'CDS',name:'CDS',cat:'Defence',status:'closed',popularity:15,hi:{name:'सीडीएस'},
+  {code:'CDS',name:'CDS',cat:'Defence',status:'closed',popularity:21,hi:{name:'सीडीएस'},
     notifTitle:'Combined Defence Services Examination (II), 2026 — Notice No. 11/2026-CDS-II — window closed; exam scheduled 13 Sep 2026',
     applyStart:'20 May 2026',applyEnd:'11 Jun 2026 (secondary-sourced correction — the original notification implies 09 Jun)',
     officialUrl:'https://www.upsc.gov.in/sites/default/files/Notification_CDS_II_English.pdf',
@@ -595,7 +687,27 @@ const APPLICATIONS=[
       howToApply:['Register at upsconline.nic.in — the only official application site — via UPSC\'s 4-part system (account → Universal Registration Number → Common Application Form → exam-specific module)','Upload your photo and triple signature to spec','Pay the fee — ₹100, waived for SC/ST, all women, and wards of JCO/NCO/OR in Sainik Schools','Live photo capture is mandatory at the Common Application Form stage, in addition to the uploaded photo','Download your e-admit card when released — no postal or emailed admit cards are sent']
     },
     verified:'26 Aug 2026'},
-  {code:'BPSC',name:'BPSC',cat:'State PSC',status:'closed',popularity:12,hi:{name:'बीपीएससी'},
+  {code:'AGNIVEER-ARMY',name:'Agniveer (Indian Army)',cat:'Defence',status:'closed',popularity:12,hi:{name:'अग्निवीर (भारतीय सेना)'},
+    notifTitle:'Indian Army Agniveer Common Entrance Examination (CEE) 2026 — notification released 12 Feb 2026 for 25,000+ vacancies across Agniveer General Duty (GD), Technical, Clerk/Store Keeper Technical, Tradesman, and specialist categories (Pharma, Nursing Assistant, Women Military Police); application window closed, CEE conducted 01–15 Jun 2026, zone/ARO-wise merit lists declared 12 Jul 2026 — candidates are now moving through document verification, physical/medical stages',
+    applyStart:'13 Feb 2026',applyEnd:'01 Apr 2026 (some secondary sources report an extension to 10 Apr 2026 — not independently confirmed against a primary Army addendum)',
+    officialUrl:'https://joinindianarmy.nic.in/',
+    photo:{dims:'~413×531 px (unconfirmed against the live portal — this figure comes from third-party exam-photo-resizing tool sites, not a fetched official instruction page; verify on joinindianarmy.nic.in before applying)',minKB:20,maxKB:50,format:'JPG/JPEG',notes:'Reported requirement: recent colour photo with candidate\'s name and photo-capture date overlaid in a white band at the bottom. UNCONFIRMED spec — could not independently verify against the live official portal this session.'},
+    signature:{dims:'~413×177 px (same caveat as photo — third-party sourced, not confirmed against the live portal)',minKB:5,maxKB:20,format:'JPG/JPEG',notes:'No evidence found of a TRIPLE-signature requirement like UPSC\'s NDA/CDS — every source describes a single signature scan. This is the opposite of NDA\'s unusual requirement, but not independently confirmed against the live joinindianarmy.nic.in form this session — verify before applying.'},
+    details:{
+      dataNote:'Agnipath is a 4-year tour-of-duty scheme distinct from pre-2022 permanent enrollment — do not confuse Agniveer terms (Seva Nidhi, 25% retention) with older regular-soldier pension/pay rules. This entry covers ARMY Agniveer only. Navy (Agniveer) and Air Force (Agniveer Vayu) run separate CEEs/portals and are comparably large in relative terms (Navy/Air Force together budget ~6,000 seats/year vs Army\'s ~40,000) — worth adding as separate entries later for full tri-service coverage. Applicant volume: ~12.8 lakh applicants in 2024 (up ~10% from 11.3 lakh in 2023), per Army recruitment data reported by ThePrint — Army-only, not tri-service.',
+      payGroups:[
+        {level:'Year 1',band:'₹30,000/month gross — ₹9,000/month to Seva Nidhi contribution, ~₹21,000/month in-hand',posts:'Agniveer General Duty, Technical, Clerk/Store Keeper Technical, Tradesman, and specialist categories — same package structure across categories'},
+        {level:'Year 2',band:'₹33,000/month gross — ₹9,900/month to Seva Nidhi contribution',posts:'same as above'},
+        {level:'Year 3',band:'₹36,500/month gross — ₹10,950/month to Seva Nidhi contribution',posts:'same as above'},
+        {level:'Year 4',band:'₹40,000/month gross — ₹12,000/month to Seva Nidhi contribution, ~₹28,000/month in-hand',posts:'same as above'}
+      ],
+      payNote:'Figures (₹30,000→40,000 gross progression, 30% individual contribution matched by an equal Government contribution into the Seva Nidhi corpus) match the original 2022 Agnipath scheme announcement and are consistently repeated across sources; risk/hardship, dress, and travel allowances are paid on top. On exit after 4 years, the Seva Nidhi lump sum is commonly cited at ~₹11.71 lakh (tax-exempt) — this includes interest; could not independently verify the exact current interest rate this session, so treat the ₹11.71 lakh figure as approximate/commonly-cited rather than freshly confirmed against a primary PIB release.',
+      promotion:'Official Agnipath policy: on completing the 4-year engagement, up to 25% of each batch of Agniveers may apply for and be selected into the permanent/regular cadre (based on performance, discipline, and organisational requirement), continuing under regular Army terms (~15-year engagement with further promotion eligibility). The remaining ~75% exit with the Seva Nidhi lump sum, a skill certificate, and priority consideration in certain government/paramilitary recruitment — this is NOT a guaranteed re-employment scheme, only priority/preference.',
+      eligibility:{age:'17.5–21 years — exact birth-date window shifts every CEE cycle (like NDA), so always check the current notification rather than a fixed range',ageRelax:'Standard SC/ST/OBC/PwBD relaxations reported by coaching sources but not independently confirmed against a primary Army circular this session — verify before relying on any specific relaxation figure',qualification:'Varies by category: General Duty (GD) — Class 10 pass with 45% marks aggregate and 33% per subject; Technical — Class 12 pass with 50% aggregate and 40% per subject in Physics/Chemistry/Maths and English, OR a 1-year technical course (NSQF Level 4) after Class 10; Clerk/Store Keeper Technical — Class 12 pass in any stream with 60% aggregate, 50% per subject, and 50% in English plus Maths/Accounts/Book-Keeping, plus basic computer proficiency; Tradesman — Class 10 pass with 33% marks for most trades, Class 8 pass accepted for a few specific trades (e.g. Cook, Washerman, Mess Keeper). These per-category figures are corroborated across several secondary sources but were not verified against a single fetched primary PDF this session — cross-check against the current CEE notification before publishing as final.'},
+      howToApply:['Register on joinindianarmy.nic.in and complete the online CEE application form (choose category — GD/Technical/Clerk-SKT/Tradesman/etc.)','Upload photo and signature to the portal\'s current specifications (verify live — see notes above)','Pay the application/exam fee via the online payment gateway','Download the CEE admit card when released (typically ~2 weeks before the exam)','Appear for the Common Entrance Examination (CEE) — computer-based test at designated centres','Wait for the zone/ARO-wise CEE merit list to be declared','Report to the Army Recruiting Office (ARO) rally venue per your merit-list category/zone for the Physical Fitness Test (PFT) — running, beam, and other events','Clear the Physical Measurement Test (PMT) — height, weight, chest measurements against category-specific standards','Undergo document verification at the rally site','Undergo the detailed Medical Examination at Military Hospital/designated medical facility','Await the final merit list combining CEE score + PFT/PMT/medical clearance','Receive enrollment/joining instructions for Agniveer training at the allotted Regimental Training Centre']
+    },
+    verified:'26 Aug 2026'},
+  {code:'BPSC',name:'BPSC',cat:'State PSC',status:'closed',popularity:15,hi:{name:'बीपीएससी'},
     notifTitle:'Integrated 72nd Combined (Preliminary) Competitive Examination — prelim postponed from 26 Jul 2026; tentatively rescheduled to 25 Oct 2026 per BPSC\'s own exam calendar (BPSC itself labels all its calendar dates "tentative")',
     applyStart:'07 May 2026',applyEnd:'31 May 2026',
     officialUrl:'https://bpsc.bihar.gov.in/wp-content/uploads/BPSC_content/Notices/Advertisement-Integrated-72th-CCE-PT_BPSC-20260505-p1euvo.pdf',
@@ -611,7 +723,7 @@ const APPLICATIONS=[
       howToApply:['Complete registration at bpsconline.bihar.gov.in','Fill your profile, education and experience details','Capture your photo live via webcam during the application — no separate upload','Upload two signature images — one Hindi, one English — to spec','Submit and pay the fee']
     },
     verified:'26 Aug 2026'},
-  {code:'UPPSC',name:'UPPSC',cat:'State PSC',status:'closed',popularity:11,hi:{name:'यूपीपीएससी'},
+  {code:'UPPSC',name:'UPPSC',cat:'State PSC',status:'closed',popularity:14,hi:{name:'यूपीपीएससी'},
     notifTitle:'Combined State/Upper Subordinate Services (PCS) Exam 2026 — Advt No. A-1/E-1/2026 — window closed; prelim scheduled 06 Dec 2026',
     applyStart:'25 Jun 2026',applyEnd:'03 Aug 2026 (correction window to 10 Aug 2026 — some sources instead say 27 Jul/3 Aug; both are past either way)',
     officialUrl:'https://uppsc.up.nic.in',
@@ -626,7 +738,7 @@ const APPLICATIONS=[
       howToApply:['Complete One-Time Registration (OTR) at otr.pariksha.nic.in if not already registered','Apply for this specific PCS notification at uppsc.up.nic.in','Upload photo and signature to spec','Pay the fee and submit']
     },
     verified:'26 Aug 2026'},
-  {code:'MPPSC',name:'MPPSC',cat:'State PSC',status:'open',popularity:13,hi:{name:'एमपीपीएससी'},
+  {code:'MPPSC',name:'MPPSC',cat:'State PSC',status:'open',popularity:16,hi:{name:'एमपीपीएससी'},
     notifTitle:'State Service Examination 2026 — Advt No. 29/2025. Prelim held 26 Apr 2026 (~3,044 shortlisted); Mains scheduled 7–12 Sep 2026 per MPPSC\'s own official exam calendar — this cycle is ongoing, not concluded.',
     applyStart:'10 Jan 2026',applyEnd:'09 Feb 2026 (late-fee extensions to 01 Apr 2026)',
     results:{stage:'Prelim result declared',date:'22 May 2026',note:'~3,044 candidates shortlisted for Mains — reported consistently across secondary sources but not confirmed against a primary MPPSC result-notice PDF.',url:'https://mppsc.mp.gov.in'},
@@ -642,7 +754,7 @@ const APPLICATIONS=[
       howToApply:['Register and apply via the MPOnline portal (mponline.gov.in), linked from mppsc.mp.gov.in','Upload photo and signature scans (25–200 KB per above)','Pay the base fee (₹250/₹500 by category, before any late-fee penalty) and submit']
     },
     verified:'26 Aug 2026'},
-  {code:'CTET',name:'CTET',cat:'Teaching',status:'open',popularity:9,hi:{name:'सीटीईटी'},
+  {code:'CTET',name:'CTET',cat:'Teaching',status:'open',popularity:11,hi:{name:'सीटीईटी'},
     notifTitle:'CTET September 2026 (22nd edition) — the original 06 Sep 2026 exam date was postponed (new date not yet announced); the application window has reopened for late applicants.',
     applyStart:'25 Aug 2026',applyEnd:'01 Sep 2026',
     officialUrl:'https://ctet.nic.in',
@@ -664,7 +776,7 @@ const APPLICATIONS=[
 
 const CAT_CLASS={
   'Central Govt':'cat-central','Banking':'cat-banking','Railway':'cat-railway',
-  'Defence':'cat-defence','State PSC':'cat-state','Teaching':'cat-teaching'
+  'Defence':'cat-defence','State PSC':'cat-state','Teaching':'cat-teaching','Police':'cat-police'
 };
 
 /* ===== flow state ===== */
@@ -795,11 +907,16 @@ function renderNoticeTicker(){
   box.innerHTML='<div class="notice-ticker-track">'+items+items+'</div>';
 }
 
-/* ---- Notice board (index.html sidebar) ---- */
+/* ---- Notice board (index.html sidebar) ----
+   Shows every exam currently in the application process (status:'open'),
+   full list (no cap) — this is meant to be a real notice board, not a
+   trimmed highlight reel. Each entry names the exam and links straight to
+   its own official notification PDF/page, in addition to the on-site
+   exam page. */
 function renderNoticeBoard(){
   const box=$('noticeBoard');
   if(!box) return;
-  const urgent=urgentExamsList().slice(0,6);
+  const urgent=urgentExamsList();
   if(!urgent.length){
     box.innerHTML='<div class="notice-empty">No open applications right now — check back soon.</div>';
     return;
@@ -807,7 +924,10 @@ function renderNoticeBoard(){
   box.innerHTML=urgent.map(({a,d})=>{
     const dl=d?daysLeft(d):null;
     const label=dl!=null?(dl>=0?'Closes in '+dl+' day'+(dl===1?'':'s')+' · '+d.toLocaleDateString('en-IN',{day:'2-digit',month:'short'}):'Closing soon'):'Applications open';
-    return '<a class="notice-item" href="index.html?exam='+a.code+'"><b>'+tr(a,'name')+'</b><span>'+label+'</span></a>';
+    return '<div class="notice-item">'+
+      '<a class="notice-item-name" href="index.html?exam='+a.code+'"><b>'+tr(a,'name')+'</b><span>'+label+'</span></a>'+
+      (a.officialUrl?'<a class="notice-official-link" href="'+a.officialUrl+'" target="_blank" rel="noopener">Official notification ↗</a>':'')+
+      '</div>';
   }).join('');
 }
 
@@ -822,10 +942,15 @@ function renderResultsPanel(){
   const sorted=[...APPLICATIONS].sort((a,b)=>a.popularity-b.popularity);
   box.innerHTML=sorted.map(a=>{
     const r=a.results;
-    const pill=r
-      ?'<a class="result-pill declared" href="'+(r.url||a.officialUrl)+'" target="_blank" rel="noopener" title="'+r.stage+' · '+r.date+(r.note?' — '+r.note:'')+'">'+r.stage+' ↗</a>'
-      :'<a class="result-pill pending" href="'+a.officialUrl+'" target="_blank" rel="noopener">Not declared yet</a>';
-    return '<div class="result-item"><span class="rname">'+tr(a,'name')+'</span>'+pill+'</div>';
+    // Only ever a link to the result itself (r.url) when one is declared —
+    // never the application notification PDF, and no link at all when a
+    // result hasn't been declared, so nothing pending gets a dead/irrelevant
+    // attachment.
+    const meta=r
+      ?'<span class="result-date">'+r.stage+' · '+r.date+'</span>'+
+       (r.url?'<a class="result-pill declared" href="'+r.url+'" target="_blank" rel="noopener">View result ↗</a>':'')
+      :'<span class="result-pill pending">Not declared yet</span>';
+    return '<div class="result-item"><span class="rname">'+tr(a,'name')+'</span><div class="result-meta">'+meta+'</div></div>';
   }).join('');
 }
 
@@ -1309,7 +1434,9 @@ function renderPayBar(){
   if(!results.length){bar.style.display='none';return}
   bar.style.display='block';
   if(hasUnlock('bundle',state.examCode)){
-    bar.innerHTML='<div class="unlocked-note">✅ Unlocked — download each file above.</div>';
+    bar.innerHTML=FREE_MODE
+      ?'<div class="unlocked-note">🎉 Free to use right now — download each file above, no payment needed.</div>'
+      :'<div class="unlocked-note">✅ Unlocked — download each file above.</div>';
     goStep(3);
   } else {
     bar.innerHTML='<button class="btn btn-accent btn-block" id="payAllBtn" type="button">Pay ₹29 &amp; Unlock Downloads</button>'+
