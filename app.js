@@ -22,12 +22,12 @@
   document.addEventListener('DOMContentLoaded',()=>{
     const themeBtn=document.getElementById('themeToggle');
     if(themeBtn){
-      themeBtn.textContent=root.getAttribute('data-theme')==='dark'?'☀️':'🌙';
+      themeBtn.setAttribute('aria-pressed',root.getAttribute('data-theme')==='dark'?'true':'false');
       themeBtn.addEventListener('click',()=>{
         const now=root.getAttribute('data-theme')==='dark'?'light':'dark';
         root.setAttribute('data-theme',now);
         localStorage.setItem('gb-theme',now);
-        themeBtn.textContent=now==='dark'?'☀️':'🌙';
+        themeBtn.setAttribute('aria-pressed',now==='dark'?'true':'false');
       });
     }
   });

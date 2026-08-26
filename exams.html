@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Browse Exams — GovtBabu</title>
 <meta name="description" content="Every government exam GovtBabu covers, grouped by field — Banking, Railway, SSC, Defence, State PSC, Teaching. Pick yours to get started.">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f2440'/%3E%3Ctext x='32' y='45' font-family='Arial,sans-serif' font-size='34' font-weight='800' fill='%23d4af37' text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f2440'/%3E%3Crect x='20' y='30' width='24' height='20' rx='5' fill='none' stroke='%23d4af37' stroke-width='4'/%3E%3Cpath d='M24 30v-6a8 8 0 0 1 16 0v3' fill='none' stroke='%23d4af37' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -14,10 +14,11 @@
 <div class="tricolor-strip"><span></span><span></span><span></span></div>
 <header class="site-header">
   <div class="header-inner">
-    <a href="index.html" class="brand"><span class="brand-mark"><svg viewBox="0 0 48 56"><path d="M4 4h40v27c0 13-20 21-20 21S4 44 4 31Z" fill="#0f2440"/><path d="M4 4h40v4H4Z" fill="#FF9933"/><path d="M4 8h40v3H4Z" fill="#f8f8f2"/><path d="M4 11h40v3H4Z" fill="#128807"/><text x="24" y="33" font-family="Georgia,serif" font-size="18" font-weight="700" fill="#d4af37" text-anchor="middle">GB</text><text x="24" y="45" font-family="Arial,sans-serif" font-size="5.5" font-weight="700" fill="#f4f0e6" text-anchor="middle" letter-spacing="1">GOVTBABU</text></svg></span>GovtBabu</a>
+    <a href="index.html" class="brand"><span class="brand-mark"><svg viewBox="0 0 46 46" fill="none"><rect x="8" y="24" width="28" height="18" rx="5" stroke="var(--brand)" stroke-width="3.4"/><path d="M14 24V16A8 8 0 0 1 30 16" stroke="var(--brand)" stroke-width="3.4" stroke-linecap="round"/><path d="M32 14L40 10" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/><path d="M32 19L38 17" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/><path d="M8 31Q20 39 35 26" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/></svg></span>GovtBabu</a>
     <div class="header-actions">
       <button class="icon-btn lang-toggle" id="langToggle" aria-label="Change language" title="भाषा बदलें / Change language">EN</button>
-      <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+      <a href="calendar.html" class="btn btn-outline btn-sm" data-i18n="nav.calendar">Calendar</a>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" aria-pressed="false"><span class="theme-toggle-track"><span class="theme-toggle-thumb"></span></span></button>
       <a href="index.html" class="btn btn-primary btn-sm">Start</a>
     </div>
   </div>
