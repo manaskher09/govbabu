@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contact Us — GovBabu</title>
+<meta name="description" content="Send feedback, report a data error, or suggest an exam GovBabu should cover — goes straight to us.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GovBabu">
+<meta property="og:title" content="Contact Us — GovBabu">
+<meta property="og:description" content="Send feedback, report a data error, or suggest an exam GovBabu should cover — goes straight to us.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f2440'/%3E%3Crect x='20' y='30' width='24' height='20' rx='5' fill='none' stroke='%23d4af37' stroke-width='4'/%3E%3Cpath d='M24 30v-6a8 8 0 0 1 16 0v3' fill='none' stroke='%23d4af37' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to main content</a>
+<div class="gov-bar"><div class="wrap"><span class="gov-bar-clock" id="govClock"></span></div></div>
+<div class="tricolor-strip"><span></span><span></span><span></span></div>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="brand"><span class="brand-mark"><svg viewBox="0 0 46 46" fill="none"><rect x="8" y="24" width="28" height="18" rx="5" stroke="var(--brand)" stroke-width="3.4"/><path d="M14 24V16A8 8 0 0 1 30 16" stroke="var(--brand)" stroke-width="3.4" stroke-linecap="round"/><path d="M32 14L40 10" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/><path d="M32 19L38 17" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/><path d="M8 31Q20 39 35 26" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/></svg></span>GovBabu</a>
+    <div class="header-actions">
+      <nav class="header-nav" id="headerNav"><a href="index.html" class="btn btn-outline btn-sm" data-i18n="nav.home">Home</a>
+      <a href="exams.html" class="btn btn-outline btn-sm" data-i18n="nav.browseExams">Browse Exams</a>
+      <a href="calendar.html" class="btn btn-outline btn-sm" data-i18n="nav.calendar">Calendar</a>
+      <a href="about.html" class="btn btn-outline btn-sm" data-i18n="nav.about">About</a>
+      <a href="contact.html" class="btn btn-outline btn-sm" data-i18n="nav.contact" aria-current="page">Contact</a></nav>
+      <button class="icon-btn lang-toggle" id="langToggle" aria-label="Change language" title="भाषा बदलें / Change language"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><rect x="2" y="4" width="13" height="13" rx="3" stroke="var(--brand)" stroke-width="1.6"/><text x="8.5" y="14" font-size="9" font-weight="700" text-anchor="middle" fill="var(--brand)" font-family="Arial, sans-serif">A</text><rect x="9" y="9" width="13" height="13" rx="3" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.6"/><text x="15.5" y="19" font-size="9" font-weight="700" text-anchor="middle" fill="var(--accent)" font-family="Arial, sans-serif">अ</text></svg></button>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" aria-pressed="false"><span class="theme-toggle-track"><span class="theme-toggle-thumb"></span></span></button>
+      <button class="icon-btn nav-toggle" id="navToggle" type="button" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<div class="notice-ticker" id="noticeTicker" aria-live="off"></div>
+
+<main id="main">
+  <section class="hero wrap" style="padding:44px 0 20px">
+    <div class="about-hero">
+      <span class="eyebrow" data-i18n="contact.eyebrow">💬 Contact Us</span>
+      <h1 style="font-size:38px" data-i18n="contact.h1">Tell us what's missing</h1>
+      <p class="lead" data-i18n="contact.lead">Found a data error, have an exam we should add, or just want to say something? Send it below — it opens a pre-addressed Gmail draft so it lands straight in our inbox. In a hurry? Message us on <a href="https://t.me/GovBabu_official" target="_blank" rel="noopener">Telegram</a> for a faster reply.</p>
+    </div>
+  </section>
+
+  <section class="section wrap" style="padding-top:0;padding-bottom:20px">
+    <form class="feedback-form" id="feedbackForm">
+      <label><span data-i18n="contact.helpLabel">What can we help with?</span>
+        <select id="fbCategory" name="category">
+          <option value="Report an error" data-i18n="contact.opt1">Report an error</option>
+          <option value="Request an exam" data-i18n="contact.opt2">Request an exam</option>
+          <option value="Suggest a feature" data-i18n="contact.opt3">Suggest a feature</option>
+          <option value="Website issue" data-i18n="contact.opt4">Website issue</option>
+          <option value="General feedback" selected data-i18n="contact.opt5">General feedback</option>
+        </select>
+      </label>
+      <label><span data-i18n="contact.nameLabel">Your name (optional)</span>
+        <input type="text" id="fbName" name="name" autocomplete="name">
+      </label>
+      <label><span data-i18n="contact.emailLabel">Your email (optional, so we can reply)</span>
+        <input type="email" id="fbEmail" name="fromEmail" autocomplete="email">
+      </label>
+      <label><span data-i18n="contact.messageLabel">Your message</span>
+        <textarea id="fbMessage" name="message" required placeholder="A data error to fix, an exam to add, or anything else..." data-i18n-placeholder="contact.messagePlaceholder"></textarea>
+      </label>
+      <button type="submit" class="btn btn-accent" data-i18n="contact.submitBtn">Open Email with Feedback ↗</button>
+      <div class="form-success" id="fbSuccess" hidden role="status" data-i18n="contact.successMsg">✅ Your email draft is open in a new tab — hit Send there to submit your feedback.</div>
+      <span class="form-note" data-i18n="contact.note1">This opens Gmail with your message pre-filled and addressed to us. We usually reply within 2–3 days.</span>
+      <span class="form-note" data-i18n="contact.note2">Gmail not opening, or you use a different email app? Write to us directly at <a href="mailto:manas.m.kher@gmail.com">manas.m.kher@gmail.com</a>.</span>
+    </form>
+  </section>
+
+  <section class="section wrap">
+    <div class="section-head">
+      <h2 data-i18n="contact.faqHead">Frequently asked questions</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary data-i18n="contact.faq1q">Is GovBabu free to use?</summary>
+        <p data-i18n="contact.faq1a">Yes — everything on GovBabu is free right now for every aspirant, no login and no payment. This is guaranteed for at least the first two months after launch. A small one-time fee may return later for the document-prep tools only; exam information will always stay free.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="contact.faq2q">Is GovBabu an official government website?</summary>
+        <p data-i18n="contact.faq2a">No. GovBabu is an independent, privately-run tool and is not affiliated with UPSC, SSC, IBPS, Railway, BPSC or any government body. We research and link to each exam's official notification so you can always verify details on the source yourself.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="contact.faq3q">Is my photo, signature or personal data uploaded anywhere?</summary>
+        <p data-i18n="contact.faq3a">Your files are processed directly in your browser — photo and signature resizing, PDF conversion and compression all happen on your own device — and are not uploaded to GovBabu's servers for processing.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="contact.faq4q">How accurate is the exam information?</summary>
+        <p data-i18n="contact.faq4a">Every seat count, eligibility rule, pay level and deadline is researched against the official notification wherever one is available, with sources cited. Where something can't be confirmed or sources disagree, we say so instead of guessing — but application windows and dates change often, so always cross-check the official notification linked on each exam's page before you submit anything.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="contact.faq5q">My exam isn't listed — can you add it?</summary>
+        <p data-i18n="contact.faq5a">Most likely, yes. We're actively expanding coverage. Use the feedback form above to tell us which exam you need, and we'll research and add it.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="contact.faq6q">I found an error in the exam details — what do I do?</summary>
+        <p data-i18n="contact.faq6a">Please report it using the feedback form above with as much detail as you can (exam name, the incorrect field, and a source if you have one). We treat data corrections as high priority.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="contact.faq7q">Do I need to create an account to use GovBabu?</summary>
+        <p data-i18n="contact.faq7a">No. There's no sign-up or login required for any part of the site.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="contact.faq8q">Where does GovBabu get its exam information from?</summary>
+        <p data-i18n="contact.faq8a">Primarily from each exam's official notification — the PDF or page published by the conducting body (UPSC, SSC, IBPS, Railway, a state PSC, etc.). Where a detail can't be confirmed against a primary source, we say so in the exam's data note instead of guessing, and cite secondary sources when they're used.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="contact.faq9q">How often is exam information updated?</summary>
+        <p data-i18n="contact.faq9a">Whenever we research or re-verify an exam, not on a fixed daily schedule. Application windows, dates and vacancy counts change often on the official side, so always cross-check the linked official notification before you submit anything.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="contact.faq10q">Which exams does GovBabu cover?</summary>
+        <p data-i18n="contact.faq10a">SSC, Railway (RRB), Banking (IBPS/SBI/RBI), UPSC, State PSCs, Defence (NDA/CDS/Agniveer), Teaching and Police exams — see the full, current list on <a href="exams.html">Browse Exams</a>. We're actively adding more.</p>
+      </details>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-cols">
+    <div class="footer-col footer-col-brand">
+      <div class="footer-brand">GovBabu</div>
+      <p class="footer-tagline" data-i18n="footer.tagline">Simple exam information for Indian aspirants.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title" data-i18n="footer.explore">Explore</div>
+      <a href="index.html" data-i18n="nav.home">Home</a>
+      <a href="exams.html" data-i18n="nav.browseExams">Browse Exams</a>
+      <a href="calendar.html" data-i18n="nav.calendar">Calendar</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title" data-i18n="footer.company">Company</div>
+      <a href="about.html" data-i18n="nav.about">About</a>
+      <a href="contact.html" data-i18n="nav.contact">Contact</a>
+      <a href="privacy.html" data-i18n="footer.privacyPolicy">Privacy Policy</a>
+      <a href="terms.html" data-i18n="footer.termsOfUse">Terms of Use</a>
+      <a href="disclaimer.html" data-i18n="footer.disclaimerLink">Disclaimer</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title" data-i18n="footer.connect">Connect</div>
+      <a href="https://t.me/GovBabu_official" target="_blank" rel="noopener" data-i18n="footer.telegram">Telegram</a>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <p class="disclaimer" data-i18n="footer.disclaimerText">GovBabu is an independent tool and is not affiliated with UPSC, SSC, IBPS, Railway, BPSC or any government body.</p>
+    <p class="footer-copyright" data-i18n="footer.copyright">© 2026 GovBabu. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+<script>
+document.getElementById('feedbackForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const category=document.getElementById('fbCategory').value;
+  const name=document.getElementById('fbName').value.trim();
+  const fromEmail=document.getElementById('fbEmail').value.trim();
+  const message=document.getElementById('fbMessage').value.trim();
+  const subject='GovBabu Feedback: '+category+(name?' — from '+name:'');
+  const body=message+(fromEmail?'\n\n— reply to: '+fromEmail:'');
+  const url='https://mail.google.com/mail/?view=cm&fs=1&to=manas.m.kher@gmail.com&su='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+  window.open(url,'_blank','noopener');
+  document.getElementById('fbSuccess').hidden=false;
+});
+</script>
+</body>
+</html>

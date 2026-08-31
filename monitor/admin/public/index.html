@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GovBabu Monitor — Admin</title>
+<style>
+  :root{--bg:#0c1420;--surface:#121c2b;--line:#293544;--ink:#e9edf2;--muted:#9aa5b4;--brand:#7fa8d4;--accent:#d4af37;--danger:#f87171;--success:#4ade80}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink)}
+  header{padding:20px 28px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+  header h1{font-size:18px;margin:0}
+  main{padding:24px 28px;max-width:1200px;margin:0 auto}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:28px}
+  .stat{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+  .stat b{display:block;font-size:24px}
+  .stat span{font-size:12px;color:var(--muted)}
+  h2{font-size:15px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:28px 0 12px}
+  table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  th,td{text-align:left;padding:10px 12px;font-size:13px;border-bottom:1px solid var(--line)}
+  th{color:var(--muted);font-weight:600;font-size:11px;text-transform:uppercase}
+  tr:last-child td{border-bottom:none}
+  .pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700}
+  .pill.CONFIRMED_CHANGE{background:#16653433;color:var(--success)}
+  .pill.NEEDS_HUMAN_REVIEW{background:#f8717133;color:var(--danger)}
+  .pill.POSSIBLE_CHANGE{background:#d4af3733;color:var(--accent)}
+  .pill.PARSING_ERROR,.pill.SOURCE_UNAVAILABLE{background:#f8717133;color:var(--danger)}
+  button{background:var(--brand);color:#0c1420;border:none;border-radius:6px;padding:6px 12px;font-weight:700;cursor:pointer;font-size:12px;margin-right:6px}
+  button.reject{background:transparent;border:1px solid var(--danger);color:var(--danger)}
+  a{color:var(--brand)}
+  .empty{color:var(--muted);padding:16px;text-align:center;font-size:13px}
+  .fail{color:var(--danger);font-weight:700}
+</style>
+</head>
+<body>
+<header><h1>🔍 GovBabu Monitor</h1><div style="display:flex;align-items:center;gap:14px"><span id="whoami" style="color:var(--muted);font-size:12px"></span><span id="clock" style="color:var(--muted);font-size:12px"></span><button onclick="doLogout()" style="background:transparent;border:1px solid var(--line);color:var(--ink)">Log out</button></div></header>
+<main>
+  <div class="stats" id="stats"></div>
+
+  <h2>Review Queue</h2>
+  <table id="queueTable"><thead><tr>
+    <th>Exam</th><th>Field</th><th>Old</th><th>New</th><th>Class</th><th>Confidence</th><th>Evidence</th><th>Actions</th>
+  </tr></thead><tbody></tbody></table>
+
+  <h2>Source Health</h2>
+  <table id="sourcesTable"><thead><tr>
+    <th>Exam</th><th>Source</th><th>Type</th><th>Last Checked</th><th>Last Status</th><th>Response</th><th>Failures</th>
+  </tr></thead><tbody></tbody></table>
+</main>
+<script>
+async function api(path, opts) {
+  const res = await fetch('/api/admin' + path, opts);
+  if (res.status === 401) { window.location.href = '/login.html'; throw new Error('unauthorized'); }
+  return res.json();
+}
+function esc(s) { return (s ?? '').toString().replace(/[&<>"]/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+async function doLogout() {
+  await fetch('/api/admin/logout', { method: 'POST' });
+  window.location.href = '/login.html';
+}
+
+async function loadStats() {
+  const me = await api('/me');
+  document.getElementById('whoami').textContent = me.user.display_name || me.user.username;
+  const s = await api('/dashboard');
+  document.getElementById('stats').innerHTML = Object.entries(s).map(([k, v]) =>
+    `<div class="stat"><b>${v}</b><span>${k.replace(/_/g, ' ')}</span></div>`).join('');
+}
+
+async function loadQueue() {
+  const rows = await api('/review-queue');
+  const tbody = document.querySelector('#queueTable tbody');
+  if (!rows.length) { tbody.innerHTML = '<tr><td colspan="8" class="empty">Queue is empty — nothing needs review.</td></tr>'; return; }
+  tbody.innerHTML = rows.map((r) => `
+    <tr>
+      <td><a href="${esc(r.source_url)}" target="_blank">${esc(r.exam_name)}</a></td>
+      <td>${esc(r.field_name)}</td>
+      <td>${esc(r.old_value) || '<i>none</i>'}</td>
+      <td>${esc(r.new_value) || '<i>none</i>'}</td>
+      <td><span class="pill ${r.classification}">${esc(r.classification)}</span></td>
+      <td>${r.confidence}</td>
+      <td style="max-width:260px;font-size:11px;color:var(--muted)">${esc(r.evidence)}</td>
+      <td>
+        <button onclick="act(${r.id},'approve')">Approve</button>
+        <button class="reject" onclick="act(${r.id},'reject')">Reject</button>
+      </td>
+    </tr>`).join('');
+}
+
+async function loadSources() {
+  const rows = await api('/sources');
+  const tbody = document.querySelector('#sourcesTable tbody');
+  tbody.innerHTML = rows.map((r) => `
+    <tr>
+      <td>${esc(r.exam_name)}</td>
+      <td><a href="${esc(r.url)}" target="_blank">${esc(r.label)}</a></td>
+      <td>${esc(r.source_type)}</td>
+      <td>${esc(r.last_checked_at) || '—'}</td>
+      <td>${r.last_http_status ?? '—'}</td>
+      <td>${r.last_response_time_ms ? r.last_response_time_ms + 'ms' : '—'}</td>
+      <td class="${r.consecutive_failures > 0 ? 'fail' : ''}">${r.consecutive_failures}</td>
+    </tr>`).join('');
+}
+
+async function act(id, action) {
+  const notes = prompt(`Notes for ${action} (optional):`) || '';
+  const res = await api(`/change-events/${id}/${action}`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ notes }) });
+  if (res.error) { alert(res.error); return; }
+  await refresh();
+}
+
+async function refresh() { await Promise.all([loadStats(), loadQueue(), loadSources()]); }
+setInterval(() => document.getElementById('clock').textContent = new Date().toLocaleString(), 1000);
+refresh();
+setInterval(refresh, 30000);
+</script>
+</body>
+</html>

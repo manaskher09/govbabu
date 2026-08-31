@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Local dev server: serves the static GovtBabu site and mounts the /api
+// Local dev server: serves the static GovBabu site and mounts the /api
 // handlers under the same origin (so fetch('/api/...') works without CORS),
 // using the exact (req, res) contract Vercel Functions expect — these files
 // deploy unchanged once you're ready to host for real.
@@ -85,7 +85,7 @@ const server = http.createServer(async (req, res) => {
 
 server.listen(PORT, () => {
   const razorpay = require('./api/_lib/razorpay');
-  console.log(`GovtBabu dev server: http://localhost:${PORT}`);
+  console.log(`GovBabu dev server: http://localhost:${PORT}`);
   console.log(razorpay.isConfigured()
     ? 'Razorpay: configured — real orders will be created.'
     : 'Razorpay: not configured — payments run in mock mode (see .env.example).');

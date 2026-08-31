@@ -3,113 +3,318 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>About — GovtBabu</title>
-<meta name="description" content="GovtBabu is a single place to understand a government exam properly — seats, eligibility, reservation policy, how to apply, and document prep — researched and sourced, free for every aspirant right now.">
+<title>About GovBabu — An Independent Assistant for Government Exam Applications</title>
+<meta name="description" content="GovBabu is an independent platform that helps government-exam aspirants discover exams, understand eligibility, prepare documents and apply correctly — sourced from official notifications, not guessed.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GovBabu">
+<meta property="og:title" content="About GovBabu — An Independent Assistant for Government Exam Applications">
+<meta property="og:description" content="GovBabu is an independent platform that helps government-exam aspirants discover exams, understand eligibility, prepare documents and apply correctly — sourced from official notifications, not guessed.">
+<meta name="twitter:card" content="summary">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f2440'/%3E%3Crect x='20' y='30' width='24' height='20' rx='5' fill='none' stroke='%23d4af37' stroke-width='4'/%3E%3Cpath d='M24 30v-6a8 8 0 0 1 16 0v3' fill='none' stroke='%23d4af37' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
+<a href="#main" class="skip-link">Skip to main content</a>
 <div class="gov-bar"><div class="wrap"><span class="gov-bar-clock" id="govClock"></span></div></div>
 <div class="tricolor-strip"><span></span><span></span><span></span></div>
 <header class="site-header">
   <div class="header-inner">
-    <a href="index.html" class="brand"><span class="brand-mark"><svg viewBox="0 0 46 46" fill="none"><rect x="8" y="24" width="28" height="18" rx="5" stroke="var(--brand)" stroke-width="3.4"/><path d="M14 24V16A8 8 0 0 1 30 16" stroke="var(--brand)" stroke-width="3.4" stroke-linecap="round"/><path d="M32 14L40 10" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/><path d="M32 19L38 17" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/><path d="M8 31Q20 39 35 26" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/></svg></span>GovtBabu</a>
+    <a href="index.html" class="brand"><span class="brand-mark"><svg viewBox="0 0 46 46" fill="none"><rect x="8" y="24" width="28" height="18" rx="5" stroke="var(--brand)" stroke-width="3.4"/><path d="M14 24V16A8 8 0 0 1 30 16" stroke="var(--brand)" stroke-width="3.4" stroke-linecap="round"/><path d="M32 14L40 10" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/><path d="M32 19L38 17" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/><path d="M8 31Q20 39 35 26" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/></svg></span>GovBabu</a>
     <div class="header-actions">
-      <button class="icon-btn lang-toggle" id="langToggle" aria-label="Change language" title="भाषा बदलें / Change language">EN</button>
+      <nav class="header-nav" id="headerNav"><a href="index.html" class="btn btn-outline btn-sm" data-i18n="nav.home">Home</a>
+      <a href="exams.html" class="btn btn-outline btn-sm" data-i18n="nav.browseExams">Browse Exams</a>
       <a href="calendar.html" class="btn btn-outline btn-sm" data-i18n="nav.calendar">Calendar</a>
+      <a href="about.html" class="btn btn-outline btn-sm" data-i18n="nav.about" aria-current="page">About</a>
+      <a href="contact.html" class="btn btn-outline btn-sm" data-i18n="nav.contact">Contact</a></nav>
+      <button class="icon-btn lang-toggle" id="langToggle" aria-label="Change language" title="भाषा बदलें / Change language"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><rect x="2" y="4" width="13" height="13" rx="3" stroke="var(--brand)" stroke-width="1.6"/><text x="8.5" y="14" font-size="9" font-weight="700" text-anchor="middle" fill="var(--brand)" font-family="Arial, sans-serif">A</text><rect x="9" y="9" width="13" height="13" rx="3" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.6"/><text x="15.5" y="19" font-size="9" font-weight="700" text-anchor="middle" fill="var(--accent)" font-family="Arial, sans-serif">अ</text></svg></button>
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" aria-pressed="false"><span class="theme-toggle-track"><span class="theme-toggle-thumb"></span></span></button>
-      <a href="index.html" class="btn btn-primary btn-sm">Start</a>
+      <button class="icon-btn nav-toggle" id="navToggle" type="button" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/></svg></button>
     </div>
   </div>
 </header>
 
 <div class="notice-ticker" id="noticeTicker" aria-live="off"></div>
 
-<main>
-  <section class="hero wrap" style="padding:44px 0 20px">
+<main id="main">
+
+  <!-- 1. HERO -->
+  <section class="hero wrap" style="padding:52px 0 40px">
     <div class="about-hero">
-      <span class="eyebrow">👋 About GovtBabu</span>
-      <h1 style="font-size:38px">More than a document tool</h1>
-      <p class="lead">GovtBabu started as a way to resize a photo and signature to the exact spec an exam demands. It's grown into a single place to understand a government exam properly — how many seats there are, who's eligible, how reservation and age relaxation actually apply to you, exactly how to apply — and then get your documents ready. All researched and sourced, not guessed.</p>
-    </div>
-  </section>
-
-  <section class="section wrap" style="padding-top:0">
-    <div class="section-head">
-      <h2>What you get, in one place</h2>
-    </div>
-    <div class="value-grid value-grid-4">
-      <div class="value-card">
-        <h3>🔍 Know the exam</h3>
-        <p>Seats, pay levels, eligibility, age relaxation and reservation policy — researched from the official notification for every exam we cover, sources cited and gaps flagged honestly rather than guessed.</p>
-      </div>
-      <div class="value-card">
-        <h3>🧭 Know how to apply</h3>
-        <p>Step-by-step instructions through the actual application portal — what to expect at each stage, and how correction windows work if you make a mistake.</p>
-      </div>
-      <div class="value-card">
-        <h3>🖼️ Get your documents ready</h3>
-        <p>Your photo, signature and other required documents, resized to the exact pixel and KB spec your exam demands — processed entirely in your browser.</p>
-      </div>
-      <div class="value-card">
-        <h3>📌 Stay on top of it</h3>
-        <p>A notice board for every exam currently accepting applications, a calendar sorted by deadline, and a results section that links straight to each exam's official result page.</p>
+      <span class="eyebrow" data-i18n="about.eyebrow">Why GovBabu</span>
+      <h1 style="font-size:42px" data-i18n="about.h1">Government exams are complicated. Understanding them shouldn't be.</h1>
+      <p class="lead" style="font-size:18px;max-width:560px" data-i18n="about.lead">GovBabu helps aspirants discover the right exam, understand eligibility, prepare application documents, apply correctly and stay updated — all in one place.</p>
+      <div class="hero-cta">
+        <a href="exams.html" class="btn btn-accent" data-i18n="about.ctaBrowse">Browse Exams</a>
+        <a href="index.html" class="btn btn-outline" data-i18n="about.ctaGetStarted">Get Started</a>
       </div>
     </div>
   </section>
 
+  <!-- 2. THE PROBLEM -->
+  <section class="section wrap" style="max-width:760px;padding-top:0">
+    <div class="problem-block">
+      <span class="tag" data-i18n="about.problemTag">The problem</span>
+      <h2 data-i18n="about.problemHead">A small mistake can undo months — sometimes years — of preparation.</h2>
+      <ul class="dot-list danger">
+        <li data-i18n="about.problem1">Months, sometimes years, of preparation undone by one eligibility clause nobody explained in plain language</li>
+        <li data-i18n="about.problem2">An application rejected on a technicality, with no chance to fix it before the deadline</li>
+        <li data-i18n="about.problem3">Vacancies, cut-offs and dates scattered across a dozen websites that don't even agree with each other</li>
+        <li data-i18n="about.problem4">No single place to track every deadline and correction window — so one gets missed</li>
+        <li data-i18n="about.problem5">Aspirants paying a cyber café or an agent just to get a government form filled correctly</li>
+      </ul>
+      <p data-i18n="about.problemClose">None of this is about how hard an aspirant worked. It's about a process that makes it easy to lose everything over a rule, a form or a deadline — after months of real effort. That's the part GovBabu exists to fix.</p>
+    </div>
+  </section>
+
+  <!-- 3. OUR MISSION -->
+  <section class="section wrap" style="max-width:620px">
+    <div class="mission-block">
+      <span class="tag" data-i18n="about.missionTag">Our mission</span>
+      <p class="mission-statement" data-i18n="about.missionStatement">Make every government-exam application easier to understand — and harder to get wrong.</p>
+      <p data-i18n="about.missionBody">That's the whole idea. Not a bigger notification, not more information to sift through — just the important parts, explained plainly, with the tools to act on them.</p>
+    </div>
+  </section>
+
+  <!-- 4. HOW GOVBABU HELPS -->
   <section class="section wrap">
+    <div class="section-head">
+      <span class="tag" data-i18n="about.journeyTag">How GovBabu helps</span>
+      <h2 data-i18n="about.journeyHead">From Discover to Track</h2>
+    </div>
+    <ol class="journey-timeline">
+      <li class="journey-step">
+        <span class="journey-step-num" aria-hidden="true">01</span>
+        <div class="journey-step-body">
+          <h3 data-i18n="about.journey1Title">Discover</h3>
+          <p data-i18n="about.journey1Desc">Find relevant government exams and job opportunities across India, in one place instead of a dozen scattered sites.</p>
+        </div>
+      </li>
+      <li class="journey-step">
+        <span class="journey-step-num" aria-hidden="true">02</span>
+        <div class="journey-step-body">
+          <h3 data-i18n="about.journey2Title">Understand</h3>
+          <p data-i18n="about.journey2Desc">See vacancies, eligibility, age limits, fees, important dates and the selection process — explained in plain language, not notification-speak.</p>
+        </div>
+      </li>
+      <li class="journey-step">
+        <span class="journey-step-num" aria-hidden="true">03</span>
+        <div class="journey-step-body">
+          <h3 data-i18n="about.journey3Title">Check</h3>
+          <p data-i18n="about.journey3Desc">Understand whether an exam actually fits your profile, based on the official eligibility rules — not a guess.</p>
+        </div>
+      </li>
+      <li class="journey-step">
+        <span class="journey-step-num" aria-hidden="true">04</span>
+        <div class="journey-step-body">
+          <h3 data-i18n="about.journey4Title">Prepare</h3>
+          <p data-i18n="about.journey4Desc">Get your photograph, signature and other required documents ready to the exact specification, right in your browser.</p>
+        </div>
+      </li>
+      <li class="journey-step">
+        <span class="journey-step-num" aria-hidden="true">05</span>
+        <div class="journey-step-body">
+          <h3 data-i18n="about.journey5Title">Apply</h3>
+          <p data-i18n="about.journey5Desc">Follow a clear, step-by-step guide through the application — then submit it on the official portal, where it belongs.</p>
+        </div>
+      </li>
+      <li class="journey-step">
+        <span class="journey-step-num" aria-hidden="true">06</span>
+        <div class="journey-step-body">
+          <h3 data-i18n="about.journey6Title">Track</h3>
+          <p data-i18n="about.journey6Desc">Keep an eye on deadlines, correction windows, admit cards and results, so nothing slips past you.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- 5. WHAT MAKES GOVBABU DIFFERENT -->
+  <section class="section wrap">
+    <div class="section-head">
+      <span class="tag" data-i18n="about.diffTag">Our philosophy</span>
+      <h2 data-i18n="about.diffHead">What makes GovBabu different</h2>
+    </div>
     <div class="value-grid">
       <div class="value-card">
-        <h3>🔒 Privacy by default</h3>
-        <p>Every document tool runs client-side. Your photo, signature and PDF files are processed in your browser's memory and never leave your device.</p>
+        <h3 data-i18n="about.diff1Title">Simple</h3>
+        <p data-i18n="about.diff1Desc">Government notifications can run into dozens of pages. Our job is to pull out what actually matters and say it in plain language.</p>
       </div>
       <div class="value-card">
-        <h3>📚 Sourced, not guessed</h3>
-        <p>Every seat count, pay level, eligibility rule and deadline is researched against the official notification wherever one exists. Where sources conflict or something can't be confirmed, we say so instead of picking one silently.</p>
+        <h3 data-i18n="about.diff2Title">Source-first</h3>
+        <p data-i18n="about.diff2Desc">Important details should be traceable back to the official notification wherever one exists — not just repeated from another website.</p>
       </div>
       <div class="value-card">
-        <h3>🎉 Free for aspirants</h3>
-        <p>GovtBabu is free for every aspirant to use right now — no login, no payment — for at least the first two months.</p>
+        <h3 data-i18n="about.diff3Title">Useful</h3>
+        <p data-i18n="about.diff3Desc">We don't stop at explaining a rule. We try to help you act on it — check a document, follow a step, catch a deadline.</p>
+      </div>
+      <div class="value-card">
+        <h3 data-i18n="about.diff4Title">Independent</h3>
+        <p data-i18n="about.diff4Desc">GovBabu isn't a government body, an exam-conducting authority or a coaching institute. It's a platform built for aspirants.</p>
+      </div>
+      <div class="value-card">
+        <h3 data-i18n="about.diff5Title">Privacy-conscious</h3>
+        <p data-i18n="about.diff5Desc">Document tools are designed to avoid unnecessary uploads — most processing happens right in your browser, on your own device.</p>
       </div>
     </div>
   </section>
 
+  <!-- 6. FROM DOCUMENT TO DECISION -->
+  <section class="section wrap" style="max-width:940px">
+    <div class="section-head">
+      <span class="tag" data-i18n="about.originTag">How GovBabu got here</span>
+      <h2 data-i18n="about.originHead">From a document problem to a bigger one</h2>
+    </div>
+    <div class="origin-flow">
+      <div class="origin-step">
+        <h3 data-i18n="about.origin1Label">Where we started</h3>
+        <p data-i18n="about.origin1Body">Why is preparing a photo, signature or PDF for a government form so unnecessarily difficult?</p>
+      </div>
+      <div class="origin-arrow" aria-hidden="true">→</div>
+      <div class="origin-step">
+        <h3 data-i18n="about.origin2Label">What we found</h3>
+        <p data-i18n="about.origin2Body">The paperwork was never the real problem. The whole application journey is hard to understand — vacancies, eligibility, dates and steps, scattered across sources that don't always agree.</p>
+      </div>
+      <div class="origin-arrow" aria-hidden="true">→</div>
+      <div class="origin-step">
+        <h3 data-i18n="about.origin3Label">Where we're going</h3>
+        <p data-i18n="about.origin3Body">Make the entire journey easier to get through — from discovering the right exam to submitting the application correctly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. BUILT FOR ASPIRANTS ACROSS INDIA -->
+  <section class="section wrap" style="max-width:900px">
+    <div class="section-head">
+      <span class="tag" data-i18n="about.coverageTag">Coverage</span>
+      <h2 data-i18n="about.coverageHead">Built for aspirants across India</h2>
+      <p data-i18n="about.coverageLead">GovBabu is being built to eventually cover government exams across every state and every major recruitment body. Here's honestly where that stands today.</p>
+    </div>
+    <div class="coverage-split">
+      <div class="coverage-col today">
+        <h3 data-i18n="about.coverageTodayTitle">✅ What GovBabu covers today</h3>
+        <ul>
+          <li data-i18n="about.coverageToday1">National-level exams (SSC, Railway, Banking)</li>
+          <li data-i18n="about.coverageToday2">Select state PSC and state-recruitment exams</li>
+          <li data-i18n="about.coverageToday3">Defence, Teaching and Police recruitment</li>
+          <li data-i18n="about.coverageToday4">See the current, full list on <a href="exams.html">Browse Exams</a>.</li>
+        </ul>
+      </div>
+      <div class="coverage-col next">
+        <h3 data-i18n="about.coverageNextTitle">🚧 What we're building toward</h3>
+        <ul>
+          <li data-i18n="about.coverageNext1">Deeper coverage across every state, not just the largest ones</li>
+          <li data-i18n="about.coverageNext2">More recruitment boards, including smaller but high-value exams</li>
+          <li data-i18n="about.coverageNext3">Richer per-exam guidance as coverage grows</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. OUR APPROACH TO INFORMATION -->
+  <section class="section wrap" style="max-width:760px">
+    <div class="principle-block">
+      <span class="tag" data-i18n="about.sourcedTag">Our approach</span>
+      <h2 data-i18n="about.sourcedHead">Sourced, not guessed.</h2>
+      <p data-i18n="about.sourcedBody1">Government recruitment information changes constantly. Notifications get revised. Different websites sometimes publish different numbers for the very same exam.</p>
+      <p data-i18n="about.sourcedBody2">We try to trace important details back to the official notification or official source wherever one is available, and make that source easy to find and check for yourself.</p>
+      <p class="principle-callout" data-i18n="about.sourcedCallout">When something can't be verified, or sources conflict, we say so — instead of quietly picking one and moving on.</p>
+    </div>
+  </section>
+
+  <!-- 9. DOCUMENT PRIVACY -->
+  <section class="section wrap" style="max-width:760px">
+    <div class="legal-block">
+      <h2 data-i18n="about.privacyHead">🔒 Your documents are yours</h2>
+      <p data-i18n="about.privacyBody">Application documents are sensitive. GovBabu's photo, signature and PDF tools are built so that everyday tasks — resizing a photo, checking a signature against a spec — can happen directly in your browser, on your own device, instead of requiring an upload to a server first.</p>
+    </div>
+  </section>
+
+  <section class="section wrap" style="max-width:760px;padding-top:0">
+    <div class="legal-block">
+      <h2 data-i18n="about.freeHead">🎉 Free to use</h2>
+      <p data-i18n="about.freeBody">GovBabu is currently free for every aspirant — no login, no payment required. We're building this with feedback from aspirants like you. If paid features are ever introduced, the plan is to limit them to document-preparation tools — core exam information stays free.</p>
+    </div>
+  </section>
+
+  <!-- 10. WHAT WE ARE BUILDING NEXT -->
   <section class="section wrap">
     <div class="section-head">
-      <span class="tag">Roadmap</span>
-      <h2>What's next</h2>
+      <span class="tag" data-i18n="about.roadmapTag">Roadmap</span>
+      <h2 data-i18n="about.roadmapHead">What we're building next</h2>
+      <p data-i18n="about.roadmapIntro">Here's the direction we're headed in — not all of this exists yet.</p>
     </div>
     <ul class="roadmap">
-      <li><span class="dot"></span><div><b>Currently free for everyone</b> — no payment is required right now while we gather feedback. A small one-time fee may return later, and only for the document-prep tools — never for exam information.</div></li>
-      <li><span class="dot"></span><div><b>Growing exam coverage</b> — actively adding more high-volume exams (Railway, SSC, Police, Defence, Banking and more) beyond the original list, each researched the same way.</div></li>
-      <li><span class="dot"></span><div><b>Keep exam data current</b> — application windows open and close constantly, so dates, seats and statuses need periodic re-checking, not a one-time fix.</div></li>
+      <li><span class="dot"></span><div><b data-i18n="about.roadmap1Title">More exams</b><span data-i18n="about.roadmap1Desc"> — expanding coverage across more states and major recruitment bodies.</span></div></li>
+      <li><span class="dot"></span><div><b data-i18n="about.roadmap2Title">Better eligibility tools</b><span data-i18n="about.roadmap2Desc"> — an easier way to understand which exams you may actually be eligible for.</span></div></li>
+      <li><span class="dot"></span><div><b data-i18n="about.roadmap3Title">Smarter application guidance</b><span data-i18n="about.roadmap3Desc"> — clearer, more specific steps for confusing government application processes.</span></div></li>
+      <li><span class="dot"></span><div><b data-i18n="about.roadmap4Title">More document tools</b><span data-i18n="about.roadmap4Desc"> — exam-specific photo, signature and PDF preparation, built around what aspirants actually need.</span></div></li>
+      <li><span class="dot"></span><div><b data-i18n="about.roadmap5Title">Alerts &amp; tracking</b><span data-i18n="about.roadmap5Desc"> — help staying on top of deadlines, correction windows, admit cards and results.</span></div></li>
+      <li><span class="dot"></span><div><b data-i18n="about.roadmap6Title">Personalized exam discovery</b><span data-i18n="about.roadmap6Desc"> — eventually, exam suggestions based on your own profile, not just a static list.</span></div></li>
     </ul>
   </section>
 
+  <!-- 11. WHO GOVBABU IS FOR -->
+  <section class="section wrap" style="max-width:700px">
+    <div class="section-head">
+      <h2 data-i18n="about.audienceHead">Built for the person behind the application.</h2>
+      <p data-i18n="about.audienceIntro">Whether you're:</p>
+    </div>
+    <ul class="dot-list">
+      <li data-i18n="about.audience1">Applying for your first government exam</li>
+      <li data-i18n="about.audience2">Applying to more than one exam at the same time</li>
+      <li data-i18n="about.audience3">Not sure whether you're even eligible</li>
+      <li data-i18n="about.audience4">Confused by photo, signature or document requirements</li>
+      <li data-i18n="about.audience5">Tired of checking five different websites for one answer</li>
+    </ul>
+    <p style="text-align:center;color:var(--muted);font-size:15px;line-height:1.7;margin-top:22px" data-i18n="about.audienceClose">…GovBabu is built to be the place that makes it easier, not one more site to check.</p>
+  </section>
+
+  <!-- 12. FINAL CTA -->
   <section class="section wrap">
     <div class="appmode-banner" style="grid-template-columns:1fr;text-align:center">
       <div>
-        <h2>Have a tool or exam to suggest?</h2>
-        <p>GovtBabu is a work in progress — join our Telegram or reach out with what your application needed that this didn't cover.</p>
+        <h2 data-i18n="about.finalHead">Your next application starts here.</h2>
+        <p data-i18n="about.finalLead">Understand the exam. Check the requirements. Get your documents ready. Apply with confidence.</p>
         <div class="hero-cta" style="justify-content:center">
-          <a href="index.html" class="btn btn-accent">Get Started</a>
-          <a href="https://t.me/Govtbabu_official" target="_blank" rel="noopener" class="btn btn-outline" style="color:#fff;border-color:#5a86b8">Join our Telegram</a>
+          <a href="exams.html" class="btn btn-accent" data-i18n="about.ctaBrowse">Browse Exams</a>
+          <a href="index.html" class="btn btn-outline" data-i18n="about.ctaExploreTools">Explore Tools</a>
         </div>
+        <p style="margin-top:18px;font-size:13px;color:#c7d2e0">
+          <span data-i18n="about.suggestLead">Missing a tool or exam? </span><a href="https://t.me/GovBabu_official" target="_blank" rel="noopener" style="font-weight:700;text-decoration:underline" data-i18n="about.ctaTelegram">Tell us on Telegram</a>
+        </p>
       </div>
     </div>
   </section>
+
 </main>
 
 <footer class="site-footer">
-  <div class="wrap footer-inner">
-    <div class="footer-brand">GovtBabu</div>
-    <nav class="footer-links">
-      <a href="index.html">Home</a><a href="exams.html">Browse Exams</a><a href="calendar.html">Calendar</a><a href="about.html">About</a>
-    </nav>
-    <a class="footer-telegram" href="https://t.me/Govtbabu_official" target="_blank" rel="noopener">Join our Telegram — @Govtbabu_official</a>
-    <p class="disclaimer">GovtBabu is an independent tool and is not affiliated with UPSC, SSC, IBPS, Railway, BPSC or any government body.</p>
+  <div class="wrap footer-cols">
+    <div class="footer-col footer-col-brand">
+      <div class="footer-brand">GovBabu</div>
+      <p class="footer-tagline" data-i18n="footer.tagline">Government exams, applications and documents — made simpler.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title" data-i18n="footer.explore">Explore</div>
+      <a href="index.html" data-i18n="nav.home">Home</a>
+      <a href="exams.html" data-i18n="nav.browseExams">Browse Exams</a>
+      <a href="calendar.html" data-i18n="nav.calendar">Calendar</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title" data-i18n="footer.company">Company</div>
+      <a href="about.html" data-i18n="nav.about">About</a>
+      <a href="contact.html" data-i18n="nav.contact">Contact</a>
+      <a href="privacy.html" data-i18n="footer.privacyPolicy">Privacy Policy</a>
+      <a href="terms.html" data-i18n="footer.termsOfUse">Terms of Use</a>
+      <a href="disclaimer.html" data-i18n="footer.disclaimerLink">Disclaimer</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title" data-i18n="footer.connect">Connect</div>
+      <a href="https://t.me/GovBabu_official" target="_blank" rel="noopener" data-i18n="footer.telegram">Telegram</a>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <p class="disclaimer" data-i18n="footer.disclaimerText">GovBabu is an independent tool and is not affiliated with UPSC, SSC, IBPS, Railway, BPSC or any government body.</p>
+    <p class="footer-copyright" data-i18n="footer.copyright">© 2026 GovBabu. All Rights Reserved.</p>
   </div>
 </footer>
 

@@ -1,4 +1,4 @@
-GovtBabu
+GovBabu
 =========
 Local dev: `node dev-server.js` (serves the static site + the /api payment
 endpoints on the same origin). Plain `python3 -m http.server` also works if
@@ -18,7 +18,7 @@ Pages:
                 and each exam within it ordered by aspirant-strength.
 - calendar.html Every exam sorted by application deadline, grouped by month,
                 with a live "closes in Nd" countdown for open ones.
-- about.html    Why GovtBabu exists, values, and the roadmap.
+- about.html    Why GovBabu exists, values, and the roadmap.
 - tools.html / applications.html
                 Redirect stubs to index.html — kept only so old bookmarks/
                 links don't 404. The standalone tools grid and exam browser

@@ -6,6 +6,12 @@
       "runtimeExecutable": "node",
       "runtimeArgs": ["dev-server.js"],
       "port": 8744
+    },
+    {
+      "name": "monitor-admin",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["monitor/admin/server.js"],
+      "port": 8745
     }
   ]
 }

@@ -3,38 +3,46 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>GovtBabu — Your Government Exam Companion</title>
+<title>GovBabu — Your Government Exam Companion</title>
 <meta name="description" content="Seats, eligibility, reservation policy and how to apply, plus photo & signature resized to the exact spec — everything you need to apply for a government exam. Free for every aspirant right now.">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="GovtBabu">
-<meta property="og:title" content="GovtBabu — Your Government Exam Companion">
+<meta property="og:site_name" content="GovBabu">
+<meta property="og:title" content="GovBabu — Your Government Exam Companion">
 <meta property="og:description" content="Seats, eligibility, reservation policy and how to apply, plus photo & signature resized to the exact spec — everything you need to apply for a government exam. Free for every aspirant right now.">
 <meta name="twitter:card" content="summary">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f2440'/%3E%3Crect x='20' y='30' width='24' height='20' rx='5' fill='none' stroke='%23d4af37' stroke-width='4'/%3E%3Cpath d='M24 30v-6a8 8 0 0 1 16 0v3' fill='none' stroke='%23d4af37' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
+<a href="#main" class="skip-link">Skip to main content</a>
 <div class="gov-bar"><div class="wrap"><span class="gov-bar-clock" id="govClock"></span></div></div>
 <div class="tricolor-strip"><span></span><span></span><span></span></div>
 <header class="site-header">
   <div class="header-inner">
-    <a href="index.html" class="brand"><span class="brand-mark"><svg viewBox="0 0 46 46" fill="none"><rect x="8" y="24" width="28" height="18" rx="5" stroke="var(--brand)" stroke-width="3.4"/><path d="M14 24V16A8 8 0 0 1 30 16" stroke="var(--brand)" stroke-width="3.4" stroke-linecap="round"/><path d="M32 14L40 10" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/><path d="M32 19L38 17" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/><path d="M8 31Q20 39 35 26" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/></svg></span>GovtBabu</a>
+    <a href="index.html" class="brand"><span class="brand-mark"><svg viewBox="0 0 46 46" fill="none"><rect x="8" y="24" width="28" height="18" rx="5" stroke="var(--brand)" stroke-width="3.4"/><path d="M14 24V16A8 8 0 0 1 30 16" stroke="var(--brand)" stroke-width="3.4" stroke-linecap="round"/><path d="M32 14L40 10" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/><path d="M32 19L38 17" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/><path d="M8 31Q20 39 35 26" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/></svg></span>GovBabu</a>
     <div class="header-actions">
-      <button class="icon-btn lang-toggle" id="langToggle" aria-label="Change language" title="भाषा बदलें / Change language">EN</button>
+      <nav class="header-nav" id="headerNav"><a href="index.html" class="btn btn-outline btn-sm" data-i18n="nav.home" aria-current="page">Home</a>
+      <a href="exams.html" class="btn btn-outline btn-sm" data-i18n="nav.browseExams">Browse Exams</a>
       <a href="calendar.html" class="btn btn-outline btn-sm" data-i18n="nav.calendar">Calendar</a>
+      <a href="about.html" class="btn btn-outline btn-sm" data-i18n="nav.about">About</a>
+      <a href="contact.html" class="btn btn-outline btn-sm" data-i18n="nav.contact">Contact</a></nav>
+      <button class="icon-btn lang-toggle" id="langToggle" aria-label="Change language" title="भाषा बदलें / Change language"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><rect x="2" y="4" width="13" height="13" rx="3" stroke="var(--brand)" stroke-width="1.6"/><text x="8.5" y="14" font-size="9" font-weight="700" text-anchor="middle" fill="var(--brand)" font-family="Arial, sans-serif">A</text><rect x="9" y="9" width="13" height="13" rx="3" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.6"/><text x="15.5" y="19" font-size="9" font-weight="700" text-anchor="middle" fill="var(--accent)" font-family="Arial, sans-serif">अ</text></svg></button>
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" aria-pressed="false"><span class="theme-toggle-track"><span class="theme-toggle-thumb"></span></span></button>
-      <a href="about.html" class="btn btn-ghost btn-sm" data-i18n="nav.about">About</a>
+      <button class="icon-btn nav-toggle" id="navToggle" type="button" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/></svg></button>
     </div>
   </div>
 </header>
 
 <div class="notice-ticker" id="noticeTicker" aria-live="off"></div>
 
-<main>
+<main id="main">
   <section class="wrap flow-intro">
     <h1 data-i18n="home.title">Everything you need to apply for a government exam</h1>
     <p class="lead" data-i18n="home.lead">Seats, eligibility, reservation policy and how to apply — researched and sourced for every exam. Then upload your photo &amp; signature and get them resized to the exact spec, ready to submit.</p>
+    <div class="hero-cta" style="margin:22px 0 6px">
+      <a href="exams.html" class="btn btn-primary" data-i18n="home.ctaBrowse">Browse Exams</a>
+      <a href="calendar.html" class="btn btn-outline" data-i18n="home.ctaCalendar">View Exam Calendar</a>
+    </div>
     <p class="free-note" data-i18n="home.free">🎉 Free for every aspirant right now — no login, no payment.</p>
     <p class="privacy-note" data-i18n="home.privacy">🔒 Processed entirely in your browser — your photo and signature never leave your device.</p>
   </section>
@@ -59,7 +67,7 @@
 
         <div class="flow-panel" id="panelExam">
           <label class="flow-label" for="examSearch" data-i18n="home.whichExam">Which exam are you applying for?</label>
-          <input id="examSearch" class="search-input" placeholder="Search e.g. SSC CGL, IBPS PO, UPSC…" autocomplete="off">
+          <input id="examSearch" class="search-input" placeholder="Search e.g. SSC CGL, IBPS PO, UPSC…" data-i18n-placeholder="home.searchPlaceholder" autocomplete="off">
           <div id="examResults" class="exam-result-list"></div>
           <div id="popularExams" class="popular-exams"></div>
           <div id="examByCategory" class="exam-by-category"></div>
@@ -79,7 +87,7 @@
 
       </div>
 
-      <p class="flow-disclaimer" data-i18n="home.disclaimer">GovtBabu is independent and not affiliated with UPSC, SSC, IBPS, Railway, BPSC or any government body. Requirement details are compiled from official notifications where available — always confirm against the current official notification before submitting.</p>
+      <p class="flow-disclaimer" data-i18n="home.disclaimer">GovBabu is independent and not affiliated with UPSC, SSC, IBPS, Railway, BPSC or any government body. Requirement details are compiled from official notifications where available — always confirm against the current official notification before submitting.</p>
     </section>
 
     <aside class="home-sidebar home-sidebar-right">
@@ -92,12 +100,33 @@
 </main>
 
 <footer class="site-footer">
-  <div class="wrap footer-inner">
-    <div class="footer-brand">GovtBabu</div>
-    <nav class="footer-links">
-      <a href="index.html" data-i18n="nav.home">Home</a><a href="exams.html" data-i18n="nav.browseExams">Browse Exams</a><a href="calendar.html" data-i18n="nav.calendar">Calendar</a><a href="about.html" data-i18n="nav.about">About</a>
-    </nav>
-    <a class="footer-telegram" href="https://t.me/Govtbabu_official" target="_blank" rel="noopener">Join our Telegram — @Govtbabu_official</a>
+  <div class="wrap footer-cols">
+    <div class="footer-col footer-col-brand">
+      <div class="footer-brand">GovBabu</div>
+      <p class="footer-tagline" data-i18n="footer.tagline">Simple exam information for Indian aspirants.</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title" data-i18n="footer.explore">Explore</div>
+      <a href="index.html" data-i18n="nav.home">Home</a>
+      <a href="exams.html" data-i18n="nav.browseExams">Browse Exams</a>
+      <a href="calendar.html" data-i18n="nav.calendar">Calendar</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title" data-i18n="footer.company">Company</div>
+      <a href="about.html" data-i18n="nav.about">About</a>
+      <a href="contact.html" data-i18n="nav.contact">Contact</a>
+      <a href="privacy.html" data-i18n="footer.privacyPolicy">Privacy Policy</a>
+      <a href="terms.html" data-i18n="footer.termsOfUse">Terms of Use</a>
+      <a href="disclaimer.html" data-i18n="footer.disclaimerLink">Disclaimer</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title" data-i18n="footer.connect">Connect</div>
+      <a href="https://t.me/GovBabu_official" target="_blank" rel="noopener" data-i18n="footer.telegram">Telegram</a>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <p class="disclaimer" data-i18n="footer.disclaimerText">GovBabu is an independent tool and is not affiliated with UPSC, SSC, IBPS, Railway, BPSC or any government body.</p>
+    <p class="footer-copyright" data-i18n="footer.copyright">© 2026 GovBabu. All Rights Reserved.</p>
   </div>
 </footer>
 

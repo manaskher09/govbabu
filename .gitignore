@@ -1,3 +1,5 @@
 .env
 .env.local
 node_modules/
+monitor/db/*.sqlite3*
+monitor/.env.local

@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Browse Exams — GovBabu</title>
-<meta name="description" content="Every government exam GovBabu covers, grouped by field — Banking, Railway, SSC, Defence, State PSC, Teaching, Police. Seats, eligibility, reservation policy, how to apply, and document prep for each.">
+<title>Disclaimer — GovBabu</title>
+<meta name="description" content="GovBabu is an independent platform and is not affiliated with UPSC, SSC, IBPS, Railway, BPSC or any government body — read the full disclaimer.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="GovBabu">
-<meta property="og:title" content="Browse Exams — GovBabu">
-<meta property="og:description" content="Every government exam GovBabu covers, grouped by field — Banking, Railway, SSC, Defence, State PSC, Teaching, Police. Seats, eligibility, reservation policy, how to apply, and document prep for each.">
+<meta property="og:title" content="Disclaimer — GovBabu">
+<meta property="og:description" content="GovBabu is an independent platform and is not affiliated with UPSC, SSC, IBPS, Railway, BPSC or any government body — read the full disclaimer.">
 <meta name="twitter:card" content="summary">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f2440'/%3E%3Crect x='20' y='30' width='24' height='20' rx='5' fill='none' stroke='%23d4af37' stroke-width='4'/%3E%3Cpath d='M24 30v-6a8 8 0 0 1 16 0v3' fill='none' stroke='%23d4af37' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css">
@@ -22,7 +22,7 @@
     <a href="index.html" class="brand"><span class="brand-mark"><svg viewBox="0 0 46 46" fill="none"><rect x="8" y="24" width="28" height="18" rx="5" stroke="var(--brand)" stroke-width="3.4"/><path d="M14 24V16A8 8 0 0 1 30 16" stroke="var(--brand)" stroke-width="3.4" stroke-linecap="round"/><path d="M32 14L40 10" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/><path d="M32 19L38 17" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/><path d="M8 31Q20 39 35 26" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/></svg></span>GovBabu</a>
     <div class="header-actions">
       <nav class="header-nav" id="headerNav"><a href="index.html" class="btn btn-outline btn-sm" data-i18n="nav.home">Home</a>
-      <a href="exams.html" class="btn btn-outline btn-sm" data-i18n="nav.browseExams" aria-current="page">Browse Exams</a>
+      <a href="exams.html" class="btn btn-outline btn-sm" data-i18n="nav.browseExams">Browse Exams</a>
       <a href="calendar.html" class="btn btn-outline btn-sm" data-i18n="nav.calendar">Calendar</a>
       <a href="about.html" class="btn btn-outline btn-sm" data-i18n="nav.about">About</a>
       <a href="contact.html" class="btn btn-outline btn-sm" data-i18n="nav.contact">Contact</a></nav>
@@ -36,15 +36,36 @@
 <div class="notice-ticker" id="noticeTicker" aria-live="off"></div>
 
 <main id="main">
-  <section class="wrap flow-intro" style="max-width:720px">
-    <h1 data-i18n="exams.title">Browse all exams</h1>
-    <p class="lead" data-i18n="exams.lead">Not sure of the exact name? Every exam GovBabu covers, grouped by field — pick yours to see seats, pay, eligibility, reservation policy, how to apply, and get your documents ready.</p>
-    <label class="flow-label" for="directorySearch" style="margin-top:20px" data-i18n="exams.searchLabel">Search exams</label>
-    <input id="directorySearch" class="search-input" placeholder="Search e.g. SSC, Railway, Banking…" data-i18n-placeholder="exams.searchPlaceholder" autocomplete="off">
+  <section class="hero wrap" style="padding:44px 0 20px">
+    <div class="about-hero">
+      <span class="eyebrow" data-i18n="disclaimer.eyebrow">⚠️ Disclaimer</span>
+      <h1 style="font-size:38px" data-i18n="disclaimer.h1">We're independent — please verify</h1>
+      <p class="lead" data-i18n="disclaimer.lead">The most important thing to know about GovBabu, in one place.</p>
+    </div>
   </section>
 
-  <section class="wrap" style="max-width:1100px;padding-bottom:60px">
-    <div id="examDirectory"></div>
+  <section class="section wrap" style="max-width:760px;padding-top:0">
+    <div class="legal-block">
+      <h2 data-i18n="disclaimer.s1h">Not a government website</h2>
+      <p data-i18n="disclaimer.s1p">GovBabu is an independent, privately-run platform built to help aspirants navigate government exams more easily. It is <strong>not affiliated with, endorsed by, or operated by</strong> UPSC, SSC, IBPS, Railway (RRB), BPSC, any state PSC, or any other government body or ministry.</p>
+
+      <h2 data-i18n="disclaimer.s2h">Information accuracy</h2>
+      <p data-i18n="disclaimer.s2p">Exam details on GovBabu — seats, eligibility, fees, dates, vacancies and how-to-apply steps — are researched against each exam's official notification wherever one is reachable, and we flag it plainly when something couldn't be independently confirmed. Application windows, dates and other details can and do change on the official side, sometimes with little notice. Always cross-check against the official notification (linked on every exam's page) before you rely on any detail here, especially before submitting an application or payment.</p>
+
+      <h2 data-i18n="disclaimer.s3h">No guarantee of outcomes</h2>
+      <p data-i18n="disclaimer.s3p">Using GovBabu does not guarantee eligibility, selection, or any particular exam outcome. Final eligibility and selection are decided solely by the conducting body under its own rules.</p>
+
+      <h2 data-i18n="disclaimer.s4h">External links</h2>
+      <p data-i18n="disclaimer.s4p">GovBabu links out to official notifications, application portals and result pages. We aren't responsible for the content, availability or accuracy of those external, third-party sites.</p>
+
+      <h2 data-i18n="disclaimer.s5h">Document tools</h2>
+      <p data-i18n="disclaimer.s5p">Photo/signature resizing and PDF tools are provided to help you meet a published specification, but you're responsible for confirming the final files meet the current official requirement before you submit them.</p>
+
+      <h2 data-i18n="disclaimer.s6h">Questions</h2>
+      <p data-i18n="disclaimer.s6p">If something here looks wrong or out of date, please tell us via the <a href="contact.html">Contact page</a> — data corrections are treated as high priority.</p>
+
+      <p class="legal-updated" data-i18n="disclaimer.updated">Last updated: 28 Aug 2026.</p>
+    </div>
   </section>
 </main>
 

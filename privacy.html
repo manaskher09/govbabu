@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Browse Exams — GovBabu</title>
-<meta name="description" content="Every government exam GovBabu covers, grouped by field — Banking, Railway, SSC, Defence, State PSC, Teaching, Police. Seats, eligibility, reservation policy, how to apply, and document prep for each.">
+<title>Privacy Policy — GovBabu</title>
+<meta name="description" content="How GovBabu handles your data — what's processed locally in your browser, what the feedback form does, and what we don't collect.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="GovBabu">
-<meta property="og:title" content="Browse Exams — GovBabu">
-<meta property="og:description" content="Every government exam GovBabu covers, grouped by field — Banking, Railway, SSC, Defence, State PSC, Teaching, Police. Seats, eligibility, reservation policy, how to apply, and document prep for each.">
+<meta property="og:title" content="Privacy Policy — GovBabu">
+<meta property="og:description" content="How GovBabu handles your data — what's processed locally in your browser, what the feedback form does, and what we don't collect.">
 <meta name="twitter:card" content="summary">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f2440'/%3E%3Crect x='20' y='30' width='24' height='20' rx='5' fill='none' stroke='%23d4af37' stroke-width='4'/%3E%3Cpath d='M24 30v-6a8 8 0 0 1 16 0v3' fill='none' stroke='%23d4af37' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css">
@@ -22,7 +22,7 @@
     <a href="index.html" class="brand"><span class="brand-mark"><svg viewBox="0 0 46 46" fill="none"><rect x="8" y="24" width="28" height="18" rx="5" stroke="var(--brand)" stroke-width="3.4"/><path d="M14 24V16A8 8 0 0 1 30 16" stroke="var(--brand)" stroke-width="3.4" stroke-linecap="round"/><path d="M32 14L40 10" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/><path d="M32 19L38 17" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/><path d="M8 31Q20 39 35 26" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/></svg></span>GovBabu</a>
     <div class="header-actions">
       <nav class="header-nav" id="headerNav"><a href="index.html" class="btn btn-outline btn-sm" data-i18n="nav.home">Home</a>
-      <a href="exams.html" class="btn btn-outline btn-sm" data-i18n="nav.browseExams" aria-current="page">Browse Exams</a>
+      <a href="exams.html" class="btn btn-outline btn-sm" data-i18n="nav.browseExams">Browse Exams</a>
       <a href="calendar.html" class="btn btn-outline btn-sm" data-i18n="nav.calendar">Calendar</a>
       <a href="about.html" class="btn btn-outline btn-sm" data-i18n="nav.about">About</a>
       <a href="contact.html" class="btn btn-outline btn-sm" data-i18n="nav.contact">Contact</a></nav>
@@ -36,15 +36,39 @@
 <div class="notice-ticker" id="noticeTicker" aria-live="off"></div>
 
 <main id="main">
-  <section class="wrap flow-intro" style="max-width:720px">
-    <h1 data-i18n="exams.title">Browse all exams</h1>
-    <p class="lead" data-i18n="exams.lead">Not sure of the exact name? Every exam GovBabu covers, grouped by field — pick yours to see seats, pay, eligibility, reservation policy, how to apply, and get your documents ready.</p>
-    <label class="flow-label" for="directorySearch" style="margin-top:20px" data-i18n="exams.searchLabel">Search exams</label>
-    <input id="directorySearch" class="search-input" placeholder="Search e.g. SSC, Railway, Banking…" data-i18n-placeholder="exams.searchPlaceholder" autocomplete="off">
+  <section class="hero wrap" style="padding:44px 0 20px">
+    <div class="about-hero">
+      <span class="eyebrow" data-i18n="privacy.eyebrow">🔒 Privacy Policy</span>
+      <h1 style="font-size:38px" data-i18n="privacy.h1">Your data, plainly explained</h1>
+      <p class="lead" data-i18n="privacy.lead">GovBabu is built to need as little of your data as possible. This page explains exactly what happens to what you give it.</p>
+    </div>
   </section>
 
-  <section class="wrap" style="max-width:1100px;padding-bottom:60px">
-    <div id="examDirectory"></div>
+  <section class="section wrap" style="max-width:760px;padding-top:0">
+    <div class="legal-block">
+      <h2 data-i18n="privacy.s1h">Photo, signature and document files</h2>
+      <p data-i18n="privacy.s1p">Every photo, signature and PDF tool on GovBabu runs entirely in your browser using your device's own processing power (the HTML5 Canvas API and, for PDF tools, a library loaded from a public CDN). Your files are resized, compressed or converted locally on your device and are never uploaded to GovBabu's servers — because for these tools, GovBabu does not operate a server that receives them at all.</p>
+
+      <h2 data-i18n="privacy.s2h">The feedback form</h2>
+      <p data-i18n="privacy.s2p">The form on our <a href="contact.html">Contact page</a> does not submit to a GovBabu server either. When you press the button, it opens a pre-filled Gmail compose window in a new tab, addressed to us — the message is sent directly from your own email account when you hit Send there. If you don't complete that step, nothing is sent. Name and email on that form are optional and used only to reply to you.</p>
+
+      <h2 data-i18n="privacy.s3h">What we store in your browser</h2>
+      <p data-i18n="privacy.s3p">Two small preferences — your chosen language and light/dark theme — are saved using your browser's local storage so the site remembers them on your next visit. This stays on your device; it is not sent to us or to any third party.</p>
+
+      <h2 data-i18n="privacy.s4h">Payments</h2>
+      <p data-i18n="privacy.s4p">GovBabu's document tools are currently free for every aspirant, with no payment required. If a paid unlock is introduced in the future, payment would be handled by a third-party payment processor (Razorpay) — card and payment details would go directly to that processor under its own privacy terms, not to GovBabu.</p>
+
+      <h2 data-i18n="privacy.s5h">Cookies and analytics</h2>
+      <p data-i18n="privacy.s5p">GovBabu does not run third-party analytics or advertising trackers, and does not use cookies for tracking.</p>
+
+      <h2 data-i18n="privacy.s6h">Accounts</h2>
+      <p data-i18n="privacy.s6p">There is no sign-up or login anywhere on GovBabu, so we don't hold account profiles, passwords or usage histories tied to an identity.</p>
+
+      <h2 data-i18n="privacy.s7h">Questions about this policy</h2>
+      <p data-i18n="privacy.s7p">Write to us via the <a href="contact.html">Contact page</a> or directly at <a href="mailto:manas.m.kher@gmail.com">manas.m.kher@gmail.com</a>.</p>
+
+      <p class="legal-updated" data-i18n="privacy.updated">This policy describes GovBabu's actual technical implementation as of the date below, and will be updated if that implementation changes. Last updated: 28 Aug 2026.</p>
+    </div>
   </section>
 </main>
 
