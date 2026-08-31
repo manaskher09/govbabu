@@ -1,0 +1,37 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2868
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww22020\viewh12840\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Browser (static site, unchanged)          Backend (2 tiny functions)         Razorpay\
+\uc0\u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472           \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472          \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \
+1. User clicks "Pay \uc0\u8377 29 & Unlock"\
+   on tools.html\
+        \uc0\u9474 \
+        \uc0\u9500 \u9472 \u9472 \u9472 \u9472  POST /api/create-order \u9472 \u9472 \u9472 \u9472 \u9654  creates order via\
+        \uc0\u9474       \{tool, examCode, amount\}    Razorpay Orders API \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9654  Orders API\
+        \uc0\u9474                                                       \u9664 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472  \{order_id\}\
+        \uc0\u9474 \u9664 \u9472 \u9472 \u9472 \u9472  \{order_id, key_id\} \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \
+        \uc0\u9474 \
+2. Razorpay Checkout modal opens\
+   (checkout.js, loaded from Razorpay CDN)\
+   user pays via UPI/GPay/PhonePe \uc0\u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9654  Razorpay\
+        \uc0\u9474 \u9664 \u9472 \u9472  \{payment_id, order_id, signature\} \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \
+        \uc0\u9474 \
+        \uc0\u9500 \u9472 \u9472 \u9472 \u9472  POST /api/verify-payment \u9472 \u9472 \u9654  recompute HMAC signature\
+        \uc0\u9474       \{payment_id, order_id,      with key_secret (server-only),\
+        \uc0\u9474        signature, tool, examCode\}  compare to what browser sent\
+        \uc0\u9474 \u9664 \u9472 \u9472 \u9472 \u9472  \{unlock_token\} \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \
+        \uc0\u9474 \
+3. Token stored in sessionStorage,\
+   Download button in #toolResult\
+   becomes visible/enabled\
+\
+(parallel, backup path)\
+Razorpay \uc0\u9472 \u9472 \u9472 \u9472  webhook: payment.captured \u9472 \u9472 \u9654  POST /api/razorpay-webhook\
+                                            verifies webhook secret,\
+                                            marks payment_id as settled\
+                                            (covers the case where the\
+                                            browser closed before step 3)}

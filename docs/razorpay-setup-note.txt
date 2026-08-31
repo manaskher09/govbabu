@@ -1,0 +1,1 @@
+Whenever you create the Razorpay account, drop the test key_id/key_secret/webhook secret into a .env.local in formready-main/ (never committed) — mock mode turns off automatically and real orders start flowing through the same code.
