@@ -9,7 +9,20 @@ const fs = require('fs');
 const path = require('path');
 const { getDb } = require('../db/db');
 const { approveChange, rejectChange } = require('../pipeline/applyApproval');
-const { login, logout, getSessionUser, parseCookies, COOKIE_NAME, SESSION_TTL_MS } = require('../auth/sessions');
+const {
+  login,
+  logout,
+  getSessionUser,
+  parseCookies,
+  tokenHash,
+  setPassword,
+  revokeOtherSessions,
+  revokeAllSessions,
+  listSessions,
+  COOKIE_NAME,
+  SESSION_TTL_MS,
+} = require('../auth/sessions');
+const { verifyPassword } = require('../auth/passwords');
 const { getCurrentExam, listCurrentExams, getAllFieldHistory } = require('../db/currentExam');
 const { toApplicationsShape } = require('../sync/toApplicationsShape');
 
@@ -30,6 +43,12 @@ function readBody(req) {
     req.on('end', () => resolve(data));
     req.on('error', reject);
   });
+}
+
+// 8+ chars, at least one letter and one digit — matches bin/create-admin.js's
+// baseline plus a real strength floor rather than length alone.
+function isStrongPassword(pw) {
+  return pw.length >= 8 && /[a-zA-Z]/.test(pw) && /[0-9]/.test(pw);
 }
 
 function json(res, status, body) {
@@ -171,6 +190,46 @@ const server = http.createServer(async (req, res) => {
       if (pathname === '/api/admin/jobs' && req.method === 'GET') return json(res, 200, jobsList(db));
       if (pathname === '/api/admin/audit-log' && req.method === 'GET') return json(res, 200, auditLogList(db));
       if (pathname === '/api/admin/me' && req.method === 'GET') return json(res, 200, { user });
+
+      if (pathname === '/api/admin/sessions' && req.method === 'GET') {
+        const curToken = tokenHash(parseCookies(req.headers.cookie)[COOKIE_NAME] || '');
+        return json(res, 200, { sessions: listSessions(db, user.id, curToken) });
+      }
+
+      if (pathname === '/api/admin/change-password' && req.method === 'POST') {
+        const body = JSON.parse((await readBody(req)) || '{}');
+        const currentPassword = String(body.currentPassword || '');
+        const newPassword = String(body.newPassword || '');
+        const fullUser = db.prepare('SELECT * FROM admin_users WHERE id = ?').get(user.id);
+        if (!verifyPassword(currentPassword, fullUser.password_hash)) {
+          // 403, not 401: a 401 here would trip the frontend's generic
+          // "session expired -> redirect to /login.html" handling, which is
+          // wrong for "you're authenticated but typed the wrong password."
+          return safeError(res, 403, 'invalid_current_password');
+        }
+        if (!isStrongPassword(newPassword)) {
+          return safeError(res, 400, 'password_too_weak');
+        }
+        if (verifyPassword(newPassword, fullUser.password_hash)) {
+          return safeError(res, 400, 'password_reused');
+        }
+        setPassword(db, fullUser.username, newPassword);
+        const curToken = tokenHash(parseCookies(req.headers.cookie)[COOKIE_NAME] || '');
+        const revoked = revokeOtherSessions(db, user.id, curToken);
+        db.prepare(
+          `INSERT INTO audit_logs (actor, action, entity_type, entity_id, details) VALUES (?, 'change_password', 'admin_user', ?, ?)`
+        ).run(String(user.id), user.id, JSON.stringify({ other_sessions_revoked: revoked }));
+        return json(res, 200, { status: 'password_changed', other_sessions_revoked: revoked });
+      }
+
+      if (pathname === '/api/admin/logout-all' && req.method === 'POST') {
+        const revoked = revokeAllSessions(db, user.id);
+        db.prepare(
+          `INSERT INTO audit_logs (actor, action, entity_type, entity_id, details) VALUES (?, 'logout_all_sessions', 'admin_user', ?, ?)`
+        ).run(String(user.id), user.id, JSON.stringify({ sessions_revoked: revoked }));
+        clearSessionCookie(res);
+        return json(res, 200, { status: 'logged_out_everywhere', sessions_revoked: revoked });
+      }
 
       const approveMatch = pathname.match(/^\/api\/admin\/change-events\/(\d+)\/approve$/);
       if (approveMatch && req.method === 'POST') {

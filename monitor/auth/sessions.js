@@ -59,4 +59,46 @@ function parseCookies(header) {
   return out;
 }
 
-module.exports = { login, logout, getSessionUser, setPassword, parseCookies, COOKIE_NAME, SESSION_TTL_MS };
+// Called after a password change so any *other* logged-in session (a stolen
+// cookie, an old device) is immediately invalidated. The session making the
+// change is deliberately left alone — the admin shouldn't be logged out of
+// their own request for changing their own password.
+function revokeOtherSessions(db, userId, exceptTokenHash) {
+  return db
+    .prepare(
+      `UPDATE sessions SET revoked_at = datetime('now')
+       WHERE admin_user_id = ? AND token_hash != ? AND revoked_at IS NULL`
+    )
+    .run(userId, exceptTokenHash).changes;
+}
+
+// "Log out everywhere" — revokes every session including the caller's own,
+// so the client must clear its cookie and redirect to /login.html.
+function revokeAllSessions(db, userId) {
+  return db
+    .prepare(`UPDATE sessions SET revoked_at = datetime('now') WHERE admin_user_id = ? AND revoked_at IS NULL`)
+    .run(userId).changes;
+}
+
+function listSessions(db, userId, currentTokenHash) {
+  return db
+    .prepare(
+      `SELECT id, created_at, expires_at, revoked_at, (token_hash = ?) AS is_current
+       FROM sessions WHERE admin_user_id = ? ORDER BY created_at DESC LIMIT 50`
+    )
+    .all(currentTokenHash, userId);
+}
+
+module.exports = {
+  login,
+  logout,
+  getSessionUser,
+  setPassword,
+  parseCookies,
+  tokenHash,
+  revokeOtherSessions,
+  revokeAllSessions,
+  listSessions,
+  COOKIE_NAME,
+  SESSION_TTL_MS,
+};

@@ -4,37 +4,75 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>GovBabu Monitor — Log in</title>
+<link rel="stylesheet" href="/styles.css">
 <style>
-  :root{--bg:#0c1420;--surface:#121c2b;--line:#293544;--ink:#e9edf2;--muted:#9aa5b4;--brand:#7fa8d4;--danger:#f87171}
-  *{box-sizing:border-box}
-  body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink);display:flex;align-items:center;justify-content:center;height:100vh}
-  form{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:32px;width:280px;display:grid;gap:14px}
-  h1{font-size:16px;margin:0 0 4px}
-  label{font-size:12px;color:var(--muted);display:grid;gap:6px}
-  input{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:9px 10px;color:var(--ink);font-size:14px}
-  button{background:var(--brand);color:#0c1420;border:none;border-radius:6px;padding:10px;font-weight:700;cursor:pointer}
-  #err{color:var(--danger);font-size:12px;min-height:14px}
+  body { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+  .login-card { width: 320px; }
+  .login-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; }
+  .login-brand .mark { font-size: 24px; }
+  .login-brand .name { font-weight: 800; font-size: 16px; }
+  .login-brand .name small { display: block; font-weight: 500; color: var(--muted); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; }
+  #err { color: var(--danger); font-size: 12.5px; min-height: 16px; margin-top: 2px; }
+  .login-submit { width: 100%; margin-top: 6px; padding: 10px; }
 </style>
 </head>
 <body>
-<form id="f">
-  <h1>🔍 GovBabu Monitor</h1>
-  <label>Username <input id="username" autocomplete="username" required></label>
-  <label>Password <input id="password" type="password" autocomplete="current-password" required></label>
-  <div id="err"></div>
-  <button type="submit">Log in</button>
-</form>
+<div class="login-card">
+  <div class="login-brand">
+    <span class="mark">🔍</span>
+    <span class="name">GovBabu<small>Monitor</small></span>
+  </div>
+  <div class="card">
+    <form id="f" class="card-body" style="padding:20px">
+      <div class="field">
+        <label>Username</label>
+        <input id="username" autocomplete="username" required>
+      </div>
+      <div class="field" style="margin-bottom:8px">
+        <label>Password</label>
+        <div class="pw-input-wrap">
+          <input id="password" type="password" autocomplete="current-password" required>
+          <button type="button" class="pw-toggle" id="pwToggle" aria-label="Show password" title="Show password">👁</button>
+        </div>
+      </div>
+      <div id="err"></div>
+      <button type="submit" class="btn btn-primary login-submit" id="submitBtn">Log in</button>
+    </form>
+  </div>
+</div>
 <script>
+document.getElementById('pwToggle').addEventListener('click', () => {
+  const input = document.getElementById('password');
+  const btn = document.getElementById('pwToggle');
+  const showing = input.type === 'text';
+  input.type = showing ? 'password' : 'text';
+  btn.textContent = showing ? '👁' : '🙈';
+  btn.setAttribute('aria-label', showing ? 'Show password' : 'Hide password');
+  btn.title = btn.getAttribute('aria-label');
+});
+
 document.getElementById('f').addEventListener('submit', async (e) => {
   e.preventDefault();
   const username = document.getElementById('username').value;
   const password = document.getElementById('password').value;
-  const res = await fetch('/api/admin/login', {
-    method: 'POST', headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({ username, password }),
-  });
-  if (res.ok) { window.location.href = '/'; return; }
-  document.getElementById('err').textContent = 'Invalid username or password.';
+  const errEl = document.getElementById('err');
+  const btn = document.getElementById('submitBtn');
+  errEl.textContent = '';
+  btn.disabled = true;
+  btn.textContent = 'Logging in…';
+  try {
+    const res = await fetch('/api/admin/login', {
+      method: 'POST', headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ username, password }),
+    });
+    if (res.ok) { window.location.href = '/'; return; }
+    errEl.textContent = 'Invalid username or password.';
+  } catch {
+    errEl.textContent = 'Could not reach the server. Try again.';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Log in';
+  }
 });
 </script>
 </body>

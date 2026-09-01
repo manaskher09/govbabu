@@ -9,7 +9,7 @@
     "check-now": "node bin/check-now.js",
     "scheduler": "node pipeline/scheduler.js",
     "admin": "node admin/server.js",
-    "test": "node --test test/"
+    "test": "node --test test/*.test.js"
   },
   "dependencies": {
     "cheerio": "^1.0.0",
