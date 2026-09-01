@@ -1,0 +1,20 @@
+# Cloudflare Pages deploys this entire repo root as static output (Build
+# output directory "/" — there's no build step, the site is hand-rolled
+# static HTML/CSS/JS with no bundler). Everything below is internal
+# tooling that lives in this same repo for convenience but was never meant
+# to be publicly served: the monitor/ admin dashboard + source-monitoring
+# pipeline (its real database and .env.local are gitignored and never
+# committed, so no secrets leak — but its frontend source and admin API
+# surface shouldn't be public either), the api/ payment functions (written
+# in Vercel's function format, not Cloudflare Pages Functions — deployed
+# as static output they'd just serve as readable source text, not run),
+# dev tooling, and internal docs/notes.
+/monitor/*  /404.html  404
+/api/*      /404.html  404
+/docs/*     /404.html  404
+/test/*     /404.html  404
+/.claude/*  /404.html  404
+/.git/*     /404.html  404
+/README.txt       /404.html  404
+/dev-server.js    /404.html  404
+/.env.example     /404.html  404
