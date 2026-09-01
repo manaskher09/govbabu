@@ -25,6 +25,8 @@ const {
 const { verifyPassword } = require('../auth/passwords');
 const { getCurrentExam, listCurrentExams, getAllFieldHistory } = require('../db/currentExam');
 const { toApplicationsShape } = require('../sync/toApplicationsShape');
+const { transitionContentStatus } = require('../pipeline/contentStatus');
+const { setCurrentField, ALLOWED_MANUAL_FIELDS, DATE_FIELDS } = require('../db/adminWrite');
 
 const PORT = process.env.MONITOR_ADMIN_PORT || 8745;
 const PUBLIC_DIR = path.join(__dirname, 'public');
@@ -129,6 +131,60 @@ function auditLogList(db) {
   return db.prepare(`SELECT * FROM audit_logs ORDER BY id DESC LIMIT 200`).all();
 }
 
+// ---------- Phase 1 exam-data-foundation query helpers ----------
+// These deliberately do NOT go through db/currentExam.js — that module's
+// own header comment says it's "the ONLY read path the public API is
+// allowed to use," and admin needs every exam regardless of content_status.
+
+function organizationsList(db) {
+  return db.prepare('SELECT * FROM organizations ORDER BY name').all();
+}
+
+function examListForAdmin(db, { content_status, org_id, search } = {}) {
+  let sql = `SELECT e.*, o.name AS org_name FROM exams e JOIN organizations o ON o.id = e.org_id WHERE 1=1`;
+  const params = [];
+  if (content_status) {
+    sql += ' AND e.content_status = ?';
+    params.push(content_status);
+  }
+  if (org_id) {
+    sql += ' AND e.org_id = ?';
+    params.push(Number(org_id));
+  }
+  if (search) {
+    sql += ' AND (e.name LIKE ? OR e.code LIKE ?)';
+    params.push(`%${search}%`, `%${search}%`);
+  }
+  sql += ' ORDER BY e.updated_at DESC';
+  return db.prepare(sql).all(...params);
+}
+
+function postsListForExam(db, examId) {
+  return db.prepare('SELECT * FROM posts WHERE exam_id = ? ORDER BY display_order, id').all(examId);
+}
+
+function documentsListForExam(db, examId) {
+  return db
+    .prepare(
+      `SELECT d.*, s.label, s.url AS source_url, s.role
+       FROM documents d JOIN sources s ON s.id = d.source_id
+       WHERE s.exam_id = ? ORDER BY d.fetched_at DESC`
+    )
+    .all(examId);
+}
+
+function examDetailForAdmin(db, examId) {
+  const exam = db.prepare('SELECT * FROM exams WHERE id = ?').get(examId);
+  if (!exam) return null;
+  const currentRows = db.prepare(`SELECT field_name, value FROM field_history WHERE exam_id = ? AND is_current = 1`).all(examId);
+  const fields = {};
+  for (const row of currentRows) fields[row.field_name] = row.value;
+  const statusHistory = db
+    .prepare(`SELECT * FROM audit_logs WHERE entity_type = 'exam' AND entity_id = ? AND action = 'set_content_status' ORDER BY id DESC`)
+    .all(examId);
+  return { exam, fields, posts: postsListForExam(db, examId), documents: documentsListForExam(db, examId), statusHistory };
+}
+
 const server = http.createServer(async (req, res) => {
   const db = getDb();
   const url = new URL(req.url, `http://localhost:${PORT}`);
@@ -229,6 +285,226 @@ const server = http.createServer(async (req, res) => {
         ).run(String(user.id), user.id, JSON.stringify({ sessions_revoked: revoked }));
         clearSessionCookie(res);
         return json(res, 200, { status: 'logged_out_everywhere', sessions_revoked: revoked });
+      }
+
+      // ---------- Organizations ----------
+      if (pathname === '/api/admin/organizations' && req.method === 'GET') {
+        return json(res, 200, { organizations: organizationsList(db) });
+      }
+      if (pathname === '/api/admin/organizations' && req.method === 'POST') {
+        const body = JSON.parse((await readBody(req)) || '{}');
+        const name = String(body.name || '').trim();
+        const short_code = String(body.short_code || '').trim().toUpperCase();
+        if (!name || !short_code) return safeError(res, 400, 'name_and_short_code_required');
+        try {
+          const info = db
+            .prepare(`INSERT INTO organizations (name, short_code, website_url, notes) VALUES (?, ?, ?, ?)`)
+            .run(name, short_code, body.website_url || null, body.notes || null);
+          db.prepare(
+            `INSERT INTO audit_logs (actor, action, entity_type, entity_id, details) VALUES (?, 'create_organization', 'organization', ?, ?)`
+          ).run(String(user.id), info.lastInsertRowid, JSON.stringify({ name, short_code }));
+          return json(res, 201, { id: info.lastInsertRowid, name, short_code });
+        } catch (err) {
+          if (String(err.message).includes('UNIQUE')) return safeError(res, 409, 'org_code_taken');
+          return safeError(res, 400, 'create_organization_failed', err);
+        }
+      }
+
+      // ---------- Exams (admin: unfiltered by content_status) ----------
+      if (pathname === '/api/admin/exams' && req.method === 'GET') {
+        return json(res, 200, {
+          exams: examListForAdmin(db, {
+            content_status: url.searchParams.get('content_status') || undefined,
+            org_id: url.searchParams.get('org_id') || undefined,
+            search: url.searchParams.get('search') || undefined,
+          }),
+        });
+      }
+      if (pathname === '/api/admin/exams' && req.method === 'POST') {
+        const body = JSON.parse((await readBody(req)) || '{}');
+        const org_id = Number(body.org_id);
+        const code = String(body.code || '').trim().toUpperCase();
+        const name = String(body.name || '').trim();
+        if (!org_id || !code || !name) return safeError(res, 400, 'org_id_code_name_required');
+        try {
+          // content_status is always explicit 'draft' here — never rely on
+          // the column's DEFAULT 'published' (that default exists only for
+          // backward-compat with pre-existing/imported rows, see the
+          // migration comment in db/migrations/003_content_lifecycle.sql).
+          const info = db
+            .prepare(
+              `INSERT INTO exams (org_id, code, external_code, name, category, content_status) VALUES (?, ?, ?, ?, ?, 'draft')`
+            )
+            .run(org_id, code, body.external_code || null, name, body.category || null);
+          db.prepare(
+            `INSERT INTO audit_logs (actor, action, entity_type, entity_id, details) VALUES (?, 'create_exam', 'exam', ?, ?)`
+          ).run(String(user.id), info.lastInsertRowid, JSON.stringify({ code, name }));
+          return json(res, 201, { id: info.lastInsertRowid, code, name, content_status: 'draft' });
+        } catch (err) {
+          if (String(err.message).includes('UNIQUE')) return safeError(res, 409, 'exam_code_taken');
+          return safeError(res, 400, 'create_exam_failed', err);
+        }
+      }
+
+      const adminExamIdMatch = pathname.match(/^\/api\/admin\/exams\/(\d+)$/);
+      if (adminExamIdMatch && req.method === 'GET') {
+        const detail = examDetailForAdmin(db, Number(adminExamIdMatch[1]));
+        if (!detail) return safeError(res, 404, 'exam_not_found');
+        return json(res, 200, detail);
+      }
+      if (adminExamIdMatch && req.method === 'PATCH') {
+        const examId = Number(adminExamIdMatch[1]);
+        const body = JSON.parse((await readBody(req)) || '{}');
+        const sets = [];
+        const params = [];
+        for (const key of ['name', 'category', 'external_code', 'status']) {
+          if (body[key] !== undefined) {
+            sets.push(`${key} = ?`);
+            params.push(body[key]);
+          }
+        }
+        if (!sets.length) return safeError(res, 400, 'no_fields_to_update');
+        params.push(examId);
+        const info = db.prepare(`UPDATE exams SET ${sets.join(', ')}, updated_at = datetime('now') WHERE id = ?`).run(...params);
+        if (info.changes === 0) return safeError(res, 404, 'exam_not_found');
+        db.prepare(
+          `INSERT INTO audit_logs (actor, action, entity_type, entity_id, details) VALUES (?, 'update_exam', 'exam', ?, ?)`
+        ).run(String(user.id), examId, JSON.stringify(body));
+        return json(res, 200, { id: examId, updated: true });
+      }
+
+      const examStatusMatch = pathname.match(/^\/api\/admin\/exams\/(\d+)\/status$/);
+      if (examStatusMatch && req.method === 'POST') {
+        const body = JSON.parse((await readBody(req)) || '{}');
+        try {
+          return json(res, 200, transitionContentStatus(db, Number(examStatusMatch[1]), String(body.to || ''), user.id));
+        } catch (err) {
+          return safeError(res, 409, 'invalid_transition', err);
+        }
+      }
+
+      // ---------- Posts ----------
+      const examPostsMatch = pathname.match(/^\/api\/admin\/exams\/(\d+)\/posts$/);
+      if (examPostsMatch && req.method === 'GET') {
+        return json(res, 200, { posts: postsListForExam(db, Number(examPostsMatch[1])) });
+      }
+      if (examPostsMatch && req.method === 'POST') {
+        const examId = Number(examPostsMatch[1]);
+        const body = JSON.parse((await readBody(req)) || '{}');
+        if (!body.post_name) return safeError(res, 400, 'post_name_required');
+        const maxOrder = db.prepare('SELECT COALESCE(MAX(display_order), -1) m FROM posts WHERE exam_id = ?').get(examId).m;
+        const info = db
+          .prepare(
+            `INSERT INTO posts (exam_id, post_name, department, vacancies, vacancies_display, qualification, age_limit, pay_level, pay_band, category_breakdown, notes, display_order)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+          )
+          .run(
+            examId,
+            body.post_name,
+            body.department || null,
+            body.vacancies != null && body.vacancies !== '' ? Number(body.vacancies) : null,
+            body.vacancies_display || null,
+            body.qualification || null,
+            body.age_limit || null,
+            body.pay_level || null,
+            body.pay_band || null,
+            body.category_breakdown ? JSON.stringify(body.category_breakdown) : null,
+            body.notes || null,
+            body.display_order != null ? Number(body.display_order) : maxOrder + 1
+          );
+        db.prepare(
+          `INSERT INTO audit_logs (actor, action, entity_type, entity_id, details) VALUES (?, 'create_post', 'post', ?, ?)`
+        ).run(String(user.id), info.lastInsertRowid, JSON.stringify({ exam_id: examId, post_name: body.post_name }));
+        return json(res, 201, { id: info.lastInsertRowid });
+      }
+
+      const postIdMatch = pathname.match(/^\/api\/admin\/posts\/(\d+)$/);
+      if (postIdMatch && req.method === 'PATCH') {
+        const postId = Number(postIdMatch[1]);
+        const body = JSON.parse((await readBody(req)) || '{}');
+        const cols = [
+          'post_name', 'department', 'vacancies', 'vacancies_display', 'qualification',
+          'age_limit', 'pay_level', 'pay_band', 'category_breakdown', 'notes', 'display_order',
+        ];
+        const sets = [];
+        const params = [];
+        for (const key of cols) {
+          if (body[key] !== undefined) {
+            sets.push(`${key} = ?`);
+            params.push(key === 'category_breakdown' && body[key] != null ? JSON.stringify(body[key]) : body[key]);
+          }
+        }
+        if (!sets.length) return safeError(res, 400, 'no_fields_to_update');
+        params.push(postId);
+        const info = db.prepare(`UPDATE posts SET ${sets.join(', ')}, updated_at = datetime('now') WHERE id = ?`).run(...params);
+        if (info.changes === 0) return safeError(res, 404, 'post_not_found');
+        db.prepare(
+          `INSERT INTO audit_logs (actor, action, entity_type, entity_id, details) VALUES (?, 'update_post', 'post', ?, ?)`
+        ).run(String(user.id), postId, JSON.stringify(body));
+        return json(res, 200, { id: postId, updated: true });
+      }
+      if (postIdMatch && req.method === 'DELETE') {
+        const postId = Number(postIdMatch[1]);
+        const info = db.prepare('DELETE FROM posts WHERE id = ?').run(postId);
+        if (info.changes === 0) return safeError(res, 404, 'post_not_found');
+        db.prepare(
+          `INSERT INTO audit_logs (actor, action, entity_type, entity_id, details) VALUES (?, 'delete_post', 'post', ?, '{}')`
+        ).run(String(user.id), postId);
+        return json(res, 200, { id: postId, deleted: true });
+      }
+
+      // ---------- Fields (Important Dates + the rest of the manual vocabulary) ----------
+      const examFieldsMatch = pathname.match(/^\/api\/admin\/exams\/(\d+)\/fields$/);
+      if (examFieldsMatch && req.method === 'GET') {
+        const examId = Number(examFieldsMatch[1]);
+        const currentRows = db.prepare(`SELECT field_name, value FROM field_history WHERE exam_id = ? AND is_current = 1`).all(examId);
+        const fields = {};
+        for (const row of currentRows) fields[row.field_name] = row.value;
+        return json(res, 200, { fields, history: getAllFieldHistory(db, examId) });
+      }
+      const fieldNameMatch = pathname.match(/^\/api\/admin\/exams\/(\d+)\/fields\/([a-zA-Z0-9_]+)$/);
+      if (fieldNameMatch && req.method === 'PUT') {
+        const examId = Number(fieldNameMatch[1]);
+        const fieldName = fieldNameMatch[2];
+        if (!ALLOWED_MANUAL_FIELDS.has(fieldName)) return safeError(res, 400, 'field_not_allowed');
+        const body = JSON.parse((await readBody(req)) || '{}');
+        const value = body.value == null ? null : String(body.value);
+        if (DATE_FIELDS.has(fieldName) && value && !/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+          return safeError(res, 400, 'invalid_date');
+        }
+        try {
+          return json(res, 200, setCurrentField(db, examId, fieldName, value, user.id));
+        } catch (err) {
+          return safeError(res, 400, err.code || 'set_field_failed', err);
+        }
+      }
+
+      // ---------- Documents (URL + metadata only, no file upload) ----------
+      const examDocsMatch = pathname.match(/^\/api\/admin\/exams\/(\d+)\/documents$/);
+      if (examDocsMatch && req.method === 'GET') {
+        return json(res, 200, { documents: documentsListForExam(db, Number(examDocsMatch[1])) });
+      }
+      if (examDocsMatch && req.method === 'POST') {
+        const examId = Number(examDocsMatch[1]);
+        const body = JSON.parse((await readBody(req)) || '{}');
+        const label = String(body.label || '').trim();
+        const docUrl = String(body.url || '').trim();
+        const role = String(body.role || 'other');
+        const VALID_ROLES = new Set(['website', 'notification', 'result', 'admit_card', 'corrigendum', 'other']);
+        if (!label || !docUrl) return safeError(res, 400, 'label_and_url_required');
+        if (!VALID_ROLES.has(role)) return safeError(res, 400, 'invalid_role');
+        // active=0 so the scheduler/check-now (WHERE active = 1) never tries
+        // to "monitor" a hand-entered link for changes.
+        const sourceInfo = db
+          .prepare(`INSERT INTO sources (exam_id, label, url, source_type, role, active) VALUES (?, ?, ?, 'manual', ?, 0)`)
+          .run(examId, label, docUrl, role);
+        const docInfo = db
+          .prepare(`INSERT INTO documents (source_id, url, content_type, fetched_at) VALUES (?, ?, ?, datetime('now'))`)
+          .run(sourceInfo.lastInsertRowid, docUrl, body.content_type || null);
+        db.prepare(
+          `INSERT INTO audit_logs (actor, action, entity_type, entity_id, details) VALUES (?, 'register_document', 'document', ?, ?)`
+        ).run(String(user.id), docInfo.lastInsertRowid, JSON.stringify({ exam_id: examId, label, url: docUrl }));
+        return json(res, 201, { id: docInfo.lastInsertRowid, source_id: sourceInfo.lastInsertRowid });
       }
 
       const approveMatch = pathname.match(/^\/api\/admin\/change-events\/(\d+)\/approve$/);

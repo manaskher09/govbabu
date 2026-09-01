@@ -30,7 +30,15 @@ function getCurrentFieldsRaw(db, examId) {
  * exam doesn't exist. This never exposes pending/rejected data.
  */
 function getCurrentExam(db, examId) {
-  const exam = db.prepare('SELECT * FROM exams WHERE id = ?').get(examId);
+  // content_status='published' is the entire enforcement point for the
+  // exam-level lifecycle: every public route in admin/server.js funnels
+  // through this function (or listCurrentExams below), so a draft/
+  // needs_review/verified-but-unpublished/archived exam is structurally
+  // unreachable from here — same principle as is_current already applying
+  // to field_history rows. Admin routes must NOT call this function; they
+  // need every exam regardless of status (see admin/server.js's own
+  // unfiltered query functions).
+  const exam = db.prepare(`SELECT * FROM exams WHERE id = ? AND content_status = 'published'`).get(examId);
   if (!exam) return null;
   const fields = {};
   for (const row of getCurrentFieldsRaw(db, examId)) {
@@ -40,7 +48,7 @@ function getCurrentExam(db, examId) {
 }
 
 function listCurrentExams(db, { category, status } = {}) {
-  let sql = 'SELECT id FROM exams WHERE status = ?';
+  let sql = `SELECT id FROM exams WHERE status = ? AND content_status = 'published'`;
   const params = ['active'];
   if (category) {
     sql += ' AND category = ?';

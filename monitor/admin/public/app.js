@@ -4,6 +4,7 @@
 
 const NAV = [
   { id: 'dashboard', label: 'Dashboard', icon: '▦', render: renderDashboard },
+  { id: 'exams', label: 'Exams', icon: '🎓', render: renderExamsList },
   { id: 'queue', label: 'Review Queue', icon: '✓', render: renderQueue, badgeKey: 'pending_reviews' },
   { id: 'sources', label: 'Source Health', icon: '◉', render: renderSources },
   { id: 'jobs', label: 'Jobs', icon: '↻', render: renderJobs },
@@ -87,6 +88,40 @@ const CLASSIFICATION_BADGE = {
   PARSING_ERROR: 'danger',
   SOURCE_UNAVAILABLE: 'danger',
 };
+
+// Mirrors pipeline/contentStatus.js's TRANSITIONS exactly — kept in sync by
+// hand since this is a tiny, static map; the server is still the source of
+// truth (it re-validates every transition), this only drives which buttons
+// the Status tab offers.
+const CONTENT_STATUS_TRANSITIONS = {
+  discovered: ['draft', 'archived'],
+  draft: ['needs_review', 'archived'],
+  needs_review: ['draft', 'verified', 'archived'],
+  verified: ['draft', 'published', 'archived'],
+  published: ['verified', 'archived'],
+  archived: ['draft'],
+};
+const CONTENT_STATUS_BADGE = {
+  discovered: 'neutral', draft: 'neutral', needs_review: 'warning',
+  verified: 'brand', published: 'success', archived: 'danger',
+};
+const CANONICAL_DATE_FIELDS = [
+  { key: 'application_start_date', label: 'Application Start' },
+  { key: 'application_end_date', label: 'Application End' },
+  { key: 'exam_date', label: 'Exam Date' },
+  { key: 'admit_card_release_date', label: 'Admit Card Release' },
+  { key: 'result_date', label: 'Result Date' },
+];
+const OVERVIEW_TEXT_FIELDS = [
+  { key: 'status', label: 'Status (open/closed)' },
+  { key: 'popularity', label: 'Popularity rank' },
+  { key: 'vacancies', label: 'Vacancies (display)' },
+  { key: 'notif_title', label: 'Notification title' },
+  { key: 'apply_start', label: 'Apply start (display)' },
+  { key: 'apply_end', label: 'Apply end (display)' },
+  { key: 'official_url', label: 'Official URL' },
+  { key: 'verified', label: 'Last verified' },
+];
 
 // ---------- Toasts ----------
 function toast(message, type = 'info') {
@@ -306,7 +341,15 @@ function stateRow(colspan, { icon, title, sub }) {
 let renderToken = 0;
 
 async function renderRoute(routeId) {
-  const route = NAV.find((r) => r.id === routeId) || NAV[0];
+  // #/exams/123 is a sub-route of the flat NAV list, not a NAV entry itself
+  // — NAV.find() below wouldn't match it and would silently fall back to
+  // Dashboard. Detect it explicitly; everything else about routing (active
+  // nav highlighting on 'exams', loading skeleton, error handling, the
+  // renderToken staleness guard) stays identical.
+  const examDetailMatch = routeId.match(/^exams\/(\d+)$/);
+  const route = examDetailMatch
+    ? { id: 'exams', label: 'Exam', render: (page) => renderExamDetail(page, Number(examDetailMatch[1])) }
+    : NAV.find((r) => r.id === routeId) || NAV[0];
   const myToken = ++renderToken;
   document.getElementById('appShell').classList.remove('mobile-nav-open');
   setActiveNav(route.id);
@@ -683,6 +726,416 @@ async function renderAccount(page) {
   });
 
   page.querySelector('#logoutAllBtn2').onclick = doLogoutAll;
+}
+
+// ---------- Exams (Phase 1 data-foundation UI) ----------
+
+async function renderExamsList(page) {
+  setPageTitle('Exams', 'Every exam record, any content status — draft through published');
+  page.innerHTML = `
+    <div class="page-head">
+      <div><h1>Exams</h1><p>The admin view of every exam, regardless of whether it's public yet.</p></div>
+      <div class="page-actions"><button class="btn btn-primary" id="newExamBtn">New Exam</button></div>
+    </div>
+    <div class="card">
+      <div class="toolbar">
+        <input class="search-input" id="exSearch" placeholder="Search name or code…">
+        <select class="filter-select" id="exStatus">
+          <option value="">All statuses</option>
+          <option value="discovered">Discovered</option>
+          <option value="draft">Draft</option>
+          <option value="needs_review">Needs Review</option>
+          <option value="verified">Verified</option>
+          <option value="published">Published</option>
+          <option value="archived">Archived</option>
+        </select>
+        <div class="toolbar-spacer"></div>
+        <span class="result-count" id="exCount"></span>
+      </div>
+      <div class="table-wrap"><table class="data-table">
+        <thead><tr><th>Name</th><th>Code</th><th>Organisation</th><th>Category</th><th>Content Status</th><th>Updated</th></tr></thead>
+        <tbody id="exBody"><tr><td colspan="6"><div class="skel skel-line"></div></td></tr></tbody>
+      </table></div>
+    </div>`;
+
+  page.querySelector('#newExamBtn').onclick = () => openNewExamModal();
+
+  const load = async () => {
+    const status = page.querySelector('#exStatus').value;
+    const search = page.querySelector('#exSearch').value.trim();
+    const qs = new URLSearchParams();
+    if (status) qs.set('content_status', status);
+    if (search) qs.set('search', search);
+    const { exams } = await api('/exams?' + qs.toString());
+    page.querySelector('#exCount').textContent = `${exams.length} exam${exams.length === 1 ? '' : 's'}`;
+    const body = page.querySelector('#exBody');
+    if (!exams.length) { body.innerHTML = stateRow(6, { icon: '🎓', title: 'No exams match', sub: 'Try a different search or filter, or create one.' }); return; }
+    body.innerHTML = exams.map((e) => `
+      <tr class="row-link" data-id="${e.id}" style="cursor:pointer">
+        <td><strong>${esc(e.name)}</strong></td>
+        <td class="cell-mono">${esc(e.code)}</td>
+        <td class="cell-muted">${esc(e.org_name)}</td>
+        <td class="cell-muted">${esc(e.category || '—')}</td>
+        <td>${badge(e.content_status.replace(/_/g, ' '), CONTENT_STATUS_BADGE[e.content_status] || 'neutral')}</td>
+        <td class="cell-muted">${relTime(e.updated_at)}</td>
+      </tr>`).join('');
+    body.querySelectorAll('tr[data-id]').forEach((row) => {
+      row.addEventListener('click', () => goTo('exams/' + row.dataset.id));
+    });
+  };
+  page.querySelector('#exSearch').addEventListener('input', load);
+  page.querySelector('#exStatus').addEventListener('change', load);
+  await load();
+}
+
+function openNewExamModal() {
+  return new Promise((resolve) => {
+    const backdrop = document.createElement('div');
+    backdrop.className = 'modal-backdrop open';
+    backdrop.innerHTML = `
+      <div class="modal" role="dialog" aria-modal="true" style="max-width:480px">
+        <div class="modal-head"><h3>New Exam</h3><p>Starts as Draft — invisible to the public site until published.</p></div>
+        <div class="modal-body">
+          <div class="field"><label>Organisation</label>
+            <select id="neOrg"><option value="">Loading…</option></select>
+          </div>
+          <div id="neNewOrgFields" style="display:none">
+            <div class="field"><label>New organisation name</label><input id="neOrgName" placeholder="e.g. Staff Selection Commission"></div>
+            <div class="field"><label>Short code</label><input id="neOrgCode" placeholder="e.g. SSC"></div>
+          </div>
+          <button type="button" class="btn btn-outline btn-sm" id="neToggleOrg" style="margin-bottom:14px">+ New organisation instead</button>
+          <div class="field"><label>Exam name</label><input id="neName" placeholder="e.g. SSC CGL 2027"></div>
+          <div class="field"><label>Code (unique)</label><input id="neCode" placeholder="e.g. SSC-CGL-2027"></div>
+          <div class="field"><label>Category</label><input id="neCategory" placeholder="e.g. Central Govt"></div>
+          <div class="field-error" id="neError" style="display:block;min-height:16px"></div>
+        </div>
+        <div class="modal-foot">
+          <button class="btn btn-outline" data-act="cancel">Cancel</button>
+          <button class="btn btn-primary" data-act="ok">Create</button>
+        </div>
+      </div>`;
+    document.body.appendChild(backdrop);
+    const cleanup = (result) => { backdrop.remove(); resolve(result); };
+    backdrop.addEventListener('click', (e) => { if (e.target === backdrop) cleanup(null); });
+    backdrop.querySelector('[data-act="cancel"]').onclick = () => cleanup(null);
+
+    const orgSelect = backdrop.querySelector('#neOrg');
+    let usingNewOrg = false;
+    api('/organizations').then(({ organizations }) => {
+      orgSelect.innerHTML = organizations.map((o) => `<option value="${o.id}">${esc(o.name)}</option>`).join('') || '<option value="">No organisations yet</option>';
+    });
+    backdrop.querySelector('#neToggleOrg').onclick = (e) => {
+      usingNewOrg = !usingNewOrg;
+      backdrop.querySelector('#neNewOrgFields').style.display = usingNewOrg ? 'block' : 'none';
+      orgSelect.closest('.field').style.display = usingNewOrg ? 'none' : 'block';
+      e.target.textContent = usingNewOrg ? '← Use an existing organisation' : '+ New organisation instead';
+    };
+
+    backdrop.querySelector('[data-act="ok"]').onclick = async () => {
+      const errEl = backdrop.querySelector('#neError');
+      errEl.textContent = '';
+      try {
+        let orgId = orgSelect.value;
+        if (usingNewOrg) {
+          const name = backdrop.querySelector('#neOrgName').value.trim();
+          const short_code = backdrop.querySelector('#neOrgCode').value.trim();
+          if (!name || !short_code) { errEl.textContent = 'Organisation name and short code are required.'; return; }
+          const org = await api('/organizations', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ name, short_code }) });
+          orgId = org.id;
+        }
+        const name = backdrop.querySelector('#neName').value.trim();
+        const code = backdrop.querySelector('#neCode').value.trim();
+        const category = backdrop.querySelector('#neCategory').value.trim();
+        if (!orgId) { errEl.textContent = 'Choose or create an organisation.'; return; }
+        if (!name || !code) { errEl.textContent = 'Exam name and code are required.'; return; }
+        const exam = await api('/exams', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ org_id: orgId, name, code, category }) });
+        cleanup(true);
+        toast('Exam created as Draft.', 'success');
+        goTo('exams/' + exam.id);
+      } catch (err) {
+        errEl.textContent = err.code === 'exam_code_taken' ? 'That exam code is already in use.' : err.code === 'org_code_taken' ? 'That organisation short code is already in use.' : 'Could not create the exam.';
+      }
+    };
+  });
+}
+
+async function renderExamDetail(page, examId) {
+  const detail = await api('/exams/' + examId);
+  setPageTitle(detail.exam.name, `${detail.exam.code} · Exam detail`);
+  const tabs = ['Overview', 'Posts', 'Important Dates', 'Documents', 'Status'];
+  let activeTab = 'Overview';
+
+  page.innerHTML = `
+    <div class="page-head">
+      <div>
+        <h1>${esc(detail.exam.name)}</h1>
+        <p class="cell-mono">${esc(detail.exam.code)} ${badge(detail.exam.content_status.replace(/_/g, ' '), CONTENT_STATUS_BADGE[detail.exam.content_status] || 'neutral')}</p>
+      </div>
+      <div class="page-actions"><button class="btn btn-outline btn-sm" id="backToExams">← All Exams</button></div>
+    </div>
+    <div class="tabs" id="examTabs">${tabs.map((t) => `<button type="button" class="tab${t === activeTab ? ' active' : ''}" data-tab="${t}">${t}</button>`).join('')}</div>
+    <div id="tabBody"></div>`;
+
+  page.querySelector('#backToExams').onclick = () => goTo('exams');
+
+  const tabBody = page.querySelector('#tabBody');
+  async function showTab(tab) {
+    page.querySelectorAll('#examTabs .tab').forEach((b) => b.classList.toggle('active', b.dataset.tab === tab));
+    if (tab === 'Overview') return renderExamOverviewTab(tabBody, examId, detail);
+    if (tab === 'Posts') return renderExamPostsTab(tabBody, examId);
+    if (tab === 'Important Dates') return renderExamDatesTab(tabBody, examId);
+    if (tab === 'Documents') return renderExamDocumentsTab(tabBody, examId);
+    if (tab === 'Status') return renderExamStatusTab(tabBody, examId, detail.exam.content_status);
+  }
+  page.querySelector('#examTabs').addEventListener('click', (e) => {
+    const btn = e.target.closest('.tab');
+    if (btn) showTab(btn.dataset.tab);
+  });
+  await showTab(activeTab);
+}
+
+async function renderExamOverviewTab(container, examId, detail) {
+  container.innerHTML = `<div class="card"><div class="card-body" style="padding:18px">
+    <form id="ovForm" style="max-width:520px">
+      ${OVERVIEW_TEXT_FIELDS.map((f) => `
+        <div class="field"><label>${esc(f.label)}</label>
+          <input data-field="${f.key}" value="${esc(detail.fields[f.key] || '')}">
+        </div>`).join('')}
+      <button type="submit" class="btn btn-primary" id="ovSave">Save Overview</button>
+      <span class="result-count" id="ovSaved" style="margin-left:10px"></span>
+    </form>
+  </div></div>`;
+  container.querySelector('#ovForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = container.querySelector('#ovSave');
+    btn.disabled = true;
+    btn.textContent = 'Saving…';
+    try {
+      const inputs = container.querySelectorAll('[data-field]');
+      for (const input of inputs) {
+        await api(`/exams/${examId}/fields/${input.dataset.field}`, {
+          method: 'PUT', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ value: input.value }),
+        });
+      }
+      container.querySelector('#ovSaved').textContent = 'Saved ✓';
+      toast('Overview saved.', 'success');
+    } catch {
+      toast('Could not save one or more fields.', 'error');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Save Overview';
+    }
+  });
+}
+
+async function renderExamPostsTab(container, examId) {
+  container.innerHTML = `<div class="card">
+    <div class="card-head"><h2>Posts</h2><button class="btn btn-primary btn-sm" id="addPostBtn">+ Add Post</button></div>
+    <div class="table-wrap"><table class="data-table">
+      <thead><tr><th>Post</th><th>Vacancies</th><th>Qualification</th><th>Pay Level</th><th>Actions</th></tr></thead>
+      <tbody id="postsBody"><tr><td colspan="5"><div class="skel skel-line"></div></td></tr></tbody>
+    </table></div>
+  </div>`;
+
+  async function load() {
+    const { posts } = await api(`/exams/${examId}/posts`);
+    const body = container.querySelector('#postsBody');
+    if (!posts.length) { body.innerHTML = stateRow(5, { icon: '📋', title: 'No posts added yet' }); return; }
+    body.innerHTML = posts.map((p) => `
+      <tr>
+        <td><strong>${esc(p.post_name)}</strong>${p.department ? `<div class="cell-muted">${esc(p.department)}</div>` : ''}</td>
+        <td>${p.vacancies ?? esc(p.vacancies_display) ?? '—'}</td>
+        <td class="cell-muted wrap">${esc(p.qualification || '—')}</td>
+        <td class="cell-muted">${esc(p.pay_level || '—')}${p.pay_band ? `<div class="cell-muted" style="font-size:11px">${esc(p.pay_band)}</div>` : ''}</td>
+        <td><button class="btn btn-danger btn-sm" data-del="${p.id}">Delete</button></td>
+      </tr>`).join('');
+    body.querySelectorAll('[data-del]').forEach((btn) => {
+      btn.onclick = async () => {
+        const ok = await confirmModal({ title: 'Delete this post?', body: 'This cannot be undone.', confirmLabel: 'Delete', danger: true });
+        if (!ok) return;
+        await api(`/posts/${btn.dataset.del}`, { method: 'DELETE' });
+        toast('Post deleted.', 'success');
+        load();
+      };
+    });
+  }
+  container.querySelector('#addPostBtn').onclick = async () => {
+    const result = await promptPostFields();
+    if (!result) return;
+    await api(`/exams/${examId}/posts`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(result) });
+    toast('Post added.', 'success');
+    load();
+  };
+  await load();
+}
+
+function promptPostFields() {
+  return new Promise((resolve) => {
+    const backdrop = document.createElement('div');
+    backdrop.className = 'modal-backdrop open';
+    backdrop.innerHTML = `
+      <div class="modal" role="dialog" aria-modal="true" style="max-width:480px">
+        <div class="modal-head"><h3>Add Post</h3></div>
+        <div class="modal-body">
+          <div class="field"><label>Post name</label><input id="pfName" placeholder="e.g. Inspector (Income Tax)"></div>
+          <div class="field"><label>Vacancies (number)</label><input id="pfVac" type="number"></div>
+          <div class="field"><label>Qualification</label><input id="pfQual"></div>
+          <div class="field"><label>Age limit</label><input id="pfAge"></div>
+          <div class="field"><label>Pay level</label><input id="pfLevel" placeholder="e.g. Level 7"></div>
+          <div class="field"><label>Pay band</label><input id="pfBand" placeholder="e.g. ₹44,900–₹1,42,400"></div>
+        </div>
+        <div class="modal-foot">
+          <button class="btn btn-outline" data-act="cancel">Cancel</button>
+          <button class="btn btn-primary" data-act="ok">Add</button>
+        </div>
+      </div>`;
+    document.body.appendChild(backdrop);
+    const cleanup = (result) => { backdrop.remove(); resolve(result); };
+    backdrop.addEventListener('click', (e) => { if (e.target === backdrop) cleanup(null); });
+    backdrop.querySelector('[data-act="cancel"]').onclick = () => cleanup(null);
+    backdrop.querySelector('[data-act="ok"]').onclick = () => {
+      const name = backdrop.querySelector('#pfName').value.trim();
+      if (!name) return;
+      cleanup({
+        post_name: name,
+        vacancies: backdrop.querySelector('#pfVac').value || null,
+        qualification: backdrop.querySelector('#pfQual').value || null,
+        age_limit: backdrop.querySelector('#pfAge').value || null,
+        pay_level: backdrop.querySelector('#pfLevel').value || null,
+        pay_band: backdrop.querySelector('#pfBand').value || null,
+      });
+    };
+  });
+}
+
+async function renderExamDatesTab(container, examId) {
+  const { fields, history } = await api(`/exams/${examId}/fields`);
+  container.innerHTML = `<div class="card"><div class="card-body" style="padding:18px">
+    <form id="datesForm" style="max-width:420px">
+      ${CANONICAL_DATE_FIELDS.map((f) => `
+        <div class="field"><label>${esc(f.label)}</label>
+          <input type="date" data-field="${f.key}" value="${esc(fields[f.key] || '')}">
+        </div>`).join('')}
+      <button type="submit" class="btn btn-primary" id="datesSave">Save Dates</button>
+    </form>
+    <h2 class="section-title">History</h2>
+    <div class="table-wrap"><table class="data-table">
+      <thead><tr><th>Field</th><th>Value</th><th>Effective</th><th>Current</th></tr></thead>
+      <tbody>${
+        history.filter((h) => CANONICAL_DATE_FIELDS.some((f) => f.key === h.field_name)).map((h) => `
+          <tr><td class="cell-mono">${esc(h.field_name)}</td><td>${esc(h.value)}</td><td class="cell-muted">${fmtDate(h.effective_at)}</td><td>${h.is_current ? badge('current', 'success') : ''}</td></tr>
+        `).join('') || `<tr class="state-row"><td colspan="4" class="cell-muted" style="text-align:center;padding:20px">No date history yet.</td></tr>`
+      }</tbody>
+    </table></div>
+  </div></div>`;
+
+  container.querySelector('#datesForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = container.querySelector('#datesSave');
+    btn.disabled = true;
+    btn.textContent = 'Saving…';
+    try {
+      const inputs = container.querySelectorAll('[data-field]');
+      for (const input of inputs) {
+        if (!input.value) continue; // don't clobber an unset date with empty string
+        await api(`/exams/${examId}/fields/${input.dataset.field}`, {
+          method: 'PUT', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ value: input.value }),
+        });
+      }
+      toast('Dates saved.', 'success');
+      renderExamDatesTab(container, examId);
+    } catch {
+      toast('Could not save one or more dates.', 'error');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Save Dates';
+    }
+  });
+}
+
+async function renderExamDocumentsTab(container, examId) {
+  container.innerHTML = `<div class="card">
+    <div class="card-head"><h2>Documents</h2></div>
+    <div class="table-wrap"><table class="data-table">
+      <thead><tr><th>Label</th><th>Role</th><th>URL</th><th>Fetched</th></tr></thead>
+      <tbody id="docsBody"><tr><td colspan="4"><div class="skel skel-line"></div></td></tr></tbody>
+    </table></div>
+    <div class="card-body" style="padding:16px 18px;border-top:1px solid var(--line)">
+      <form id="docForm" style="display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end">
+        <div class="field" style="margin:0;flex:2;min-width:180px"><label>Label</label><input id="docLabel" placeholder="Official Notification" required></div>
+        <div class="field" style="margin:0;flex:2;min-width:220px"><label>URL</label><input id="docUrl" placeholder="https://…" required></div>
+        <div class="field" style="margin:0;flex:1;min-width:140px"><label>Type</label>
+          <select id="docRole">
+            <option value="notification">Notification</option>
+            <option value="corrigendum">Corrigendum</option>
+            <option value="admit_card">Admit Card</option>
+            <option value="result">Result</option>
+            <option value="website">Website</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Document</button>
+      </form>
+    </div>
+  </div>`;
+
+  async function load() {
+    const { documents } = await api(`/exams/${examId}/documents`);
+    const body = container.querySelector('#docsBody');
+    if (!documents.length) { body.innerHTML = stateRow(4, { icon: '📄', title: 'No documents registered yet' }); return; }
+    body.innerHTML = documents.map((d) => `
+      <tr>
+        <td>${esc(d.label)}</td>
+        <td>${badge(d.role, 'neutral')}</td>
+        <td><a href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.url)}</a></td>
+        <td class="cell-muted">${fmtDate(d.fetched_at)}</td>
+      </tr>`).join('');
+  }
+  container.querySelector('#docForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const label = container.querySelector('#docLabel').value.trim();
+    const docUrl = container.querySelector('#docUrl').value.trim();
+    const role = container.querySelector('#docRole').value;
+    if (!label || !docUrl) return;
+    try {
+      await api(`/exams/${examId}/documents`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ label, url: docUrl, role }) });
+      toast('Document registered.', 'success');
+      container.querySelector('#docForm').reset();
+      load();
+    } catch {
+      toast('Could not register the document.', 'error');
+    }
+  });
+  await load();
+}
+
+async function renderExamStatusTab(container, examId, currentStatus) {
+  const nextOptions = CONTENT_STATUS_TRANSITIONS[currentStatus] || [];
+  container.innerHTML = `<div class="card"><div class="card-body" style="padding:18px">
+    <p>Current status: ${badge(currentStatus.replace(/_/g, ' '), CONTENT_STATUS_BADGE[currentStatus] || 'neutral')}</p>
+    <div class="divider"></div>
+    <p class="cell-muted" style="margin-bottom:10px">${nextOptions.length ? 'Move to:' : 'No further transitions from this status.'}</p>
+    <div class="row-actions">${nextOptions.map((s) => `<button class="btn ${s === 'archived' ? 'btn-danger' : 'btn-primary'} btn-sm" data-to="${s}">${s.replace(/_/g, ' ')}</button>`).join('')}</div>
+  </div></div>`;
+  container.querySelectorAll('[data-to]').forEach((btn) => {
+    btn.onclick = async () => {
+      const to = btn.dataset.to;
+      const ok = await confirmModal({
+        title: `Move to "${to.replace(/_/g, ' ')}"?`,
+        body: to === 'published' ? 'This makes the exam publicly visible immediately.' : `Changes the exam's content status from "${currentStatus.replace(/_/g, ' ')}" to "${to.replace(/_/g, ' ')}".`,
+        confirmLabel: 'Confirm',
+        danger: to === 'archived',
+      });
+      if (!ok) return;
+      try {
+        await api(`/exams/${examId}/status`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ to }) });
+        toast(`Status changed to ${to.replace(/_/g, ' ')}.`, 'success');
+        renderExamStatusTab(container, examId, to);
+      } catch {
+        toast('Could not change status.', 'error');
+      }
+    };
+  });
 }
 
 // ---------- Boot ----------
