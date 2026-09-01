@@ -3,6 +3,8 @@
 // is_current=1 — pending/rejected change_events and raw extracted_fields
 // are invisible from here by construction, not by a filter someone could
 // forget to apply.
+const { listPostsForExam } = require('./posts');
+
 const JSON_FIELDS = new Set(['photo_json', 'signature_json', 'details_json', 'hi_json', 'other_docs_json', 'results_json', 'tentative_next_json']);
 
 function parseMaybeJson(fieldName, value) {
@@ -38,13 +40,23 @@ function getCurrentExam(db, examId) {
   // to field_history rows. Admin routes must NOT call this function; they
   // need every exam regardless of status (see admin/server.js's own
   // unfiltered query functions).
-  const exam = db.prepare(`SELECT * FROM exams WHERE id = ? AND content_status = 'published'`).get(examId);
+  // org_name is joined in here (not fetched separately by callers) so every
+  // consumer of getCurrentExam gets it consistently — it's needed for the
+  // publish pipeline's JSON-LD hiringOrganization field.
+  const exam = db
+    .prepare(
+      `SELECT e.*, o.name AS org_name FROM exams e JOIN organizations o ON o.id = e.org_id
+       WHERE e.id = ? AND e.content_status = 'published'`
+    )
+    .get(examId);
   if (!exam) return null;
   const fields = {};
   for (const row of getCurrentFieldsRaw(db, examId)) {
     fields[row.field_name] = parseMaybeJson(row.field_name, row.value);
   }
-  return { ...exam, fields };
+  // posts is always an array (empty for legacy/imported exams that predate
+  // the posts table) — never undefined, so callers never need a null check.
+  return { ...exam, fields, posts: listPostsForExam(db, examId) };
 }
 
 function listCurrentExams(db, { category, status } = {}) {

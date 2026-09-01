@@ -9,6 +9,7 @@
     "check-now": "node bin/check-now.js",
     "scheduler": "node pipeline/scheduler.js",
     "admin": "node admin/server.js",
+    "publish:site": "node bin/publish.js",
     "test": "node --test test/*.test.js"
   },
   "dependencies": {

@@ -27,6 +27,7 @@ const { getCurrentExam, listCurrentExams, getAllFieldHistory } = require('../db/
 const { toApplicationsShape } = require('../sync/toApplicationsShape');
 const { transitionContentStatus } = require('../pipeline/contentStatus');
 const { setCurrentField, ALLOWED_MANUAL_FIELDS, DATE_FIELDS } = require('../db/adminWrite');
+const { listPostsForExam: postsListForExam } = require('../db/posts');
 
 const PORT = process.env.MONITOR_ADMIN_PORT || 8745;
 const PUBLIC_DIR = path.join(__dirname, 'public');
@@ -157,10 +158,6 @@ function examListForAdmin(db, { content_status, org_id, search } = {}) {
   }
   sql += ' ORDER BY e.updated_at DESC';
   return db.prepare(sql).all(...params);
-}
-
-function postsListForExam(db, examId) {
-  return db.prepare('SELECT * FROM posts WHERE exam_id = ? ORDER BY display_order, id').all(examId);
 }
 
 function documentsListForExam(db, examId) {

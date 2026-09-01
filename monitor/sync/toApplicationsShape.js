@@ -11,6 +11,34 @@ function formatVacancies(raw) {
   return Number(digits).toLocaleString('en-IN');
 }
 
+function safeParseJson(text) {
+  try {
+    return JSON.parse(text);
+  } catch {
+    return undefined;
+  }
+}
+
+// Structured per-post breakdown (monitor/db/migrations/003_content_lifecycle.sql's
+// `posts` table) -> the public camelCase shape. New exams created through the
+// admin "New Exam" flow populate this; legacy imported exams instead carry the
+// same information as free text under details.payGroups[].posts — callers that
+// render this should fall back to payGroups when `posts` is absent, not show both.
+function toPublicPost(p) {
+  return {
+    postName: p.post_name,
+    department: p.department || undefined,
+    vacancies: p.vacancies != null ? p.vacancies : undefined,
+    vacanciesDisplay: p.vacancies_display || undefined,
+    qualification: p.qualification || undefined,
+    ageLimit: p.age_limit || undefined,
+    payLevel: p.pay_level || undefined,
+    payBand: p.pay_band || undefined,
+    categoryBreakdown: p.category_breakdown ? safeParseJson(p.category_breakdown) : undefined,
+    notes: p.notes || undefined,
+  };
+}
+
 function toApplicationsShape(currentExam) {
   if (!currentExam) return null;
   const f = currentExam.fields;
@@ -41,7 +69,11 @@ function toApplicationsShape(currentExam) {
     applicationStartDateIso: f.application_start_date,
     applicationEndDateIso: f.application_end_date,
     lastUpdated: currentExam.updated_at,
+    // undefined (not []) when empty, matching every other field's convention
+    // here of "present only when there's real data."
+    posts: currentExam.posts && currentExam.posts.length ? currentExam.posts.map(toPublicPost) : undefined,
+    orgName: currentExam.org_name || undefined,
   };
 }
 
-module.exports = { toApplicationsShape, formatVacancies };
+module.exports = { toApplicationsShape, formatVacancies, toPublicPost };

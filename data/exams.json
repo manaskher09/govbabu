@@ -1,0 +1,2131 @@
+{
+  "generatedAt": "2026-09-01T16:12:04.383Z",
+  "count": 27,
+  "exams": [
+    {
+      "code": "SSC-CGL",
+      "name": "SSC CGL",
+      "cat": "Central Govt",
+      "status": "open",
+      "applicationEndDateIso": "2026-06-22",
+      "lastUpdated": "2026-09-01 09:12:25",
+      "orgName": "Staff Selection Commission",
+      "slug": "ssc-cgl"
+    },
+    {
+      "code": "UPSC",
+      "name": "UPSC Civil Services",
+      "cat": "Central Govt",
+      "status": "closed",
+      "popularity": 13,
+      "notifTitle": "Civil Services Examination, 2026 — Notice No. 05/2026-CSE (Mains in progress; window for this cycle is closed)",
+      "applyStart": "04 Feb 2026",
+      "applyEnd": "27 Feb 2026 (extended)",
+      "officialUrl": "https://www.upsc.gov.in/sites/default/files/Notif-CSP-2026-Engl-060226Rev.pdf",
+      "photo": {
+        "dims": "350 × 350 px",
+        "px": {
+          "w": 350,
+          "h": 350
+        },
+        "minKB": 20,
+        "maxKB": 300,
+        "format": "JPG/JPEG",
+        "notes": "white/off-white background, face ~75% of frame, filename must be photo.jpg"
+      },
+      "signature": {
+        "dims": "~350–500 px wide (exact box unconfirmed)",
+        "minKB": 20,
+        "maxKB": 100,
+        "format": "JPG/JPEG",
+        "notes": "black ink, white background, filename must be signature.jpg — re-verify exact px on upsconline.nic.in at apply time"
+      },
+      "details": {
+        "dataNote": "UPSC has fully retired the old One-Time Registration (OTR) system in favour of the Aadhaar-based Universal Registration Number (URN) portal at upsconline.nic.in — OTR terminology is no longer used in the candidate-facing UI as of 2026 (re-confirmed 27 Aug 2026 across multiple current sources). Signature pixel dimensions remain genuinely unresolved between sources — the 20–100 KB file-size figure is solid, the exact width/height is not (sources disagree between ~350–500 px and other pixel/DPI conversions).",
+        "payGroups": [
+          {
+            "level": "Level 10 (Junior Time Scale)",
+            "band": "₹56,100 – ₹1,77,500 (basic)",
+            "posts": "~24 Group A/B services — IAS, IPS, IFS and other Central Civil Services — allocated by rank, category and preference after the interview stage"
+          }
+        ],
+        "payNote": "All Group A services (including IAS/IPS) enter at the same Level 10 basic pay — DA/HRA and other allowances add to this and vary by posting.",
+        "promotion": {
+          "caveat": "Not an official document — a commonly cited coaching-site estimate for the IAS career path.",
+          "steps": [
+            "Sub-Divisional Magistrate — first 0–4 years",
+            "Additional Collector — around 4–9 years",
+            "District Magistrate / Collector — around 9–13 years",
+            "Joint Secretary, Government of India — around 17–22 years",
+            "Secretary, Government of India — around 30–35 years",
+            "Actual timelines vary a lot by state cadre and how many officers joined in your batch year"
+          ]
+        },
+        "eligibility": {
+          "age": "21–32 years (general/EWS) as on 1 August of the exam year",
+          "ageRelax": "OBC (non-creamy layer) up to 35 · SC/ST up to 37 · PwBD up to 42",
+          "qualification": "Bachelor's degree in any discipline from a recognized university (final-year candidates may apply provisionally in some cycles)."
+        },
+        "howToApply": [
+          "Register on the current UPSC application portal (upsconline.nic.in) via the Universal Registration Number (URN) system — the old OTR system has been fully retired",
+          "Fill the common application form, then the exam-specific Civil Services application",
+          "Upload photo and signature to spec",
+          "Pay the fee online (exemptions apply for SC/ST/PwBD/women per UPSC norms)",
+          "Submit before the deadline — corrections are typically allowed only in a short post-close window"
+        ]
+      },
+      "hi": {
+        "name": "यूपीएससी सिविल सेवा"
+      },
+      "verified": "27 Aug 2026",
+      "applicationStartDateIso": "2026-02-04",
+      "applicationEndDateIso": "2026-02-27",
+      "lastUpdated": "2026-08-31 15:37:39",
+      "orgName": "Central Government Recruiting Bodies (SSC/UPSC/etc.)",
+      "slug": "upsc"
+    },
+    {
+      "code": "SSC-CHSL",
+      "name": "SSC CHSL",
+      "cat": "Central Govt",
+      "status": "closed",
+      "popularity": 3,
+      "notifTitle": "SSC CHSL 2025 (most recent cycle — SSC CHSL 2026 notification not yet released as of today)",
+      "applyStart": "23 Jun 2025",
+      "applyEnd": "18 Jul 2025",
+      "officialUrl": "http://ssc.gov.in/api/attachment/uploads/masterData/NoticeBoards/Notice_of_adv_chsl_2025.pdf",
+      "photo": {
+        "dims": "3.5 cm × 4.5 cm",
+        "px": {
+          "w": 276,
+          "h": 354
+        },
+        "minKB": 20,
+        "maxKB": 50,
+        "format": "JPEG/JPG",
+        "notes": "white background recommended"
+      },
+      "signature": {
+        "dims": "4 cm × 2 cm",
+        "px": {
+          "w": 315,
+          "h": 157
+        },
+        "minKB": 10,
+        "maxKB": 20,
+        "format": "JPEG/JPG",
+        "notes": "PNG format and non-white backgrounds are commonly rejected"
+      },
+      "details": {
+        "dataNote": "The SSC CHSL notification for the current cycle had not been released as of our last check — the posts/pay figures below reflect the most recently completed cycle. Confirm against the current notification on ssc.gov.in once released.",
+        "payGroups": [
+          {
+            "level": "Level 4",
+            "band": "₹25,500–₹81,100",
+            "posts": "Postal Assistant / Sorting Assistant, Data Entry Operator, Data Entry Operator Grade A"
+          },
+          {
+            "level": "Level 2",
+            "band": "₹19,900–₹63,200",
+            "posts": "Lower Division Clerk / Junior Secretariat Assistant"
+          }
+        ],
+        "payNote": "Figures are 7th CPC pay-matrix bands (basic pay only) — actual in-hand adds Dearness Allowance (currently ~58% of basic) and House Rent Allowance (8–24% by city class).",
+        "promotion": {
+          "caveat": "Not an official timeline — a commonly cited estimate.",
+          "steps": [
+            "LDC / JSA → Upper Division Clerk (UDC) / Senior Secretariat Assistant — around 5–7 years (by seniority, sometimes a departmental exam)",
+            "Separately, all central government employees get a pay-level upgrade (MACP) after 10, 20 and 30 years of service, whether or not they've actually been promoted"
+          ]
+        },
+        "eligibility": {
+          "age": "18–27 years as on the cutoff date set by each cycle's notification (exact birth-date bounds change every cycle) — confirm current bounds on ssc.gov.in.",
+          "ageRelax": "Standard SSC relaxations are expected to apply (OBC +3 yrs · SC/ST +5 yrs · PwBD +10 yrs) — not independently reconfirmed for CHSL specifically.",
+          "qualification": "Class 12 (10+2) pass from a recognized board (Data Entry Operator, Grade A posts require Mathematics as a 12th-standard subject)."
+        },
+        "howToApply": [
+          "Complete One-Time Registration (OTR) on ssc.gov.in, if not already done for another SSC exam",
+          "Log in and fill the CHSL-specific application — post preference, exam centres, category",
+          "Upload your photo and signature to spec",
+          "Pay the fee online — ₹100 for General/OBC/EWS; free for women, SC, ST, PwD, Ex-servicemen",
+          "Review, submit, and save your confirmation page"
+        ]
+      },
+      "hi": {
+        "name": "एसएससी सीएचएसएल",
+        "details": {
+          "dataNote": "वर्तमान चक्र के लिए एसएससी सीएचएसएल अधिसूचना हमारी अंतिम जांच तक जारी नहीं हुई थी — नीचे दिए गए पद/वेतन आंकड़े सबसे हाल के पूर्ण हुए चक्र को दर्शाते हैं। जारी होने पर ssc.gov.in पर वर्तमान अधिसूचना से पुष्टि करें।",
+          "payGroups": [
+            {
+              "level": "लेवल 4",
+              "band": "₹25,500–₹81,100",
+              "posts": "डाक सहायक / छँटाई सहायक, डाटा एंट्री ऑपरेटर, डाटा एंट्री ऑपरेटर ग्रेड ए"
+            },
+            {
+              "level": "लेवल 2",
+              "band": "₹19,900–₹63,200",
+              "posts": "निम्न श्रेणी लिपिक / कनिष्ठ सचिवालय सहायक"
+            }
+          ],
+          "payNote": "आंकड़े 7वें वेतन आयोग की वेतन-मैट्रिक्स सीमाएं हैं (केवल मूल वेतन) — वास्तविक हाथ में आने वाला वेतन महंगाई भत्ता (वर्तमान में मूल वेतन का ~58%) और मकान किराया भत्ता (शहर श्रेणी अनुसार 8–24%) जोड़ने के बाद बनता है।",
+          "promotion": {
+            "caveat": "आधिकारिक समयसीमा नहीं है — यह एक सामान्यतः बताया जाने वाला अनुमान है।",
+            "steps": [
+              "एलडीसी/जेएसए → अपर डिवीजन क्लर्क (यूडीसी) / वरिष्ठ सचिवालय सहायक — लगभग 5–7 वर्ष (वरिष्ठता के आधार पर, कभी-कभी विभागीय परीक्षा)",
+              "इसके अलावा, सभी केंद्र सरकार कर्मचारियों को वास्तविक पदोन्नति की परवाह किए बिना 10, 20 और 30 वर्ष की सेवा पूरी करने पर वेतन-स्तर उन्नयन (एमएसीपी) मिलता है"
+            ]
+          },
+          "eligibility": {
+            "age": "प्रत्येक चक्र की अधिसूचना द्वारा निर्धारित कट-ऑफ तिथि के अनुसार 18–27 वर्ष (सटीक जन्म-तिथि सीमा हर चक्र में बदलती है) — वर्तमान सीमा ssc.gov.in पर पुष्टि करें।",
+            "ageRelax": "मानक एसएससी छूट लागू होने की संभावना है (ओबीसी +3 वर्ष · एससी/एसटी +5 वर्ष · दिव्यांग +10 वर्ष) — सीएचएसएल के लिए विशेष रूप से स्वतंत्र पुष्टि नहीं हुई है।",
+            "qualification": "किसी मान्यता प्राप्त बोर्ड से कक्षा 12 (10+2) उत्तीर्ण (डाटा एंट्री ऑपरेटर ग्रेड ए पदों के लिए 12वीं कक्षा में गणित विषय आवश्यक)।"
+          },
+          "howToApply": [
+            "ssc.gov.in पर एक बार पंजीकरण (OTR) पूरा करें, यदि किसी अन्य एसएससी परीक्षा के लिए पहले से नहीं किया है",
+            "लॉगिन करें और सीएचएसएल-विशिष्ट आवेदन भरें — पद वरीयता, परीक्षा केंद्र, श्रेणी",
+            "अपनी फोटो और हस्ताक्षर निर्दिष्ट माप के अनुसार अपलोड करें",
+            "शुल्क ऑनलाइन भुगतान करें — सामान्य/ओबीसी/ईडब्ल्यूएस के लिए ₹100; महिलाओं, एससी, एसटी, दिव्यांग, भूतपूर्व सैनिकों के लिए निःशुल्क",
+            "समीक्षा करें, सबमिट करें, और अपना पुष्टिकरण पृष्ठ सहेजें"
+          ]
+        }
+      },
+      "verified": "26 Aug 2026",
+      "applicationStartDateIso": "2025-06-23",
+      "applicationEndDateIso": "2025-07-18",
+      "lastUpdated": "2026-08-31 15:37:39",
+      "orgName": "Central Government Recruiting Bodies (SSC/UPSC/etc.)",
+      "slug": "ssc-chsl"
+    },
+    {
+      "code": "SSC-GD",
+      "name": "SSC GD Constable",
+      "cat": "Police",
+      "status": "closed",
+      "popularity": 2,
+      "vacancies": "25,487",
+      "notifTitle": "Constable (GD) in CAPFs and SSF, and Rifleman (GD) in Assam Rifles Examination, 2026 (F.No. HQ-C-3007/10/2025-C-3) — most recent completed cycle; SSC GD 2027 notification (per SSC's own tentative calendar) is due ~Sept 2026, not yet released as of verification",
+      "applyStart": "01 Dec 2025",
+      "applyEnd": "31 Dec 2025 (23:00 hrs)",
+      "officialUrl": "https://ssc.gov.in/api/attachment/uploads/masterData/NoticeBoards/Notice_of_CTGD_2026.pdf",
+      "photo": {
+        "dims": "No separate upload — live webcam/front-camera capture during the Online Application Form itself (candidate cannot upload a pre-existing photo)",
+        "format": "Live capture",
+        "notes": "must be captured in good light against a plain background, no cap/mask/glasses/spectacles/earphones, full-frontal face inside the camera-delineated area; photographing an existing printed photo causes summary rejection — confirmed from the official 01.12.2025 Notice, Paras 8.4 and 13.12"
+      },
+      "signature": {
+        "dims": "6.0 cm × 2.0 cm",
+        "minKB": 10,
+        "maxKB": 20,
+        "format": "JPEG/JPG",
+        "notes": "scanned signature (not live-captured, unlike the photo) — the official Notice gives only cm × KB, no pixel dimension; blurred/miniature signatures are rejected summarily"
+      },
+      "details": {
+        "dataNote": "(1) Photo is LIVE-CAPTURED via webcam during the application (RRB-style), not uploaded with a fixed px spec — this differs from SSC CGL/CHSL's upload-based photo. Only the signature is an uploaded scan. Confirmed directly from the official Notice of Examination dated 01.12.2025, Paras 8.3–8.7 and 13.9–13.12. (2) Applicant volume: coaching-site reporting (careerpower.in) cites \"over 48.83 lakh candidates\" for this 2026 cycle against 25,487 vacancies — a secondary figure, not an official SSC press release or RTI reply we could independently verify, but consistent with SSC's own multi-lakh scale for GD and clearing the >2 lakh threshold by a wide margin under any plausible reading. (3) PwBD/PwD candidates are explicitly NOT eligible for this exam (official Notice, Instruction 8) — an unusual exclusion worth flagging since most other exams on this site don't carry it. (4) Next cycle: per SSC's own official Tentative Calendar of Examinations 2026-27 (published 08.01.2026), the 2027 GD exam is scheduled for advertisement in September 2026 — not yet released as of this verification (26 Aug 2026).",
+        "payGroups": [
+          {
+            "level": "Level 3",
+            "band": "₹21,700 – ₹69,100 (basic, 7th CPC Pay Matrix; commonly reported starting in-hand ~₹23,527/month with allowances)",
+            "posts": "Constable (General Duty) in BSF, CISF, CRPF, ITBP, SSB and the Secretariat Security Force (SSF); Rifleman (GD) in Assam Rifles — one single notification and pay level covers all seven forces; candidates rank all seven as preferences and are allocated a force by merit-cum-preference after PST/PET/medical."
+          }
+        ],
+        "payNote": "Confirmed from the official Notice, Para 2: a single Pay Level-3 band applies uniformly whichever of the seven forces a candidate is finally allotted to — there is no separate, higher-paying force. In-hand pay adds Dearness Allowance, House Rent Allowance and (for most CAPFs) Risk & Hardship Allowance on top of this basic band.",
+        "promotion": {
+          "caveat": "Not covered in the official notification — a commonly cited, unconfirmed coaching-site estimate.",
+          "steps": [
+            "Constable → Head Constable — commonly reported around 8–10 years (departmental exam / seniority)",
+            "Head Constable → Assistant Sub-Inspector → Sub-Inspector",
+            "Separately, all central forces give a pay-level upgrade (MACP) after 10, 20 and 30 years of service"
+          ]
+        },
+        "eligibility": {
+          "age": "18–23 years as on 01 Jan 2026 for this cycle (born not before 02 Jan 2003 and not after 01 Jan 2008) — the cutoff date shifts every cycle; confirm against the next notification.",
+          "ageRelax": "SC/ST +5 years · OBC +3 years · Ex-servicemen +3 years after deducting military service · children/dependents of 1984 riot victims: UR/EWS +5, OBC +8, SC/ST +10 years. PwBD/PwD candidates are NOT eligible to apply for this exam at all (explicitly stated in the Notice) — unlike most other exams on this site.",
+          "qualification": "Matriculation / Class 10 pass from a recognized Board. Selection also requires a Physical Standard Test (PST) and Physical Efficiency Test (PET): minimum height 170 cm male / 157 cm female (relaxed for Scheduled Tribes and several hill/North-East categories, down to as low as 150 cm female ST of NE states); minimum chest 80 cm unexpanded with 5 cm expansion for male (not measured for female); PET race — male 5 km in 24 minutes, female 1.6 km in 8.5 minutes (relaxed timings for Ladakh-region candidates). Category-wise relaxation tables are extensive — see the official Notice, Paras 12.4–12.5, before assuming you qualify."
+        },
+        "howToApply": [
+          "Complete One-Time Registration (OTR) on the new ssc.gov.in portal (an OTR from the old ssc.nic.in site will not carry over) — you can also apply via the official \"mySSC\" mobile app",
+          "Opt in to Aadhaar-Based Authentication during OTR if possible — this exempts you from carrying printed photos/ID at the exam centre and from strict photo/signature rejection rules",
+          "Log in and fill the Constable (GD) application — personal details, 10th-pass qualification, domicile State/UT, and up to three exam-centre preferences",
+          "Rank all seven forces (BSF, CISF, CRPF, SSB, ITBP, Assam Rifles, SSF) in strict order of priority — this cannot be changed after submission",
+          "When prompted, sit for the live in-application webcam photo capture (no photo upload option exists) — plain background, no cap/glasses, full-frontal view",
+          "Upload your scanned signature (6.0 cm × 2.0 cm, JPEG, 10–20 KB, black/blue ink on white paper)",
+          "Pay the ₹100 fee online (BHIM UPI/net banking/card) — waived for women, SC, ST and Ex-servicemen — by the fee deadline (one day after the application closes)",
+          "Use the 3-day correction window immediately after closing to fix any OTR/application errors (₹200 first correction, ₹500 second) — no changes allowed afterward",
+          "Download and save your Admission Certificate when released; sit the Computer Based Examination, then (if shortlisted) the PST/PET, Detailed Medical Examination and Document Verification stages in sequence"
+        ]
+      },
+      "hi": {
+        "name": "एसएससी जीडी कांस्टेबल"
+      },
+      "verified": "26 Aug 2026",
+      "applicationStartDateIso": "2025-12-01",
+      "applicationEndDateIso": "2025-12-31",
+      "lastUpdated": "2026-08-31 15:37:39",
+      "orgName": "Police Recruitment Boards",
+      "slug": "ssc-gd"
+    },
+    {
+      "code": "SSC-MTS",
+      "name": "SSC MTS",
+      "cat": "Central Govt",
+      "status": "closed",
+      "popularity": 4,
+      "vacancies": "5,464",
+      "notifTitle": "Multi-Tasking (Non-Technical) Staff and Havaldar (CBIC & CBN) Examination, 2025 (F.No. E/15/2025-C-2 Section) — most recent fully-confirmed cycle; SSC MTS 2026 notification (originally due ~30 Jun 2026 per SSC's own calendar) is reported by multiple trackers as delayed/not yet released as of our most recent check (~Aug 2026) — genuinely unresolved, see dataNote",
+      "applyStart": "26 Jun 2025",
+      "applyEnd": "24 Jul 2025 (23:00 hrs)",
+      "officialUrl": "https://ssc.gov.in/api/attachment/uploads/masterData/NoticeBoards/Notice_of_adv_mts_2025.pdf",
+      "photo": {
+        "dims": "No separate upload — live webcam/front-camera capture during the Online Application Form itself",
+        "format": "Live capture",
+        "notes": "good light, plain background, no cap/mask/glasses/spectacles/earphones; face fully inside the camera-delineated area — confirmed from the official 26.06.2025 Notice, Paras 10.3–10.5"
+      },
+      "signature": {
+        "dims": "6.0 cm × 2.0 cm",
+        "minKB": 10,
+        "maxKB": 20,
+        "format": "JPEG/JPG",
+        "notes": "scanned signature only (photo is live-captured, not uploaded) — no pixel dimension given in the official Notice, cm × KB only"
+      },
+      "details": {
+        "dataNote": "(1) Photo is live-captured via webcam (same as SSC GD/CPO), not an uploaded file with a px spec — confirmed from the official 26.06.2025 Notice (F.No. E/15/2025-C-2), Paras 10.3–10.6. (2) Applicant volume: coaching-site reporting (adda247) cites \"36.17 lakh candidates applied... against 5,464 vacancies\" for this cycle — a secondary figure, not an SSC press release or RTI reply we could independently verify, but far above the >2 lakh threshold under any plausible reading. MTS vacancies were reportedly revised upward in-cycle (one careers360 report cites a revised tentative total of 8,021, incl. 6,078 for the 18–25 age band, 732 for 18–27, and 1,211 Havaldar posts) — we could not independently confirm this revision against an official corrigendum, so treat the higher figure as provisional. (3) MTS 2026: per SSC's own official Tentative Calendar of Examinations 2026-27 (published 08.01.2026), this exam was due for advertisement in June 2026, closing July 2026, exam Sept–Nov 2026. Coaching-site trackers conflict on whether it was actually released — one claims a 30 June 2026 release, several others say it was postponed and \"expected in August 2026.\" We could not resolve this against a primary SSC source, so we've used the last FULLY CONFIRMED cycle (2025) here rather than guess at unconfirmed 2026 dates — re-verify directly against ssc.gov.in before relying on this for the current cycle.",
+        "payGroups": [
+          {
+            "level": "Level 1",
+            "band": "₹18,000 – ₹56,900 (basic, 7th CPC Pay Matrix)",
+            "posts": "Multi-Tasking Staff (Non-Technical) — Group C, non-gazetted, non-ministerial posts across central government Ministries/Departments/Offices and Constitutional/Statutory Bodies, in various States/UTs"
+          },
+          {
+            "level": "Level 1",
+            "band": "₹18,000 – ₹56,900 (basic; same Pay Level as MTS)",
+            "posts": "Havaldar — Central Board of Indirect Taxes & Customs (CBIC) and Central Bureau of Narcotics (CBN), Department of Revenue, Ministry of Finance. Recruited through the SAME notification/exam as MTS, but Havaldar candidates additionally must clear a Physical Efficiency Test (PET) and Physical Standard Test (PST) that MTS candidates do not."
+          }
+        ],
+        "payNote": "Confirmed from the official Notice, Para 1: MTS and Havaldar are both Pay Level-1 posts despite the different departments/duties. In-hand pay adds Dearness Allowance, HRA and Transport Allowance depending on posting.",
+        "promotion": {
+          "caveat": "Not covered in the official notification — a commonly cited, unconfirmed coaching-site estimate.",
+          "steps": [
+            "MTS / Havaldar promotion to higher Group C grades depends on seniority, departmental exams, and vacancies in your specific department",
+            "Separately, all central government employees get a pay-level upgrade (MACP) after 10, 20 and 30 years of service, regardless of promotion"
+          ]
+        },
+        "eligibility": {
+          "age": [
+            "Most MTS posts: 18–25 years, as on 01 Aug 2025 (born between 02 Aug 2000 and 01 Aug 2007)",
+            "Havaldar (CBIC/CBN) and a few specified MTS posts: 18–27 years (born not before 02 Aug 1998)",
+            "Exact age band depends on your specific post — check the vacancy annexure"
+          ],
+          "ageRelax": "SC/ST +5 years · OBC +3 years · PwBD (Unreserved/EWS) +10 years · PwBD (OBC) +13 years · PwBD (SC/ST) +15 years · Ex-servicemen +3 years after deducting military service · defence personnel disabled in action +3 years (+8 for SC/ST) · Central Govt civilian employees with 3+ years' service up to age 40 (45 for SC/ST) · widows/divorced/judicially-separated women up to age 35 (40 for SC/ST).",
+          "qualification": "Matriculation / Class 10 pass from a recognized Board. Havaldar candidates additionally must clear a Physical Efficiency Test (walking 1,600 m in 15 min male / 1 km in 20 min female) and Physical Standard Test (height 157.5 cm male, relaxable to 152.5 cm for Garhwali/Assamese/Gorkha/ST candidates — chest 81 cm expanded with 5 cm minimum expansion; height 152 cm female, weight 48 kg, both relaxable for the same categories). MTS itself carries no PET/PST requirement."
+        },
+        "howToApply": [
+          "Complete One-Time Registration (OTR) on the new ssc.gov.in portal (an old ssc.nic.in OTR will not carry over) or via the official \"mySSC\" mobile app",
+          "Opt in to Aadhaar-Based Authentication if possible, to avoid strict photo/signature rejection rules and carrying printed ID to the exam",
+          "Log in and fill the MTS/Havaldar application — 10th-pass qualification, your age-group (18–25 or 18–27), and whether you wish to be considered for Havaldar (CBIC/CBN)",
+          "Give your Post-cum-State/UT/Cadre-Controlling-Authority preferences in strict priority order using the codes in the Notice's annexure — this cannot be changed later",
+          "Sit for the live in-application webcam photo capture when prompted (no photo upload option exists)",
+          "Upload your scanned signature (6.0 cm × 2.0 cm, JPEG/JPG, 10–20 KB)",
+          "Pay the ₹100 fee online — waived for women, SC, ST, PwBD and Ex-servicemen — by the fee deadline",
+          "Use the 3-day correction window right after closing to fix errors (₹200 first correction, ₹500 second)",
+          "Download your Admission Certificate and sit the two-session Computer Based Examination (Session-I: Numerical & Reasoning; Session-II: General Awareness & English — negative marking applies only in Session-II)",
+          "If shortlisted for Havaldar, additionally appear for the Physical Efficiency Test / Physical Standard Test at a CBIC/CBN-notified centre"
+        ]
+      },
+      "hi": {
+        "name": "एसएससी एमटीएस"
+      },
+      "tentativeNextMonth": "2026-08",
+      "tentativeNext": "Next cycle expected around Aug 2026, per SSC's own tentative exam calendar — not yet officially released.",
+      "verified": "26 Aug 2026",
+      "applicationStartDateIso": "2025-06-26",
+      "applicationEndDateIso": "2025-07-24",
+      "lastUpdated": "2026-08-31 15:37:39",
+      "orgName": "Central Government Recruiting Bodies (SSC/UPSC/etc.)",
+      "slug": "ssc-mts"
+    },
+    {
+      "code": "SSC-CPO",
+      "name": "SSC CPO",
+      "cat": "Police",
+      "status": "closed",
+      "popularity": 19,
+      "vacancies": "3,073",
+      "notifTitle": "Sub-Inspector in Delhi Police and Central Armed Police Forces Examination, 2025 (F.No. E/13/2025-C-2 Section) — most recent fully-confirmed cycle (Paper-I held 09–12 Dec 2025; PET/PST qualifiers declared 30 Mar 2026); SSC CPO 2026 notification (originally due ~31 May 2026 per SSC's own calendar) had NOT been confirmed released as of our most recent check (~Aug 2026) — see dataNote",
+      "applyStart": "26 Sep 2025",
+      "applyEnd": "16 Oct 2025 (23:00 hrs)",
+      "officialUrl": "https://ssc.gov.in/api/attachment/uploads/masterData/NoticeBoards/Notice_of_adv_capf_2025.pdf",
+      "photo": {
+        "dims": "No separate upload — live webcam/front-camera capture during the Online Application Form itself",
+        "format": "Live capture",
+        "notes": "good light, plain background, no cap/mask/glasses/spectacles; face fully inside the camera-delineated area — confirmed from the official 26.09.2025 Notice, Paras 8.1–8.5"
+      },
+      "signature": {
+        "dims": "6.0 cm × 2.0 cm",
+        "minKB": 10,
+        "maxKB": 20,
+        "format": "JPEG/JPG",
+        "notes": "scanned signature only (photo is live-captured, not uploaded) — no pixel dimension given in the official Notice, cm × KB only"
+      },
+      "details": {
+        "dataNote": "(1) Photo is live-captured via webcam (same pattern as SSC GD/MTS), not uploaded with a px spec — confirmed from the official 26.09.2025 Notice (F.No. E/13/2025-C-2), Paras 8.1–8.6. (2) Applicant volume: this cycle's Paper-I attendance was unusually low — coaching-site analysis (pw.live) reports only ~1,76,634 candidates actually appeared (~30–31% turnout, said to be the lowest in 5–6 years) against an estimated ~5 lakh registered candidates; that ~5 lakh figure is a secondary/coaching-site estimate, not an SSC press release or RTI reply, but even the confirmed appeared-count plus normal no-show rates makes actual registrations comfortably clear 2 lakh. We could not independently verify an exact official registration total. (3) Vacancies: the notification opened with 3,073 posts (142 Delhi Police SI male + 70 female + 2,861 CAPF SI GD); secondary sources (careers360, adda247) later reported a revised tentative total of 5,308, which we could not independently confirm against an official corrigendum — treat the higher figure as provisional. (4) CPO 2026: per SSC's own official Tentative Calendar of Examinations 2026-27, this exam was due for advertisement in May 2026, closing June 2026. Multiple independent trackers confirm this date passed with no notice and that the notification was still \"delayed\"/\"expected in August 2026\" as of early-to-mid August 2026; we found no confirmation it had actually been released as of 26 Aug 2026. We have therefore used the last FULLY CONFIRMED cycle (2025) as the base entry rather than guess at unconfirmed 2026 dates — re-verify directly against ssc.gov.in before relying on this for the current cycle.",
+        "payGroups": [
+          {
+            "level": "Level 6",
+            "band": "₹35,400 – ₹1,12,400 (basic, 7th CPC Pay Matrix)",
+            "posts": "Sub-Inspector (Executive), male and female — Delhi Police (classified Group C by Delhi Police); Sub-Inspector (GD) — Central Armed Police Forces (CRPF, BSF, ITBP, CISF, SSB) (Group B, Non-Gazetted, Non-Ministerial). One common notification and exam covers both; candidates give ranked preferences between Delhi Police and the CAPFs."
+          }
+        ],
+        "payNote": "Confirmed from the official Notice, Paras 1.1–1.2: both Delhi Police SI (Executive) and CAPF SI (GD) sit at the same Level-6 pay band despite different Group classifications (C vs B). Male candidates for Delhi Police SI additionally need a valid LMV (Motorcycle & Car) driving licence to be eligible for Delhi Police at all — without one, male candidates can only be considered for CAPF SI posts (Notice, Para 7.7).",
+        "promotion": {
+          "caveat": "Not covered in the official notification — a commonly cited, unconfirmed coaching-site estimate.",
+          "steps": [
+            "Sub-Inspector → Inspector — commonly reported around 8–10+ years (by seniority / departmental exam, varies by force)",
+            "Higher ranks via Limited Departmental Competitive Exams",
+            "Separately, a pay-level upgrade (MACP) applies after 10, 20 and 30 years of service"
+          ]
+        },
+        "eligibility": {
+          "age": [
+            "This cycle: 20–25 years, as on 01 Aug 2025 (born between 02 Aug 2000 and 01 Aug 2005) — the cutoff shifts every cycle",
+            "Departmental Delhi Police candidates (Constables, Head Constables, ASIs with 3+ years' service): relaxed ceiling of 30–35 years, depending on category"
+          ],
+          "ageRelax": "SC/ST +5 years · OBC +3 years · Ex-servicemen +3 years after deducting military service · widows/divorced/judicially-separated women (Delhi Police SI only) up to age 35 (40 for SC/ST) · departmental Delhi Police candidates up to 30 (UR/EWS), 33 (OBC) or 35 (SC/ST).",
+          "qualification": "Bachelor's degree in any discipline from a recognized university. Selection also requires a Physical Standard Test and Physical Endurance Test: height 170 cm male / 157 cm female (relaxed to 165/162.5 cm for hill-area/ST categories, down to 154 cm for female ST); chest 80→85 cm (unexpanded→expanded) for male, no chest requirement for female; PET — male 100 m in 16 sec, 1.6 km in 6.5 min, long jump 3.65 m, high jump 1.2 m, 16 lb shot put 4.5 m; female 100 m in 18 sec, 800 m in 4 min, long jump 2.7 m, high jump 0.9 m. Eyesight standard is unusually strict — 6/6 (better eye) and 6/9 (worse eye) distant vision WITHOUT any corrective lenses or surgery, plus no knock-knee/flat-foot/varicose-vein/squint — worth independently re-confirming if you wear glasses, since this could disqualify glasses-wearers outright."
+        },
+        "howToApply": [
+          "Complete One-Time Registration (OTR) on the new ssc.gov.in portal (an old ssc.nic.in OTR will not carry over) or via the official \"mySSC\" mobile app",
+          "Opt in to Aadhaar-Based Authentication if possible, to avoid strict photo/signature rejection rules and carrying printed ID to the exam",
+          "Log in and fill the SI application — Bachelor's-degree qualification, and (male candidates) whether you hold a valid LMV driving licence, which gates Delhi Police eligibility",
+          "Choose up to three exam centres in order of preference",
+          "Sit for the live in-application webcam photo capture when prompted (no photo upload option exists)",
+          "Upload your scanned signature (6.0 cm × 2.0 cm, JPEG/JPG, 10–20 KB)",
+          "Pay the ₹100 fee online — waived for women, SC, ST and Ex-servicemen — by the fee deadline",
+          "Use the 3-day correction window right after closing to fix errors (₹200 first correction, ₹500 second)",
+          "Download your Admission Certificate and sit Paper-I (General Intelligence, GK, Quantitative Aptitude, English — 2 hours, sectional 30-minute timers per part)",
+          "If shortlisted, appear for PST/PET at a CAPF/Delhi-Police-notified centre, then Paper-II (English Language & Comprehension), and finally the Detailed Medical Examination"
+        ]
+      },
+      "hi": {
+        "name": "एसएससी सीपीओ"
+      },
+      "tentativeNextMonth": "2026-08",
+      "tentativeNext": "Next cycle expected around Aug 2026, per SSC's own tentative exam calendar — not yet officially released.",
+      "verified": "26 Aug 2026",
+      "applicationStartDateIso": "2025-09-26",
+      "applicationEndDateIso": "2025-10-16",
+      "lastUpdated": "2026-08-31 15:37:39",
+      "orgName": "Police Recruitment Boards",
+      "slug": "ssc-cpo"
+    },
+    {
+      "code": "IBPS-PO",
+      "name": "IBPS PO",
+      "cat": "Banking",
+      "status": "closed",
+      "popularity": 9,
+      "vacancies": "650",
+      "notifTitle": "CRP PO/MT-XVI — Recruitment of Probationary Officers/Management Trainees (2027-28 vacancies). Window closed; prelims already held (22–23 Aug 2026), mains expected October 2026.",
+      "applyStart": "01 Jul 2026",
+      "applyEnd": "26 Jul 2026 (extended)",
+      "officialUrl": "https://www.ibps.in/wp-content/uploads/Detailed-Notification_CRP-PO-XVI_Final_V1_30.06.2026.pdf",
+      "photo": {
+        "dims": "3.5 cm × 4.5 cm (200 × 230 px)",
+        "px": {
+          "w": 200,
+          "h": 230
+        },
+        "minKB": 20,
+        "maxKB": 50,
+        "format": "JPG/JPEG",
+        "notes": "recent colour photo, light/white background, no cap or dark glasses"
+      },
+      "signature": {
+        "dims": "140 × 60 px",
+        "px": {
+          "w": 140,
+          "h": 60
+        },
+        "minKB": 10,
+        "maxKB": 20,
+        "format": "JPG/JPEG",
+        "notes": "signed in black ink on white paper, not in capitals"
+      },
+      "details": {
+        "dataNote": "This cycle's application window has already closed and prelims were held this month. Re-verified 27 Aug 2026: the 20 Jul 2026 IBPS corrigendum confirmed both the extended closing date (26 Jul 2026, up from 21 Jul) and the revised vacancy count (6,715 → 7,365, +650 posts) — cross-checked across multiple independent sources. The previously-cited 7,365–7,565 range can be narrowed to the single confirmed figure of 7,365; 7,565 traces to an apparent typo on one aggregator page and has no independent support.",
+        "payGroups": [
+          {
+            "level": "JMGS-I (Officer Scale I)",
+            "band": "₹48,480–₹85,920 (basic; IBA Joint Note officer scale)",
+            "posts": "Probationary Officer / Management Trainee, across 11 participating public-sector banks"
+          }
+        ],
+        "payNote": "In-hand pay adds Dearness Allowance, HRA and City Compensatory Allowance on top of this basic scale, and varies by posting city.",
+        "promotion": {
+          "caveat": "Not stated in the official notification — a commonly cited coaching-site estimate, not official bank policy.",
+          "steps": [
+            "Scale I → Scale II — around 3–5 years (usually requires clearing the JAIIB exam)",
+            "Scale II → Scale III — around 10–15 years",
+            "Further promotions happen through internal bank promotion exams"
+          ]
+        },
+        "eligibility": {
+          "age": "20–30 years as on 01 Jul 2026 (born between 02 Jul 1996 and 01 Jul 2006)",
+          "ageRelax": "SC/ST +5 yrs · OBC(NCL) +3 yrs · PwBD +10 yrs · Ex-servicemen +5 yrs",
+          "qualification": "Graduate in any discipline, degree completed by 21 Jul 2026."
+        },
+        "howToApply": [
+          "Register at ibps.in under the CRP PO/MT link",
+          "Fill the application form and choose participating-bank/centre preferences",
+          "Upload photo, signature, left thumb impression, handwritten declaration and 10th certificate",
+          "Pay the fee online — ₹175 (SC/ST/PwBD), ₹850 (others)",
+          "Use the 2-day post-close edit window if needed (₹200 correction fee)",
+          "Download the call letter from ibps.in when released — no postal copies are sent"
+        ]
+      },
+      "hi": {
+        "name": "आईबीपीएस पीओ"
+      },
+      "otherDocs": [
+        {
+          "label": "Left thumb impression",
+          "spec": {
+            "dims": "240 × 240 px @ 200 DPI (~3×3 cm)",
+            "px": {
+              "w": 240,
+              "h": 240
+            },
+            "minKB": 20,
+            "maxKB": 50,
+            "format": "JPG",
+            "notes": "black/blue ink on white paper"
+          }
+        },
+        {
+          "label": "Handwritten declaration",
+          "spec": {
+            "dims": "800 × 400 px @ 200 DPI (~10×5 cm)",
+            "px": {
+              "w": 800,
+              "h": 400
+            },
+            "minKB": 50,
+            "maxKB": 100,
+            "format": "JPG",
+            "notes": "black ink, English, not capitals"
+          }
+        }
+      ],
+      "verified": "27 Aug 2026",
+      "applicationStartDateIso": "2026-07-01",
+      "applicationEndDateIso": "2026-07-26",
+      "lastUpdated": "2026-08-31 15:37:39",
+      "orgName": "Banking Recruitment Bodies (IBPS/SBI/RBI)",
+      "slug": "ibps-po"
+    },
+    {
+      "code": "IBPS-CL",
+      "name": "IBPS Clerk",
+      "cat": "Banking",
+      "status": "open",
+      "popularity": 7,
+      "notifTitle": "CRP CSA-XVI — Recruitment of Customer Service Associates (2027-28 vacancies)",
+      "applyStart": "01 Aug 2026",
+      "applyEnd": "28 Aug 2026 (extended)",
+      "officialUrl": "https://www.ibps.in/wp-content/uploads/Notification_CRP_CSA_XVI-Final.pdf",
+      "photo": {
+        "dims": "3.5 cm × 4.5 cm (200 × 230 px)",
+        "px": {
+          "w": 200,
+          "h": 230
+        },
+        "minKB": 20,
+        "maxKB": 50,
+        "format": "JPG/JPEG",
+        "notes": "recent colour photo, light/white background, no cap or dark glasses"
+      },
+      "signature": {
+        "dims": "140 × 60 px",
+        "px": {
+          "w": 140,
+          "h": 60
+        },
+        "minKB": 10,
+        "maxKB": 20,
+        "format": "JPG/JPEG",
+        "notes": "signed in black ink on white paper, not in capitals"
+      },
+      "details": {
+        "payGroups": [
+          {
+            "level": "Clerical cadre",
+            "band": "₹24,050–₹64,480 (basic; multi-stage increments per the 12th Bipartite Settlement)",
+            "posts": "Customer Service Associate (CSA) — state/UT-wise recruitment, one state per candidate. No interview stage for this post."
+          }
+        ],
+        "payNote": "In-hand pay adds DA, HRA and CCA on top of this basic scale, and varies by posting city.",
+        "promotion": {
+          "caveat": "Not stated in the official notification — a commonly cited coaching-site estimate.",
+          "steps": [
+            "Clerk → Officer Scale I — roughly 2–6 years, depending on seniority vs. the JAIIB/CAIIB fast-track route",
+            "Each bank sets its own exact promotion policy"
+          ]
+        },
+        "eligibility": {
+          "age": "20–28 years as on 01 Aug 2026 (born between 02 Aug 1998 and 01 Aug 2006)",
+          "ageRelax": "SC/ST +5 yrs · OBC(NCL) +3 yrs · PwBD +10 yrs · Ex-servicemen (+service period, up to 3 yrs) · widowed/divorced/judicially-separated women up to 35/38/40 yrs (Gen/OBC/SC-ST)",
+          "qualification": "Graduate in any discipline, plus basic computer literacy and proficiency in the local language of the state you apply to (tested unless your 10th-standard marksheet already shows that language)."
+        },
+        "howToApply": [
+          "Register at ibps.in under the CRP CSA link, choosing one state/UT to apply for",
+          "Fill the form and upload photo, signature, left thumb impression and handwritten declaration",
+          "Pay the fee — ₹175 (SC/ST/PwBD/ESM), ₹850 (others)",
+          "Use the 2-day post-close edit window if needed (₹200 correction fee)",
+          "Download the call letter from ibps.in when released"
+        ]
+      },
+      "hi": {
+        "name": "आईबीपीएस क्लर्क"
+      },
+      "otherDocs": [
+        {
+          "label": "Left thumb impression",
+          "spec": {
+            "dims": "240 × 240 px @ 200 DPI (~3×3 cm)",
+            "px": {
+              "w": 240,
+              "h": 240
+            },
+            "minKB": 20,
+            "maxKB": 50,
+            "format": "JPG",
+            "notes": "black/blue ink on white paper"
+          }
+        },
+        {
+          "label": "Handwritten declaration",
+          "spec": {
+            "dims": "800 × 400 px @ 200 DPI (~10×5 cm)",
+            "px": {
+              "w": 800,
+              "h": 400
+            },
+            "minKB": 50,
+            "maxKB": 100,
+            "format": "JPG",
+            "notes": "black ink, English"
+          }
+        }
+      ],
+      "verified": "26 Aug 2026",
+      "applicationStartDateIso": "2026-08-01",
+      "applicationEndDateIso": "2026-08-28",
+      "lastUpdated": "2026-08-31 15:37:39",
+      "orgName": "Banking Recruitment Bodies (IBPS/SBI/RBI)",
+      "slug": "ibps-cl"
+    },
+    {
+      "code": "SBI-PO",
+      "name": "SBI PO",
+      "cat": "Banking",
+      "status": "closed",
+      "popularity": 10,
+      "notifTitle": "Advt No. CRPD/PO/2026-27/09 — Recruitment of Probationary Officers. Window closed; prelims already held (1–2 Aug 2026), mains expected September 2026.",
+      "applyStart": "18 Jun 2026",
+      "applyEnd": "08 Jul 2026",
+      "officialUrl": "https://sbi.bank.in/csfile/18062026_1_Detailed_Adv.2026.pdf",
+      "photo": {
+        "dims": "200 × 230 px (preferred)",
+        "px": {
+          "w": 200,
+          "h": 230
+        },
+        "minKB": 20,
+        "maxKB": 50,
+        "format": "JPG/JPEG",
+        "notes": "recent colour photo, light/white background — keep ~8 physical copies on hand too"
+      },
+      "signature": {
+        "dims": "140 × 60 px (preferred)",
+        "px": {
+          "w": 140,
+          "h": 60
+        },
+        "minKB": 10,
+        "maxKB": 20,
+        "format": "JPG/JPEG",
+        "notes": "black ink on white paper, not in capitals"
+      },
+      "details": {
+        "payGroups": [
+          {
+            "level": "JMGS-I (Officer Scale I)",
+            "band": "₹48,480 + 4 advance increments (basic; same IBA Joint Note scale as IBPS PO)",
+            "posts": "Probationary Officer"
+          }
+        ],
+        "payNote": "The official notification states an approximate total package of ₹21.97 lakh CTC at a Mumbai posting — actual in-hand and total package vary significantly by posting city due to DA/HRA/CCA. Selected candidates execute a ₹2 lakh bond to serve a minimum 3 years.",
+        "promotion": {
+          "caveat": "SBI's own notification only says there's an \"attractive promotion policy\" without giving concrete timelines.",
+          "steps": [
+            "Coaching-site estimates mirror IBPS PO's — around 3–5 years to first promotion — but this is not confirmed by SBI itself"
+          ]
+        },
+        "eligibility": {
+          "age": "21–30 years as on 01 Apr 2026",
+          "ageRelax": "Standard SBI/GoI relaxations apply for reserved categories — exact figures not independently reconfirmed for this specific cycle, check the notification",
+          "qualification": "Graduate in any discipline, degree completed by 30 Sep 2026 (final-year candidates may apply provisionally)."
+        },
+        "howToApply": [
+          "Register at sbi.bank.in under Current Openings → this advertisement number",
+          "Fill the online form and upload photo, signature, thumb impression and handwritten declaration",
+          "Pay the fee — ₹750 (General/EWS/OBC), free for SC/ST/PwBD",
+          "Selection: Prelims → Mains → Psychometric Test, Group Exercise and Interview"
+        ]
+      },
+      "hi": {
+        "name": "एसबीआई पीओ"
+      },
+      "otherDocs": [
+        {
+          "label": "Left thumb impression",
+          "spec": {
+            "dims": "240 × 240 px @ 200 DPI (~3×3 cm)",
+            "px": {
+              "w": 240,
+              "h": 240
+            },
+            "minKB": 20,
+            "maxKB": 50,
+            "format": "JPG"
+          }
+        },
+        {
+          "label": "Handwritten declaration",
+          "spec": {
+            "dims": "800 × 400 px @ 200 DPI (~10×5 cm)",
+            "px": {
+              "w": 800,
+              "h": 400
+            },
+            "minKB": 50,
+            "maxKB": 100,
+            "format": "JPG"
+          }
+        }
+      ],
+      "verified": "26 Aug 2026",
+      "applicationStartDateIso": "2026-06-18",
+      "applicationEndDateIso": "2026-07-08",
+      "lastUpdated": "2026-08-31 15:37:39",
+      "orgName": "Banking Recruitment Bodies (IBPS/SBI/RBI)",
+      "slug": "sbi-po"
+    },
+    {
+      "code": "SBI-CL",
+      "name": "SBI Clerk",
+      "cat": "Banking",
+      "status": "open",
+      "popularity": 8,
+      "vacancies": "1,538",
+      "notifTitle": "Advt No. CRPD/CR/2026-27/17 — Recruitment of Junior Associates (Customer Support & Sales)",
+      "applyStart": "11 Aug 2026",
+      "applyEnd": "31 Aug 2026",
+      "officialUrl": "https://sbi.bank.in/webfiles/uploads/files_2627/08/JA_2026_Detailed_Advt_Eng.pdf",
+      "photo": {
+        "dims": "200 × 230 px (preferred)",
+        "px": {
+          "w": 200,
+          "h": 230
+        },
+        "minKB": 20,
+        "maxKB": 50,
+        "format": "JPG/JPEG",
+        "notes": "recent colour photo, light/white background"
+      },
+      "signature": {
+        "dims": "140 × 60 px (preferred)",
+        "px": {
+          "w": 140,
+          "h": 60
+        },
+        "minKB": 10,
+        "maxKB": 20,
+        "format": "JPG/JPEG",
+        "notes": "black ink on white paper, not in capitals"
+      },
+      "details": {
+        "dataNote": "SBI is running two overlapping recruitment drives right now: this main drive (closes 31 Aug 2026) and a separate SC/ST/OBC backlog drive (Advt CRPD/CR/SPLDRIVE/2026-27/16, 1,538 posts, closes 27 Aug 2026 — today). Combined vacancy totals across both drives aren't cleanly confirmed — check sbi.bank.in for the exact current figures for your category.",
+        "payGroups": [
+          {
+            "level": "Clerical cadre",
+            "band": "₹24,050–₹64,480 basic; starting basic ₹26,730 with 2 advance increments for graduates",
+            "posts": "Junior Associate (Customer Support & Sales) — state/UT-wise recruitment, no interview stage"
+          }
+        ],
+        "payNote": "Official notification states approximate total starting emoluments of ~₹46,000/month at a metro posting like Mumbai (inclusive of DA and current-rate allowances) — varies by posting city.",
+        "promotion": {
+          "caveat": "Not addressed in the official notification — treat as unconfirmed.",
+          "steps": [
+            "Coaching-site estimates mirror IBPS Clerk's promotion timelines"
+          ]
+        },
+        "eligibility": {
+          "age": "20–28 years as on 01 Apr 2026",
+          "ageRelax": "Nil application fee for SC/ST/PwBD/Ex-servicemen and their dependents; standard age relaxations apply for reserved categories",
+          "qualification": "Graduate in any discipline (by 31 Dec 2026) plus proficiency in the local language of the state applied to."
+        },
+        "howToApply": [
+          "Register at sbi.bank.in under Current Openings → the relevant advertisement number",
+          "Choose one state/UT and fill the online form",
+          "Upload photo, signature and other required documents",
+          "Pay the fee — ₹750 (General/OBC/EWS), free for SC/ST/PwBD/Ex-servicemen",
+          "No personal interview for this post — selection is exam-based only"
+        ]
+      },
+      "hi": {
+        "name": "एसबीआई क्लर्क"
+      },
+      "otherDocs": [
+        {
+          "label": "Left thumb impression",
+          "spec": {
+            "dims": "240 × 240 px @ 200 DPI (~3×3 cm)",
+            "px": {
+              "w": 240,
+              "h": 240
+            },
+            "minKB": 20,
+            "maxKB": 50,
+            "format": "JPG"
+          }
+        },
+        {
+          "label": "Handwritten declaration",
+          "spec": {
+            "dims": "800 × 400 px @ 200 DPI (~10×5 cm)",
+            "px": {
+              "w": 800,
+              "h": 400
+            },
+            "minKB": 50,
+            "maxKB": 100,
+            "format": "JPG"
+          }
+        }
+      ],
+      "verified": "27 Aug 2026",
+      "applicationStartDateIso": "2026-08-11",
+      "applicationEndDateIso": "2026-08-31",
+      "lastUpdated": "2026-08-31 15:37:39",
+      "orgName": "Banking Recruitment Bodies (IBPS/SBI/RBI)",
+      "slug": "sbi-cl"
+    },
+    {
+      "code": "RRB-NTPC",
+      "name": "RRB NTPC",
+      "cat": "Railway",
+      "status": "closed",
+      "popularity": 6,
+      "notifTitle": "CEN 06/2025 (Graduate) & CEN 07/2025 (Undergraduate) — Non-Technical Popular Categories. Both windows closed since Nov 2025.",
+      "applyStart": "21 Oct 2025",
+      "applyEnd": "27 Nov 2025 (extended)",
+      "officialUrl": "https://rrbajmer.gov.in/Upload_PDF/CEN%2007-2025-NTPC%20(Under%20Graduate)%20English_compressed-638971975510934173.pdf",
+      "photo": {
+        "dims": "No separate upload — live webcam/front-camera capture during the application itself",
+        "format": "Live capture",
+        "notes": "no cap, mask or glasses; eyes open; non-white clothing; photographing a printed photo causes summary rejection"
+      },
+      "signature": {
+        "dims": "35mm × 20mm scan box",
+        "px": {
+          "w": 140,
+          "h": 60
+        },
+        "minKB": 30,
+        "maxKB": 49,
+        "format": "JPG/JPEG",
+        "notes": "black ink, cursive/running handwriting (not block letters), scanned at ≥100 DPI"
+      },
+      "details": {
+        "dataNote": "RE-VERIFIED 27 Aug 2026: Graduate-cycle (CEN 06/2025) figures are now confirmed directly from the official CEN 06/2025 PDF (fetched via rrb.indianrailways.gov.in, the RRBs' unified portal) — this also caught a real error in the previous entry, which lumped all six Graduate posts into one Level 5–6 band; Traffic Assistant is actually Level 4 (₹25,500), outside that range. Age reference date for both Graduate and Undergraduate posts is confirmed as on 01 Jan 2026. Undergraduate (CEN 07/2025) figures remain confirmed as before.",
+        "payGroups": [
+          {
+            "level": "Level 2–3 · Undergraduate (confirmed)",
+            "band": "₹19,900–₹21,700 (basic, initial pay)",
+            "posts": "Commercial Cum Ticket Clerk (Level 3), Accounts Clerk cum Typist / Junior Clerk cum Typist / Trains Clerk (Level 2)"
+          },
+          {
+            "level": "Level 6 · Graduate (confirmed)",
+            "band": "₹35,400 (basic)",
+            "posts": "Chief Commercial-cum-Ticket Supervisor (161 vacancies), Station Master (615 vacancies)"
+          },
+          {
+            "level": "Level 5 · Graduate (confirmed)",
+            "band": "₹29,200 (basic)",
+            "posts": "Goods Train Manager (3,416 vacancies), Junior Accounts Assistant cum Typist (921 vacancies), Senior Clerk cum Typist (638 vacancies)"
+          },
+          {
+            "level": "Level 4 · Graduate (confirmed)",
+            "band": "₹25,500 (basic)",
+            "posts": "Traffic Assistant (59 vacancies)"
+          }
+        ],
+        "payNote": "All levels — Undergraduate and Graduate — are now confirmed directly from the official CEN 06/2025 and CEN 07/2025 PDFs. Note Traffic Assistant is Level 4 (₹25,500), distinct from the other five Graduate posts which are Level 5–6.",
+        "promotion": {
+          "caveat": "Not addressed in the official notification for either post group — anything cited elsewhere is coaching-site material, not RRB-confirmed.",
+          "steps": [
+            "Examples sometimes cited: Goods Guard → Senior Goods Guard, or ASM → Station Master"
+          ]
+        },
+        "eligibility": {
+          "age": [
+            "Undergraduate posts: 18–30 years, as on 01 Jan 2026",
+            "Graduate posts: commonly reported as 18–33 years, but not independently reverified this pass"
+          ],
+          "ageRelax": "Standard relaxations apply for reserved categories, Ex-servicemen and PwBD per RRB's general norms",
+          "qualification": "Undergraduate posts: 12th pass (10+2) or equivalent, ≥50% aggregate (relaxed for SC/ST/PwBD/Ex-servicemen); typing proficiency required for Accounts/Junior Clerk cum Typist. Graduate posts: Bachelor's degree (commonly reported, not independently reverified this pass)."
+        },
+        "howToApply": [
+          "Create an account on rrbapply.gov.in (Aadhaar/DigiLocker verification recommended)",
+          "Fill the application for your post group (Graduate or Undergraduate)",
+          "Live-capture your photo during the application — there is no separate upload",
+          "Upload your signature to spec",
+          "Pay the fee — ₹500 for UR/OBC-NCL/EWS (₹400 refunded after appearing in CBT) or ₹250 for SC/ST/women/PwBD/Ex-servicemen/Transgender/Minorities/EBC (fully refunded after appearing in CBT); refund credited only to an Aadhaar-seeded bank account"
+        ]
+      },
+      "hi": {
+        "name": "आरआरबी एनटीपीसी"
+      },
+      "otherDocs": [
+        {
+          "label": "SC/ST certificate (free travel pass claimants only)",
+          "notes": "PDF only, under 400 KB — confirmed for Group D's official notification, likely applies here too on the same portal but not independently reverified for this specific exam."
+        }
+      ],
+      "verified": "27 Aug 2026",
+      "applicationStartDateIso": "2025-10-21",
+      "applicationEndDateIso": "2025-11-27",
+      "lastUpdated": "2026-08-31 15:37:39",
+      "orgName": "Railway Recruitment Boards",
+      "slug": "rrb-ntpc"
+    },
+    {
+      "code": "RRB-GRP-D",
+      "name": "RRB Group D",
+      "cat": "Railway",
+      "status": "closed",
+      "popularity": 5,
+      "vacancies": "22,195",
+      "notifTitle": "CEN 09/2025 — Level-1 posts (Track Maintainer, Pointsman and others). Window closed; CBT held 3–25 Aug 2026.",
+      "applyStart": "31 Jan 2026",
+      "applyEnd": "02 Mar 2026",
+      "officialUrl": "https://rrbajmer.gov.in/Upload_PDF/Final-Detailed%20CEN%2009-2025%20Level-1-updated%20on%2030012026-639054049190206941.pdf",
+      "photo": {
+        "dims": "No separate upload — live webcam/front-camera capture during the application itself",
+        "format": "Live capture",
+        "notes": "no cap, mask or glasses; eyes open; non-white clothing; photographing a printed photo causes summary rejection"
+      },
+      "signature": {
+        "dims": "35mm × 20mm scan box",
+        "px": {
+          "w": 140,
+          "h": 60
+        },
+        "minKB": 30,
+        "maxKB": 49,
+        "format": "JPG/JPEG",
+        "notes": "black ink, cursive/running handwriting (not block letters), scanned at ≥100 DPI"
+      },
+      "details": {
+        "dataNote": "This is the CEN 09/2025 cycle (22,195 vacancies) — the older CEN 08/2024 cycle already concluded. \"CEN 01/2026\" is a different exam (RRB Assistant Loco Pilot), not Group D — no new Group D cycle has opened since 09/2025.",
+        "payGroups": [
+          {
+            "level": "Level 1",
+            "band": "₹18,000 (basic, initial pay)",
+            "posts": "Track Maintainer-IV, Assistant Bridge, Assistant P.Way, Assistant Track Machine, Pointsman B, Assistant (S&T), Assistant TRD, Assistant Operations (Electrical), Assistant TL&AC, Assistant Carriage & Wagon, Assistant Loco Shed (Electrical) and other Level-1 posts — 14 designations total"
+          }
+        ],
+        "payNote": "Confirmed directly from the official CEN 09/2025 notification — all Group D posts share the same Level 1 initial pay.",
+        "promotion": {
+          "caveat": "Not addressed in the official notification — coaching-site consensus, not RRB-confirmed.",
+          "steps": [
+            "Track Maintainer IV → III → II → I, then Senior / Gangman roles over time"
+          ]
+        },
+        "eligibility": {
+          "age": "18–33 years as on 01 Jan 2026",
+          "ageRelax": "OBC-NCL +3 yrs · SC/ST +5 yrs · PwBD +10/13/15 yrs depending on category · Ex-servicemen per formula",
+          "qualification": "10th pass / Matriculation / SSLC or equivalent from a recognized board, OR ITI/NCVT National Apprenticeship Certificate for specific posts."
+        },
+        "howToApply": [
+          "Create an account on rrbapply.gov.in (Aadhaar/DigiLocker verification recommended)",
+          "Fill the application form",
+          "Live-capture your photo during the application — there is no separate upload",
+          "Upload your signature to spec",
+          "Pay the fee — ₹500 for UR/OBC-NCL/EWS (₹400 refunded after appearing in CBT) or ₹250 for SC/ST/women/PwBD/Ex-servicemen/Transgender/Minorities/EBC (fully refunded after appearing in CBT); refund credited only to an Aadhaar-seeded bank account"
+        ]
+      },
+      "hi": {
+        "name": "आरआरबी ग्रुप डी"
+      },
+      "otherDocs": [
+        {
+          "label": "SC/ST certificate (free travel pass claimants only)",
+          "notes": "PDF only, under 400 KB — confirmed directly from the official CEN 09/2025 notification."
+        }
+      ],
+      "verified": "26 Aug 2026",
+      "applicationStartDateIso": "2026-01-31",
+      "applicationEndDateIso": "2026-03-02",
+      "lastUpdated": "2026-08-31 15:37:39",
+      "orgName": "Railway Recruitment Boards",
+      "slug": "rrb-grp-d"
+    },
+    {
+      "code": "RRB-ALP",
+      "name": "RRB ALP",
+      "cat": "Railway",
+      "status": "closed",
+      "popularity": 17,
+      "vacancies": "11,127",
+      "notifTitle": "CEN 01/2026 — Assistant Loco Pilot (ALP), 11,127 vacancies across 21 RRBs/17 railway zones. Application window closed 14 Jun 2026; CBT 1 reported as tentatively scheduled for August 2026 by secondary sources (exact date not independently confirmed).",
+      "applyStart": "15 May 2026",
+      "applyEnd": "14 Jun 2026 (11:59 PM)",
+      "officialUrl": "https://www.rrbchennai.gov.in/downloads/CEN%2001_2026%20english%20.pdf",
+      "photo": {
+        "dims": "No separate upload — live webcam/front-camera capture during the application itself",
+        "format": "Live capture",
+        "notes": "no cap, mask or glasses/spectacles; eyes open; look straight ahead with neutral expression; non-white/dark clothing preferred; photographing a printed or digital photo causes rejection"
+      },
+      "signature": {
+        "dims": "35mm × 20mm scan box",
+        "px": {
+          "w": 140,
+          "h": 60
+        },
+        "minKB": 30,
+        "maxKB": 49,
+        "format": "JPG/JPEG",
+        "notes": "black ink, cursive/running handwriting (not block/capital/disjointed letters), scanned at ≥100 DPI — sourced from a secondary summary of the official CEN 01/2026 Application FAQ document."
+      },
+      "details": {
+        "dataNote": "Applicant volume for this exact cycle is confirmed: RRB's own zone-wise form fill-up data (as reported by secondary aggregators, e.g. Testbook) puts total applications at 8,40,944 for CEN 01/2026's 11,127 vacancies (≈76 applicants per vacancy), comfortably above the 2-lakh threshold. RE-VERIFIED 27 Aug 2026 against the primary CEN 01/2026 PDF (fetched directly from rrbchennai.gov.in): age reference date is confirmed as \"as on 01-07-2026\" — the \"1 Jan 2026\" figure circulating in some secondary sources was incorrect. Signature spec and the SC/ST-certificate spec are now also primary-confirmed. CBT 1 has NOT yet been officially scheduled as of 27 Aug 2026 — \"August 2026\" remains an unconfirmed secondary-source estimate; watch rrbapply.gov.in and regional RRB sites for the city intimation slip.",
+        "payGroups": [
+          {
+            "level": "Level 2 (7th CPC)",
+            "band": "₹19,900 (basic, initial pay)",
+            "posts": "Assistant Loco Pilot (ALP) — single post, 11,127 vacancies"
+          }
+        ],
+        "payNote": "Pay Level 2 / ₹19,900 initial basic confirmed directly against the primary CEN 01/2026 PDF, and matches the historical ALP pay level from prior cycles.",
+        "promotion": {
+          "caveat": "Not addressed in the official notification — coaching-site consensus, not RRB-confirmed.",
+          "steps": [
+            "Assistant Loco Pilot → Loco Pilot (Goods) — after a minimum of about 2 years' service and about 60,000 km of running experience as an Assistant",
+            "Loco Pilot (Goods) → Loco Pilot (Mail/Express) → Senior Loco Pilot → Loco Inspector / Loco Supervisor",
+            "Departmental exams can also open routes to Power Controller, Crew Controller, or Loco Foreman",
+            "Reaching senior driving roles (e.g. Rajdhani/Shatabdi links) is commonly cited as taking 8–10+ years overall"
+          ]
+        },
+        "eligibility": {
+          "age": "18–30 years, as on 01 Jul 2026 — confirmed directly from the official CEN 01/2026 notification (Para 5, age table). The earlier \"1 Jan 2026\" figure circulating in some secondary sources is incorrect.",
+          "ageRelax": "OBC-NCL +3 yrs, SC/ST +5 yrs, Ex-servicemen per standard formula — consistent with RRB's general norms.",
+          "qualification": "Matriculation/SSLC plus ITI (NCVT/SCVT-recognized) in one of: Fitter, Electrician, Instrument Mechanic, Millwright/Maintenance Mechanic, Mechanic (Radio & TV), Electronics Mechanic, Mechanic (Motor Vehicle), Wireman, Tractor Mechanic, Armature & Coil Winder, Mechanic (Diesel), Heat Engine, Turner, Machinist, Refrigeration & Air-Conditioning Mechanic — OR Matriculation/SSLC plus a 3-year diploma in Mechanical/Electrical/Electronics/Automobile Engineering (or combination streams of these) in lieu of ITI, from a recognized institution."
+        },
+        "howToApply": [
+          "Create an account on rrbapply.gov.in (Aadhaar/DigiLocker verification recommended)",
+          "Select CEN 01/2026 (ALP) and register with mobile number, email ID and personal details",
+          "Fill the application form, choosing preferred RRB zone(s) per the notification's option rules",
+          "Live-capture your photo during the application — there is no separate upload",
+          "Upload your signature to spec (35mm × 20mm, 140×60px, 30–49KB, JPG/JPEG, cursive black ink)",
+          "Upload ITI/diploma and category certificates as required",
+          "Pay the fee — ₹500 for UR/OBC-NCL/EWS (₹400 refunded after appearing in CBT 1) or ₹250 for SC/ST/women/PwBD/Ex-servicemen/Transgender/Minorities/EBC (fully refunded after appearing in CBT 1); refund credited only to an Aadhaar-seeded bank account",
+          "Review and submit before the 14 Jun 2026 deadline",
+          "Download and retain the application confirmation/registration slip; watch rrbapply.gov.in and your regional RRB site for CBT 1 city/date intimation"
+        ]
+      },
+      "hi": {
+        "name": "आरआरबी एएलपी"
+      },
+      "otherDocs": [
+        {
+          "label": "SC/ST certificate (free travel pass claimants only)",
+          "notes": "PDF only, under 400 KB — confirmed pattern on other RRB CENs on the same portal, not independently reverified for this specific exam."
+        }
+      ],
+      "verified": "27 Aug 2026",
+      "applicationStartDateIso": "2026-05-15",
+      "applicationEndDateIso": "2026-06-14",
+      "lastUpdated": "2026-08-31 15:37:39",
+      "orgName": "Railway Recruitment Boards",
+      "slug": "rrb-alp"
+    },
+    {
+      "code": "RRB-JE",
+      "name": "RRB JE",
+      "cat": "Railway",
+      "status": "open",
+      "popularity": 18,
+      "notifTitle": "CEN 04/2026 — Junior Engineer (JE), Junior Engineer (IT), Depot Material Superintendent (DMS) & Chemical and Metallurgical Assistant (CMA). Corrigendum-1 (18 Aug 2026) added the CMA post and revised vacancies from 3,993 to 4,029.",
+      "applyStart": "14 Aug 2026",
+      "applyEnd": "13 Sep 2026 (fee payment allowed through 15 Sep; modification window 16–25 Sep — confirmed directly against the primary CEN 04/2026 PDF)",
+      "officialUrl": "https://rrb.indianrailways.gov.in/chandigarh",
+      "photo": {
+        "dims": "No separate upload — live webcam/front-camera capture during the application itself",
+        "format": "Live capture",
+        "notes": "no cap, mask or glasses; eyes open; non-white/dark clothing preferred, neutral expression; photographing a printed photo causes summary rejection — confirmed directly against the primary CEN 04/2026 PDF (Para 14.4)."
+      },
+      "signature": {
+        "dims": "35mm × 20mm scan box",
+        "px": {
+          "w": 140,
+          "h": 60
+        },
+        "minKB": 30,
+        "maxKB": 49,
+        "format": "JPG/JPEG",
+        "notes": "black ink, cursive/running handwriting (not block letters), scanned at ≥100 DPI — confirmed directly against the primary CEN 04/2026 PDF (Para 14.5.1)."
+      },
+      "details": {
+        "dataNote": "RE-VERIFIED 27 Aug 2026: the primary CEN 04/2026 notification PDF (77 pages) plus Corrigendum-1 (18 Aug 2026) have now been retrieved and cross-checked directly, via rrb.indianrailways.gov.in — every pay, eligibility, vacancy, and photo/signature figure below is confirmed against the official document. No discrepancies found: pay Level 6/₹35,400 for all four posts (main CEN table + Corrigendum-1 Para 2.1 for CMA), vacancy revision 3,993→4,029 (+35 CMA +1 additional JE/Electrical/TRS post at RRB Secunderabad), Corrigendum-1 dated 18-08-2026, age 18–33 as on 01.01.2027, CMA qualification (B.Sc. with Physics & Chemistry, ≥45%), and application/modification-window dates all match the primary source exactly.",
+        "payGroups": [
+          {
+            "level": "Level 6 (7th CPC)",
+            "band": "₹35,400 (basic, initial pay) — confirmed directly against the primary CEN 04/2026 PDF",
+            "posts": "Junior Engineer (JE), Junior Engineer (IT), Depot Material Superintendent (DMS)"
+          },
+          {
+            "level": "Level 6 (7th CPC) — added by Corrigendum-1",
+            "band": "₹35,400 (basic, initial pay) — confirmed directly against Corrigendum-1, Para 2.1",
+            "posts": "Chemical & Metallurgical Assistant (CMA) — new post added 18 Aug 2026, 35 vacancies"
+          }
+        ],
+        "payNote": "All four posts are confirmed at Pay Level 6 with ₹35,400 initial basic pay, verified directly against the primary CEN 04/2026 PDF and Corrigendum-1.",
+        "promotion": {
+          "caveat": "Not addressed in the official notification — coaching-site consensus, not RRB-confirmed.",
+          "steps": [
+            "Junior Engineer (JE) → Senior Section Engineer (SSE) → Assistant Divisional Engineer (ADE) → Divisional Engineer (DE) → Senior Divisional Engineer (SDE)",
+            "Roughly 5–7 years per step, based on seniority-cum-suitability and departmental exams"
+          ]
+        },
+        "eligibility": {
+          "age": [
+            "UR / EWS: 18–33 years, as on 01.01.2027 — confirmed directly against the primary CEN 04/2026 notification",
+            "OBC-NCL: 18–36 years (+3 years relaxation)",
+            "SC / ST: 18–38 years (+5 years relaxation)",
+            "Ex-servicemen and PwBD candidates get further relaxation under RRB's standard formula"
+          ],
+          "ageRelax": "OBC-NCL +3 yrs, SC/ST +5 yrs, PwBD up to +10/13/15 yrs depending on category, Ex-servicemen per standard formula — consistent with RRB's general norms.",
+          "qualification": "JE / JE (IT): 3-year diploma OR BE/B.Tech in the engineering discipline mapped to the specific post/exam-group — reported streams include Mechanical, Production, Automobile, Manufacturing, Mechatronics, Industrial, Machining, Instrumentation & Control, Tools & Die Making, Electrical, Electronics, Communication, Computer Science/Engineering, Information Technology, and Civil Engineering (exact post-to-discipline mapping runs to dozens of sub-categories in the official notification — not reproduced in full here). DMS: 3-year diploma in any engineering discipline. CMA: B.Sc. with Physics and Chemistry as principal subjects, minimum 45% marks. Qualification must be completed on or before the application closing date; results-awaited candidates are not eligible per secondary sources."
+        },
+        "howToApply": [
+          "Create an account on rrbapply.gov.in (Aadhaar/DigiLocker verification recommended)",
+          "Select CEN 04/2026 and register with mobile number, email ID and personal details",
+          "Fill the application form and choose your preferred post(s)/RRB zone(s) per the notification's option rules",
+          "Live-capture your photo during the application — there is no separate upload",
+          "Upload your signature to spec (35mm × 20mm, 140×60px, 30–49KB, JPG/JPEG)",
+          "Upload educational/category certificates as required",
+          "Pay the fee — ₹500 for UR/OBC-NCL/EWS (₹400 refunded after appearing in CBT 1) or ₹250 for SC/ST/women/PwBD/Ex-servicemen/Transgender/Minorities/EBC (fully refunded after appearing in CBT 1); refund credited only to an Aadhaar-seeded bank account",
+          "Review and submit before the 13 Sep 2026 deadline; use the modification window afterward if corrections are needed",
+          "Download and retain the application confirmation/registration slip for future reference"
+        ]
+      },
+      "hi": {
+        "name": "आरआरबी जेई"
+      },
+      "otherDocs": [
+        {
+          "label": "SC/ST certificate (free travel pass claimants only)",
+          "notes": "PDF only, under 400 KB — confirmed pattern on other RRB CENs on the same portal, not independently reverified for this specific exam."
+        }
+      ],
+      "verified": "27 Aug 2026",
+      "applicationStartDateIso": "2026-08-14",
+      "applicationEndDateIso": "2026-09-13",
+      "lastUpdated": "2026-08-31 15:37:39",
+      "orgName": "Railway Recruitment Boards",
+      "slug": "rrb-je"
+    },
+    {
+      "code": "NDA",
+      "name": "NDA",
+      "cat": "Defence",
+      "status": "closed",
+      "popularity": 20,
+      "notifTitle": "NDA & NA Examination (II), 2026 — Notice No. 10/2026-NDA-II — window closed; exam scheduled 13 Sep 2026",
+      "applyStart": "20 May 2026",
+      "applyEnd": "11 Jun 2026 (secondary-sourced correction — the original notification implies 09 Jun)",
+      "officialUrl": "https://www.upsc.gov.in/sites/default/files/Notif-NDA-II-2026-Engl-200526.pdf",
+      "photo": {
+        "dims": "No fixed pixel dimensions given in the current official instructions — file-size range only",
+        "minKB": 20,
+        "maxKB": 200,
+        "format": "JPG/JPEG",
+        "notes": "colour photo, plain white background, face ≥75% of frame, both ear lobes visible, no glasses glare/dark glasses; live photo capture also mandatory during the application"
+      },
+      "signature": {
+        "dims": "350–500 px wide",
+        "minKB": 20,
+        "maxKB": 100,
+        "format": "JPG/JPEG",
+        "notes": "TRIPLE SIGNATURE required — sign three times vertically, one below the other, black ink on plain white paper, with adequate gap between each signature; scan all three as a single image"
+      },
+      "details": {
+        "dataNote": "This cycle (NDA(II) 2026) is closed; exam scheduled 13 Sep 2026. The application window may have closed 11 Jun rather than 9 Jun (secondary-sourced, not independently confirmed against a primary addendum). The next cycle (NDA(I) 2027) is NOT yet open — only UPSC's advance exam calendar exists so far (notification expected ~02 Dec 2026); don't trust \"2027 notification released\" claims elsewhere yet.",
+        "payGroups": [
+          {
+            "level": "Officer Cadet (training)",
+            "band": "₹56,100/month (Level 10 starting pay) as a training stipend",
+            "posts": "National Defence Academy, Khadakwasla — 3-year joint Army/Navy/Air Force training, then a service-specific academy before commissioning"
+          },
+          {
+            "level": "Lieutenant/equivalent on commissioning",
+            "band": "Level 10, ₹56,100–₹1,77,500 + Military Service Pay ₹15,500/month fixed (Lieutenant to Brigadier)",
+            "posts": "Rank progresses Captain (2 yrs) → Major (6 yrs) → Lt Col (13 yrs) → Colonel and above by selection, not automatically"
+          }
+        ],
+        "payNote": "Confirmed from the official notification's Appendix IV.",
+        "promotion": {
+          "caveat": "Official — from the notification's Appendix IV. Unlike civil service, ranks above Colonel are not time-bound.",
+          "steps": [
+            "Lieutenant (or equivalent) — on commission",
+            "Captain (or equivalent) — at 2 years",
+            "Major (or equivalent) — at 6 years",
+            "Lt Col (or equivalent) — at 13 years",
+            "Colonel (or equivalent) — on selection, or a 26-year time-scale",
+            "Brigadier and above — on selection only"
+          ]
+        },
+        "eligibility": {
+          "age": "Unmarried, born in the specific window stated in each cycle's notification (NDA(II) 2026: 01 Jan 2008–01 Jan 2011, roughly 15.5–18.5 years) — this cutoff shifts every cycle, always check the current notification rather than a fixed age range.",
+          "ageRelax": "Physical/medical standards follow the Armed Forces' Joint Manual of Medical Standards — common disqualifiers include deviated septum, hydrocele, being under/overweight, and tattoos outside the forearm/back-of-hand area.",
+          "qualification": "12th pass, any stream, for the Army wing. 12th with Physics, Chemistry and Maths for the Air Force/Navy wing and Naval Academy entry."
+        },
+        "howToApply": [
+          "Register at upsconline.nic.in — the only official application site — via UPSC's 4-part system (account → Universal Registration Number → Common Application Form → exam-specific module)",
+          "Upload your photo and triple signature to spec",
+          "Pay the fee — ₹100, waived for SC/ST, all women, and wards of JCO/NCO/OR in Sainik Schools",
+          "Live photo capture is mandatory at the Common Application Form stage, in addition to the uploaded photo",
+          "Download your e-admit card when released — no postal or emailed admit cards are sent"
+        ]
+      },
+      "hi": {
+        "name": "एनडीए"
+      },
+      "verified": "26 Aug 2026",
+      "applicationStartDateIso": "2026-05-20",
+      "applicationEndDateIso": "2026-06-11",
+      "lastUpdated": "2026-08-31 15:37:39",
+      "orgName": "Defence Recruiting Bodies",
+      "slug": "nda"
+    },
+    {
+      "code": "CDS",
+      "name": "CDS",
+      "cat": "Defence",
+      "status": "closed",
+      "popularity": 21,
+      "notifTitle": "Combined Defence Services Examination (II), 2026 — Notice No. 11/2026-CDS-II — window closed; exam scheduled 13 Sep 2026",
+      "applyStart": "20 May 2026",
+      "applyEnd": "11 Jun 2026 (secondary-sourced correction — the original notification implies 09 Jun)",
+      "officialUrl": "https://www.upsc.gov.in/sites/default/files/Notification_CDS_II_English.pdf",
+      "photo": {
+        "dims": "No fixed pixel dimensions given in the current official instructions — file-size range only",
+        "minKB": 20,
+        "maxKB": 200,
+        "format": "JPG/JPEG",
+        "notes": "colour photo, plain white background, face ≥75% of frame, both ear lobes visible, no glasses glare/dark glasses; live photo capture also mandatory during the application"
+      },
+      "signature": {
+        "dims": "350–500 px wide",
+        "minKB": 20,
+        "maxKB": 100,
+        "format": "JPG/JPEG",
+        "notes": "TRIPLE SIGNATURE required — sign three times vertically, one below the other, black ink on plain white paper, with adequate gap between each signature; scan all three as a single image"
+      },
+      "details": {
+        "dataNote": "This cycle (CDS(II) 2026) is closed; exam scheduled 13 Sep 2026. The application window may have closed 11 Jun rather than 9 Jun (secondary-sourced, not independently confirmed). The next cycle (CDS(I) 2027) is NOT yet open — only UPSC's advance exam calendar exists so far (notification expected ~02 Dec 2026).",
+        "payGroups": [
+          {
+            "level": "Officer Cadet / Gentleman Cadet (training)",
+            "band": "Same Level 10 training-stipend structure as NDA entrants",
+            "posts": "Indian Military Academy (Dehradun), Officers Training Academy (Chennai, men and women, Short Service Commission), Indian Naval Academy (Ezhimala), Air Force Academy (Hyderabad) — graduate-entry officer training"
+          },
+          {
+            "level": "Lieutenant/equivalent on commissioning",
+            "band": "Level 10, ₹56,100–₹1,77,500 + Military Service Pay ₹15,500/month fixed (Lieutenant to Brigadier)",
+            "posts": "Same rank/pay structure as NDA-route officers once commissioned"
+          }
+        ],
+        "payNote": "Confirmed from the official notification's Appendix IV (same figures as NDA, since both feed the same officer rank structure).",
+        "promotion": {
+          "caveat": "CDS's own notification doesn't include a promotion table — this is an inference, not a CDS-notification quote.",
+          "steps": [
+            "Once commissioned, a CDS-route officer is expected to follow the same rank structure as NDA: Lieutenant on commission → Captain at 2 yrs → Major at 6 yrs → Lt Col at 13 yrs → Colonel and above by selection"
+          ]
+        },
+        "eligibility": {
+          "age": "Varies by academy for CDS(II) 2026: IMA &amp; Indian Naval Academy 19–24 years (born 01 Jul 2003–01 Jul 2008), unmarried male. Air Force Academy 20–24 years (up to 26 with a valid Commercial Pilot Licence). Officers Training Academy (men) 19–25 years. OTA (women) 19–25 years, unmarried or issueless widows/divorcees also eligible.",
+          "qualification": "IMA/OTA: Bachelor's degree in any discipline. Indian Naval Academy: Engineering degree or Bachelor's with Physics. Air Force Academy: Bachelor's with Physics and Maths at 12th level, or a BE/BTech."
+        },
+        "howToApply": [
+          "Register at upsconline.nic.in — the only official application site — via UPSC's 4-part system (account → Universal Registration Number → Common Application Form → exam-specific module)",
+          "Upload your photo and triple signature to spec",
+          "Pay the fee — ₹100, waived for SC/ST, all women, and wards of JCO/NCO/OR in Sainik Schools",
+          "Live photo capture is mandatory at the Common Application Form stage, in addition to the uploaded photo",
+          "Download your e-admit card when released — no postal or emailed admit cards are sent"
+        ]
+      },
+      "hi": {
+        "name": "सीडीएस"
+      },
+      "verified": "26 Aug 2026",
+      "applicationStartDateIso": "2026-05-20",
+      "applicationEndDateIso": "2026-06-11",
+      "lastUpdated": "2026-08-31 15:37:39",
+      "orgName": "Defence Recruiting Bodies",
+      "slug": "cds"
+    },
+    {
+      "code": "AGNIVEER-ARMY",
+      "name": "Agniveer (Indian Army)",
+      "cat": "Defence",
+      "status": "closed",
+      "popularity": 12,
+      "vacancies": "25,000",
+      "notifTitle": "Indian Army Agniveer Common Entrance Examination (CEE) 2026 — notification released 12 Feb 2026 for 25,000+ vacancies across Agniveer General Duty (GD), Technical, Clerk/Store Keeper Technical, Tradesman, and specialist categories (Pharma, Nursing Assistant, Women Military Police); application window closed, CEE conducted 01–15 Jun 2026, zone/ARO-wise merit lists declared 12 Jul 2026 — candidates are now moving through document verification, physical/medical stages",
+      "applyStart": "13 Feb 2026",
+      "applyEnd": "01 Apr 2026 (some secondary sources report an extension to 10 Apr 2026 — not independently confirmed against a primary Army addendum)",
+      "officialUrl": "https://joinindianarmy.nic.in/",
+      "photo": {
+        "dims": "~413×531 px (unconfirmed against the live portal — this figure comes from third-party exam-photo-resizing tool sites, not a fetched official instruction page; verify on joinindianarmy.nic.in before applying)",
+        "minKB": 20,
+        "maxKB": 50,
+        "format": "JPG/JPEG",
+        "notes": "Reported requirement: recent colour photo with candidate's name and photo-capture date overlaid in a white band at the bottom. UNCONFIRMED spec — could not independently verify against the live official portal this session."
+      },
+      "signature": {
+        "dims": "~413×177 px (same caveat as photo — third-party sourced, not confirmed against the live portal)",
+        "minKB": 5,
+        "maxKB": 20,
+        "format": "JPG/JPEG",
+        "notes": "No evidence found of a TRIPLE-signature requirement like UPSC's NDA/CDS — every source describes a single signature scan. This is the opposite of NDA's unusual requirement, but not independently confirmed against the live joinindianarmy.nic.in form this session — verify before applying."
+      },
+      "details": {
+        "dataNote": "Agnipath is a 4-year tour-of-duty scheme distinct from pre-2022 permanent enrollment — do not confuse Agniveer terms (Seva Nidhi, 25% retention) with older regular-soldier pension/pay rules. This entry covers ARMY Agniveer only. Navy (Agniveer) and Air Force (Agniveer Vayu) run separate CEEs/portals and are comparably large in relative terms (Navy/Air Force together budget ~6,000 seats/year vs Army's ~40,000) — worth adding as separate entries later for full tri-service coverage. Applicant volume: ~12.8 lakh applicants in 2024 (up ~10% from 11.3 lakh in 2023), per Army recruitment data reported by ThePrint — Army-only, not tri-service.",
+        "payGroups": [
+          {
+            "level": "Year 1",
+            "band": "₹30,000/month gross — ₹9,000/month to Seva Nidhi contribution, ~₹21,000/month in-hand",
+            "posts": "Agniveer General Duty, Technical, Clerk/Store Keeper Technical, Tradesman, and specialist categories — same package structure across categories"
+          },
+          {
+            "level": "Year 2",
+            "band": "₹33,000/month gross — ₹9,900/month to Seva Nidhi contribution",
+            "posts": "same as above"
+          },
+          {
+            "level": "Year 3",
+            "band": "₹36,500/month gross — ₹10,950/month to Seva Nidhi contribution",
+            "posts": "same as above"
+          },
+          {
+            "level": "Year 4",
+            "band": "₹40,000/month gross — ₹12,000/month to Seva Nidhi contribution, ~₹28,000/month in-hand",
+            "posts": "same as above"
+          }
+        ],
+        "payNote": "Figures (₹30,000→40,000 gross progression, 30% individual contribution matched by an equal Government contribution into the Seva Nidhi corpus) match the original 2022 Agnipath scheme announcement and are consistently repeated across sources; risk/hardship, dress, and travel allowances are paid on top. On exit after 4 years, the Seva Nidhi lump sum is commonly cited at ~₹11.71 lakh (tax-exempt) — this includes interest; could not independently verify the exact current interest rate this session, so treat the ₹11.71 lakh figure as approximate/commonly-cited rather than freshly confirmed against a primary PIB release.",
+        "promotion": {
+          "caveat": "Official Agnipath policy.",
+          "steps": [
+            "After the 4-year engagement, up to 25% of each batch of Agniveers may apply for the permanent/regular cadre (based on performance, discipline and organisational requirement)",
+            "Those selected continue under regular Army terms — about a 15-year engagement, with further promotion eligibility",
+            "The remaining ~75% exit with the Seva Nidhi lump sum, a skill certificate, and priority consideration for some government/paramilitary jobs — this is priority only, not a guaranteed job"
+          ]
+        },
+        "eligibility": {
+          "age": "17.5–21 years — exact birth-date window shifts every CEE cycle (like NDA), so always check the current notification rather than a fixed range",
+          "ageRelax": "Standard SC/ST/OBC/PwBD relaxations reported by coaching sources but not independently confirmed against a primary Army circular this session — verify before relying on any specific relaxation figure",
+          "qualification": "Varies by category: General Duty (GD) — Class 10 pass with 45% marks aggregate and 33% per subject; Technical — Class 12 pass with 50% aggregate and 40% per subject in Physics/Chemistry/Maths and English, OR a 1-year technical course (NSQF Level 4) after Class 10; Clerk/Store Keeper Technical — Class 12 pass in any stream with 60% aggregate, 50% per subject, and 50% in English plus Maths/Accounts/Book-Keeping, plus basic computer proficiency; Tradesman — Class 10 pass with 33% marks for most trades, Class 8 pass accepted for a few specific trades (e.g. Cook, Washerman, Mess Keeper). These per-category figures are corroborated across several secondary sources but were not verified against a single fetched primary PDF this session — cross-check against the current CEE notification before publishing as final."
+        },
+        "howToApply": [
+          "Register on joinindianarmy.nic.in and complete the online CEE application form (choose category — GD/Technical/Clerk-SKT/Tradesman/etc.)",
+          "Upload photo and signature to the portal's current specifications (verify live — see notes above)",
+          "Pay the application/exam fee via the online payment gateway",
+          "Download the CEE admit card when released (typically ~2 weeks before the exam)",
+          "Appear for the Common Entrance Examination (CEE) — computer-based test at designated centres",
+          "Wait for the zone/ARO-wise CEE merit list to be declared",
+          "Report to the Army Recruiting Office (ARO) rally venue per your merit-list category/zone for the Physical Fitness Test (PFT) — running, beam, and other events",
+          "Clear the Physical Measurement Test (PMT) — height, weight, chest measurements against category-specific standards",
+          "Undergo document verification at the rally site",
+          "Undergo the detailed Medical Examination at Military Hospital/designated medical facility",
+          "Await the final merit list combining CEE score + PFT/PMT/medical clearance",
+          "Receive enrollment/joining instructions for Agniveer training at the allotted Regimental Training Centre"
+        ]
+      },
+      "hi": {
+        "name": "अग्निवीर (भारतीय सेना)"
+      },
+      "verified": "26 Aug 2026",
+      "applicationStartDateIso": "2026-02-13",
+      "applicationEndDateIso": "2026-04-01",
+      "lastUpdated": "2026-08-31 15:37:39",
+      "orgName": "Defence Recruiting Bodies",
+      "slug": "agniveer-army"
+    },
+    {
+      "code": "BPSC",
+      "name": "BPSC",
+      "cat": "State PSC",
+      "status": "closed",
+      "popularity": 15,
+      "vacancies": "1,189",
+      "notifTitle": "Integrated 72nd Combined (Preliminary) Competitive Examination — prelim postponed from 26 Jul 2026; tentatively rescheduled to 25 Oct 2026 per BPSC's own exam calendar (BPSC itself labels all its calendar dates \"tentative\")",
+      "applyStart": "07 May 2026",
+      "applyEnd": "31 May 2026",
+      "officialUrl": "https://bpsc.bihar.gov.in/wp-content/uploads/BPSC_content/Notices/Advertisement-Integrated-72th-CCE-PT_BPSC-20260505-p1euvo.pdf",
+      "photo": {
+        "dims": "No separate upload — captured live via webcam during the application",
+        "format": "Live webcam capture",
+        "notes": "ensure a clear, well-lit live photo"
+      },
+      "signature": {
+        "dims": "150–220 px wide × 250–320 px tall",
+        "px": {
+          "w": 185,
+          "h": 285
+        },
+        "maxKB": 20,
+        "format": "JPEG",
+        "notes": "one Hindi + one English signature required, must be clearly legible"
+      },
+      "details": {
+        "dataNote": "Vacancy count has moved more than once — 1230 in the original notice, 1189 in BPSC's official 14 Aug 2026 exam calendar, 1186 per some aggregators. Photo/signature specs above are officially confirmed accurate (verified directly against BPSC's own application user manual) — no correction needed there.",
+        "payGroups": [
+          {
+            "level": "Levels 6, 7 and 9 depending on post",
+            "band": "Deputy Collector/DSP-equivalent posts at Level 9 (~₹53,100–₹1,67,800 basic, third-party cited, not independently verified against an official Bihar pay-matrix document)",
+            "posts": "SDO/Senior Deputy Collector, DSP, Bihar Finance Service AC, Revenue Officer, CDPO, District Commandant, Sub-Registrar, Assistant Director, District Minority Welfare Officer, and other Group B/C posts"
+          }
+        ],
+        "payNote": "Pay figures are third-party estimates — an official Bihar-specific pay-matrix document could not be independently verified this pass.",
+        "promotion": {
+          "caveat": "Unverified against a primary source — treat as an estimate.",
+          "steps": [
+            "BPSC-to-IAS promotion via the State Civil Service quota is commonly cited as notably longer than other state PSCs — around 15–20 years"
+          ]
+        },
+        "eligibility": {
+          "age": [
+            "Minimum age: 20, 21 or 22 years depending on post, as on 01 Aug 2026",
+            "Maximum age: 37 years (General male), 40 years (General female / EBC / BC), 42 years (SC/ST)",
+            "A PwD relaxation up to 47 appears in only one source — not independently confirmed"
+          ],
+          "ageRelax": "See age ranges above; women get an additional relaxation on the general maximum.",
+          "qualification": "Bachelor's degree, any discipline, from a recognized university. Bihar domicile is not required to apply — only to claim Bihar-specific reservation benefits."
+        },
+        "howToApply": [
+          "Complete registration at bpsconline.bihar.gov.in",
+          "Fill your profile, education and experience details",
+          "Capture your photo live via webcam during the application — no separate upload",
+          "Upload two signature images — one Hindi, one English — to spec",
+          "Submit and pay the fee"
+        ]
+      },
+      "hi": {
+        "name": "बीपीएससी"
+      },
+      "otherDocs": [
+        {
+          "label": "Physical copies",
+          "notes": "keep 5 copies of your current photograph on hand — may be required later in the process"
+        }
+      ],
+      "verified": "26 Aug 2026",
+      "applicationStartDateIso": "2026-05-07",
+      "applicationEndDateIso": "2026-05-31",
+      "lastUpdated": "2026-08-31 15:37:39",
+      "orgName": "State Public Service Commissions",
+      "slug": "bpsc"
+    },
+    {
+      "code": "UPPSC",
+      "name": "UPPSC",
+      "cat": "State PSC",
+      "status": "closed",
+      "popularity": 14,
+      "notifTitle": "Combined State/Upper Subordinate Services (PCS) Exam 2026 — Advt No. A-1/E-1/2026 — window closed; prelim scheduled 06 Dec 2026",
+      "applyStart": "25 Jun 2026",
+      "applyEnd": "03 Aug 2026 (correction window to 10 Aug 2026 — some sources instead say 27 Jul/3 Aug; both are past either way)",
+      "officialUrl": "https://uppsc.up.nic.in",
+      "photo": {
+        "dims": "5 cm × 6 cm @ 200 DPI (≈394×472 px, derived from the official cm/DPI spec — the source states cm/DPI, not px directly)",
+        "maxKB": 50,
+        "format": "JPG",
+        "notes": "true colour photo — confirmed from the official OTR photo-instructions PDF"
+      },
+      "signature": {
+        "dims": "6 cm × 3 cm @ 200 DPI (≈472×236 px, derived)",
+        "maxKB": 30,
+        "format": "JPG",
+        "notes": "true colour scan — confirmed from the official OTR photo-instructions PDF"
+      },
+      "details": {
+        "dataNote": "Photo/signature specs above are now confirmed from an official source (uppsc.up.nic.in's OTR photo-instructions PDF), replacing the earlier unverified estimate — the pixel dimensions are derived from the stated cm+DPI, not quoted verbatim as pixels by UPPSC itself.",
+        "payGroups": [
+          {
+            "level": "Level 9–10 (third-party cited, not independently verified against an official UP pay-matrix document)",
+            "band": "~₹56,100 basic upward for Deputy Collector/DSP-equivalent posts",
+            "posts": "Deputy Collector (SDM), DSP, Block Development Officer, Assistant Regional Transport Officer, Naib Tehsildar, Commercial Tax Officer, District Basic Education Officer, Food Safety Officer, and other Group B posts"
+          }
+        ],
+        "payNote": "Pay figures are third-party estimates — an official UP-specific pay-matrix document could not be independently verified this pass.",
+        "promotion": {
+          "caveat": "A general estimate, not verified against a UP-specific rule.",
+          "steps": [
+            "PCS officers become eligible for the State-Civil-Service-to-IAS promotion quota after around 8–12 years of service"
+          ]
+        },
+        "eligibility": {
+          "age": "21–40 years as on 01 Jul 2026, with standard relaxation for reserved categories.",
+          "ageRelax": "Standard UP-PSC reserved-category relaxations apply.",
+          "qualification": "Bachelor's degree from a recognized university (some posts need a specific degree or physical standard). UP domicile is not required to sit the exam — only to claim UP-specific reservation benefits."
+        },
+        "howToApply": [
+          "Complete One-Time Registration (OTR) at otr.pariksha.nic.in if not already registered",
+          "Apply for this specific PCS notification at uppsc.up.nic.in",
+          "Upload photo and signature to spec",
+          "Pay the fee and submit"
+        ]
+      },
+      "hi": {
+        "name": "यूपीपीएससी"
+      },
+      "verified": "26 Aug 2026",
+      "applicationStartDateIso": "2026-06-25",
+      "applicationEndDateIso": "2026-08-03",
+      "lastUpdated": "2026-08-31 15:37:39",
+      "orgName": "State Public Service Commissions",
+      "slug": "uppsc"
+    },
+    {
+      "code": "MPPSC",
+      "name": "MPPSC",
+      "cat": "State PSC",
+      "status": "closed",
+      "popularity": 16,
+      "notifTitle": "State Service Examination 2026 — Advt No. 29/2025. Prelim held 26 Apr 2026 (~3,044 shortlisted); Mains scheduled 7–12 Sep 2026 per MPPSC's own official exam calendar — this cycle is ongoing, not concluded.",
+      "applyStart": "10 Jan 2026",
+      "applyEnd": "09 Feb 2026 (late-fee extensions to 01 Apr 2026)",
+      "officialUrl": "https://mppsc.mp.gov.in/uploads/advertisement/Advt_State_Service_Exam_2026_Dated_31_12_2025.pdf",
+      "photo": {
+        "dims": "Pixel dimensions not found anywhere in the official notification text (a 29-page search found no cm/px/DPI pattern) — may only exist as a non-extractable graphic, or be enforced only by the upload widget itself",
+        "minKB": 25,
+        "maxKB": 200,
+        "format": "JPG only (mandatory)",
+        "notes": "the official notification states a 25–200 KB range but doesn't clearly separate a photo ceiling from a signature ceiling — treat this range as shared until confirmed otherwise"
+      },
+      "signature": {
+        "dims": "Pixel dimensions not found in the official notification text — same caveat as photo",
+        "minKB": 25,
+        "maxKB": 200,
+        "format": "JPG only (mandatory)"
+      },
+      "details": {
+        "dataNote": "STATUS CORRECTED (27 Aug 2026 audit): status changed from 'open' to 'closed' — the application window (09 Feb 2026, late-fee extended to 01 Apr 2026) closed nearly 5 months ago, but the stale 'open' status was causing the site's Notice Board/ticker to mislabel this exam \"closing soon\" with no application window actually open. The recruitment PROCESS itself is still active and ongoing, not concluded: Prelim held 26 Apr 2026 (~3,044 shortlisted), admit cards released last week of Aug 2026, Mains scheduled 7–12 Sep 2026 per MPPSC's own exam calendar (confirmed against Careers360/PW Live/StudyIQ/Adda247/Drishti IAS as of this audit — one low-quality aggregator showed a conflicting \"08–13 Aug 2026\" but that appears to be a stale template date, not a real postponement). Vacancy count (155, per the notification) is sometimes inflated to 191 by aggregators — that 191 figure is the combined total including MPPSC's separately-notified State Forest Service Exam, not a correction to the State Service total; 155 remains correct here. The KB range (25–200KB) is confirmed from the official notification; exact pixel dimensions remain unconfirmed despite a direct search of the source document.",
+        "payGroups": [
+          {
+            "level": "Level 12 for Deputy Collector/DSP-equivalent, Level 10 for other posts (both third-party cited)",
+            "band": "~₹78,800 basic (Level 12) or ~₹56,100 basic (Level 10) — notably higher banding than UPPSC/BPSC's cited levels for similar posts, not independently verified against an official MP pay-matrix document",
+            "posts": "Deputy Collector, DSP, District Registrar, Commercial Tax Officer, Block Development Officer (Group A); Naib Tehsildar, Sub-Registrar, Assistant Director in various departments (Group B) — 155 vacancies per the notification (some aggregators cite 156 or 191)"
+          }
+        ],
+        "payNote": "Pay figures are third-party estimates — an official MP-specific pay-matrix document could not be independently verified this pass.",
+        "promotion": {
+          "caveat": "No MP-specific timeline could be verified — treat as an estimate.",
+          "steps": [
+            "The general State-Civil-Service-to-IAS quota pattern is assumed to apply"
+          ]
+        },
+        "eligibility": {
+          "age": [
+            "Minimum age: around 21 years",
+            "Maximum age: commonly cited as 33 years for uniformed/police-track posts, higher for other posts",
+            "The official notification's age table uses a legacy Hindi font that couldn't be reliably read this pass — treat these figures as third-party, not independently confirmed"
+          ],
+          "ageRelax": "Standard reserved-category relaxations are expected to apply — not independently confirmed this pass.",
+          "qualification": "Bachelor's degree from a recognized university. MP domicile is not required to apply — only to claim MP-specific reservation benefits (the notification confirms domicile-linked reservation wording for SC/ST/OBC categories)."
+        },
+        "howToApply": [
+          "Register and apply via the MPOnline portal (mponline.gov.in), linked from mppsc.mp.gov.in",
+          "Upload photo and signature scans (25–200 KB per above)",
+          "Pay the base fee (₹250/₹500 by category, before any late-fee penalty) and submit"
+        ]
+      },
+      "hi": {
+        "name": "एमपीपीएससी"
+      },
+      "results": {
+        "stage": "Prelim result declared",
+        "date": "22 May 2026",
+        "note": "~3,044 candidates shortlisted for Mains — reported consistently across secondary sources but not confirmed against a primary MPPSC result-notice PDF.",
+        "url": "https://mppsc.mp.gov.in"
+      },
+      "verified": "27 Aug 2026",
+      "applicationStartDateIso": "2026-01-10",
+      "applicationEndDateIso": "2026-02-09",
+      "lastUpdated": "2026-08-31 15:37:39",
+      "orgName": "State Public Service Commissions",
+      "slug": "mppsc"
+    },
+    {
+      "code": "CTET",
+      "name": "CTET",
+      "cat": "Teaching",
+      "status": "open",
+      "popularity": 11,
+      "notifTitle": "CTET September 2026 (22nd edition) — the original 06 Sep 2026 exam date was postponed (new date not yet announced); the application window has reopened for late applicants.",
+      "applyStart": "25 Aug 2026",
+      "applyEnd": "01 Sep 2026",
+      "officialUrl": "https://ctet.nic.in",
+      "photo": {
+        "dims": "3.5 cm × 4.5 cm",
+        "px": {
+          "w": 276,
+          "h": 354
+        },
+        "minKB": 10,
+        "maxKB": 100,
+        "format": "JPG/JPEG",
+        "notes": "recent passport-size colour photo, light/white background"
+      },
+      "signature": {
+        "dims": "3.5 cm × 1.5 cm",
+        "px": {
+          "w": 276,
+          "h": 118
+        },
+        "minKB": 3,
+        "maxKB": 30,
+        "format": "JPG/JPEG"
+      },
+      "details": {
+        "dataNote": "CBSE postponed the CTET September 2026 written exam that was originally scheduled for 6 Sep 2026 — a revised date hasn't been announced yet. The application window reopened 25 Aug–1 Sep 2026 for candidates who missed the original 11 May–10 Jun 2026 window; if you already applied then, you don't need to reapply.",
+        "payGroups": [
+          {
+            "level": "Paper I (qualifies for Classes 1–5, Primary Teacher)",
+            "band": "~7th CPC Level 6, from ₹35,400 basic — coaching-site estimate, not verified against an official pay-matrix notification",
+            "posts": "Primary Teacher (PRT) posts in central government schools (KVS/NVS) and many state recruitment exams that accept CTET"
+          },
+          {
+            "level": "Paper II (qualifies for Classes 6–8, Trained Graduate Teacher)",
+            "band": "~7th CPC Level 7, from ₹44,900 basic — same caveat as above",
+            "posts": "Trained Graduate Teacher (TGT) posts, same recruiting bodies"
+          }
+        ],
+        "payNote": "CTET is a certification, not a recruitment exam — passing it doesn't itself pay a salary. It's a lifetime-valid eligibility certificate required before you can apply to actual teacher-recruitment exams (KVS, NVS, Central Tibetan Schools Administration, and most state TET-equivalent recruitment).",
+        "promotion": {
+          "caveat": "Not applicable in the usual sense.",
+          "steps": [
+            "CTET itself has no promotion path — career progression happens after you're recruited into an actual teaching post, under that employer's own service rules"
+          ]
+        },
+        "eligibility": {
+          "age": "Minimum 18 years; no upper age limit",
+          "qualification": "Paper I: 12th pass (≥50%) + 2-yr Diploma in Elementary Education, or 12th (≥50%) + 4-yr B.El.Ed, or an equivalent NCTE-recognized qualification. Paper II: Graduation (≥50%) + B.Ed, or 12th (≥50%) + 4-yr B.El.Ed/B.A.Ed/B.Sc.Ed, or graduation (≥45%) + B.Ed per NCTE norms. These clauses have several state-specific sub-variants (e.g. BTC, JBT) — confirm the exact wording against the official Information Bulletin for your qualification path."
+        },
+        "howToApply": [
+          "Apply online at ctet.nic.in during the notified window",
+          "Upload your photo and signature to spec",
+          "Pay the fee online",
+          "Download and keep your confirmation page"
+        ]
+      },
+      "hi": {
+        "name": "सीटीईटी"
+      },
+      "verified": "26 Aug 2026",
+      "applicationStartDateIso": "2026-08-25",
+      "applicationEndDateIso": "2026-09-01",
+      "lastUpdated": "2026-08-31 15:37:39",
+      "orgName": "Teaching Eligibility Boards",
+      "slug": "ctet"
+    },
+    {
+      "code": "UP-POLICE-CONST",
+      "name": "UP Police Constable",
+      "cat": "Police",
+      "status": "closed",
+      "popularity": 22,
+      "vacancies": "32,679",
+      "notifTitle": "Constable Civil Police & Equivalent Posts Direct Recruitment-2025 (आरक्षी नागरिक पुलिस एवं समकक्ष पद सीधी भर्ती-2025) — UPPRPB, 32,679 posts",
+      "applyStart": "31 Dec 2025",
+      "applyEnd": "30 Jan 2026 (fee payment window extended to 02 Feb 2026)",
+      "officialUrl": "https://uppbpb.gov.in/",
+      "photo": {
+        "dims": "3.5 cm × 4.5 cm",
+        "minKB": 20,
+        "maxKB": 50,
+        "format": "JPG/JPEG",
+        "notes": "Recent color photo, plain/off-white background, face covering ~70% of frame, no cap/goggles, both ears visible — uploaded file (not live webcam capture), per UPPRPB OTR/application-form guidance repeated across coaching-site resizer tools; verify exact px dimensions against the live form at application time as UPPRPB does not always publish a separate photo-spec PDF."
+      },
+      "signature": {
+        "dims": "3.5 cm × 1.5 cm",
+        "minKB": 5,
+        "maxKB": 20,
+        "format": "JPG/JPEG",
+        "notes": "Signed in black/blue ink on white paper, uploaded as a scanned file — same caveat as photo spec above (sourced from secondary application-guide sites, not a located official spec PDF)."
+      },
+      "details": {
+        "dataNote": "(1) This is the most recent UP Police Constable (Civil Police and equivalent — PAC/Armed Police, Special Security Force, Mounted Police, Jail Warder, Female Constable) direct recruitment cycle, notified 31 Dec 2025 by UPPRPB (Uttar Pradesh Police Recruitment and Promotion Board, uppbpb.gov.in). Application window closed 30 Jan 2026 (fee till 02 Feb 2026), so status is \"closed\" for fresh applications — however the recruitment PROCESS is still running: the written exam (PBT) was held 8–10 June 2026, and the official site (uppbpb.gov.in) shows active notices dated 10 Aug 2026 about Document Verification / Physical Standard Test (DV/PST) admit cards, meaning the cycle is currently at the DV/PST stage as of this verification date. (2) Vacancy count (32,679) and the 31 Dec 2025 / 8–10 Jun 2026 dates are corroborated across many secondary/coaching sites (Testbook, Careers360, Oliveboard, PW Live, CareerPower) but the official notification PDF itself could not be directly retrieved — treat exact figures as secondary-sourced pending direct PDF confirmation (re-attempted 27 Aug 2026, still unreachable). (3) Applicant-volume figures (the 40–60 lakh scale this exam is known for) could NOT be confirmed for this specific 2026 cycle — no official or secondary figure was found reporting total applications received. For context only: the prior UP Police Constable cycle (2023–24, 60,244 posts) was widely reported in the press as having received roughly 48 lakh applications — that number belongs to the PREVIOUS cycle, not this one, and is coaching/news-site reporting, not an official UPPRPB release. (4) RE-VERIFIED 27 Aug 2026: age-relaxation compounding for reserved categories was previously mislabeled — see corrected ageRelax field. General-category post-relaxation figures (18–25 male / 18–28 female) were already correct. Reserved-category (SC/ST/OBC) post-relaxation figures are 18–34 (male) / 18–37 (female), not 18–31/18–34 as previously stated (31/34 is the PRE-relaxation reserved-category ceiling). Still secondary-sourced pending direct confirmation against the official UPPRPB notification PDF, which remains unretrievable via search or direct site access.",
+        "payGroups": [
+          {
+            "level": "Level 3",
+            "band": "₹21,700 – ₹69,100 (basic, 7th CPC Pay Matrix; secondary-sourced, matches standard UP police constable pay level reported across recruitment-news sites)",
+            "posts": "Constable (Civil Police) and equivalent — PAC/Armed Police Constable, Special Security Force (SSF) Constable, Mounted Police Constable, Jail Warder, Female Constable — 32,679 posts combined across all categories in this cycle"
+          }
+        ],
+        "payNote": "Basic pay under Level 3 of the UP Pay Matrix, plus DA, HRA, and other allowances as admissible to Uttar Pradesh government employees; exact allowance rates not independently verified in this pass.",
+        "promotion": {
+          "caveat": "Not independently verified against an official UPPRPB promotion-rules document.",
+          "steps": [
+            "Standard UP Police hierarchy: Constable → Head Constable → Assistant Sub-Inspector (ASI) → Sub-Inspector (SI)",
+            "Promotion happens departmentally, by seniority, over a career"
+          ]
+        },
+        "eligibility": {
+          "age": [
+            "Base general-category limit: 18–22 years (male) / 18–25 years (female), as on 01 Jul 2026",
+            "UP govt separately announced a one-time extra 3-year age relaxation for this cycle, across all categories",
+            "The cutoff and reference date shift every cycle — verify against the live notification"
+          ],
+          "ageRelax": "SC/ST/OBC candidates get standard reservation-category age relaxation on top of the general limit, plus the UP government's one-time +3-year relaxation (order dated ~5 Jan 2026) that applies across all categories for this cycle. Multiple secondary sources (testbook, oliveboard, pw.live, adda247), consistent with a government news-service item (newsonair.gov.in, 5 Jan 2026), agree the reserved-category (SC/ST/OBC) ceiling BEFORE the special +3-year order is 31 years (male) / 34 years (female), and AFTER it is applied the resulting upper limits are 34 years (male) / 37 years (female) — this corrects a previous reading, which had mislabeled the pre-relaxation 31/34 figures as the post-relaxation numbers. Still not confirmed against the official PDF itself, so treat as approximate.",
+          "qualification": "Passed Class 12 (Intermediate) or equivalent from a recognized board."
+        },
+        "howToApply": [
+          "Step 1: Register on the UPPRPB One Time Registration (OTR) portal at uppbpb.gov.in with basic personal details, mobile number and email.",
+          "Step 2: Log in and fill the Constable Civil Police 2025 application form with educational, category and physical-eligibility details.",
+          "Step 3: Upload scanned photograph (3.5 cm × 4.5 cm, 20–50 KB, JPG) and signature (3.5 cm × 1.5 cm, 5–20 KB, JPG) as per the specification on the live form.",
+          "Step 4: Pay the application fee online (₹500 for General/OBC/EWS; ₹400 for SC/ST, per secondary reporting) via the payment gateway.",
+          "Step 5: Review and submit the form; download/print the confirmation page for records.",
+          "Step 6: Await written exam (PBT) admit card, appear for the exam, then proceed through Document Verification (DV), Physical Standard Test (PST) and Physical Efficiency Test (PET) — PST/PET standards: male height ≥168 cm (Gen/OBC/SC), ≥160 cm (ST), chest 79–84 cm (Gen/OBC)/77–82 cm (SC) with expansion, weight ≥50 kg, 4.8 km run in 25 min; female height ≥152 cm (Gen/OBC/SC), ≥147 cm (ST), no chest measurement, weight ≥40 kg, 2.4 km run in 14 min — per secondary reporting (Oliveboard, CareerPower, uppjob.com), not independently confirmed against an official PST/PET standards PDF."
+        ]
+      },
+      "hi": {
+        "name": "यूपी पुलिस कांस्टेबल"
+      },
+      "verified": "27 Aug 2026",
+      "applicationStartDateIso": "2025-12-31",
+      "applicationEndDateIso": "2026-01-30",
+      "lastUpdated": "2026-08-31 15:37:39",
+      "orgName": "Police Recruitment Boards",
+      "slug": "up-police-const"
+    },
+    {
+      "code": "IBPS-RRB",
+      "name": "IBPS RRB",
+      "cat": "Banking",
+      "status": "closed",
+      "popularity": 23,
+      "notifTitle": "CRP RRBs XIV — Common Recruitment Process for Officers (Scale-I, II & III) and Office Assistants (Multipurpose) in Regional Rural Banks. Single notification/application window covers both the Officer and Office Assistant tracks (separate exam fee per track). Online registration 01 Sep – 28 Sep 2025 (extended).",
+      "applyStart": "01 Sep 2025",
+      "applyEnd": "28 Sep 2025 (extended via corrigendum from original 21 Sep 2025)",
+      "officialUrl": "https://www.ibps.in/wp-content/uploads/CRP-RRBs-XIV_Final_AD-27.09.25.pdf",
+      "photo": {
+        "dims": "4.5 cm × 3.5 cm (200 × 230 px, preferred)",
+        "px": {
+          "w": 200,
+          "h": 230
+        },
+        "minKB": 20,
+        "maxKB": 50,
+        "format": "JPG/JPEG",
+        "notes": "recent colour passport-style photo, light/preferably white background, no cap or dark glasses (religious headwear allowed if face fully visible); candidate must also live-capture a photo via webcam/mobile during registration in addition to this uploaded scan"
+      },
+      "signature": {
+        "dims": "140 × 60 px (preferred)",
+        "px": {
+          "w": 140,
+          "h": 60
+        },
+        "minKB": 10,
+        "maxKB": 20,
+        "format": "JPG/JPEG",
+        "notes": "signed in black ink on white paper, not in capital letters"
+      },
+      "details": {
+        "dataNote": "This is the CRP RRBs XIV (2025) cycle — the most recently closed IBPS RRB cycle as of this verification (26 Aug 2026); no CRP RRBs XV notification had been published on ibps.in as of that date, though several coaching/aggregator sites (e.g. careerpower.in, adda247.com) speculate a next cycle \"on 31 Aug 2026\" — that date is unconfirmed and not sourced to any official IBPS document, so it is not used here. Officer (Scale I/II/III) and Office Assistant posts share a single detailed notification and common important-dates schedule, but candidates apply and pay fees separately per track — treated here as one entry per the SSC-GD-style multi-post convention. Total vacancy count is disputed across secondary sources following IBPS's revised-vacancy update — coaching sites variously report 13,217 / 13,294 / 13,301 / 13,516 total posts; we could not independently sum the bank-wise Annexure I table in the primary 71-page notification (ibps.in, CRP-RRBs-XIV_Final_AD-27.09.25.pdf) in this pass to arbitrate between these figures, so no single total is asserted here — verify against the primary PDF's Annexure I before publishing a headline vacancy number. Pay scale is NOT stated in the IBPS notification itself (RRB officer/assistant pay follows the NABARD/RRB bipartite wage settlement administered separately from IBPS); figures below are coaching-site reporting (careerpower.in, testbook.com) of the pay scale, not an IBPS-published figure — flagged accordingly.",
+        "payGroups": [
+          {
+            "level": "Office Assistant (Multipurpose)",
+            "band": "Basic ₹24,050 (reported RRB bipartite-settlement scale; not stated in the IBPS notification itself — coaching-site figure, unconfirmed against a primary pay-scale document)",
+            "posts": "Office Assistant (Multipurpose), Group \"B\", across participating Regional Rural Banks"
+          },
+          {
+            "level": "Officer Scale-I (Assistant Manager)",
+            "band": "Basic ₹48,480, scale ₹48,480–2000/7–62,480–2340/2–67,160–2680/7–85,920 (reported RRB officer bipartite-settlement scale; not stated in the IBPS notification itself)",
+            "posts": "Officer Scale-I (Assistant Manager), Group \"A\""
+          },
+          {
+            "level": "Officer Scale-II (Manager) / Scale-III (Senior Manager)",
+            "band": "Higher basic pay than Scale-I per RRB officer scale; exact figures not independently confirmed this pass",
+            "posts": "Officer Scale-II — General Banking Officer, IT Officer, Chartered Accountant, Law Officer, Treasury Manager, Marketing Officer, Agricultural Officer; Officer Scale-III — Senior Manager"
+          }
+        ],
+        "payNote": "The IBPS detailed notification (Clause covering remuneration is not present in this document; RRB pay follows the separate NABARD/RRB officer and Office Assistant bipartite wage settlements) does not itself publish pay-scale figures. All pay figures above are secondary/coaching-site reporting (careerpower.in, testbook.com) of the applicable bipartite-settlement scale — confirm against the allotted RRB's own pay circular before relying on them.",
+        "promotion": {
+          "caveat": "Not covered by IBPS — each Regional Rural Bank sets its own promotion policy, and no figures are available here."
+        },
+        "eligibility": {
+          "age": [
+            "Office Assistant: 18–28 years",
+            "Officer Scale I: above 18, below 30 years",
+            "Officer Scale II: above 21, below 32 years",
+            "Officer Scale III: above 21, below 40 years",
+            "All as on 01 Sep 2025, per the official notification's birth-date windows"
+          ],
+          "ageRelax": "SC/ST +5 yrs · OBC(NCL) +3 yrs · PwBD +10 yrs · Ex-servicemen: actual defence service + 3 yrs (8 yrs for disabled ESM from SC/ST), subject to standard maximums — confirmed from the official notification",
+          "qualification": "Office Assistant & Officer Scale-I: Bachelor's degree in any discipline from a recognized university, plus local-language proficiency as prescribed by the participating RRB. Officer Scale-II (General Banking): Bachelor's degree with ≥50% aggregate + 2 years' officer experience in a bank/FI. Officer Scale-II Specialist posts (IT/CA/Law/Treasury/Marketing/Agricultural Officer) and Scale-III each carry their own degree + relevant post-qualification experience requirement (1–5 years depending on post) — see official notification for the full post-wise table."
+        },
+        "howToApply": [
+          "Register at ibps.in under the CRP RRBs XIV link, choosing the Officer or Office Assistant application separately as applicable",
+          "Fill the application form with personal, educational and category details, and select RRB/state preferences per the notification's option rules",
+          "Upload photograph (or live-capture via webcam/mobile), signature, left thumb impression and handwritten declaration as per the specifications above; also upload SSC/10th-standard and category certificates where applicable",
+          "Pay the fee online — ₹175 (SC/ST/PwBD, plus Ex-servicemen for Office Assistant) or ₹850 (all others), inclusive of GST",
+          "Use the post-close Edit Window (announced separately on ibps.in) if corrections are needed",
+          "Download call letters for the Preliminary, Main/Single exam and (for Officer posts) interview from ibps.in when released"
+        ]
+      },
+      "hi": {
+        "name": "आईबीपीएस आरआरबी"
+      },
+      "otherDocs": [
+        {
+          "label": "Left thumb impression",
+          "spec": {
+            "dims": "240 × 240 px @ 200 DPI (~3×3 cm)",
+            "px": {
+              "w": 240,
+              "h": 240
+            },
+            "minKB": 20,
+            "maxKB": 50,
+            "format": "JPG/JPEG",
+            "notes": "black or blue ink on white paper; right thumb or another finger/toe may be substituted per the notification's fallback rules if left thumb is unavailable"
+          }
+        },
+        {
+          "label": "Handwritten declaration",
+          "spec": {
+            "dims": "800 × 400 px @ 200 DPI (~10×5 cm)",
+            "px": {
+              "w": 800,
+              "h": 400
+            },
+            "minKB": 50,
+            "maxKB": 100,
+            "format": "JPG/JPEG",
+            "notes": "declaration text specified in the notification, written by the candidate in English, not in capital letters, black ink on white paper"
+          }
+        }
+      ],
+      "verified": "26 Aug 2026",
+      "applicationStartDateIso": "2025-09-01",
+      "applicationEndDateIso": "2025-09-28",
+      "lastUpdated": "2026-08-31 15:37:39",
+      "orgName": "Banking Recruitment Bodies (IBPS/SBI/RBI)",
+      "slug": "ibps-rrb"
+    },
+    {
+      "code": "SSC-JE",
+      "name": "SSC JE",
+      "cat": "Central Govt",
+      "status": "closed",
+      "popularity": 24,
+      "vacancies": "1,731",
+      "notifTitle": "Junior Engineer (Civil, Mechanical, Electrical and Quantity Surveying & Contracts) Examination, 2025 (F.No. HQ-C-3019/2/2025-C-3) — for CPWD, CWC, MES, Department of Posts, BRO and other user departments; 1,340 posts notified at launch, revised to 1,731 in the final result declared 3 Aug 2026. This is the most recently CLOSED cycle — SSC JE 2026 was only \"expected after 15 Aug 2026\" per coaching sites and had not been located on ssc.gov.in as of this research (26 Aug 2026).",
+      "applyStart": "30 Jun 2025",
+      "applyEnd": "21 Jul 2025 (23:00 hrs)",
+      "officialUrl": "https://ssc.gov.in/api/attachment/uploads/masterData/NoticeBoards/tentative_vacancies_05082025.pdf",
+      "photo": {
+        "dims": "3.5 cm × 4.5 cm (unverified against primary PDF — see dataNote)",
+        "minKB": 20,
+        "maxKB": 50,
+        "format": "JPEG",
+        "notes": "Passport-size colour photo, light/plain background, no cap/spectacles/shadows; commonly required to show a printed photo-taken date on SSC forms. SSC JE is traditionally an upload-based flow (unlike the live-webcam-capture now used for SSC MTS/CHSL/CGL) — this should be re-confirmed against the JE 2025 notice PDF before treating as settled."
+      },
+      "signature": {
+        "dims": "4.0 cm × 2.0 cm",
+        "minKB": 10,
+        "maxKB": 20,
+        "format": "JPEG",
+        "notes": "Handwritten signature in black ink on white paper, scanned; block/capital letters and digital signatures not accepted."
+      },
+      "details": {
+        "dataNote": "(1) Figures above blend SSC's official notice-board documents (vacancy/result PDFs located on ssc.gov.in) with coaching-site summaries (careerpower, adda247, examphoto.in, engineersacademy) for photo/signature KB and cm specs, which were NOT independently confirmed against the primary June 2025 notification PDF text — flagged as secondary-source figures. (2) The exact original 30 Jun 2025 notification PDF filename could not be retrieved via search; officialUrl above points to a verified real ssc.gov.in notice-board attachment (tentative vacancy notice) from the same cycle — check ssc.gov.in Notice Board directly for the canonical notification. (3) Cycle timeline (all confirmed via ssc.gov.in notice-board search hits): Paper-I held 3–6 Dec 2025, Paper-II held 7 Apr 2026, Paper-II result 9 Jul 2026, final result 3 Aug 2026 (1,731 selected of 14,062 Paper-II appearances).",
+        "payGroups": [
+          {
+            "level": "Level 6",
+            "band": "₹35,400 – ₹1,12,400 (basic, 7th CPC Pay Matrix, Group B Non-Gazetted)",
+            "posts": "Junior Engineer (Civil/Mechanical/Electrical/Quantity Surveying & Contracts) — CPWD, CWC (Central Water Commission), MES (Military Engineer Services), Department of Posts, BRO (Border Roads Organisation), Farakka Barrage Project, CWPRS and other user departments"
+          }
+        ],
+        "payNote": "Pay level and recruiting departments reflect the standard SSC JE cadre structure; the department-wise vacancy split for 2025 changed between the tentative (1,340) and final (1,731) vacancy notices — check the final vacancy PDF on ssc.gov.in for the department-wise breakup.",
+        "promotion": {
+          "caveat": "No promotion timeline is stated by SSC — JE is an entry-level post.",
+          "steps": [
+            "Career progression (for example, to Assistant Engineer) is decided independently by each recruiting department's own rules",
+            "Specific \"X years to promotion\" figures seen on coaching sites are unverified — don't treat them as official"
+          ]
+        },
+        "eligibility": {
+          "age": [
+            "Most posts: not exceeding 30 years, as on 01 Jan 2026",
+            "CPWD posts: up to 32 years",
+            "Exact department-wise cutoffs are in the official notice"
+          ],
+          "ageRelax": "SC/ST +5 years · OBC +3 years · PwBD +10 years (unreserved, higher for reserved-category PwBD) · Ex-Servicemen and Central Govt employees per standard government norms — verify exact figures against the notice PDF",
+          "qualification": "3-year Diploma or Degree (B.E./B.Tech) in Civil/Mechanical/Electrical Engineering from a recognised university/institution depending on post and department; Quantity Surveying & Contracts posts require a Degree/Diploma in Civil Engineering or Quantity Surveying — exact department-wise qualification matrix is in the notification"
+        },
+        "howToApply": [
+          "Step 1: Complete One-Time Registration (if not already registered) on ssc.gov.in",
+          "Step 2: Log in and fill the JE 2025 application with personal, educational and department-preference details",
+          "Step 3: Upload scanned photograph and signature per the notice specifications",
+          "Step 4: Pay the application fee (₹100; exempted for women/SC/ST/PwBD/Ex-Servicemen) online",
+          "Step 5: Submit and retain the confirmation page/printout"
+        ]
+      },
+      "hi": {
+        "name": "एसएससी जेई"
+      },
+      "verified": "26 Aug 2026",
+      "applicationStartDateIso": "2025-06-30",
+      "applicationEndDateIso": "2025-07-21",
+      "lastUpdated": "2026-08-31 15:37:39",
+      "orgName": "Central Government Recruiting Bodies (SSC/UPSC/etc.)",
+      "slug": "ssc-je"
+    },
+    {
+      "code": "EPFO-SSA",
+      "name": "EPFO Social Security Assistant",
+      "cat": "Central Govt",
+      "status": "closed",
+      "popularity": 25,
+      "notifTitle": "Recruitment of Social Security Assistant (SSA, formerly \"Assistant\") and Stenographer in EPFO — Advertisement dated 24 Mar 2023 (2,674 SSA + 185 Stenographer posts). This remains the most recent CONFIRMED SSA recruitment cycle as of 26 Aug 2026 — no newer official SSA vacancy notification was located; treat any \"2025/2026 EPFO SSA notification\" claims on coaching sites as unconfirmed speculation (see dataNote).",
+      "applyStart": "27 Mar 2023",
+      "applyEnd": "26 Apr 2023",
+      "officialUrl": "https://www.epfo.gov.in/recruitments/",
+      "photo": {
+        "dims": "not stated in accessible secondary sources — verify cm dimensions against the official PDF",
+        "minKB": 10,
+        "maxKB": 200,
+        "format": "JPG/JPEG",
+        "notes": "Recent scanned photograph. A left-hand thumb-impression scan (10–200 KB, same format) was also required as a separate upload alongside photo and signature."
+      },
+      "signature": {
+        "dims": "not independently confirmed",
+        "minKB": 4,
+        "maxKB": 30,
+        "format": "JPG/JPEG",
+        "notes": "Scanned signature upload; KB range is from coaching-site summaries of the 2023 notification (bankersadda/careerpower), not independently re-verified against the primary PDF text."
+      },
+      "details": {
+        "dataNote": "(1) EPFO recruits SSA directly through its own Recruitment Cell — the advertisement is published on EPFO's own portal, NOT via SSC. For the 2023 cycle, the Computer-Based Examination itself was administered on EPFO's behalf by the National Testing Agency (NTA) as testing partner (per the official advertisement and NTA's recruitment portal). (2) This 2023 cycle (closed 26 Apr 2023) is the most recent SSA recruitment found; a circular dated 24 Nov 2025 on epfindia.gov.in references \"reallocation of states in the cadre of SSA DR 2024 batch,\" indicating candidates selected from the 2023 advertisement were still being allocated as the \"2024 batch\" as recently as Nov 2025 — consistent with no newer SSA vacancy round since. (3) Multiple coaching sites (careerpower, testbook, oliveboard, ixambee) claim an EPFO SSA 2025 or 2026 cycle is \"expected soon,\" with conflicting claims about who will conduct it next (some say NTA again, one says IBPS) — none of this is an official EPFO announcement and it is NOT reflected in status/dates here; status is set to \"closed\" (last confirmed cycle) rather than \"upcoming.\" (4) RE-VERIFIED 27 Aug 2026: the old epfindia.gov.in PDF link now 404s after EPFO migrated its site to epfo.gov.in (a WordPress-based redesign) — officialUrl updated to the live epfo.gov.in/recruitments/ page, which currently shows \"No jobs found,\" directly confirming (from a primary source) that no new SSA cycle exists as of this date.",
+        "payGroups": [
+          {
+            "level": "Level 5",
+            "band": "₹29,200 – ₹92,300 (basic, 7th CPC Pay Matrix)",
+            "posts": "Social Security Assistant (SSA) — clerical/assistant cadre across EPFO regional and zonal offices. Stenographer posts were recruited in the same 2023 cycle at a separate pay level not detailed here."
+          }
+        ],
+        "payNote": "Level 5 is the verifiable 7th CPC figure from the 2023 advertisement; some secondary sources additionally cite a pre-7th-CPC-style \"grade pay ₹2,400\" figure that mixes old and new pay-commission terminology — not used here as it could not be reconciled with the official Level 5 matrix.",
+        "promotion": {
+          "caveat": "No verified promotion schedule is available for this post — don't treat any figure from other sources as confirmed."
+        },
+        "eligibility": {
+          "age": "18–27 years (per the 2023 advertisement)",
+          "ageRelax": "Standard central government relaxations apply for SC/ST/OBC/PwBD/Ex-Servicemen — exact category-wise figures for this cycle were not independently re-verified here",
+          "qualification": "Bachelor's degree from a recognised university, plus a typing speed of 35 wpm in English or 30 wpm in Hindi on computer"
+        },
+        "howToApply": [
+          "Step 1: Register on the EPFO recruitment portal (linked from epfindia.gov.in; hosted via NTA for the 2023 cycle)",
+          "Step 2: Fill personal, educational and category details in the online application",
+          "Step 3: Upload scanned photograph, signature and left-hand thumb impression per the notice specifications",
+          "Step 4: Pay the application fee online",
+          "Step 5: Submit and retain the confirmation/printout for reference"
+        ]
+      },
+      "hi": {
+        "name": "ईपीएफओ एसएसए"
+      },
+      "verified": "27 Aug 2026",
+      "applicationStartDateIso": "2023-03-27",
+      "applicationEndDateIso": "2023-04-26",
+      "lastUpdated": "2026-08-31 15:37:39",
+      "orgName": "Central Government Recruiting Bodies (SSC/UPSC/etc.)",
+      "slug": "epfo-ssa"
+    },
+    {
+      "code": "RBI-ASSISTANT",
+      "name": "RBI Assistant",
+      "cat": "Banking",
+      "status": "closed",
+      "popularity": 26,
+      "vacancies": "650",
+      "notifTitle": "Recruitment for the post of Assistant — Panel Year 2025, 650 vacancies across RBI offices. Application window 16 Feb – 10 Mar 2026 (extended from 08 Mar 2026).",
+      "applyStart": "16 Feb 2026",
+      "applyEnd": "10 Mar 2026 (extended from original 08 Mar 2026 — secondary sources now consistently agree on this specific pairing; primary RBI PDF still unreachable to confirm directly)",
+      "officialUrl": "https://opportunities.rbi.org.in",
+      "photo": {
+        "dims": "4.5 cm × 3.5 cm (200 × 230 px)",
+        "px": {
+          "w": 200,
+          "h": 230
+        },
+        "minKB": 20,
+        "maxKB": 50,
+        "format": "JPG/JPEG",
+        "notes": "recent colour photo, light/white background, no cap or dark glasses — reported by multiple coaching-site aggregators (guidely.in, sahiphoto.in and others) as matching the IBPS-style spec used across RBI/IBPS banking recruitment; the primary RBI notification PDF could not be directly retrieved in this research pass (network access to opportunities.rbi.org.in document links was unreliable in the research environment), so this is not independently confirmed against the primary document"
+      },
+      "signature": {
+        "dims": "140 × 60 px",
+        "px": {
+          "w": 140,
+          "h": 60
+        },
+        "minKB": 10,
+        "maxKB": 20,
+        "format": "JPG/JPEG",
+        "notes": "signed in black ink on white paper, not in capital letters — same caveat as photo spec above: sourced from secondary coverage, not independently confirmed against the primary RBI PDF"
+      },
+      "details": {
+        "dataNote": "This is the \"Panel Year 2025\" cycle (notification dated 16 Feb 2026), the most recent RBI Assistant cycle as of this verification — application window already closed. The primary RBI notification PDF (expected on rbi.org.in / opportunities.rbi.org.in) could not be directly retrieved in this research pass — the RBI recruitment portal appears to be a JS-rendered application and direct PDF links were not discoverable via search or direct requests in the time available. All figures below (vacancy count, pay scale, age/qualification, fee, document upload specs, application timeline) are cross-checked across several independently-agreeing coaching/aggregator sources (careerpower.in, testbook.com, adda247.com, bankersadda.com, mahendras.org, guidely.in) rather than confirmed against RBI's own primary document — treat all figures here as unverified against the primary source and confirm against opportunities.rbi.org.in before publishing. RE-ATTEMPTED retrieval 27 Aug 2026: located what appear to be the actual primary PDF URLs on rbidocs.rbi.org.in (detailed advertisement and window-extension notice), but both are behind a CAPTCHA wall and still not programmatically retrievable — the \"PDF unreachable\" caveat stands. However, cross-checking against a wider set of independent secondary sources this pass resolved the extended-deadline dispute: original close was 08 Mar 2026, extended to 10 Mar 2026 (11:59 PM) — every source giving both dates agrees on this pairing, so 10 Mar is treated as the correct final date pending primary confirmation. The correction-window dates (14–15 Mar 2026, ₹200 fee) are also now confirmed across multiple independent sources rather than loosely reported. Note that RBI Assistant recruitment (prelims/mains) is conducted by IBPS on RBI's behalf, which is consistent with the document specs matching the IBPS PO/RRB pattern exactly.",
+        "payGroups": [
+          {
+            "level": "Assistant",
+            "band": "Basic ₹29,000, reported scale ₹29,000–1700(3)–34,100–2040(4)–42,260–2720(6)–58,580–2950(2)–64,480–3370(3)–74,590–4050(1)–78,640 (12th bipartite-settlement clerical scale, as reported by coaching-site sources — not confirmed against a primary RBI pay circular)",
+            "posts": "Assistant (clerical grade), 650 vacancies across RBI offices — post-wise/office-wise breakup not independently verified"
+          }
+        ],
+        "payNote": "Pay figures are secondary/coaching-site reporting of the applicable bipartite-settlement clerical scale; not confirmed against a primary RBI document in this pass.",
+        "promotion": {
+          "caveat": "Not addressed in any source reviewed — no promotion-timeline claim can be made."
+        },
+        "eligibility": {
+          "age": "20–28 years as on 01 Feb 2026 (secondary-source reporting; reference date not confirmed against the primary notification)",
+          "ageRelax": "Standard RBI/IBPS-pattern relaxations reportedly apply (SC/ST, OBC-NCL, PwBD, Ex-servicemen) but exact figures were not independently confirmed against the primary notification this pass",
+          "qualification": "Bachelor's degree in any discipline with a minimum of 50% aggregate marks (pass class for SC/ST/PwBD candidates, per secondary-source reporting), plus proficiency in word processing on a computer — not independently confirmed against the primary notification"
+        },
+        "howToApply": [
+          "Register at opportunities.rbi.org.in under the Assistant recruitment link",
+          "Fill the application form with personal, educational and category details, and select preferred RBI office/centre per the notification's option rules",
+          "Upload photograph, signature, left thumb impression and handwritten declaration as per the specifications above",
+          "Pay the fee online — reported as ₹50 + GST for SC/ST/PwBD/Ex-servicemen (≈₹59 total) and ₹450 + GST for all others (≈₹531 total), per secondary-source reporting, not confirmed against the primary fee clause",
+          "Use the post-close correction window (14–15 Mar 2026, ₹200 fee — confirmed across multiple independent secondary sources) if corrections to centre/parents' names/marks are needed",
+          "Download call letters from opportunities.rbi.org.in when released for Prelims, Mains and the Language Proficiency Test (LPT)"
+        ]
+      },
+      "hi": {
+        "name": "आरबीआई सहायक"
+      },
+      "otherDocs": [
+        {
+          "label": "Left thumb impression",
+          "spec": {
+            "dims": "240 × 240 px @ 200 DPI (~3×3 cm)",
+            "px": {
+              "w": 240,
+              "h": 240
+            },
+            "minKB": 20,
+            "maxKB": 50,
+            "format": "JPG/JPEG",
+            "notes": "black/blue ink on white paper — secondary-source figure, not independently confirmed against the primary notification"
+          }
+        },
+        {
+          "label": "Handwritten declaration",
+          "spec": {
+            "dims": "800 × 400 px @ 200 DPI (~10×5 cm)",
+            "px": {
+              "w": 800,
+              "h": 400
+            },
+            "minKB": 50,
+            "maxKB": 100,
+            "format": "JPG/JPEG",
+            "notes": "black ink, English, not in capital letters — secondary-source figure, not independently confirmed against the primary notification"
+          }
+        }
+      ],
+      "verified": "27 Aug 2026",
+      "applicationStartDateIso": "2026-02-16",
+      "applicationEndDateIso": "2026-03-10",
+      "lastUpdated": "2026-08-31 15:37:39",
+      "orgName": "Banking Recruitment Bodies (IBPS/SBI/RBI)",
+      "slug": "rbi-assistant"
+    },
+    {
+      "code": "IB-ACIO",
+      "name": "IB ACIO",
+      "cat": "Central Govt",
+      "status": "closed",
+      "popularity": 27,
+      "vacancies": "3,717",
+      "notifTitle": "Assistant Central Intelligence Officer Grade-II/Executive Examination, 2025 — notification released by the Ministry of Home Affairs (Intelligence Bureau) on 18–19 Jul 2025 for 3,717 posts (General 1,537 / OBC 946 / EWS 442, remainder SC/ST per category-wise breakup). This is the most recent IB ACIO cycle; its application window closed long ago and the full selection process has since concluded (Tier-I: 16–18 Sep 2025 · Tier-II: 11 Jan 2026 · Interviews: Apr 2026 · Final result: 3 Jun 2026) — included as the latest cycle per IB ACIO's known irregular/multi-year notification pattern, not as a currently live exam.",
+      "applyStart": "19 Jul 2025",
+      "applyEnd": "10 Aug 2025 (fee payment till 12 Aug 2025)",
+      "officialUrl": "https://www.mha.gov.in/en/notification/vacancies/recruitment-post-of-acio-iiexe-ib-reg",
+      "photo": {
+        "dims": "not confirmed — see dataNote",
+        "minKB": 100,
+        "maxKB": 200,
+        "format": "JPG/JPEG",
+        "notes": "Recent scanned passport-size photograph. Exact cm dimensions not found in accessible secondary sources; MHA's ACIO application flow is upload-based (not live-capture) per secondary sources — direct notification PDF text not independently retrieved to confirm cm specs."
+      },
+      "signature": {
+        "dims": "not confirmed",
+        "minKB": 80,
+        "maxKB": 150,
+        "format": "JPG/JPEG",
+        "notes": "Scan of the signature area only (not the full page). KB range from coaching-site summaries (careerpower, rrbapply), not independently verified against the primary MHA notification PDF."
+      },
+      "details": {
+        "dataNote": "(1) IB ACIO Grade-II/Executive is recruited directly by MHA/IB via mha.gov.in (applications were also routed through www.ncs.gov.in) — NOT by SSC. This is distinct from a separate, smaller \"ACIO Grade-II/Technical\" recruitment (2025 cycle: 258 posts) that MHA ran on a different notification around the same period; do not conflate the two. (2) RE-VERIFIED 27 Aug 2026: found a more specific officialUrl (MHA's actual ACIO-II/Exe notification page, replacing the bare domain root previously used) — however its underlying PDF/photo-signature-spec content still could not be extracted (the page's static HTML only exposes a generic certificate link; the real attachment needs JS rendering not reachable via fetch in this pass, and a second candidate PDF on ncs.gov.in is intercepted by that site's SPA router). The photo/signature cm/KB-spec caveat below therefore remains accurate and unresolved. (3) As flagged previously, IB ACIO notification timing is historically irregular (multi-year gaps between cycles have occurred); re-checked 27 Aug 2026 — no IB ACIO 2026 notification has been released, and the expected window has slipped further, from \"June–Aug 2026\" to now \"Oct/Nov 2026\" per multiple sources. This 2025 cycle remains the most recent one, its process essentially complete (final result 3 Jun 2026) — do not infer a new cycle is imminent.",
+        "payGroups": [
+          {
+            "level": "Level 7",
+            "band": "₹44,900 – ₹1,42,400 (basic, 7th CPC Pay Matrix, General Central Service, Group C Non-Gazetted, Non-Ministerial)",
+            "posts": "Assistant Central Intelligence Officer (ACIO) Grade-II/Executive — Intelligence Bureau, Ministry of Home Affairs; carries a 20% Special Security Allowance plus other admissible central government allowances per secondary-source summaries (not independently verified against the primary notification text)"
+          }
+        ],
+        "payNote": "Level 7 and the 20% Special Security Allowance figure are repeated consistently across secondary sources but were not cross-checked against the primary MHA PDF directly — treat the allowance percentage as provisional pending direct verification.",
+        "promotion": {
+          "caveat": "No official promotion timeline was found in available sources — don't treat any schedule as confirmed."
+        },
+        "eligibility": {
+          "age": "18–27 years as on 10 Aug 2025 (the application closing date) — born not before 11 Aug 1998 and not after 10 Aug 2007. Multiple independent secondary sources now consistently confirm this exact birth-date window; the earlier \"20–28\" figure surfaced by one source appears to be an isolated aggregator-table error and is not corroborated elsewhere.",
+          "ageRelax": "Standard central government relaxations for SC/ST/OBC/PwBD/Ex-Servicemen apply; exact figures not independently re-verified for this cycle",
+          "qualification": "Graduation (Bachelor's degree) in any discipline from a recognised university, plus working knowledge of computers"
+        },
+        "howToApply": [
+          "Step 1: Register on the MHA recruitment portal (mha.gov.in) or via www.ncs.gov.in",
+          "Step 2: Fill personal, educational and category details in the online application",
+          "Step 3: Upload scanned photograph and signature per the notice specifications",
+          "Step 4: Pay the application fee online",
+          "Step 5: Submit and retain the confirmation/printout for reference; selection proceeds via Tier-I (objective), Tier-II (descriptive) and an Interview"
+        ]
+      },
+      "hi": {
+        "name": "आईबी एसीआईओ"
+      },
+      "verified": "27 Aug 2026",
+      "applicationStartDateIso": "2025-07-19",
+      "applicationEndDateIso": "2025-08-10",
+      "lastUpdated": "2026-08-31 15:37:39",
+      "orgName": "Central Government Recruiting Bodies (SSC/UPSC/etc.)",
+      "slug": "ib-acio"
+    }
+  ]
+}
