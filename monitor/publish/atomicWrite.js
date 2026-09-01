@@ -1,74 +1,112 @@
-// Safe-publish primitives: build everything in a temp location, validate,
-// and only then atomically swap it into place. fs.renameSync is atomic as
-// long as source and destination share a filesystem/mount, which is
-// guaranteed here since every temp path is a sibling of its real target.
+// Safe-publish primitives.
+//
+// True single-syscall atomicity across ALL THREE published outputs
+// (data/exams.json, sitemap.xml, exams/<slug>/) is not achievable on a
+// plain filesystem: they are three independent top-level paths, and a
+// filesystem rename() can only atomically swap ONE path at a time. Merging
+// them under one directory would change the site's URL structure
+// (sitemap.xml must stay at /sitemap.xml, exams at /exams/<slug>/), which
+// the task explicitly requires preserving. A true all-or-nothing swap would
+// need a deployment-level indirection layer (e.g. a `current` symlink the
+// web server's document root resolves through) — that's a hosting/deploy
+// decision outside this repo (there is no deployment config here at all)
+// and would be new infrastructure, not a fix to this pipeline.
+//
+// What IS fully achievable, and what this module does: build the ENTIRE
+// new site (all three outputs, in their final relative layout) into ONE
+// staging directory first, so the single most failure-prone phase —
+// rendering N pages, assembling the sitemap and JSON — completes and is
+// validated as a whole BEFORE touching production at all. Only then does
+// production get updated, via the smallest possible number of independent
+// renames, performed back-to-back with no computation between them, in an
+// order chosen so that if the process is interrupted mid-sequence, the live
+// site is still fully self-consistent and functional — at worst briefly
+// stale, never broken, never serving a torn/partial page. See
+// swapStagedSite's comment for the exact ordering rationale.
 const fs = require('fs');
 const path = require('path');
 
-function tempSiblingPath(targetPath) {
-  return `${targetPath}.tmp-${process.pid}-${Date.now()}`;
+function uniqueSuffix() {
+  return `${process.pid}-${Date.now()}`;
 }
 
-// Writes `content` to a temp sibling of `targetPath`, then renames it over
-// the real target. Caller is responsible for validating `content` BEFORE
-// calling this — this function performs the swap only, no validation.
-function atomicWriteFile(targetPath, content) {
-  const tmp = tempSiblingPath(targetPath);
-  fs.writeFileSync(tmp, content, 'utf8');
-  fs.renameSync(tmp, targetPath);
-}
-
-// Directory-tree version, split into two phases so a CALLER can build every
-// other output (single files, via atomicWriteFile) only after the directory
-// build has *already proven it works*, and swap the directory in last. That
-// ordering matters: if any single step in a multi-output publish can throw
-// (template bugs on unusual data, disk errors, ENAMETOOLONG on a pathological
-// slug), doing the most failure-prone work FIRST — before anything in
-// production is touched — is what keeps a partial failure from leaving
-// production in a mixed old/new state (e.g. a new sitemap.xml pointing at
-// exam pages an aborted directory build never created).
-
-// Phase 1: populate a fresh temp directory (sibling of `targetDir`) via
-// `buildFn(tmpDir)`. Throws (and cleans up the temp dir) on failure; touches
-// nothing under `targetDir` either way. Returns the temp dir's path for
-// `swapInTempDir`.
-function buildTempDir(targetDir, buildFn) {
-  const parent = path.dirname(targetDir);
-  const base = path.basename(targetDir);
-  const tmpDir = path.join(parent, `${base}.tmp-${process.pid}-${Date.now()}`);
-  fs.mkdirSync(tmpDir, { recursive: true });
+// Phase 1: create a fresh staging directory (sibling of the real output
+// paths, i.e. directly under repoRoot) and call `buildFn(stagingDir)` to
+// populate it. `buildFn` is expected to write staging/data/exams.json,
+// staging/sitemap.xml, and staging/exams/<slug>/index.html. On any
+// failure — a template bug, an ENAMETOOLONG on a pathological slug — the
+// staging directory is fully cleaned up and the error rethrown; nothing
+// under repoRoot's real output paths is ever touched by this phase.
+function buildStagedSite(repoRoot, buildFn) {
+  const stagingDir = path.join(repoRoot, `.publish-staging-${uniqueSuffix()}`);
+  fs.mkdirSync(stagingDir, { recursive: true });
   try {
-    buildFn(tmpDir);
+    buildFn(stagingDir);
   } catch (err) {
-    fs.rmSync(tmpDir, { recursive: true, force: true });
+    fs.rmSync(stagingDir, { recursive: true, force: true });
     throw err;
   }
-  return tmpDir;
+  return stagingDir;
 }
 
-// Phase 2: swap an already-built temp directory (from buildTempDir) in for
-// `targetDir`. If `targetDir` already exists, it's renamed aside first and
-// only removed after the swap succeeds — if the swap itself throws, the
-// previous directory is restored so production is never left without a
+// Phase 2: move a single already-staged FILE into place. fs.renameSync
+// replacing an existing file is atomic on POSIX filesystems — no temp/swap
+// dance needed here, the "staging" already happened in phase 1.
+function swapFile(stagedPath, targetPath) {
+  fs.mkdirSync(path.dirname(targetPath), { recursive: true });
+  fs.renameSync(stagedPath, targetPath);
+}
+
+// Moving a DIRECTORY over an existing one is different: POSIX rename()
+// fails (ENOTEMPTY) if the destination directory already exists and isn't
+// empty, unlike files. So an existing target is renamed aside first and
+// only removed after the real swap succeeds — if that swap itself throws,
+// the previous directory is restored so production is never left without a
 // valid target.
-function swapInTempDir(targetDir, tmpDir) {
+function swapDir(stagedDir, targetDir) {
   if (!fs.existsSync(targetDir)) {
-    fs.renameSync(tmpDir, targetDir);
+    fs.renameSync(stagedDir, targetDir);
     return;
   }
-  const parent = path.dirname(targetDir);
-  const base = path.basename(targetDir);
-  const prevDir = path.join(parent, `${base}.prev-${process.pid}-${Date.now()}`);
+  const prevDir = `${targetDir}.prev-${uniqueSuffix()}`;
   fs.renameSync(targetDir, prevDir);
   try {
-    fs.renameSync(tmpDir, targetDir);
+    fs.renameSync(stagedDir, targetDir);
   } catch (err) {
-    // Best-effort rollback: put the previous good directory back so
-    // production is never left in a broken/missing state.
-    fs.renameSync(prevDir, targetDir);
+    fs.renameSync(prevDir, targetDir); // best-effort rollback
     throw err;
   }
   fs.rmSync(prevDir, { recursive: true, force: true });
 }
 
-module.exports = { atomicWriteFile, buildTempDir, swapInTempDir, tempSiblingPath };
+// Phase 3: swap every staged output into its real location and remove the
+// now-empty staging directory. Order matters — chosen so that if the
+// process dies between two of these renames, the live site is still fully
+// functional, just briefly stale in a low-impact way:
+//
+//   1. exams/     first — once this lands, every exam page a visitor can
+//                 reach is already fully correct for the new publish.
+//   2. sitemap.xml second — worst case if interrupted here: the sitemap
+//                 (still old) is missing a brand-new exam's URL, or still
+//                 lists an archived one whose page briefly still exists
+//                 from before this swap even started. Neither is a broken
+//                 page — search engines re-crawl and self-correct.
+//   3. data/exams.json last — nothing on the live site consumes this file
+//                 yet, so its timing matters least of the three.
+//
+// The reverse order (json/sitemap first, exams/ last) is the one that
+// actually risks a bad outcome: a crawler could follow a brand-new sitemap
+// URL to an exam page that doesn't exist on disk yet (404), which is why
+// exams/ — the highest-stakes, user-facing output — always goes first.
+function swapStagedSite(stagingDir, targets) {
+  swapDir(path.join(stagingDir, 'exams'), targets.examsDir);
+  swapFile(path.join(stagingDir, 'sitemap.xml'), targets.sitemapPath);
+  swapFile(path.join(stagingDir, 'data', 'exams.json'), targets.examsJsonPath);
+  fs.rmSync(stagingDir, { recursive: true, force: true }); // staging/data/ dir itself, now empty
+}
+
+function discardStagedSite(stagingDir) {
+  fs.rmSync(stagingDir, { recursive: true, force: true });
+}
+
+module.exports = { buildStagedSite, swapStagedSite, discardStagedSite };

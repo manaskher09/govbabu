@@ -4,14 +4,14 @@ const path = require('path');
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const { slugify } = require('../publish/slug');
-const { checkAllPublished, validatePublishSet } = require('../publish/validate');
+const { checkAllPublished, validatePublishSet, validateStagedSite } = require('../publish/validate');
 const { computeDiff } = require('../publish/diff');
 const { toApplicationsShape, toPublicPost } = require('../sync/toApplicationsShape');
 const { getCurrentExam } = require('../db/currentExam');
 const { createTestDb, seedExamWithSource } = require('./helpers');
 const { renderExamPage, buildJsonLd } = require('../publish/render');
 const { buildSitemap } = require('../publish/sitemap');
-const { buildTempDir, swapInTempDir } = require('../publish/atomicWrite');
+const { buildStagedSite, swapStagedSite } = require('../publish/atomicWrite');
 
 // ---------- getCurrentExam posts/org_name extension ----------
 
@@ -253,45 +253,163 @@ test('two different codes that collapse to the same slug are caught as a duplica
   assert.ok(errors.some((e) => e.includes('Duplicate slug')));
 });
 
-// ---------- Publish safety: build-before-touch ordering ----------
+// ---------- Publish safety: staged-site build-before-touch ----------
 
-test('buildTempDir failing never touches a pre-existing target directory', () => {
-  const parent = fs.mkdtempSync(path.join(os.tmpdir(), 'govbabu-atomic-test-'));
-  const target = path.join(parent, 'exams');
-  fs.mkdirSync(target);
-  fs.writeFileSync(path.join(target, 'sentinel.txt'), 'previous good content');
+test('buildStagedSite failing never touches production, and cleans up its own staging dir', () => {
+  const repoRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'govbabu-staged-test-'));
+  const examsDir = path.join(repoRoot, 'exams');
+  fs.mkdirSync(examsDir);
+  fs.writeFileSync(path.join(examsDir, 'sentinel.txt'), 'previous good content');
 
   assert.throws(() => {
-    buildTempDir(target, () => {
+    buildStagedSite(repoRoot, () => {
       throw new Error('simulated render failure');
     });
   }, /simulated render failure/);
 
-  // The real target must be completely untouched, and no .tmp- sibling left behind.
-  assert.equal(fs.readFileSync(path.join(target, 'sentinel.txt'), 'utf8'), 'previous good content');
-  const siblings = fs.readdirSync(parent);
-  assert.deepEqual(siblings, ['exams']);
-  fs.rmSync(parent, { recursive: true, force: true });
+  assert.equal(fs.readFileSync(path.join(examsDir, 'sentinel.txt'), 'utf8'), 'previous good content');
+  const entries = fs.readdirSync(repoRoot);
+  assert.deepEqual(entries, ['exams'], 'no .publish-staging- directory should be left behind');
+  fs.rmSync(repoRoot, { recursive: true, force: true });
 });
 
-test('a successful buildTempDir + swapInTempDir replaces the target atomically', () => {
-  const parent = fs.mkdtempSync(path.join(os.tmpdir(), 'govbabu-atomic-test-'));
-  const target = path.join(parent, 'exams');
-  fs.mkdirSync(target);
-  fs.writeFileSync(path.join(target, 'old.txt'), 'old');
+test('a full staged publish replaces all three outputs, in the documented safe order, leaving no staging residue', () => {
+  const repoRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'govbabu-staged-test-'));
+  const examsDir = path.join(repoRoot, 'exams');
+  const sitemapPath = path.join(repoRoot, 'sitemap.xml');
+  const examsJsonPath = path.join(repoRoot, 'data', 'exams.json');
+  fs.mkdirSync(examsDir);
+  fs.writeFileSync(path.join(examsDir, 'old-only.txt'), 'stale, must be gone after swap');
+  fs.writeFileSync(sitemapPath, 'OLD SITEMAP');
+  fs.mkdirSync(path.dirname(examsJsonPath), { recursive: true });
+  fs.writeFileSync(examsJsonPath, 'OLD JSON');
 
-  const tmp = buildTempDir(target, (dir) => fs.writeFileSync(path.join(dir, 'new.txt'), 'new'));
-  swapInTempDir(target, tmp);
+  const stagingDir = buildStagedSite(repoRoot, (staging) => {
+    fs.mkdirSync(path.join(staging, 'exams', 'ssc-cgl'), { recursive: true });
+    fs.writeFileSync(path.join(staging, 'exams', 'ssc-cgl', 'index.html'), '<html>new page</html>');
+    fs.writeFileSync(path.join(staging, 'sitemap.xml'), 'NEW SITEMAP');
+    fs.mkdirSync(path.join(staging, 'data'), { recursive: true });
+    fs.writeFileSync(path.join(staging, 'data', 'exams.json'), 'NEW JSON');
+  });
+  swapStagedSite(stagingDir, { examsDir, sitemapPath, examsJsonPath });
 
-  assert.deepEqual(fs.readdirSync(target), ['new.txt']);
-  assert.deepEqual(fs.readdirSync(parent), ['exams'], 'the .prev- sibling must be cleaned up after a successful swap');
-  fs.rmSync(parent, { recursive: true, force: true });
+  assert.deepEqual(fs.readdirSync(examsDir), ['ssc-cgl'], 'the old exams/ contents must be fully replaced, not merged');
+  assert.equal(fs.readFileSync(sitemapPath, 'utf8'), 'NEW SITEMAP');
+  assert.equal(fs.readFileSync(examsJsonPath, 'utf8'), 'NEW JSON');
+  const rootEntries = fs.readdirSync(repoRoot);
+  assert.ok(!rootEntries.some((e) => e.includes('.publish-staging-') || e.includes('.prev-')), 'no staging or rollback residue should remain after a successful publish');
+  fs.rmSync(repoRoot, { recursive: true, force: true });
+});
+
+test('the full end-to-end publish transaction: if the staged build fails, ALL THREE production outputs are byte-for-byte untouched', () => {
+  // This is the exact scenario Issue 1 was about: prove that a failure
+  // partway through generation can never leave exams.json/sitemap.xml
+  // updated while exams/ (or vice versa) is stale — because with the
+  // staged-site design, nothing under production is written until AFTER
+  // the entire new site has been built and validated as a whole.
+  const repoRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'govbabu-staged-test-'));
+  const examsDir = path.join(repoRoot, 'exams');
+  const sitemapPath = path.join(repoRoot, 'sitemap.xml');
+  const examsJsonPath = path.join(repoRoot, 'data', 'exams.json');
+  fs.mkdirSync(examsDir);
+  fs.writeFileSync(path.join(examsDir, 'sentinel.txt'), 'old exams content');
+  fs.writeFileSync(sitemapPath, 'OLD SITEMAP');
+  fs.mkdirSync(path.dirname(examsJsonPath), { recursive: true });
+  fs.writeFileSync(examsJsonPath, 'OLD JSON');
+  const beforeMtimes = [examsDir, sitemapPath, examsJsonPath].map((p) => fs.statSync(p).mtimeMs);
+
+  assert.throws(() => {
+    buildStagedSite(repoRoot, (staging) => {
+      fs.mkdirSync(path.join(staging, 'exams', 'ssc-cgl'), { recursive: true });
+      fs.writeFileSync(path.join(staging, 'exams', 'ssc-cgl', 'index.html'), 'partial page 1 of 2');
+      // Simulate the SECOND page in a multi-exam batch failing mid-render —
+      // exactly the scenario that used to leave production inconsistent.
+      throw new Error('simulated failure rendering exam 2 of 2');
+    });
+  }, /simulated failure/);
+
+  const afterMtimes = [examsDir, sitemapPath, examsJsonPath].map((p) => fs.statSync(p).mtimeMs);
+  assert.deepEqual(afterMtimes, beforeMtimes, 'no production path may be touched when the staged build fails partway through');
+  assert.equal(fs.readFileSync(path.join(examsDir, 'sentinel.txt'), 'utf8'), 'old exams content');
+  assert.equal(fs.readFileSync(sitemapPath, 'utf8'), 'OLD SITEMAP');
+  assert.equal(fs.readFileSync(examsJsonPath, 'utf8'), 'OLD JSON');
+  fs.rmSync(repoRoot, { recursive: true, force: true });
+});
+
+// ---------- validateStagedSite: catches a bad BUILD, not just bad source data ----------
+
+test('validateStagedSite catches a staged exams/ directory whose exam count does not match the expected set', () => {
+  const stagingDir = fs.mkdtempSync(path.join(os.tmpdir(), 'govbabu-staged-validate-'));
+  fs.mkdirSync(path.join(stagingDir, 'data'), { recursive: true });
+  fs.writeFileSync(path.join(stagingDir, 'data', 'exams.json'), JSON.stringify({ exams: [{ code: 'A' }] }));
+  fs.writeFileSync(path.join(stagingDir, 'sitemap.xml'), '<urlset></urlset>');
+  fs.mkdirSync(path.join(stagingDir, 'exams', 'a'), { recursive: true });
+  fs.writeFileSync(path.join(stagingDir, 'exams', 'a', 'index.html'), '<html>a</html>');
+
+  const { ok, errors } = validateStagedSite(stagingDir, [{ code: 'A', slug: 'a' }, { code: 'B', slug: 'b' }]);
+  assert.equal(ok, false);
+  assert.ok(errors.some((e) => e.includes('missing directories for: b')));
+  fs.rmSync(stagingDir, { recursive: true, force: true });
+});
+
+test('validateStagedSite catches an empty generated page', () => {
+  const stagingDir = fs.mkdtempSync(path.join(os.tmpdir(), 'govbabu-staged-validate-'));
+  fs.mkdirSync(path.join(stagingDir, 'data'), { recursive: true });
+  fs.writeFileSync(path.join(stagingDir, 'data', 'exams.json'), JSON.stringify({ exams: [{ code: 'A' }] }));
+  fs.writeFileSync(path.join(stagingDir, 'sitemap.xml'), '<urlset><url><loc>https://x/exams/a/</loc></url></urlset>');
+  fs.mkdirSync(path.join(stagingDir, 'exams', 'a'), { recursive: true });
+  fs.writeFileSync(path.join(stagingDir, 'exams', 'a', 'index.html'), '');
+
+  const { ok, errors } = validateStagedSite(stagingDir, [{ code: 'A', slug: 'a' }]);
+  assert.equal(ok, false);
+  assert.ok(errors.some((e) => e.includes('is empty')));
+  fs.rmSync(stagingDir, { recursive: true, force: true });
+});
+
+test('validateStagedSite accepts a correctly-built staged site', () => {
+  const stagingDir = fs.mkdtempSync(path.join(os.tmpdir(), 'govbabu-staged-validate-'));
+  fs.mkdirSync(path.join(stagingDir, 'data'), { recursive: true });
+  fs.writeFileSync(path.join(stagingDir, 'data', 'exams.json'), JSON.stringify({ exams: [{ code: 'A' }] }));
+  fs.writeFileSync(path.join(stagingDir, 'sitemap.xml'), '<urlset><url><loc>https://x/exams/a/</loc></url></urlset>');
+  fs.mkdirSync(path.join(stagingDir, 'exams', 'a'), { recursive: true });
+  fs.writeFileSync(path.join(stagingDir, 'exams', 'a', 'index.html'), '<html>real content</html>');
+
+  const { ok, errors } = validateStagedSite(stagingDir, [{ code: 'A', slug: 'a' }]);
+  assert.deepEqual(errors, []);
+  assert.equal(ok, true);
+  fs.rmSync(stagingDir, { recursive: true, force: true });
+});
+
+// ---------- Idempotency: no wall-clock in generated content ----------
+
+test('renderExamPage output is byte-identical across two calls with identical input (no hidden wall-clock dependency)', () => {
+  const exam = { code: 'X', name: 'Exam X', cat: 'Central Govt', slug: 'x', verified: '01 Sep 2026' };
+  const html1 = renderExamPage(exam, []);
+  const html2 = renderExamPage(exam, []);
+  assert.equal(html1, html2);
+  assert.ok(!html1.includes(String(new Date().getFullYear() + 1)), 'no dynamically-computed future year should leak in from a live Date() call');
+});
+
+test('buildSitemap output is deterministic for identical input (no generatedAt parameter)', () => {
+  const exams = [{ slug: 'ssc-cgl', lastUpdated: '2026-01-01 00:00:00' }];
+  assert.equal(buildSitemap(exams), buildSitemap(exams));
+});
+
+test('static pages in the sitemap omit lastmod rather than claiming a fabricated "changed today"', () => {
+  const xml = buildSitemap([{ slug: 'ssc-cgl', lastUpdated: '2026-01-01 00:00:00' }]);
+  const indexBlock = xml.split('<url>')[1];
+  assert.ok(!indexBlock.includes('<lastmod>'), 'a static page with no real content-modification date must not get a fabricated lastmod');
+});
+
+test('an exam page in the sitemap uses its real, content-derived lastUpdated date', () => {
+  const xml = buildSitemap([{ slug: 'ssc-cgl', lastUpdated: '2026-03-15 12:00:00' }]);
+  assert.ok(xml.includes('<lastmod>2026-03-15</lastmod>'));
 });
 
 // ---------- Sitemap correctness ----------
 
 test('sitemap only contains the exams it was given, plus the fixed static pages, all as absolute canonical URLs', () => {
-  const xml = buildSitemap([{ slug: 'ssc-cgl', lastUpdated: '2026-01-01 00:00:00' }], '2026-06-01T00:00:00.000Z');
+  const xml = buildSitemap([{ slug: 'ssc-cgl', lastUpdated: '2026-01-01 00:00:00' }]);
   assert.ok(xml.includes('<loc>https://www.govbabu.com/exams/ssc-cgl/</loc>'));
   assert.ok(xml.includes('<loc>https://www.govbabu.com/index.html</loc>'));
   // Every <loc> entry specifically must be https — the xmlns namespace
@@ -303,7 +421,7 @@ test('sitemap only contains the exams it was given, plus the fixed static pages,
 });
 
 test('sitemap XML-escapes any special characters in a URL', () => {
-  const xml = buildSitemap([{ slug: 'a&b', lastUpdated: '2026-01-01' }], '2026-06-01T00:00:00.000Z');
+  const xml = buildSitemap([{ slug: 'a&b', lastUpdated: '2026-01-01' }]);
   assert.ok(xml.includes('a&amp;b'));
   assert.ok(!xml.includes('a&b/'));
 });

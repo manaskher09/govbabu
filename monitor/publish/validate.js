@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 const { isValidIsoDate } = require('../validate/sanityChecks');
 
 // Defense-in-depth: listCurrentExams already filters WHERE content_status =
@@ -63,4 +65,67 @@ function validatePublishSet(transformedExams) {
   return { ok: errors.length === 0, errors };
 }
 
-module.exports = { checkAllPublished, validatePublishSet };
+// Validates the ACTUAL BUILT OUTPUT sitting in a staging directory, as a
+// whole, before any of it is swapped into production — distinct from
+// validatePublishSet, which validates the SOURCE data before generation
+// even starts. This catches bugs in the generation step itself (a page
+// that silently failed to write, a slug/directory mismatch) that source
+// validation can't see because it never inspects what actually landed on
+// disk.
+function validateStagedSite(stagingDir, expectedExams) {
+  const errors = [];
+
+  const examsJsonPath = path.join(stagingDir, 'data', 'exams.json');
+  let parsed;
+  try {
+    parsed = JSON.parse(fs.readFileSync(examsJsonPath, 'utf8'));
+  } catch (err) {
+    errors.push(`Staged data/exams.json is missing or not valid JSON: ${err.message}`);
+    return { ok: false, errors };
+  }
+  if (!Array.isArray(parsed.exams) || parsed.exams.length !== expectedExams.length) {
+    errors.push(`Staged data/exams.json has ${parsed.exams ? parsed.exams.length : 'no'} exams, expected ${expectedExams.length}`);
+  }
+
+  const sitemapPath = path.join(stagingDir, 'sitemap.xml');
+  let sitemapXml = '';
+  try {
+    sitemapXml = fs.readFileSync(sitemapPath, 'utf8');
+  } catch (err) {
+    errors.push(`Staged sitemap.xml is missing: ${err.message}`);
+  }
+  const sitemapExamUrlCount = (sitemapXml.match(/<loc>https?:\/\/[^<]*\/exams\//g) || []).length;
+  if (sitemapXml && sitemapExamUrlCount !== expectedExams.length) {
+    errors.push(`Staged sitemap.xml references ${sitemapExamUrlCount} exam URLs, expected ${expectedExams.length}`);
+  }
+
+  const examsDir = path.join(stagingDir, 'exams');
+  let onDiskSlugs = [];
+  try {
+    onDiskSlugs = fs.readdirSync(examsDir).sort();
+  } catch (err) {
+    errors.push(`Staged exams/ directory is missing: ${err.message}`);
+  }
+  const expectedSlugs = expectedExams.map((e) => e.slug).sort();
+  if (onDiskSlugs.length && JSON.stringify(onDiskSlugs) !== JSON.stringify(expectedSlugs)) {
+    const missing = expectedSlugs.filter((s) => !onDiskSlugs.includes(s));
+    const unexpected = onDiskSlugs.filter((s) => !expectedSlugs.includes(s));
+    if (missing.length) errors.push(`Staged exams/ is missing directories for: ${missing.join(', ')}`);
+    if (unexpected.length) errors.push(`Staged exams/ has unexpected extra directories: ${unexpected.join(', ')}`);
+  }
+  for (const slug of onDiskSlugs) {
+    const pagePath = path.join(examsDir, slug, 'index.html');
+    let stat;
+    try {
+      stat = fs.statSync(pagePath);
+    } catch {
+      errors.push(`Staged exams/${slug}/index.html is missing`);
+      continue;
+    }
+    if (stat.size === 0) errors.push(`Staged exams/${slug}/index.html is empty`);
+  }
+
+  return { ok: errors.length === 0, errors };
+}
+
+module.exports = { checkAllPublished, validatePublishSet, validateStagedSite };

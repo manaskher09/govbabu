@@ -1,18 +1,24 @@
 #!/usr/bin/env node
 // Publishes monitor's content_status='published' exams to the main site as
 // static output: data/exams.json, one exams/<slug>/index.html per exam, and
-// sitemap.xml. Never partial — everything is built in a temp location,
-// validated, and only then atomically swapped into place. See
-// monitor/publish/*.js for the individual pieces.
+// sitemap.xml.
+//
+// Publish boundary: extract -> validate source data -> build the ENTIRE new
+// site into one staging directory -> validate the staged output as a whole
+// -> swap every output into production. See publish/atomicWrite.js for why
+// the final swap is 3 ordered renames rather than one atomic operation (this
+// repo has no deployment layer that could make it fewer), and why that
+// ordering still guarantees the live site is never left broken or serving a
+// torn page, even if the process is killed mid-swap.
 const fs = require('fs');
 const path = require('path');
 const { getDb } = require('../db/db');
 const { listCurrentExams } = require('../db/currentExam');
 const { toApplicationsShape } = require('../sync/toApplicationsShape');
 const { slugify } = require('../publish/slug');
-const { checkAllPublished, validatePublishSet } = require('../publish/validate');
+const { checkAllPublished, validatePublishSet, validateStagedSite } = require('../publish/validate');
 const { computeDiff } = require('../publish/diff');
-const { atomicWriteFile, buildTempDir, swapInTempDir } = require('../publish/atomicWrite');
+const { buildStagedSite, swapStagedSite, discardStagedSite } = require('../publish/atomicWrite');
 const { renderExamPage } = require('../publish/render');
 const { buildSitemap } = require('../publish/sitemap');
 
@@ -30,6 +36,19 @@ function readPreviousExams() {
   }
 }
 
+// A deterministic, content-derived "as of" date for the published set — NOT
+// wall-clock time. Using new Date() here would mean identical DB content
+// produces different file bytes on every run (false idempotency, the
+// second issue this pipeline was reviewed for). exams.updated_at only
+// changes when a field genuinely changes (see db/adminWrite.js,
+// pipeline/applyApproval.js), so the max across all published exams is a
+// real, meaningful, reproducible value: "the newest approved change in
+// this published set."
+function computeLastContentUpdate(exams) {
+  const dates = exams.map((e) => e.lastUpdated).filter(Boolean);
+  return dates.length ? dates.reduce((max, d) => (d > max ? d : max)) : null;
+}
+
 async function main() {
   const dryRun = process.argv.includes('--dry-run');
   const db = getDb();
@@ -42,22 +61,21 @@ async function main() {
   // 2. Defense-in-depth: every record really is content_status='published'.
   const publishGateErrors = checkAllPublished(currentExams);
 
-  // 3. Transform (reusing toApplicationsShape, extended in this phase to
-  // include posts[]/orgName) + attach a slug.
+  // 3. Transform (reusing toApplicationsShape) + attach a slug.
   const transformed = currentExams.map((e) => {
     const shaped = toApplicationsShape(e);
     return { ...shaped, slug: slugify(shaped.code) };
   });
 
-  // 4. Validate before anything is written.
-  const { ok, errors } = validatePublishSet(transformed);
-  const allErrors = [...publishGateErrors, ...errors];
+  // 4. Validate the SOURCE data before generating anything.
+  const { errors: sourceErrors } = validatePublishSet(transformed);
+  const allSourceErrors = [...publishGateErrors, ...sourceErrors];
 
-  if (allErrors.length) {
+  if (allSourceErrors.length) {
     console.log('GovBabu Publish\n');
     console.log('❌ Publish aborted\n');
     console.log('Validation errors:');
-    for (const e of allErrors) console.log(`  - ${e}`);
+    for (const e of allSourceErrors) console.log(`  - ${e}`);
     console.log('\nNo files were changed.');
     process.exit(1);
   }
@@ -66,33 +84,51 @@ async function main() {
   const previousExams = readPreviousExams();
   const { newlyAdded, updated, archived } = computeDiff(previousExams, transformed);
 
-  const generatedAt = new Date().toISOString();
-  const payload = { generatedAt, count: transformed.length, exams: transformed };
-  const sitemapXml = buildSitemap(transformed, generatedAt);
+  const lastContentUpdate = computeLastContentUpdate(transformed);
+  const payload = { lastContentUpdate, count: transformed.length, exams: transformed };
+  const sitemapXml = buildSitemap(transformed);
 
-  if (!dryRun) {
-    // Build the exams/ directory FIRST, and only in a temp location — this
-    // is the step most likely to throw (a template bug on unusual data, an
-    // ENAMETOOLONG on a pathological slug), and it must fail before ANY
-    // production file is touched. Only once every page has rendered
-    // successfully do we write the other two outputs and swap the
-    // directory in — never the other way around, or a render failure
-    // partway through could leave exams.json/sitemap.xml pointing at a
-    // directory that was never actually rebuilt to match.
-    const tmpExamsDir = buildTempDir(EXAMS_DIR, (tmpDir) => {
-      for (const exam of transformed) {
-        const examDir = path.join(tmpDir, exam.slug);
-        fs.mkdirSync(examDir, { recursive: true });
-        fs.writeFileSync(path.join(examDir, 'index.html'), renderExamPage(exam, transformed), 'utf8');
-      }
-    });
-    fs.mkdirSync(DATA_DIR, { recursive: true });
-    atomicWriteFile(EXAMS_JSON_PATH, JSON.stringify(payload, null, 2));
-    atomicWriteFile(SITEMAP_PATH, sitemapXml);
-    swapInTempDir(EXAMS_DIR, tmpExamsDir);
+  if (dryRun) {
+    printReport({ dryRun, transformed, newlyAdded, updated, archived });
+    return;
   }
 
-  // 6. Report.
+  // 6. Build the ENTIRE new site into one staging directory. Nothing under
+  // the real output paths is touched by this step, success or failure.
+  const stagingDir = buildStagedSite(REPO_ROOT, (staging) => {
+    fs.mkdirSync(path.join(staging, 'data'), { recursive: true });
+    fs.writeFileSync(path.join(staging, 'data', 'exams.json'), JSON.stringify(payload, null, 2), 'utf8');
+    fs.writeFileSync(path.join(staging, 'sitemap.xml'), sitemapXml, 'utf8');
+    const stagedExamsDir = path.join(staging, 'exams');
+    for (const exam of transformed) {
+      const examDir = path.join(stagedExamsDir, exam.slug);
+      fs.mkdirSync(examDir, { recursive: true });
+      fs.writeFileSync(path.join(examDir, 'index.html'), renderExamPage(exam, transformed), 'utf8');
+    }
+  });
+
+  // 7. Validate the BUILT output as a whole — catches a generation bug that
+  // source validation can't see, since source validation never looks at
+  // what actually landed on disk.
+  const staged = validateStagedSite(stagingDir, transformed);
+  if (!staged.ok) {
+    discardStagedSite(stagingDir);
+    console.log('GovBabu Publish\n');
+    console.log('❌ Publish aborted\n');
+    console.log('Staged output failed validation:');
+    for (const e of staged.errors) console.log(`  - ${e}`);
+    console.log('\nNo files were changed.');
+    process.exit(1);
+  }
+
+  // 8. Only now does production get touched — the smallest possible number
+  // of renames, back-to-back, in the order documented in atomicWrite.js.
+  swapStagedSite(stagingDir, { examsDir: EXAMS_DIR, sitemapPath: SITEMAP_PATH, examsJsonPath: EXAMS_JSON_PATH });
+
+  printReport({ dryRun, transformed, newlyAdded, updated, archived });
+}
+
+function printReport({ dryRun, transformed, newlyAdded, updated, archived }) {
   console.log('GovBabu Publish\n');
   console.log(`Published exams: ${transformed.length}`);
   console.log(`New: ${newlyAdded.length}`);
@@ -106,6 +142,7 @@ async function main() {
   console.log('✓ No draft records included');
   console.log('✓ No invalid dates');
   console.log('✓ No malformed URLs');
+  if (!dryRun) console.log('✓ Staged output matches expected exam set');
 
   if (newlyAdded.length) {
     console.log('\nNEW');

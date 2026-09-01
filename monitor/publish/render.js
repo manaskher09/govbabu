@@ -68,7 +68,7 @@ const SITE_FOOTER = `
   </div>
   <div class="wrap footer-bottom">
     <p class="disclaimer">GovBabu is an independent tool and is not affiliated with UPSC, SSC, IBPS, Railway, BPSC or any government body.</p>
-    <p class="footer-copyright">© ${new Date().getFullYear()} GovBabu. All Rights Reserved.</p>
+    <p class="footer-copyright">© 2026 GovBabu. All Rights Reserved.</p>
   </div>
 </footer>
 <script src="/app.js"></script>`;
