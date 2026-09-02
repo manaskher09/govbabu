@@ -4,14 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>GovBabu — Your Government Exam Companion</title>
-<meta name="description" content="Seats, eligibility, reservation policy and how to apply, plus photo & signature resized to the exact spec — everything you need to apply for a government exam. Free for every aspirant right now.">
+<meta name="description" content="Discover Indian government exams, understand eligibility, vacancies and important dates, and prepare your application — all in one place. Free for every aspirant right now.">
+<link rel="canonical" href="https://www.govbabu.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="GovBabu">
 <meta property="og:title" content="GovBabu — Your Government Exam Companion">
-<meta property="og:description" content="Seats, eligibility, reservation policy and how to apply, plus photo & signature resized to the exact spec — everything you need to apply for a government exam. Free for every aspirant right now.">
+<meta property="og:description" content="Discover Indian government exams, understand eligibility, vacancies and important dates, and prepare your application — all in one place. Free for every aspirant right now.">
+<meta property="og:url" content="https://www.govbabu.com/">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GovBabu — Your Government Exam Companion">
+<meta name="twitter:description" content="Discover Indian government exams, understand eligibility, vacancies and important dates, and prepare your application — all in one place. Free for every aspirant right now.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f2440'/%3E%3Crect x='20' y='30' width='24' height='20' rx='5' fill='none' stroke='%23d4af37' stroke-width='4'/%3E%3Cpath d='M24 30v-6a8 8 0 0 1 16 0v3' fill='none' stroke='%23d4af37' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"GovBabu","url":"https://www.govbabu.com/"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"GovBabu","url":"https://www.govbabu.com/"}</script>
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to main content</a>
@@ -36,67 +42,198 @@
 <div class="notice-ticker" id="noticeTicker" aria-live="off"></div>
 
 <main id="main">
-  <section class="wrap flow-intro">
-    <h1 data-i18n="home.title">Everything you need to apply for a government exam</h1>
-    <p class="lead" data-i18n="home.lead">Seats, eligibility, reservation policy and how to apply — researched and sourced for every exam. Then upload your photo &amp; signature and get them resized to the exact spec, ready to submit.</p>
-    <div class="hero-cta" style="margin:22px 0 6px">
-      <a href="exams.html" class="btn btn-primary" data-i18n="home.ctaBrowse">Browse Exams</a>
-      <a href="calendar.html" class="btn btn-outline" data-i18n="home.ctaCalendar">View Exam Calendar</a>
+
+  <!-- 1. HERO -->
+  <section class="hero wrap">
+    <div class="about-hero">
+      <h1 data-i18n="home.title">Your government exam journey, simplified.</h1>
+      <p class="lead" data-i18n="home.lead">Government exam information is scattered across dozens of websites and PDFs. GovBabu brings the seats, eligibility, reservation rules and important dates together in one place — then helps you prepare your application.</p>
+      <div class="hero-cta">
+        <a href="#examDiscovery" class="btn btn-primary" data-i18n="home.ctaBrowse">Explore Exams</a>
+        <a href="calendar.html" class="btn btn-outline" data-i18n="home.ctaCalendar">View Exam Calendar</a>
+      </div>
+      <p class="free-note" data-i18n="home.free">Free to use • No login required</p>
     </div>
-    <p class="free-note" data-i18n="home.free">🎉 Free for every aspirant right now — no login, no payment.</p>
-    <p class="privacy-note" data-i18n="home.privacy">🔒 Processed entirely in your browser — your photo and signature never leave your device.</p>
   </section>
 
-  <div class="wrap home-layout">
-    <aside class="home-sidebar home-sidebar-left">
-      <div class="sidebar-card">
-        <h3 class="sidebar-title" data-i18n="sidebar.noticeBoard">📌 Notice Board</h3>
-        <div id="noticeBoard"></div>
-      </div>
-    </aside>
+  <!-- 2. EXAM ANALYSIS SHOWCASE -->
+  <section class="section wrap" id="examAnalysis" style="max-width:640px">
+    <div class="section-head">
+      <span class="tag" data-i18n="home.showcaseTag">Exam analysis</span>
+      <h2 data-i18n="home.showcaseHead">Understand an exam before you apply.</h2>
+      <p data-i18n="home.showcaseLead">A quick example of what GovBabu pulls out of an official notification — real data for one exam, not a mockup.</p>
+    </div>
+    <div id="examAnalysisShowcase"></div>
+  </section>
 
-    <section class="flow-wrap">
-      <div class="flow-card">
+  <!-- 3. EXAM DISCOVERY -->
+  <section class="section wrap" id="examDiscovery" style="padding-top:10px">
+    <div class="section-head">
+      <span class="tag" data-i18n="home.discoveryTag">Start here</span>
+      <h2 data-i18n="home.discoveryHead">Find your government exam</h2>
+      <p data-i18n="home.discoveryLead">Search by name, or browse by category — see seats, eligibility and dates for every exam GovBabu covers.</p>
+    </div>
 
-        <div class="fstep-row" id="stepIndicator">
-          <div class="fstep active" data-step="1"><span>1</span><span data-i18n="step.exam">Exam</span></div>
-          <div class="fstep" data-step="2"><span>2</span><span data-i18n="step.analysis">Check out our analysis</span></div>
-          <div class="fstep" data-step="3"><span>3</span><span data-i18n="step.upload">Upload</span></div>
-          <div class="fstep" data-step="4"><span>4</span><span data-i18n="step.download">Download</span></div>
-        </div>
+    <div class="flow-card">
 
-        <div class="flow-panel" id="panelExam">
-          <label class="flow-label" for="examSearch" data-i18n="home.whichExam">Which exam are you applying for?</label>
-          <input id="examSearch" class="search-input" placeholder="Search e.g. SSC CGL, IBPS PO, UPSC…" data-i18n-placeholder="home.searchPlaceholder" autocomplete="off">
-          <div id="examResults" class="exam-result-list"></div>
-          <div id="popularExams" class="popular-exams"></div>
-          <div id="examByCategory" class="exam-by-category"></div>
-          <div class="flow-links">
-            <span><a href="exams.html" class="link-btn" data-i18n="home.browseAll">Browse all exams →</a> · <a href="calendar.html" class="link-btn" data-i18n="home.calendar">Calendar →</a></span>
-            <button class="btn btn-ghost" id="skipExamBtn" type="button" data-i18n="home.skip">Skip — I just need to resize a file →</button>
-          </div>
-        </div>
-
-        <div class="flow-panel" id="panelUpload" style="display:none">
-          <div class="selected-exam-bar" id="selectedExamBar"></div>
-          <div class="exam-detail-panel" id="examDetailPanel"></div>
-          <div class="upload-slots" id="uploadSlots"></div>
-          <div class="pay-bar" id="payBar" style="display:none"></div>
-          <button class="btn btn-outline btn-sm" id="changeExamBtn" type="button" data-i18n="home.changeExam">← Change exam</button>
-        </div>
-
+      <div class="fstep-row" id="stepIndicator">
+        <div class="fstep active" data-step="1"><span>1</span><span data-i18n="step.exam">Exam</span></div>
+        <div class="fstep" data-step="2"><span>2</span><span data-i18n="step.analysis">Check out our analysis</span></div>
+        <div class="fstep" data-step="3"><span>3</span><span data-i18n="step.upload">Upload</span></div>
+        <div class="fstep" data-step="4"><span>4</span><span data-i18n="step.download">Download</span></div>
       </div>
 
-      <p class="flow-disclaimer" data-i18n="home.disclaimer">GovBabu is independent and not affiliated with UPSC, SSC, IBPS, Railway, BPSC or any government body. Requirement details are compiled from official notifications where available — always confirm against the current official notification before submitting.</p>
-    </section>
-
-    <aside class="home-sidebar home-sidebar-right">
-      <div class="sidebar-card">
-        <h3 class="sidebar-title" data-i18n="sidebar.results">🏆 Results</h3>
-        <div id="resultsPanel"></div>
+      <div class="flow-panel" id="panelExam">
+        <label class="flow-label" for="examSearch" data-i18n="home.whichExam">Which exam are you applying for?</label>
+        <input id="examSearch" class="search-input" placeholder="Search e.g. SSC CGL, IBPS PO, UPSC…" data-i18n-placeholder="home.searchPlaceholder" autocomplete="off">
+        <div id="examResults" class="exam-result-list"></div>
+        <div id="popularExams" class="popular-exams"></div>
+        <div id="examByCategory" class="exam-by-category"></div>
+        <div class="flow-links">
+          <span><a href="exams.html" class="link-btn" data-i18n="home.browseAll">Browse all exams →</a> · <a href="calendar.html" class="link-btn" data-i18n="home.calendar">Calendar →</a></span>
+          <button class="btn btn-ghost" id="skipExamBtn" type="button" data-i18n="home.skip">Skip — I just need to resize a file →</button>
+        </div>
       </div>
-    </aside>
-  </div>
+
+      <div class="flow-panel" id="panelUpload" style="display:none">
+        <div class="selected-exam-bar" id="selectedExamBar"></div>
+        <div class="exam-detail-panel" id="examDetailPanel"></div>
+        <div class="upload-slots" id="uploadSlots"></div>
+        <div class="pay-bar" id="payBar" style="display:none"></div>
+        <button class="btn btn-outline btn-sm" id="changeExamBtn" type="button" data-i18n="home.changeExam">← Change exam</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. WHAT YOU CAN DO -->
+  <section class="section wrap">
+    <div class="section-head">
+      <span class="tag" data-i18n="home.capTag">What you can do</span>
+      <h2 data-i18n="home.capHead">Everything you need before you apply.</h2>
+    </div>
+    <div class="value-card value-card-featured">
+      <h3 data-i18n="home.cap2Title">Analyze an Exam</h3>
+      <p data-i18n="home.cap2Desc">See vacancies, eligibility, pay, important dates and how to apply — pulled from the official notification into one clear view.</p>
+      <a class="link-btn" href="#examAnalysis" data-i18n="home.cap2Link">↑ See it in action above</a>
+    </div>
+    <div class="value-grid">
+      <div class="value-card">
+        <h3 data-i18n="home.cap1Title">Explore Exams</h3>
+        <p data-i18n="home.cap1Desc">Search or browse government exams by category — Banking, Railway, SSC, State PSC and more.</p>
+      </div>
+      <div class="value-card">
+        <span class="tag" data-i18n="home.comingSoonBadge">Coming soon</span>
+        <h3 data-i18n="home.cap3Title">Check Eligibility</h3>
+        <p data-i18n="home.cap3Desc">Tell us your details and see whether an exam is relevant to you.</p>
+      </div>
+      <div class="value-card">
+        <h3 data-i18n="home.cap4Title">Understand How to Apply</h3>
+        <p data-i18n="home.cap4Desc">Follow the application steps without decoding a long PDF yourself.</p>
+      </div>
+      <div class="value-card">
+        <h3 data-i18n="home.cap5Title">Prepare Documents</h3>
+        <p data-i18n="home.cap5Desc">Resize your photo and signature to the exam's exact specification, right in your browser.</p>
+      </div>
+      <div class="value-card">
+        <h3 data-i18n="home.cap6Title">Stay Updated</h3>
+        <p data-i18n="home.cap6Desc">Know when a form opens near you. Admit card and result tracking are on the way.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. EXAMS CLOSING SOON (Notice Board, relocated) -->
+  <section class="section wrap" style="max-width:760px">
+    <div class="section-head">
+      <span class="tag" data-i18n="home.closingTag">Exams closing soon</span>
+      <h2 data-i18n="home.closingHead">Don't miss a deadline</h2>
+    </div>
+    <div class="sidebar-card">
+      <div id="noticeBoard"></div>
+    </div>
+    <p style="text-align:center;margin-top:18px"><a href="exams.html" class="link-btn" data-i18n="home.viewAllExams">View all exams →</a></p>
+  </section>
+
+  <!-- 6. PERSONALIZED EXAMS — COMING SOON -->
+  <section class="section wrap" style="max-width:680px">
+    <div class="section-head">
+      <span class="tag" data-i18n="home.comingSoonBadge">Coming soon</span>
+      <h2 data-i18n="home.personalizedHead">Your exams, personalized.</h2>
+      <p data-i18n="home.personalizedDesc">Tell GovBabu about your education, age, category and other eligibility details. We'll help you discover government exams that may be relevant to you, and let you set up alerts for the ones you care about.</p>
+    </div>
+  </section>
+
+  <!-- 7. APPLICATION DOCUMENTS -->
+  <section class="section wrap" style="max-width:680px">
+    <div class="section-head">
+      <span class="tag" data-i18n="home.docsTag">Application documents</span>
+      <h2 data-i18n="home.docsHead">Apply without the last-minute hassle</h2>
+      <p data-i18n="home.docsDesc">Once you've picked your exam, GovBabu resizes your photo and signature to that exam's exact specification — right in your browser.</p>
+    </div>
+    <div class="hero-cta" style="justify-content:center">
+      <a href="#examDiscovery" class="btn btn-primary" data-i18n="home.docsCta">Prepare your documents</a>
+    </div>
+  </section>
+
+  <!-- 8. RESULTS (relocated) -->
+  <section class="section wrap" style="max-width:760px">
+    <div class="section-head">
+      <span class="tag" data-i18n="home.resultsTag">Results</span>
+      <h2 data-i18n="home.resultsHead">Check your result</h2>
+    </div>
+    <div class="sidebar-card">
+      <div id="resultsPanel"></div>
+    </div>
+  </section>
+
+  <!-- 9. TRUST / PRIVACY -->
+  <section class="section wrap" style="max-width:680px">
+    <div class="principle-block">
+      <span class="tag" data-i18n="home.trustTag">Trust &amp; privacy</span>
+      <h2 data-i18n="home.trustHead">Your documents stay with you.</h2>
+      <p data-i18n="home.trustBody">Photos and signatures are processed directly in your browser. They are not uploaded to our servers.</p>
+      <p data-i18n="home.disclaimer">GovBabu is independent and not affiliated with UPSC, SSC, IBPS, Railway, BPSC or any government body. Requirement details are compiled from official notifications where available — always confirm against the current official notification before submitting.</p>
+    </div>
+  </section>
+
+  <!-- 10. FAQ -->
+  <section class="section wrap" style="max-width:760px">
+    <div class="section-head">
+      <span class="tag" data-i18n="home.faqTag">FAQ</span>
+      <h2 data-i18n="home.faqHead">Frequently asked questions</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary data-i18n="home.faq1q">What is GovBabu?</summary>
+        <p data-i18n="home.faq1a">GovBabu helps Indian government-exam aspirants discover exams, understand eligibility and notification details, prepare their application documents, and stay updated — all in one place.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="home.faq2q">Is GovBabu a government website?</summary>
+        <p data-i18n="home.faq2a">No. GovBabu is an independent platform and is not affiliated with UPSC, SSC, IBPS, Railway, BPSC or any government body.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="home.faq3q">Is GovBabu free?</summary>
+        <p data-i18n="home.faq3a">Yes — GovBabu is free to use for every aspirant right now, with no login required.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="home.faq4q">Where does exam information come from?</summary>
+        <p data-i18n="home.faq4a">Exam details are researched and sourced from official notifications where available. Always confirm against the current official notification before submitting your application.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="home.faq5q">Can I use GovBabu without creating an account?</summary>
+        <p data-i18n="home.faq5a">Yes — nothing on GovBabu currently requires an account or login.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="home.faq6q">Are my photos and signatures uploaded to a server?</summary>
+        <p data-i18n="home.faq6a">No — photo and signature processing happens directly in your browser and is never uploaded to our servers.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="home.faq7q">Can GovBabu tell me which exams I am eligible for?</summary>
+        <p data-i18n="home.faq7a">Not yet — personalized eligibility matching is planned and will be clearly labeled "Coming soon" when it's available. Today, eligibility details are shown per exam for you to check yourself.</p>
+      </details>
+    </div>
+  </section>
+
 </main>
 
 <footer class="site-footer">

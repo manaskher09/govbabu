@@ -48,12 +48,49 @@ function $(id){return document.getElementById(id)}
 const LANG_STRINGS={
   en:{
     'nav.home':'Home','nav.browseExams':'Browse Exams','nav.calendar':'Calendar','nav.about':'About','nav.contact':'Contact',
-    'home.title':'Everything you need to apply for a government exam',
-    'home.lead':'Seats, eligibility, reservation policy and how to apply — researched and sourced for every exam. Then upload your photo &amp; signature and get them resized to the exact spec, ready to submit.',
-    'home.ctaBrowse':'Browse Exams','home.ctaCalendar':'View Exam Calendar',
-    'home.free':'🎉 Free for every aspirant right now — no login, no payment.',
+    'home.title':'Your government exam journey, simplified.',
+    'home.lead':'Government exam information is scattered across dozens of websites and PDFs. GovBabu brings the seats, eligibility, reservation rules and important dates together in one place — then helps you prepare your application.',
+    'home.ctaBrowse':'Explore Exams','home.ctaCalendar':'View Exam Calendar',
+    'home.free':'Free to use • No login required',
     'home.privacy':'🔒 Processed entirely in your browser — your photo and signature never leave your device.',
     'home.whichExam':'Which exam are you applying for?',
+    'home.discoveryTag':'Start here','home.discoveryHead':'Find your government exam',
+    'home.discoveryLead':'Search by name, or browse by category — see seats, eligibility and dates for every exam GovBabu covers.',
+    'home.capTag':'What you can do','home.capHead':'Everything you need before you apply.',
+    'home.cap1Title':'Explore Exams','home.cap1Desc':'Search or browse government exams by category — Banking, Railway, SSC, State PSC and more.',
+    'home.cap2Title':'Analyze an Exam','home.cap2Desc':'See vacancies, eligibility, pay, important dates and how to apply — pulled from the official notification into one clear view.',
+    'home.cap3Title':'Check Eligibility','home.cap3Desc':'Tell us your details and see whether an exam is relevant to you.',
+    'home.cap4Title':'Understand How to Apply','home.cap4Desc':'Follow the application steps without decoding a long PDF yourself.',
+    'home.cap5Title':'Prepare Documents','home.cap5Desc':'Resize your photo and signature to the exam\'s exact specification, right in your browser.',
+    'home.cap6Title':'Stay Updated','home.cap6Desc':'Know when a form opens near you. Admit card and result tracking are on the way.',
+    'home.showcaseTag':'Exam analysis','home.showcaseHead':'Understand an exam before you apply.',
+    'home.showcaseLead':'A quick example of what GovBabu pulls out of an official notification — real data for one exam, not a mockup.',
+    'home.showcaseStatusOpen':'Applications open','home.showcaseVacancies':'Vacancies','home.showcaseEligibility':'Eligibility (age)',
+    'home.showcaseQualification':'Qualification','home.showcaseDeadline':'Last date','home.showcasePay':'Pay',
+    'home.showcaseHowToApplyLabel':'First step to apply','home.showcaseCta':'See full exam analysis →',
+    'home.showcaseNone':'No exams are open for application right now — check back soon.',
+    'home.cap2Link':'↑ See it in action above',
+    'home.laneForm':'Form opened','home.laneAdmit':'Admit card','home.laneResult':'Result declared',
+    'home.laneFormEmpty':'No forms are open right now — check back soon.',
+    'home.laneAdmitEmpty':'Admit card tracking isn\'t available yet — coming as GovBabu\'s monitoring grows.',
+    'home.laneResultEmpty':'No results have been announced yet.',
+    'home.closingTag':'Exams closing soon','home.closingHead':'Don\'t miss a deadline','home.viewAllExams':'View all exams →',
+    'home.comingSoonBadge':'Coming soon','home.personalizedHead':'Your exams, personalized.',
+    'home.personalizedDesc':'Tell GovBabu about your education, age, category and other eligibility details. We\'ll help you discover government exams that may be relevant to you, and let you set up alerts for the ones you care about.',
+    'home.docsTag':'Application documents','home.docsHead':'Apply without the last-minute hassle',
+    'home.docsDesc':'Once you\'ve picked your exam, GovBabu resizes your photo and signature to that exam\'s exact specification — right in your browser.',
+    'home.docsCta':'Prepare your documents',
+    'home.resultsTag':'Results','home.resultsHead':'Check your result',
+    'home.trustTag':'Trust &amp; privacy','home.trustHead':'Your documents stay with you.',
+    'home.trustBody':'Photos and signatures are processed directly in your browser. They are not uploaded to our servers.',
+    'home.faqTag':'FAQ','home.faqHead':'Frequently asked questions',
+    'home.faq1q':'What is GovBabu?','home.faq1a':'GovBabu helps Indian government-exam aspirants discover exams, understand eligibility and notification details, prepare their application documents, and stay updated — all in one place.',
+    'home.faq2q':'Is GovBabu a government website?','home.faq2a':'No. GovBabu is an independent platform and is not affiliated with UPSC, SSC, IBPS, Railway, BPSC or any government body.',
+    'home.faq3q':'Is GovBabu free?','home.faq3a':'Yes — GovBabu is free to use for every aspirant right now, with no login required.',
+    'home.faq4q':'Where does exam information come from?','home.faq4a':'Exam details are researched and sourced from official notifications where available. Always confirm against the current official notification before submitting your application.',
+    'home.faq5q':'Can I use GovBabu without creating an account?','home.faq5a':'Yes — nothing on GovBabu currently requires an account or login.',
+    'home.faq6q':'Are my photos and signatures uploaded to a server?','home.faq6a':'No — photo and signature processing happens directly in your browser and is never uploaded to our servers.',
+    'home.faq7q':'Can GovBabu tell me which exams I am eligible for?','home.faq7a':'Not yet — personalized eligibility matching is planned and will be clearly labeled "Coming soon" when it\'s available. Today, eligibility details are shown per exam for you to check yourself.',
     'home.browseAll':'Browse all exams →','home.calendar':'Calendar →',
     'home.skip':'Skip — I just need to resize a file →',
     'home.changeExam':'← Change exam','home.startOver':'← Start over',
@@ -85,6 +122,7 @@ const LANG_STRINGS={
     'exams.searchLabel':'Search exams','exams.searchPlaceholder':'Search e.g. SSC, Railway, Banking…',
     'notice.noneOpen':'No open applications right now — check back soon.','notice.officialNotification':'Official notification ↗',
     'results.viewResult':'View result ↗','results.notDeclared':'Not declared yet',
+    'results.pendingNote':'No other results have been announced yet.','results.checkStatus':'Check an exam\'s status →',
     'home.popularLabel':'Most applied-for right now',
     'search.noMatch':'No match — try a shorter search, or','search.skipInstead':'skip and resize a file',
     'slot.photo':'Photo','slot.signature':'Signature',
@@ -300,10 +338,10 @@ const LANG_STRINGS={
   },
   hi:{
     'nav.home':'होम','nav.browseExams':'सभी परीक्षाएं','nav.calendar':'परीक्षा कैलेंडर','nav.about':'हमारे बारे में','nav.contact':'संपर्क करें',
-    'home.title':'सरकारी परीक्षा में आवेदन के लिए जो कुछ भी चाहिए',
-    'home.lead':'सीटें, पात्रता, आरक्षण नीति और आवेदन कैसे करें — हर परीक्षा के लिए शोध और स्रोत सहित। फिर अपनी फोटो और हस्ताक्षर अपलोड करें, सही साइज़ में तैयार, जमा करने के लिए तैयार।',
+    'home.title':'आपकी सरकारी परीक्षा की यात्रा, अब आसान।',
+    'home.lead':'सरकारी परीक्षाओं की जानकारी दर्जनों वेबसाइटों और PDF में बिखरी होती है। GovBabu सीटें, पात्रता, आरक्षण नियम और ज़रूरी तारीखें एक जगह लाता है — फिर आपके आवेदन की तैयारी में मदद करता है।',
     'home.ctaBrowse':'परीक्षाएं देखें','home.ctaCalendar':'परीक्षा कैलेंडर देखें',
-    'home.free':'🎉 अभी सभी अभ्यर्थियों के लिए मुफ़्त — कोई लॉगिन नहीं, कोई भुगतान नहीं।',
+    'home.free':'मुफ़्त उपयोग • लॉगिन ज़रूरी नहीं',
     'home.privacy':'🔒 पूरी तरह आपके ब्राउज़र में प्रोसेस होता है — आपकी फोटो और हस्ताक्षर कभी आपके डिवाइस से बाहर नहीं जाते।',
     'home.whichExam':'आप किस परीक्षा के लिए आवेदन कर रहे हैं?',
     'home.browseAll':'सभी परीक्षाएं देखें →','home.calendar':'कैलेंडर →',
@@ -594,7 +632,7 @@ function applyLang(lang){
   });
   document.documentElement.lang=lang;
   // Re-render every exam-data-driven view so it picks up Hindi fields too.
-  ['renderPopularExams','renderExamsByCategory','renderExamDirectory','renderExamCalendar','renderNoticeTicker','renderNoticeBoard','renderResultsPanel']
+  ['renderPopularExams','renderExamsByCategory','renderExamDirectory','renderExamCalendar','renderNoticeTicker','renderNoticeBoard','renderResultsPanel','renderExamAnalysisShowcase']
     .forEach(fn=>{ if(typeof window[fn]==='function') window[fn](); });
   if(typeof state!=='undefined'&&state.exam){
     renderSelectedExamBar();
@@ -1673,19 +1711,57 @@ function urgentExamsList(){
     });
 }
 
-/* ---- Notice ticker (index.html, header area) ---- */
+// Every exam with a declared result, most-popular first — mirrors
+// urgentExamsList()'s role but for the Result lane. Real data only: reads
+// the same a.results object the Results panel already trusts (see
+// renderResultsPanel). No announcement-timestamp field exists yet, so
+// results are shown as declared, never claimed to be "just announced".
+function declaredResultsList(){
+  return [...APPLICATIONS].filter(a=>a.results).sort((a,b)=>a.popularity-b.popularity);
+}
+
+// One scrolling lane of notice-ticker-item links, duplicated once so the
+// marquee loop has no visible seam.
+function noticeLaneTrack(items){
+  return '<div class="notice-lane-scroll"><div class="notice-ticker-track">'+items+items+'</div></div>';
+}
+
+/* ---- Notice ticker (index.html, header area) ----
+   Three independent lanes — Form Opened, Admit Card, Result Declared — each
+   sourced from real APPLICATIONS data. Admit Card has no backing data field
+   anywhere in the model today, so it always renders an honest empty state
+   rather than inventing releases; wire it up here once a real admitCard
+   field (with a trustworthy date) exists. The whole ticker only hides
+   itself if every lane is empty. */
 function renderNoticeTicker(){
   const box=$('noticeTicker');
   if(!box) return;
+
   const urgent=urgentExamsList();
-  if(!urgent.length){box.style.display='none';return}
-  const items=urgent.map(({a,d})=>{
+  const formHtml=urgent.length?noticeLaneTrack(urgent.map(({a,d})=>{
     const dl=d?daysLeft(d):null;
     const label=dl==null?T('detail.applicationsOpen').toLowerCase():closesPhraseShort(dl);
-    return '<a class="notice-ticker-item" href="index.html?exam='+a.code+'"><span class="notice-ticker-dot"></span>'+tr(a,'name')+' — '+label+'</a>';
-  }).join('');
-  // Duplicated once so the scroll loop has no visible seam.
-  box.innerHTML='<div class="notice-ticker-track">'+items+items+'</div>';
+    return '<a class="notice-ticker-item" href="index.html?exam='+a.code+'">'+tr(a,'name')+' — '+label+'</a>';
+  }).join('')):'';
+
+  const declared=declaredResultsList();
+  const resultHtml=declared.length?noticeLaneTrack(declared.map(a=>{
+    const r=a.results;
+    return '<a class="notice-ticker-item" href="index.html?exam='+a.code+'">'+tr(a,'name')+' — '+r.stage+'</a>';
+  }).join('')):'';
+
+  if(!formHtml&&!resultHtml){box.style.display='none';return}
+  box.style.display='';
+
+  const lane=(cls,labelKey,contentHtml,emptyKey)=>
+    '<div class="notice-lane"><span class="notice-type-badge notice-lane-label ' +cls+ '">'+T(labelKey)+'</span>'+
+    (contentHtml||'<div class="notice-lane-empty">'+T(emptyKey)+'</div>')+
+    '</div>';
+
+  box.innerHTML=
+    lane('type-form','home.laneForm',formHtml,'home.laneFormEmpty')+
+    lane('type-admit','home.laneAdmit','','home.laneAdmitEmpty')+
+    lane('type-result','home.laneResult',resultHtml,'home.laneResultEmpty');
 }
 
 /* ---- Notice board (index.html sidebar) ----
@@ -1708,7 +1784,7 @@ function renderNoticeBoard(){
     const phrase=dl==null?T('detail.applicationsOpen'):closesPhraseShort(dl);
     const label=phrase.charAt(0).toUpperCase()+phrase.slice(1)+dateStr;
     return '<div class="notice-item">'+
-      '<a class="notice-item-name" href="index.html?exam='+a.code+'"><b>'+tr(a,'name')+'</b><span>'+label+'</span></a>'+
+      '<a class="notice-item-name" href="index.html?exam='+a.code+'"><span class="notice-type-badge type-form">'+T('home.laneForm')+'</span><b>'+tr(a,'name')+'</b><span>'+label+'</span></a>'+
       (a.officialUrl?'<a class="notice-official-link" href="'+a.officialUrl+'" target="_blank" rel="noopener">'+T('notice.officialNotification')+'</a>':'')+
       '</div>';
   }).join('');
@@ -1716,25 +1792,75 @@ function renderNoticeBoard(){
 
 /* ---- Results panel (index.html sidebar) ----
    Honest by design: we have no result-lookup database, so this only ever
-   links out to each exam's own official site — either the confirmed
-   result info we've researched, or a plain "not yet declared" state. Never
-   a fake in-house result checker. */
+   links out to each exam's own official site (r.url) — never a fake
+   in-house result checker. Real declared results (rare — most exams have
+   none yet) are shown prominently; the rest are compressed into one line
+   instead of a long wall of "not declared" rows, which read as empty or
+   negative rather than useful. */
 function renderResultsPanel(){
   const box=$('resultsPanel');
   if(!box) return;
-  const sorted=[...APPLICATIONS].sort((a,b)=>a.popularity-b.popularity);
-  box.innerHTML=sorted.map(a=>{
+  const declared=declaredResultsList();
+  const pending=APPLICATIONS.filter(a=>!a.results);
+  const declaredHtml=declared.map(a=>{
     const r=a.results;
-    // Only ever a link to the result itself (r.url) when one is declared —
-    // never the application notification PDF, and no link at all when a
-    // result hasn't been declared, so nothing pending gets a dead/irrelevant
-    // attachment.
-    const meta=r
-      ?'<span class="result-date">'+r.stage+' · '+r.date+'</span>'+
-       (r.url?'<a class="result-pill declared" href="'+r.url+'" target="_blank" rel="noopener">'+T('results.viewResult')+'</a>':'')
-      :'<span class="result-pill pending">'+T('results.notDeclared')+'</span>';
-    return '<div class="result-item"><span class="rname">'+tr(a,'name')+'</span><div class="result-meta">'+meta+'</div></div>';
+    return '<div class="result-item"><span class="rname">'+tr(a,'name')+'</span><div class="result-meta">'+
+      '<span class="result-date">'+r.stage+' · '+r.date+'</span>'+
+      (r.url?'<a class="result-pill declared" href="'+r.url+'" target="_blank" rel="noopener">'+T('results.viewResult')+'</a>':'')+
+      '</div></div>';
   }).join('');
+  const pendingHtml=pending.length
+    ?'<div class="results-pending-note">'+T('results.pendingNote')+' <a href="exams.html">'+T('results.checkStatus')+'</a></div>'
+    :'';
+  box.innerHTML=declaredHtml+pendingHtml||('<div class="notice-empty">'+T('results.notDeclared')+'</div>');
+}
+
+// Real-data showcase of what "Analyze an Exam" means — the homepage's
+// flagship proof that GovBabu is more than a notification list. Reads
+// live from APPLICATIONS/details rather than hardcoding any number, so it
+// can never drift out of sync with the data file, and it's the single
+// place this "example exam" concept lives (no second source of truth).
+// Prefers SBI Clerk (a clean, simple entry) but only while it's actually
+// open — a showcase must never present a closed exam's deadline as
+// something to act on. Falls back to any other open exam, or a plain empty
+// state if nothing is open, rather than showing stale/expired info. Only
+// shows fields with real structured data (vacancies/eligibility/pay are
+// missing on some exams) — never a fabricated "competition level" or
+// single salary figure.
+function renderExamAnalysisShowcase(){
+  const box=$('examAnalysisShowcase');
+  if(!box) return;
+  const preferred=APPLICATIONS.find(x=>x.code==='SBI-CL');
+  const a=(preferred&&preferred.status==='open')?preferred:APPLICATIONS.find(x=>x.status==='open');
+  if(!a){
+    box.innerHTML='<div class="showcase-card"><p class="notice-empty">'+T('home.showcaseNone')+'</p></div>';
+    return;
+  }
+  const elig=a.details&&a.details.eligibility;
+  const ageRaw=elig&&elig.age;
+  const age=Array.isArray(ageRaw)?ageRaw[0]:ageRaw;
+  const qualification=elig&&elig.qualification;
+  const pay=a.details&&a.details.payGroups&&a.details.payGroups[0]&&a.details.payGroups[0].band;
+  const firstStep=a.details&&a.details.howToApply&&a.details.howToApply[0];
+  const facts=[
+    a.vacancies?['home.showcaseVacancies',a.vacancies]:null,
+    age?['home.showcaseEligibility',age]:null,
+    qualification?['home.showcaseQualification',qualification]:null,
+    ['home.showcaseDeadline',a.applyEnd],
+    pay?['home.showcasePay',pay]:null,
+  ].filter(Boolean);
+  box.innerHTML='<div class="showcase-card">'+
+    '<div class="showcase-card-head">'+
+      '<span class="showcase-exam-name">'+tr(a,'name')+'</span>'+
+      '<span class="tag">'+a.cat+'</span>'+
+    '</div>'+
+    '<div class="showcase-status">'+T('home.showcaseStatusOpen')+'</div>'+
+    '<div class="showcase-fact-grid">'+
+      facts.map(([labelKey,val])=>'<div class="showcase-fact"><span>'+T(labelKey)+'</span><b>'+val+'</b></div>').join('')+
+    '</div>'+
+    (firstStep?'<p class="showcase-step"><span class="tag">'+T('home.showcaseHowToApplyLabel')+'</span> '+firstStep+'</p>':'')+
+    '<a class="btn btn-primary" href="index.html?exam='+a.code+'">'+T('home.showcaseCta')+'</a>'+
+    '</div>';
 }
 
 /* ---- Step 1: exam search ---- */
@@ -2357,6 +2483,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   renderNoticeTicker();
   renderNoticeBoard();
   renderResultsPanel();
+  renderExamAnalysisShowcase();
 
   // Shareable deep link, e.g. index.html?exam=IBPS-PO — drops a visitor
   // straight into Step 2 for that exam instead of making them search.

@@ -393,8 +393,6 @@ p{margin:0}
 :root[data-theme="dark"] .legal-block p a{color:var(--brand-light)}
 .legal-updated{margin-top:32px;padding-top:16px;border-top:1px solid var(--line);font-size:12.5px;font-style:italic}
 .value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:20px}
-.value-grid-4{grid-template-columns:repeat(4,1fr)}
-@media(max-width:860px){.value-grid-4{grid-template-columns:repeat(2,1fr)}}
 .value-card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:24px}
 .value-card h3{font-size:16px;margin-bottom:8px}
 .value-card p{color:var(--muted);font-size:14px;line-height:1.6}
@@ -524,15 +522,32 @@ p{margin:0}
   .stat-row{gap:24px}
 }
 
-/* ---------- notice ticker ---------- */
-.notice-ticker{background:var(--surface-2);border-bottom:1px solid var(--line);overflow:hidden;white-space:nowrap;padding:8px 0}
+/* ---------- notice ticker: three lifecycle lanes ---------- */
+.notice-ticker{background:var(--surface-2);border-bottom:1px solid var(--line)}
+.notice-lane{display:flex;align-items:center;gap:10px;padding:6px 14px;border-bottom:1px solid var(--line);overflow:hidden}
+.notice-lane:last-child{border-bottom:none}
+.notice-lane-scroll{flex:1;min-width:0;overflow:hidden;white-space:nowrap}
+.notice-lane-empty{flex:1;min-width:0;font-size:12px;color:var(--muted)}
 .notice-ticker-track{display:inline-block;padding-left:100%;animation:ticker-scroll 45s linear infinite}
-.notice-ticker:hover .notice-ticker-track{animation-play-state:paused}
-.notice-ticker-item{display:inline-flex;align-items:center;gap:7px;margin-right:48px;font-size:13px;font-weight:600;color:var(--ink);text-decoration:none}
+.notice-lane:hover .notice-ticker-track{animation-play-state:paused}
+.notice-ticker-item{display:inline-block;margin-right:48px;font-size:13px;font-weight:600;color:var(--ink);text-decoration:none}
 .notice-ticker-item:hover{color:var(--brand-dark)}
-.notice-ticker-dot{width:6px;height:6px;border-radius:50%;background:var(--danger);flex:none}
 @keyframes ticker-scroll{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
 @media(prefers-reduced-motion:reduce){.notice-ticker-track{animation:none}}
+
+/* Quick-update type badges — text label always present, color never the
+   only signal. Shared by the ticker's per-lane labels (.notice-lane-label)
+   and the Notice Board's per-item badges — one color/shape definition for
+   both. Only .type-form and .type-result are backed by real data today;
+   .type-admit exists because the lane itself is real (labelled + rendered),
+   even though its content is an honest empty state until a real admitCard
+   field exists. */
+.notice-type-badge{display:inline-block;flex:none;font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:2px 7px;border-radius:5px;margin-right:2px}
+.notice-type-badge.type-form{background:color-mix(in srgb,var(--success) 15%,transparent);color:var(--success)}
+.notice-type-badge.type-admit{background:color-mix(in srgb,var(--brand) 15%,transparent);color:var(--brand-dark)}
+.notice-type-badge.type-result{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent-dark)}
+:root[data-theme="dark"] .notice-type-badge.type-admit{color:var(--brand-light)}
+.notice-lane-label{white-space:nowrap;margin-right:0}
 
 /* ---------- home 3-col layout ---------- */
 .home-layout{display:grid;grid-template-columns:240px minmax(0,1fr) 240px;gap:24px;align-items:stretch;max-width:1220px;padding-bottom:60px}
@@ -561,6 +576,30 @@ p{margin:0}
 .result-pill{font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:999px;flex:none;text-decoration:none}
 .result-pill.declared{background:color-mix(in srgb,var(--success) 15%,transparent);color:var(--success)}
 .result-pill.pending{background:var(--surface-2);color:var(--muted)}
+.results-pending-note{padding:10px 0 2px;font-size:12.5px;color:var(--muted)}
+.results-pending-note a{color:var(--brand-dark);font-weight:700;text-decoration:none}
+.results-pending-note a:hover{text-decoration:underline}
+:root[data-theme="dark"] .results-pending-note a{color:var(--brand-light)}
+
+/* ---------- exam analysis showcase (homepage, flagship section) ---------- */
+.showcase-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px 28px;box-shadow:var(--shadow-md)}
+.showcase-card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.showcase-exam-name{font-size:19px;font-weight:800;color:var(--ink)}
+.showcase-status{font-size:12.5px;font-weight:700;color:var(--success);margin-top:4px}
+.showcase-fact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.showcase-fact{padding:10px 0;border-top:1px solid var(--line);font-size:13px}
+.showcase-fact span{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.03em;margin-bottom:4px}
+.showcase-fact b{color:var(--ink);font-weight:700}
+.showcase-step{margin-top:16px;font-size:13px;color:var(--muted);line-height:1.6}
+.showcase-step .tag{margin-bottom:0;margin-right:6px;vertical-align:middle}
+.showcase-card .btn{margin-top:18px}
+@media(max-width:640px){.showcase-fact-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* ---------- featured capability card ---------- */
+.value-card-featured{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:var(--radius);padding:24px 28px;margin-top:20px}
+.value-card-featured h3{font-size:19px;margin-bottom:8px}
+.value-card-featured p{color:var(--muted);font-size:14.5px;line-height:1.6;margin-bottom:10px}
+.value-card-featured .link-btn{font-weight:700}
 @media(max-width:1180px){
   .home-layout{grid-template-columns:minmax(0,1fr) 260px;align-items:start}
   .home-sidebar-left{order:3;position:static}
