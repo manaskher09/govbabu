@@ -13,6 +13,10 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://www.govbabu.com/tools.html</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://www.govbabu.com/about.html</loc>
     <priority>0.5</priority>
   </url>
@@ -165,6 +169,136 @@
   <url>
     <loc>https://www.govbabu.com/exams/ib-acio/</loc>
     <lastmod>2026-08-31</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.govbabu.com/exams/rpf-constable/</loc>
+    <lastmod>2026-09-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.govbabu.com/exams/india-post-gds/</loc>
+    <lastmod>2026-09-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.govbabu.com/exams/afcat/</loc>
+    <lastmod>2026-09-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.govbabu.com/exams/rbi-grade-b/</loc>
+    <lastmod>2026-09-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.govbabu.com/exams/kvs-tgt-pgt-prt/</loc>
+    <lastmod>2026-09-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.govbabu.com/exams/dsssb-tgt-cs/</loc>
+    <lastmod>2026-09-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.govbabu.com/exams/lic-aao/</loc>
+    <lastmod>2026-09-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.govbabu.com/exams/hssc-grp-c/</loc>
+    <lastmod>2026-09-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.govbabu.com/exams/bihar-police-constable/</loc>
+    <lastmod>2026-09-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.govbabu.com/exams/bihar-si/</loc>
+    <lastmod>2026-09-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.govbabu.com/exams/bihar-tre-4/</loc>
+    <lastmod>2026-09-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.govbabu.com/exams/up-lekhpal/</loc>
+    <lastmod>2026-09-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.govbabu.com/exams/upsssc-pet/</loc>
+    <lastmod>2026-09-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.govbabu.com/exams/rsmssb-patwari/</loc>
+    <lastmod>2026-09-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.govbabu.com/exams/raj-police-const/</loc>
+    <lastmod>2026-09-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.govbabu.com/exams/mah-police-const/</loc>
+    <lastmod>2026-09-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.govbabu.com/exams/mp-police-const/</loc>
+    <lastmod>2026-09-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.govbabu.com/exams/wbpsc-wbcs/</loc>
+    <lastmod>2026-09-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.govbabu.com/exams/tnpsc-grp4/</loc>
+    <lastmod>2026-09-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.govbabu.com/exams/kpsc-ldc/</loc>
+    <lastmod>2026-09-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.govbabu.com/exams/rrb-technician/</loc>
+    <lastmod>2026-09-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.govbabu.com/exams/ssc-steno/</loc>
+    <lastmod>2026-09-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.govbabu.com/exams/opsc-ocs/</loc>
+    <lastmod>2026-09-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.govbabu.com/exams/jpsc-cce/</loc>
+    <lastmod>2026-09-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.govbabu.com/exams/tgpsc-group1/</loc>
+    <lastmod>2026-09-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.govbabu.com/exams/kpsc-degree-prelims/</loc>
+    <lastmod>2026-09-05</lastmod>
     <priority>0.8</priority>
   </url>
 </urlset>

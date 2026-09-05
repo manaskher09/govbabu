@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="/styles.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"JobPosting","title":"BPSC","description":"Integrated 72nd Combined (Preliminary) Competitive Examination — prelim postponed from 26 Jul 2026; tentatively rescheduled to 25 Oct 2026 per BPSC's own exam calendar (BPSC itself labels all its calendar dates \"tentative\")","identifier":{"@type":"PropertyValue","name":"GovBabu","value":"BPSC"},"hiringOrganization":{"@type":"Organization","name":"State Public Service Commissions"},"jobLocation":{"@type":"Place","address":{"@type":"PostalAddress","addressCountry":"IN"}},"employmentType":"FULL_TIME","datePosted":"2026-08-26","validThrough":"2026-05-31","totalJobOpenings":1189}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.govbabu.com/index.html"},{"@type":"ListItem","position":2,"name":"Browse Exams","item":"https://www.govbabu.com/exams.html"},{"@type":"ListItem","position":3,"name":"BPSC","item":"https://www.govbabu.com/exams/bpsc/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is BPSC Prelims marks counted in the final merit list?","acceptedAnswer":{"@type":"Answer","text":"No. BPSC Prelims is purely a screening/qualifying stage — only Mains and Interview marks count toward the final merit and rank."}},{"@type":"Question","name":"Do I need to clear the optional subject paper in Mains to get selected?","acceptedAnswer":{"@type":"Answer","text":"Yes, but only as a qualifying hurdle — you must score the minimum category-wise percentage in the optional paper, but the marks themselves are not added to your merit score. Only GS-I, GS-II, and Essay marks (plus Interview) decide your final rank."}},{"@type":"Question","name":"Is there negative marking in the BPSC Mains exam?","acceptedAnswer":{"@type":"Answer","text":"The Mains papers (Hindi, GS-I, GS-II, Essay) are descriptive/subjective, so there's no negative marking there. Only the objective Prelims paper has negative marking."}},{"@type":"Question","name":"Does BPSC have a fixed passing percentage for Prelims like some other state PSCs?","acceptedAnswer":{"@type":"Answer","text":"No. BPSC Prelims cutoffs are announced fresh after each exam based on difficulty and number of vacancies — there's no pre-declared fixed qualifying percentage (unlike the Mains Hindi and Optional papers, which do have fixed qualifying minimums)."}}]}</script>
 </head>
 <body>
 
@@ -27,10 +28,14 @@
     <a href="/index.html" class="brand"><span class="brand-mark"><svg viewBox="0 0 46 46" fill="none"><rect x="8" y="24" width="28" height="18" rx="5" stroke="var(--brand)" stroke-width="3.4"/><path d="M14 24V16A8 8 0 0 1 30 16" stroke="var(--brand)" stroke-width="3.4" stroke-linecap="round"/><path d="M32 14L40 10" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/><path d="M32 19L38 17" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/><path d="M8 31Q20 39 35 26" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/></svg></span>GovBabu</a>
     <div class="header-actions">
       <nav class="header-nav" id="headerNav"><a href="/index.html" class="btn btn-outline btn-sm">Home</a>
-      <a href="/exams.html" class="btn btn-outline btn-sm" aria-current="page">Browse Exams</a>
+      <a href="/exams.html" class="btn btn-outline btn-sm" aria-current="page">Find Your Exam</a>
       <a href="/calendar.html" class="btn btn-outline btn-sm">Calendar</a>
-      <a href="/about.html" class="btn btn-outline btn-sm">About</a>
-      <a href="/contact.html" class="btn btn-outline btn-sm">Contact</a></nav>
+      <a href="/manjusha.html" class="btn btn-outline btn-sm">Downloads</a>
+      <a href="/tools.html" class="btn btn-outline btn-sm">Tools</a>
+      <div class="nav-more" id="navMore"><button type="button" class="btn btn-outline btn-sm nav-more-btn" id="navMoreBtn" aria-haspopup="true" aria-expanded="false">More</button>
+      <div class="nav-more-menu" id="navMoreMenu" role="menu"><a href="/about.html" role="menuitem">About</a>
+      <a href="/contact.html" role="menuitem">Contact</a>
+      <a href="/privacy.html" role="menuitem">Privacy Policy</a></div></div></nav>
       <button class="icon-btn lang-toggle" id="langToggle" aria-label="Change language" title="भाषा बदलें / Change language"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><rect x="2" y="4" width="13" height="13" rx="3" stroke="var(--brand)" stroke-width="1.6"/><text x="8.5" y="14" font-size="9" font-weight="700" text-anchor="middle" fill="var(--brand)" font-family="Arial, sans-serif">A</text><rect x="9" y="9" width="13" height="13" rx="3" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.6"/><text x="15.5" y="19" font-size="9" font-weight="700" text-anchor="middle" fill="var(--accent)" font-family="Arial, sans-serif">अ</text></svg></button>
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" aria-pressed="false"><span class="theme-toggle-track"><span class="theme-toggle-thumb"></span></span></button>
       <button class="icon-btn nav-toggle" id="navToggle" type="button" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/></svg></button>
@@ -38,41 +43,47 @@
   </div>
 </header>
 <main id="main">
+  <div class="wrap exam-detail-topbar">
+    <a class="exam-back-link" href="/exams.html"><span class="exam-back-arrow" aria-hidden="true">←</span> Browse all exams</a>
+  </div>
   <div class="wrap flow-intro">
-    <p class="lead"><a href="/exams.html">← Browse all exams</a></p>
     <h1>BPSC</h1>
   </div>
   <div class="wrap">
     <div class="selected-exam-bar">
       <span class="exam-badge-sm">BP</span>
-      <span class="exam-result-text"><b>BPSC</b><small>State PSC</small></span>
+      <span class="exam-result-text"><b>BPSC</b><small>State Exams</small></span>
       <span class="status-pill closed">Closed</span>
       <a class="btn btn-outline btn-sm" href="https://bpsc.bihar.gov.in/wp-content/uploads/BPSC_content/Notices/Advertisement-Integrated-72th-CCE-PT_BPSC-20260505-p1euvo.pdf" target="_blank" rel="noopener">Official Notice ↗</a>
     </div>
     <div class="exam-detail-panel">
-      <div class="quick-overview"><div class="quick-overview-item"><span class="quick-overview-label">Last Date</span><span class="quick-overview-value">31 May 2026</span></div><div class="quick-overview-item"><span class="quick-overview-label">Qualification</span><span class="quick-overview-value">Bachelor&#39;s degree, any discipline, from a recognized university. Bihar domicile is not required to apply — only to claim Bihar-specific reservation benefits.</span></div><div class="quick-overview-item"><span class="quick-overview-label">Vacancies</span><span class="quick-overview-value">1,189</span></div></div>
+      <div class="quick-overview"><div class="quick-overview-item"><span class="quick-overview-label">Status</span><span class="quick-overview-value">Closed</span></div><div class="quick-overview-item"><span class="quick-overview-label">Vacancies</span><span class="quick-overview-value">1,189</span></div><div class="quick-overview-item"><span class="quick-overview-label">Category</span><span class="quick-overview-value">State Exams</span></div></div>
       <details class="detail-note"><summary>ⓘ Data note</summary><p>Vacancy count has moved more than once — 1230 in the original notice, 1189 in BPSC&#39;s official 14 Aug 2026 exam calendar, 1186 per some aggregators. Photo/signature specs above are officially confirmed accurate (verified directly against BPSC&#39;s own application user manual) — no correction needed there.</p></details>
       
       <div class="detail-grid">
+        <div class="detail-card detail-card-wide"><h4>Important Dates</h4><div class="dates-table"><div class="dates-row"><span class="dates-label">Apply Start</span><span class="dates-value">07 May 2026</span></div><div class="dates-row"><span class="dates-label">Applications Closed</span><span class="dates-value">31 May 2026</span></div><div class="dates-row"><span class="dates-label">Last Verified</span><span class="dates-value">26 Aug 2026</span></div></div></div>
         <div class="detail-card"><h4>Posts &amp; Pay</h4><div class="pay-group"><b>Levels 6, 7 and 9 depending on post · Deputy Collector/DSP-equivalent posts at Level 9 (~₹53,100–₹1,67,800 basic, third-party cited, not independently verified against an official Bihar pay-matrix document)</b><span>SDO/Senior Deputy Collector, DSP, Bihar Finance Service AC, Revenue Officer, CDPO, District Commandant, Sub-Registrar, Assistant Director, District Minority Welfare Officer, and other Group B/C posts</span></div><p class="detail-footnote">Pay figures are third-party estimates — an official Bihar-specific pay-matrix document could not be independently verified this pass.</p></div>
         <div class="detail-card"><h4>Eligibility</h4>
         <div class="detail-row"><b>Age</b><ul><li>Minimum age: 20, 21 or 22 years depending on post, as on 01 Aug 2026</li><li>Maximum age: 37 years (General male), 40 years (General female / EBC / BC), 42 years (SC/ST)</li><li>A PwD relaxation up to 47 appears in only one source — not independently confirmed</li></ul></div>
         <div class="detail-row"><b>Age Relaxation</b><span>See age ranges above; women get an additional relaxation on the general maximum.</span></div>
         <div class="detail-row"><b>Qualification</b><span>Bachelor&#39;s degree, any discipline, from a recognized university. Bihar domicile is not required to apply — only to claim Bihar-specific reservation benefits.</span></div>
+        
       </div>
+        <div class="detail-card detail-card-wide"><h4>Exam Pattern</h4><div class="detail-row"><b>Three stages — Prelims (objective/OMR or online CBT MCQ), Mains (descriptive, pen-and-paper), Interview (personality test). · Prelims: 2 hours (one paper). Mains: each of the 5 papers is a separate 3-hour paper (held on different days). Interview: not fixed duration.</b></div><div class="detail-row"><b>Prelims - General Studies (single paper, MCQ)</b><span>150 questions, 150 marks, 2 hours, screening-only (marks not added to final merit)</span></div><div class="detail-row"><b>Mains - General Hindi</b><span>100 marks, 3 hours, qualifying only (min 30% needed, not counted in merit)</span></div><div class="detail-row"><b>Mains - General Studies Paper I</b><span>300 marks, 3 hours, counted in merit</span></div><div class="detail-row"><b>Mains - General Studies Paper II</b><span>300 marks, 3 hours, counted in merit</span></div><div class="detail-row"><b>Mains - Essay</b><span>300 marks, 3 hours, counted in merit</span></div><div class="detail-row"><b>Mains - Optional Subject</b><span>100 marks, 2 hours, qualifying only (category-wise minimum: General 40%, BC 36.5%, EBC 34%, SC/ST/Women/PwD 32%) — not counted in merit</span></div><div class="detail-row"><b>Interview - Personality Test</b><span>120 marks, counted in merit</span></div><div class="detail-row"><b>Negative Marking</b><span>Prelims: -1/3 (0.33) mark deducted per wrong answer (this 1/3 penalty applies from the 71st CCE onward per multiple sources; earlier cycles used a different scheme — verify against the specific CCE notification year you are covering). Mains (descriptive papers): no negative marking (not an MCQ format apart from the optional paper, which is MCQ-based but sources did not confirm a specific negative-marking value for it — treat as unconfirmed).</span></div><div class="detail-row"><b>Passing Marks</b><span>Prelims: N/A — merit-based cutoff, declared after each exam, no fixed pre-set qualifying %. (Mains Hindi paper has a fixed 30% qualifying mark, and the Mains Optional paper has fixed category-wise qualifying percentages — General 40%, BC 36.5%, EBC 34%, SC/ST/Women/PwD 32% — but these are qualifying-only papers, not the main Prelims/Mains merit cutoff.)</span></div><p class="detail-footnote">Fee and pattern figures are secondary-sourced and describe the 70th/71st/72nd CCE cycles; BPSC has changed prelims negative-marking and mains structure across recent cycles, so double-check the exact CCE number&#39;s official notification PDF before publishing as current.</p></div>
         <div class="detail-card"><h4>Career Progression</h4><p class="promotion-caveat">Unverified against a primary source — treat as an estimate.</p><ul class="promotion-steps"><li>BPSC-to-IAS promotion via the State Civil Service quota is commonly cited as notably longer than other state PSCs — around 15–20 years</li></ul></div>
         <div class="detail-card detail-card-wide"><h4>How to Apply</h4>
         <a class="btn btn-primary btn-sm apply-cta" href="https://bpsc.bihar.gov.in/wp-content/uploads/BPSC_content/Notices/Advertisement-Integrated-72th-CCE-PT_BPSC-20260505-p1euvo.pdf" target="_blank" rel="noopener">Apply on the official site ↗</a>
         
         <ol class="apply-steps"><li>Complete registration at bpsconline.bihar.gov.in</li><li>Fill your profile, education and experience details</li><li>Capture your photo live via webcam during the application — no separate upload</li><li>Upload two signature images — one Hindi, one English — to spec</li><li>Submit and pay the fee</li></ol>
         
-        
       </div>
+        <div class="detail-card detail-card-wide"><h4>Document Requirements</h4><div class="detail-row"><b>Photo</b><span>No separate upload — captured live via webcam during the application · Live webcam capture — ensure a clear, well-lit live photo</span></div><div class="detail-row"><b>Signature</b><span>150–220 px wide × 250–320 px tall · 20 KB · JPEG — one Hindi + one English signature required, must be clearly legible</span></div></div>
         <div class="detail-card detail-card-wide"><h4>Other Documents</h4><div class="detail-row"><b>Physical copies</b><span>keep 5 copies of your current photograph on hand — may be required later in the process</span></div></div>
+        <div class="detail-card detail-card-wide"><h4>Frequently Asked Questions</h4><details class="detail-note"><summary>Is BPSC Prelims marks counted in the final merit list?</summary><p>No. BPSC Prelims is purely a screening/qualifying stage — only Mains and Interview marks count toward the final merit and rank.</p></details><details class="detail-note"><summary>Do I need to clear the optional subject paper in Mains to get selected?</summary><p>Yes, but only as a qualifying hurdle — you must score the minimum category-wise percentage in the optional paper, but the marks themselves are not added to your merit score. Only GS-I, GS-II, and Essay marks (plus Interview) decide your final rank.</p></details><details class="detail-note"><summary>Is there negative marking in the BPSC Mains exam?</summary><p>The Mains papers (Hindi, GS-I, GS-II, Essay) are descriptive/subjective, so there&#39;s no negative marking there. Only the objective Prelims paper has negative marking.</p></details><details class="detail-note"><summary>Does BPSC have a fixed passing percentage for Prelims like some other state PSCs?</summary><p>No. BPSC Prelims cutoffs are announced fresh after each exam based on difficulty and number of vacancies — there&#39;s no pre-declared fixed qualifying percentage (unlike the Mains Hindi and Optional papers, which do have fixed qualifying minimums).</p></details></div>
         <div class="detail-card detail-card-wide" style="text-align:center">
     <a class="btn btn-primary" href="/index.html?exam=BPSC">Prepare your photo &amp; signature for BPSC →</a>
   </div>
-        <div class="detail-card detail-card-wide"><h4>Related exams in State PSC</h4><ul class="apply-steps"><li><a href="/exams/uppsc/">UPPSC</a></li><li><a href="/exams/mppsc/">MPPSC</a></li></ul></div>
+        <div class="detail-card detail-card-wide"><h4>Related exams in State Exams</h4><ul class="apply-steps"><li><a href="/exams/uppsc/">UPPSC</a></li><li><a href="/exams/mppsc/">MPPSC</a></li><li><a href="/exams/dsssb-tgt-cs/">DSSSB TGT (Computer Science)</a></li><li><a href="/exams/hssc-grp-c/">HSSC Group C (CET Phase-II)</a></li><li><a href="/exams/bihar-tre-4/">Bihar TRE 4.0 (Teacher Recruitment Exam)</a></li></ul></div>
       </div>
       <div class="detail-updated">Last verified: 26 Aug 2026</div>
     </div>
@@ -89,8 +100,10 @@
     <div class="footer-col">
       <div class="footer-col-title">Explore</div>
       <a href="/index.html">Home</a>
-      <a href="/exams.html">Browse Exams</a>
+      <a href="/exams.html">Find Your Exam</a>
       <a href="/calendar.html">Calendar</a>
+      <a href="/manjusha.html">Downloads</a>
+      <a href="/tools.html">Tools</a>
     </div>
     <div class="footer-col">
       <div class="footer-col-title">Company</div>
@@ -103,6 +116,8 @@
     <div class="footer-col">
       <div class="footer-col-title">Connect</div>
       <a href="https://t.me/GovBabu_official" target="_blank" rel="noopener">Telegram</a>
+      <a href="https://www.youtube.com/@GovBabu_official" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://www.instagram.com/govbabu_official" target="_blank" rel="noopener">Instagram</a>
     </div>
   </div>
   <div class="wrap footer-bottom">
@@ -110,6 +125,7 @@
     <p class="footer-copyright">© 2026 GovBabu. All Rights Reserved.</p>
   </div>
 </footer>
-<script src="/app.js"></script>
+<script src="/data/applications.generated.js" defer></script>
+<script src="/app.js" defer></script>
 </body>
 </html>

@@ -20,7 +20,8 @@
   --shadow-lg:0 10px 30px rgba(15,23,42,.12);
   --radius:8px;
   --radius-sm:6px;
-  --maxw:1180px;
+  --maxw:1320px;
+  --maxw-wide:1520px;
   color-scheme:light;
 }
 :root[data-theme="dark"]{
@@ -62,6 +63,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.02em}
 p{margin:0}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.wrap-wide{max-width:var(--maxw-wide);margin:0 auto;padding:0 24px}
 .icon{width:1em;height:1em;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.15em}
 
 /* ---------- tricolor strip ----------
@@ -94,12 +96,28 @@ p{margin:0}
 .header-nav{display:flex;align-items:center;gap:10px}
 .header-nav a[aria-current="page"]{background:var(--brand);border-color:var(--brand);color:#fff}
 .header-nav a[aria-current="page"]:hover{background:var(--brand-dark)}
+
+/* "More" (About + Contact), a small dropdown off the header nav — its own
+   trigger button + a floating menu, closed by default and toggled by JS. */
+.nav-more{position:relative}
+.nav-more-btn::after{content:" ▾";font-size:10px}
+.nav-more-menu{display:none;flex-direction:column;gap:2px;position:absolute;top:calc(100% + 6px);right:0;background:var(--surface);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow-md);padding:6px;min-width:150px;z-index:30}
+.nav-more-menu.open{display:flex}
+.nav-more-menu a{display:block;padding:8px 12px;border-radius:7px;font-size:14px;font-weight:600;color:var(--ink);text-decoration:none;white-space:nowrap}
+.nav-more-menu a:hover{background:var(--surface-2)}
+.nav-more-menu a[aria-current="page"]{background:var(--brand);color:#fff}
+
 .icon-btn.nav-toggle{display:none}
-@media(max-width:760px){
+/* 980px, not 760px — the nav grew from 4 items to 6 (All Govt Exams, Exam
+   Calendar, Syllabus, Free Downloads, Tools, More) plus the primary CTA,
+   and that no longer fits in one row below roughly 900-950px; collapsing
+   to the hamburger menu earlier avoids an overflowing/wrapping header. */
+@media(max-width:980px){
   .icon-btn.nav-toggle{display:flex}
   .header-nav{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;background:var(--surface);border:1px solid var(--line);border-top:none;padding:12px 16px 16px;gap:8px;box-shadow:var(--shadow-md);border-radius:0 0 12px 12px}
   .header-nav.open{display:flex}
   .header-nav .btn{width:100%;text-align:center}
+  .nav-more-menu{position:static;box-shadow:none;border:none;background:transparent;padding:0 0 0 10px;margin-top:2px}
 }
 .icon-btn{width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:var(--surface);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink);transition:background .15s,transform .1s}
 .icon-btn:hover{background:var(--surface-2)}
@@ -137,6 +155,28 @@ p{margin:0}
 .stat b{display:block;font-size:26px;color:var(--ink)}
 .stat span{font-size:13px;color:var(--muted)}
 
+/* ---------- homepage hero: simple, centered, one column ----------
+   Deliberately its own scoped classes (.home-hero-simple/.home-cap-row*),
+   not a change to .hero/.about-hero/.eyebrow — those are shared, live
+   classes used by about/contact/calendar/privacy/terms/disclaimer and
+   must keep behaving exactly as before. A two-column CSS-grid hero was
+   tried and reverted — more fragile than it needed to be for the payoff.
+   This is the same safe centered-column pattern already proven on every
+   other page, just with a larger heading. */
+.home-hero-simple{text-align:center;max-width:720px;margin:0 auto}
+.home-hero-simple h1{font-size:42px;line-height:1.15;margin-bottom:16px}
+.home-hero-simple .lead{font-size:17px;line-height:1.6;color:var(--muted);max-width:600px;margin:0 auto 26px}
+
+/* Hero search: the real #examSearch/#examResults pair, just prominently
+   placed — same input, same result-matching logic as everywhere else, not
+   a second parallel search implementation. */
+.hero-search-box{max-width:560px;margin:0 auto 26px;text-align:left}
+.hero-search-box .search-input{padding:15px 18px;font-size:15.5px;border-radius:12px;box-shadow:var(--shadow-md)}
+.hero-search-box .search-input:focus{border-color:var(--brand);outline:none}
+@media(max-width:520px){
+  .home-hero-simple h1{font-size:30px}
+}
+
 /* ---------- section shell ---------- */
 .section{padding:56px 0}
 .section-head{text-align:center;max-width:640px;margin:0 auto 34px}
@@ -170,9 +210,43 @@ p{margin:0}
 .flow-intro{text-align:center;padding:48px 0 8px;max-width:640px}
 .flow-intro h1{font-size:34px;line-height:1.15;margin-bottom:12px}
 .flow-intro .lead{font-size:16px;color:var(--muted);line-height:1.6}
+
+.exam-detail-topbar{padding:22px 0 0;text-align:left}
+.exam-detail-topbar + .flow-intro{padding-top:14px}
+.exam-back-link{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:600;color:var(--muted);text-decoration:none;padding:7px 14px 7px 11px;border:1px solid var(--line);border-radius:999px;background:var(--surface);transition:background .15s ease,color .15s ease,border-color .15s ease,transform .15s ease}
+.exam-back-link:hover{color:var(--brand);border-color:var(--brand);background:var(--brand-light);transform:translateX(-2px)}
+:root[data-theme="dark"] .exam-back-link:hover{background:color-mix(in srgb,var(--brand) 18%,transparent)}
+.exam-back-arrow{font-size:15px;line-height:1}
 .flow-wrap{max-width:640px;padding-bottom:60px}
-.flow-card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:28px;box-shadow:var(--shadow-md);margin-top:28px}
+.flow-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-md)}
+
+/* Prepare (flow-card) + Get Matched (alerts-card) side by side: the flow
+   is the primary, taller content so it gets the wider column; the alerts
+   card is a compact companion, top-aligned rather than stretched to match
+   height, since forcing it to fill the flow-card's variable height (it
+   grows once an exam/upload panel is showing) would leave it looking
+   awkwardly empty. */
+.prepare-alerts-grid{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(260px,1fr);gap:24px;align-items:start;margin-top:28px}
+@media(max-width:920px){.prepare-alerts-grid{grid-template-columns:1fr}}
 .flow-disclaimer{max-width:520px;margin:20px auto 0;text-align:center;color:var(--muted);font-size:12px;line-height:1.6}
+
+/* ---------- eligibility checker (eligibility.html) ---------- */
+.elig-field{margin-bottom:18px}
+.elig-field select{appearance:auto}
+.elig-disclaimer{max-width:460px;margin:16px auto 0;text-align:center;color:var(--muted);font-size:12px;line-height:1.6}
+.elig-summary{font-size:15px;margin-bottom:20px}
+.elig-group-head{font-family:inherit;font-weight:800;font-size:16px;margin:28px 0 12px}
+.elig-result-group{margin-bottom:14px}
+.elig-match-note{font-size:12.5px;font-weight:700;padding:8px 12px;border-radius:8px 8px 0 0;border:1px solid var(--line);border-bottom:none}
+.elig-match-note.elig-match-ok{background:color-mix(in srgb,var(--success) 12%,transparent);color:var(--success);border-color:color-mix(in srgb,var(--success) 30%,var(--line))}
+.elig-match-note.elig-match-borderline{background:color-mix(in srgb,var(--accent) 12%,transparent);color:var(--accent-dark);border-color:color-mix(in srgb,var(--accent) 30%,var(--line))}
+.elig-match-note.elig-match-exp{border-radius:0;border-top:none;background:color-mix(in srgb,var(--brand) 12%,transparent);color:var(--brand-dark);border-color:color-mix(in srgb,var(--brand) 30%,var(--line))}
+:root[data-theme="dark"] .elig-match-note.elig-match-exp{color:var(--brand)}
+.elig-result-group .exam-listing-card{border-radius:0 0 var(--radius) var(--radius)}
+.elig-result-uncertain .elig-match-note{background:var(--surface-2);color:var(--muted)}
+.elig-uncertain-details{margin-top:24px}
+.elig-uncertain-details summary{cursor:pointer;font-weight:800;font-size:16px;padding:8px 0}
+.elig-uncertain-details .elig-result-group{margin-top:12px}
 
 .fstep-row{display:flex;align-items:center;gap:8px;margin-bottom:26px}
 .fstep{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--muted);flex:1}
@@ -185,7 +259,7 @@ p{margin:0}
 .search-input{width:100%;border:1.5px solid var(--line);border-radius:11px;padding:12px 16px;background:var(--surface);font-size:14.5px}
 .exam-result-list{margin-top:8px;display:flex;flex-direction:column;gap:6px}
 .exam-result-list.open{margin-bottom:14px}
-.exam-result-row{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:var(--surface-2);border:1px solid var(--line);border-radius:11px;padding:10px 12px;cursor:pointer;transition:background .15s}
+.exam-result-row{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:var(--surface-2);border:1px solid var(--line);border-radius:11px;padding:10px 12px;cursor:pointer;transition:background .15s;text-decoration:none}
 .exam-result-row:hover{background:color-mix(in srgb,var(--brand) 8%,transparent)}
 .exam-empty{font-size:13.5px;color:var(--muted);padding:8px 2px}
 .link-btn{background:none;border:0;color:var(--brand-dark);font-weight:700;cursor:pointer;padding:0;font-size:inherit}
@@ -207,13 +281,23 @@ p{margin:0}
 .popular-chip:hover{border-color:var(--brand);color:var(--brand-dark);background:color-mix(in srgb,var(--brand) 8%,transparent)}
 
 .exam-by-category{margin:4px 0 14px;padding-top:14px;border-top:1px solid var(--line)}
-.cat-group{margin-bottom:16px}
-.cat-group:last-child{margin-bottom:0}
+/* auto-fit: categories sit side by side on wide screens and reflow to
+   fewer columns as width shrinks, with no manual per-breakpoint rules —
+   a 1-2-chip category (Teaching, Railway) no longer leaves most of a
+   1300px-wide row empty. */
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px 28px}
+.cat-group{min-width:0}
 
 .selected-exam-bar{display:flex;align-items:center;gap:10px;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:20px}
 .selected-exam-generic{font-size:13.5px;color:var(--muted)}
 
-.upload-slot{border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:14px}
+/* Two document dropzones per row on desktop instead of one full-width box
+   each — each slot's real content is one line of text, so stacking them
+   full-width just added height for no extra information. */
+.upload-slot-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+@media(max-width:640px){.upload-slot-grid{grid-template-columns:1fr}}
+.upload-slot{border:1px solid var(--line);border-radius:10px;padding:16px}
+.upload-slot-pdf{margin-bottom:14px}
 .slot-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px}
 .slot-head b{font-size:15px}
 .slot-spec{font-size:12px;color:var(--muted)}
@@ -225,7 +309,10 @@ p{margin:0}
 .slot-status{font-size:14px;font-weight:700;margin-bottom:8px;text-align:center}
 .slot-waiting{font-size:12.5px;color:var(--muted);text-align:center}
 .upload-slot-pdf{border:1px dashed var(--line);background:transparent;text-align:center}
-.more-tools-row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+/* One line, not a wrapped grid — scrolls sideways if it's wider than the
+   viewport instead of breaking into a second row/column. */
+.more-tools-row{display:flex;gap:14px;flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}
+.more-tools-row .btn{flex:none}
 
 .batch-list{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
 .batch-row{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);padding:9px 12px;font-size:13px}
@@ -236,17 +323,33 @@ p{margin:0}
 
 .slot-error{color:var(--danger);font-size:13.5px;font-weight:600;margin-bottom:10px;text-align:center}
 
+/* ---- Merge PDF: selected-file list, in merge order ---- */
+.merge-file-list{display:flex;flex-direction:column;gap:6px;margin-bottom:8px}
+.merge-file-row{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);padding:7px 10px;font-size:13px}
+.merge-file-row span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.merge-remove-btn{flex:none;width:22px;height:22px;font-size:12px;color:var(--danger)}
+
+/* ---- Rotate PDF: angle picker ---- */
+.rotate-angle-row{display:flex;gap:8px;margin:10px 0}
+.rotate-angle-row .is-active{background:var(--brand);border-color:var(--brand);color:#fff}
+
+/* ---- Sign PDF: click-to-place preview. Position/size are set as % via
+   posFrac/widthFrac so the overlay lines up correctly at any rendered
+   size — the same fractions signPdfBlob() uses to burn the signature into
+   the actual page canvas, so what you see is what you get. ---- */
+.sign-preview-wrap{position:relative;display:inline-block;max-width:100%;margin-bottom:10px;border:1px solid var(--line);border-radius:var(--radius-sm);overflow:hidden;cursor:crosshair}
+.sign-preview-page{display:block;max-width:100%;height:auto}
+.sign-preview-overlay{position:absolute;transform:translate(-50%,-50%);pointer-events:none;filter:drop-shadow(0 1px 2px rgba(0,0,0,.35))}
+
 .pay-bar{margin:6px 0 16px}
 .pay-note{text-align:center;font-size:12px;color:var(--muted);margin-top:8px}
 .unlocked-note{text-align:center;font-weight:700;color:var(--success);padding:10px 0}
 .privacy-note{display:flex;align-items:center;justify-content:center;gap:6px;font-size:12.5px;color:var(--muted);margin-top:8px}
-.free-note{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--accent-dark);background:color-mix(in srgb,var(--accent) 14%,transparent);padding:7px 16px;border-radius:999px;margin:18px auto 0}
-:root[data-theme="dark"] .free-note{color:var(--accent)}
 .exam-deadline{font-size:12px;color:var(--muted);margin-top:1px}
 
 .exam-detail-panel{margin-bottom:20px}
 .quick-overview{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
-.quick-overview-item{flex:1 1 140px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+.quick-overview-item{flex:1 1 140px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:10px 14px}
 .quick-overview-label{display:block;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:3px}
 .quick-overview-value{display:block;font-size:13.5px;font-weight:800;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .detail-updated{font-size:11.5px;color:var(--muted);margin-top:14px;text-align:right}
@@ -284,7 +387,12 @@ p{margin:0}
 .apply-checklist{margin:0 0 4px;padding-left:18px;font-size:12.5px;color:var(--muted);line-height:1.6}
 .apply-checklist li{margin-bottom:3px}
 .detail-card-wide{grid-column:1/-1}
-@media(max-width:640px){.detail-grid{grid-template-columns:1fr}}
+.dates-table{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,320px));gap:2px 32px}
+.dates-row{display:flex;justify-content:flex-start;gap:14px;padding:8px 0;border-bottom:1px solid var(--line);font-size:12.5px}
+.dates-row:last-child{border-bottom:none}
+.dates-label{color:var(--muted);font-weight:600;flex:none}
+.dates-value{color:var(--ink);font-weight:700;text-align:left}
+@media(max-width:640px){.detail-grid{grid-template-columns:1fr}.dates-row{flex-direction:column;gap:2px}.dates-value{text-align:left}}
 
 .slot-hint{font-size:12px;color:var(--muted);margin-top:6px}
 
@@ -314,6 +422,13 @@ p{margin:0}
 .cal-filter-btn:hover{border-color:var(--brand);color:var(--ink)}
 .cal-filter-btn.is-active{background:var(--brand);border-color:var(--brand);color:#fff;box-shadow:0 3px 10px color-mix(in srgb,var(--brand) 35%,transparent)}
 .cal-filter-btn:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.cal-filter-btn-live{display:inline-flex;align-items:center;gap:7px}
+.live-dot{width:8px;height:8px;border-radius:50%;background:#e0263a;flex:none;box-shadow:0 0 0 0 rgba(224,38,58,.6);animation:live-dot-pulse 1.4s ease-out infinite}
+@keyframes live-dot-pulse{
+  0%{box-shadow:0 0 0 0 rgba(224,38,58,.6)}
+  70%{box-shadow:0 0 0 6px rgba(224,38,58,0)}
+  100%{box-shadow:0 0 0 0 rgba(224,38,58,0)}
+}
 .cal-year-nav{display:flex;gap:8px}
 .cal-year-nav-link{font-size:13px;font-weight:800;color:var(--brand-dark);text-decoration:none;padding:7px 14px;border-radius:999px;background:color-mix(in srgb,var(--brand) 8%,transparent);border:1px solid transparent;transition:background .15s,border-color .15s}
 .cal-year-nav-link:hover{background:color-mix(in srgb,var(--brand) 16%,transparent);border-color:color-mix(in srgb,var(--brand) 30%,transparent)}
@@ -442,6 +557,35 @@ p{margin:0}
 .journey-step-body p{color:var(--muted);font-size:14.5px;line-height:1.6;margin:0}
 @media(max-width:600px){.journey-timeline::before{left:19px}.journey-step-num{width:40px;height:40px;font-size:13px}}
 
+/* ---------- homepage "How GovBabu Helps": horizontal variant ----------
+   Same 6 steps/copy as about.html's .journey-timeline (same about.journey*
+   i18n keys), reflowed as a row instead of a vertical list — the homepage
+   has the width to spare and a vertical list of 6 steps would push
+   everything below it too far down the page. .journey-timeline itself is
+   untouched; about.html keeps its own vertical layout exactly as-is. */
+.journey-row{display:grid;grid-template-columns:1fr 1fr;gap:32px 16px;list-style:none;padding:0;margin:0}
+.journey-row-step{position:relative;text-align:center;padding:0 8px}
+/* Each step is now a real link to where that part of the journey actually
+   happens (exams.html, eligibility.html, tools.html, calendar.html) — the
+   hover state exists so that reads as a destination, not just a caption. */
+.journey-row-link{display:block;text-decoration:none;color:inherit;border-radius:14px;padding:10px 6px;margin:-10px -6px;transition:background .15s ease,transform .15s ease}
+.journey-row-link:hover{background:var(--surface-2);transform:translateY(-2px)}
+.journey-row-link:hover .journey-row-num{border-color:var(--accent);color:var(--accent-dark)}
+:root[data-theme="dark"] .journey-row-link:hover .journey-row-num{color:var(--accent)}
+.journey-row-num{width:44px;height:44px;border-radius:50%;background:var(--surface);border:2px solid var(--brand);color:var(--brand-dark);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;margin:0 auto 14px;transition:border-color .15s ease,color .15s ease}
+:root[data-theme="dark"] .journey-row-num{color:var(--brand-light)}
+.journey-row-step h3{font-size:15px;margin-bottom:6px}
+.journey-row-step p{font-size:13px;color:var(--muted);line-height:1.55;margin:0}
+@media(min-width:601px){
+  .journey-row{grid-template-columns:repeat(3,1fr)}
+  .journey-row-step:not(:nth-child(3n))::after{content:"→";position:absolute;top:20px;right:-10px;color:var(--line);font-size:18px;font-weight:700}
+}
+@media(min-width:901px){
+  .journey-row{grid-template-columns:repeat(6,1fr)}
+  .journey-row-step:nth-child(3n)::after{content:"→";position:absolute;top:20px;right:-10px;color:var(--line);font-size:18px;font-weight:700}
+  .journey-row-step:last-child::after{display:none}
+}
+
 /* ---------- about page: origin flow (document problem -> vision) ---------- */
 .origin-flow{display:flex;align-items:stretch;gap:0;max-width:940px;margin:0 auto;flex-wrap:wrap}
 .origin-step{flex:1 1 220px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px 22px}
@@ -522,32 +666,27 @@ p{margin:0}
   .stat-row{gap:24px}
 }
 
-/* ---------- notice ticker: three lifecycle lanes ---------- */
-.notice-ticker{background:var(--surface-2);border-bottom:1px solid var(--line)}
-.notice-lane{display:flex;align-items:center;gap:10px;padding:6px 14px;border-bottom:1px solid var(--line);overflow:hidden}
-.notice-lane:last-child{border-bottom:none}
-.notice-lane-scroll{flex:1;min-width:0;overflow:hidden;white-space:nowrap}
-.notice-lane-empty{flex:1;min-width:0;font-size:12px;color:var(--muted)}
+/* ---------- notice ticker: one compact live-update strip ---------- */
+.notice-ticker{background:var(--surface-2);border-bottom:1px solid var(--line);overflow:hidden;white-space:nowrap;padding:8px 0}
 .notice-ticker-track{display:inline-block;padding-left:100%;animation:ticker-scroll 45s linear infinite}
-.notice-lane:hover .notice-ticker-track{animation-play-state:paused}
-.notice-ticker-item{display:inline-block;margin-right:48px;font-size:13px;font-weight:600;color:var(--ink);text-decoration:none}
+.notice-ticker:hover .notice-ticker-track{animation-play-state:paused}
+.notice-ticker-item{display:inline-flex;align-items:center;gap:7px;margin-right:40px;font-size:13px;font-weight:600;color:var(--ink);text-decoration:none}
 .notice-ticker-item:hover{color:var(--brand-dark)}
 @keyframes ticker-scroll{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
 @media(prefers-reduced-motion:reduce){.notice-ticker-track{animation:none}}
 
 /* Quick-update type badges — text label always present, color never the
-   only signal. Shared by the ticker's per-lane labels (.notice-lane-label)
-   and the Notice Board's per-item badges — one color/shape definition for
-   both. Only .type-form and .type-result are backed by real data today;
-   .type-admit exists because the lane itself is real (labelled + rendered),
-   even though its content is an honest empty state until a real admitCard
-   field exists. */
-.notice-type-badge{display:inline-block;flex:none;font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:2px 7px;border-radius:5px;margin-right:2px}
+   only signal. Shared by the ticker's per-item badges and the Notice
+   Board's per-item badges — one color/shape definition for both.
+   .type-form/.type-result/.type-deadline are backed by real data today;
+   .type-admit exists in CSS only so it's ready the moment a real
+   admitCard field/timestamp exists — nothing renders it yet. */
+.notice-type-badge{display:inline-block;flex:none;font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:2px 7px;border-radius:5px}
 .notice-type-badge.type-form{background:color-mix(in srgb,var(--success) 15%,transparent);color:var(--success)}
 .notice-type-badge.type-admit{background:color-mix(in srgb,var(--brand) 15%,transparent);color:var(--brand-dark)}
 .notice-type-badge.type-result{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent-dark)}
+.notice-type-badge.type-deadline{background:color-mix(in srgb,var(--danger) 15%,transparent);color:var(--danger)}
 :root[data-theme="dark"] .notice-type-badge.type-admit{color:var(--brand-light)}
-.notice-lane-label{white-space:nowrap;margin-right:0}
 
 /* ---------- home 3-col layout ---------- */
 .home-layout{display:grid;grid-template-columns:240px minmax(0,1fr) 240px;gap:24px;align-items:stretch;max-width:1220px;padding-bottom:60px}
@@ -556,50 +695,16 @@ p{margin:0}
 .home-sidebar-left{order:1}
 .home-sidebar-right{order:3}
 .home-sidebar .sidebar-card{flex:1;display:flex;flex-direction:column;min-height:420px}
-.sidebar-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow-sm)}
-.sidebar-title{font-size:14.5px;margin-bottom:12px}
-.sidebar-card>div:last-child{flex:1;overflow-y:auto}
-.notice-item{padding:10px 0;border-bottom:1px solid var(--line);font-size:12.5px}
-.notice-item:last-child{border-bottom:none}
-.notice-item-name{display:block;text-decoration:none;color:inherit}
-.notice-item-name b{display:block;color:var(--ink);font-size:13px;margin-bottom:2px}
-.notice-item-name span{color:var(--muted)}
-.notice-official-link{display:inline-block;margin-top:5px;font-size:11.5px;font-weight:700;color:var(--brand-dark);text-decoration:none}
-.notice-official-link:hover{text-decoration:underline}
-:root[data-theme="dark"] .notice-official-link{color:var(--brand-light)}
 .notice-empty{font-size:12.5px;color:var(--muted);padding:6px 0}
-.result-item{padding:9px 0;border-bottom:1px solid var(--line);font-size:12.5px}
-.result-item:last-child{border-bottom:none}
-.result-item .rname{display:block;color:var(--ink);font-weight:600;margin-bottom:4px}
-.result-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
-.result-date{color:var(--muted);font-size:11.5px}
-.result-pill{font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:999px;flex:none;text-decoration:none}
-.result-pill.declared{background:color-mix(in srgb,var(--success) 15%,transparent);color:var(--success)}
-.result-pill.pending{background:var(--surface-2);color:var(--muted)}
-.results-pending-note{padding:10px 0 2px;font-size:12.5px;color:var(--muted)}
-.results-pending-note a{color:var(--brand-dark);font-weight:700;text-decoration:none}
-.results-pending-note a:hover{text-decoration:underline}
-:root[data-theme="dark"] .results-pending-note a{color:var(--brand-light)}
+#appTools{scroll-margin-top:90px}
 
-/* ---------- exam analysis showcase (homepage, flagship section) ---------- */
-.showcase-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px 28px;box-shadow:var(--shadow-md)}
-.showcase-card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.showcase-exam-name{font-size:19px;font-weight:800;color:var(--ink)}
-.showcase-status{font-size:12.5px;font-weight:700;color:var(--success);margin-top:4px}
-.showcase-fact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
-.showcase-fact{padding:10px 0;border-top:1px solid var(--line);font-size:13px}
-.showcase-fact span{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.03em;margin-bottom:4px}
-.showcase-fact b{color:var(--ink);font-weight:700}
-.showcase-step{margin-top:16px;font-size:13px;color:var(--muted);line-height:1.6}
-.showcase-step .tag{margin-bottom:0;margin-right:6px;vertical-align:middle}
-.showcase-card .btn{margin-top:18px}
-@media(max-width:640px){.showcase-fact-grid{grid-template-columns:repeat(2,1fr)}}
+.trust-note{margin-top:10px;font-size:12px;color:var(--muted)}
 
-/* ---------- featured capability card ---------- */
-.value-card-featured{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:var(--radius);padding:24px 28px;margin-top:20px}
-.value-card-featured h3{font-size:19px;margin-bottom:8px}
-.value-card-featured p{color:var(--muted);font-size:14.5px;line-height:1.6;margin-bottom:10px}
-.value-card-featured .link-btn{font-weight:700}
+/* Denser vertical rhythm for the homepage's lower, supporting sections —
+   the flagship sections above (hero, ticker, showcase, capabilities,
+   discovery) get the roomier default .section padding; these two don't
+   need to be full screenfuls. */
+.section-compact{padding-top:36px;padding-bottom:36px}
 @media(max-width:1180px){
   .home-layout{grid-template-columns:minmax(0,1fr) 260px;align-items:start}
   .home-sidebar-left{order:3;position:static}
@@ -613,6 +718,48 @@ p{margin:0}
   .home-sidebar-left{order:2}
   .home-sidebar-right{order:3}
 }
+
+
+/* ---------- application tools (homepage) ----------
+   Compact chip row, not full feature cards — there's really one tool
+   underneath (the generic resize/upload flow just below), these are three
+   convenient entry points into it, not three separate products. */
+/* Same reasoning as .more-tools-row above: one straight line of boxes,
+   scrolling sideways rather than wrapping into a second row. */
+.tool-chip-row{display:flex;flex-wrap:nowrap;gap:12px;overflow-x:auto;padding-bottom:4px}
+.tool-chip{gap:8px;font-size:14.5px;flex:none}
+.tool-privacy-note{text-align:center;margin-top:18px}
+.tools-start-hint{text-align:center;font-size:13px;color:var(--muted);margin-bottom:18px}
+.tools-start-hint a{color:var(--brand-dark);font-weight:700;text-decoration:none}
+.tools-start-hint a:hover{text-decoration:underline}
+:root[data-theme="dark"] .tools-start-hint a{color:var(--brand-light)}
+
+/* ---------- personalized alerts (coming soon) — compact sidebar card,
+   next to the flow-card. A soft accent wash + dashed-feeling border reads
+   as "preview of what's next" rather than a plain/broken box, without a
+   decorative icon doing that job instead. ---------- */
+.alerts-card{
+  background:color-mix(in srgb,var(--accent) 7%,var(--surface));
+  border:1px solid color-mix(in srgb,var(--accent) 30%,var(--line));
+  border-radius:var(--radius);
+  padding:24px 22px;
+  text-align:left;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.alerts-card h3{font-size:18px;line-height:1.3;margin:0}
+.alerts-card>p{font-size:13.5px;color:var(--muted);line-height:1.5;margin:0}
+.alerts-checklist{list-style:none;margin:2px 0 6px;padding:0;display:flex;flex-direction:column;gap:8px}
+.alerts-checklist li{font-size:13px;color:var(--ink);display:flex;align-items:center;gap:8px}
+.alerts-checklist li::before{content:"✓";color:var(--success);font-weight:800;flex:none}
+.alerts-checklist li.alerts-checklist-future{color:var(--muted)}
+.alerts-checklist li.alerts-checklist-future::before{content:"○";color:var(--muted)}
+@media(max-width:640px){.alerts-card{padding:20px 18px}}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn:disabled:hover{background:var(--brand)}
+
+/* ---------- final CTA band ---------- */
 
 /* ---------- language toggle ---------- */
 .lang-toggle svg{display:block}

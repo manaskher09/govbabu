@@ -125,6 +125,28 @@ function validateStagedSite(stagingDir, expectedExams) {
     if (stat.size === 0) errors.push(`Staged exams/${slug}/index.html is empty`);
   }
 
+  const applicationsJsPath = path.join(stagingDir, 'data', 'applications.generated.js');
+  let applicationsJsSrc = '';
+  try {
+    applicationsJsSrc = fs.readFileSync(applicationsJsPath, 'utf8');
+  } catch (err) {
+    errors.push(`Staged data/applications.generated.js is missing: ${err.message}`);
+  }
+  if (applicationsJsSrc) {
+    const match = applicationsJsSrc.match(/const APPLICATIONS=(.*);\s*$/s);
+    let parsedApplications;
+    try {
+      parsedApplications = match ? JSON.parse(match[1]) : null;
+    } catch (err) {
+      errors.push(`Staged data/applications.generated.js does not contain valid JSON: ${err.message}`);
+    }
+    if (!Array.isArray(parsedApplications) || parsedApplications.length !== expectedExams.length) {
+      errors.push(
+        `Staged data/applications.generated.js has ${parsedApplications ? parsedApplications.length : 'no'} exams, expected ${expectedExams.length}`
+      );
+    }
+  }
+
   return { ok: errors.length === 0, errors };
 }
 

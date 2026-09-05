@@ -28,11 +28,17 @@ const { toApplicationsShape } = require('../sync/toApplicationsShape');
 const { transitionContentStatus } = require('../pipeline/contentStatus');
 const { setCurrentField, ALLOWED_MANUAL_FIELDS, DATE_FIELDS } = require('../db/adminWrite');
 const { listPostsForExam: postsListForExam } = require('../db/posts');
+const { runCheck } = require('../pipeline/runCheck');
 
 const PORT = process.env.MONITOR_ADMIN_PORT || 8745;
 const PUBLIC_DIR = path.join(__dirname, 'public');
 const MIME = { '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript' };
 const MAX_BODY_BYTES = 1024 * 1024;
+// Mirrors the sources.role and sources.source_type CHECK constraints in
+// db/migrations/001_init.sql — kept here too so a bad value 400s before it
+// ever reaches SQLite.
+const VALID_SOURCE_ROLES = new Set(['website', 'notification', 'result', 'admit_card', 'corrigendum', 'other']);
+const VALID_SOURCE_TYPES = new Set(['html', 'pdf', 'pdf_scanned_ocr', 'js_rendered', 'manual']);
 
 function readBody(req) {
   return new Promise((resolve, reject) => {
@@ -487,9 +493,8 @@ const server = http.createServer(async (req, res) => {
         const label = String(body.label || '').trim();
         const docUrl = String(body.url || '').trim();
         const role = String(body.role || 'other');
-        const VALID_ROLES = new Set(['website', 'notification', 'result', 'admit_card', 'corrigendum', 'other']);
         if (!label || !docUrl) return safeError(res, 400, 'label_and_url_required');
-        if (!VALID_ROLES.has(role)) return safeError(res, 400, 'invalid_role');
+        if (!VALID_SOURCE_ROLES.has(role)) return safeError(res, 400, 'invalid_role');
         // active=0 so the scheduler/check-now (WHERE active = 1) never tries
         // to "monitor" a hand-entered link for changes.
         const sourceInfo = db
@@ -502,6 +507,76 @@ const server = http.createServer(async (req, res) => {
           `INSERT INTO audit_logs (actor, action, entity_type, entity_id, details) VALUES (?, 'register_document', 'document', ?, ?)`
         ).run(String(user.id), docInfo.lastInsertRowid, JSON.stringify({ exam_id: examId, label, url: docUrl }));
         return json(res, 201, { id: docInfo.lastInsertRowid, source_id: sourceInfo.lastInsertRowid });
+      }
+
+      // ---------- Sources (real monitored sources — active by default, unlike
+      // the "manual document" endpoint above which deliberately forces active=0) ----------
+      const examSourcesMatch = pathname.match(/^\/api\/admin\/exams\/(\d+)\/sources$/);
+      if (examSourcesMatch && req.method === 'GET') {
+        const examId = Number(examSourcesMatch[1]);
+        return json(res, 200, {
+          sources: db
+            .prepare(
+              `SELECT id, label, url, source_type, role, active, monitoring_frequency_minutes,
+                      last_checked_at, last_success_at, last_http_status, consecutive_failures
+               FROM sources WHERE exam_id = ? ORDER BY id`
+            )
+            .all(examId),
+        });
+      }
+      if (examSourcesMatch && req.method === 'POST') {
+        const examId = Number(examSourcesMatch[1]);
+        const body = JSON.parse((await readBody(req)) || '{}');
+        const label = String(body.label || '').trim();
+        const srcUrl = String(body.url || '').trim();
+        const source_type = String(body.source_type || '');
+        const role = String(body.role || 'notification');
+        if (!label || !srcUrl) return safeError(res, 400, 'label_and_url_required');
+        if (!VALID_SOURCE_TYPES.has(source_type)) return safeError(res, 400, 'invalid_source_type');
+        if (!VALID_SOURCE_ROLES.has(role)) return safeError(res, 400, 'invalid_role');
+        const freq = body.monitoring_frequency_minutes != null ? Number(body.monitoring_frequency_minutes) : 720;
+        if (!Number.isFinite(freq) || freq < 1) return safeError(res, 400, 'invalid_monitoring_frequency');
+        let extractKeywords = null;
+        if (body.extract_keywords !== undefined) {
+          if (!Array.isArray(body.extract_keywords)) return safeError(res, 400, 'extract_keywords_must_be_array');
+          extractKeywords = JSON.stringify(body.extract_keywords);
+        }
+        try {
+          const info = db
+            .prepare(
+              `INSERT INTO sources (exam_id, label, url, source_type, role, extract_keywords, monitoring_frequency_minutes, active)
+               VALUES (?, ?, ?, ?, ?, ?, ?, 1)`
+            )
+            .run(examId, label, srcUrl, source_type, role, extractKeywords, freq);
+          db.prepare(
+            `INSERT INTO audit_logs (actor, action, entity_type, entity_id, details) VALUES (?, 'create_source', 'source', ?, ?)`
+          ).run(String(user.id), info.lastInsertRowid, JSON.stringify({ exam_id: examId, label, url: srcUrl, source_type, role }));
+          return json(res, 201, { id: info.lastInsertRowid });
+        } catch (err) {
+          if (String(err.message).includes('FOREIGN KEY')) return safeError(res, 404, 'exam_not_found');
+          return safeError(res, 400, 'create_source_failed', err);
+        }
+      }
+
+      // Runs the real pipeline (pipeline/runCheck.js) synchronously for one
+      // source, so a newly-added source can be proven working right from
+      // the dashboard instead of dropping to `npm run check-now` on the CLI.
+      // Still only ever writes to change_events (status='pending') — this
+      // endpoint cannot make anything live without a separate approval.
+      const sourceCheckMatch = pathname.match(/^\/api\/admin\/sources\/(\d+)\/check-now$/);
+      if (sourceCheckMatch && req.method === 'POST') {
+        const sourceId = Number(sourceCheckMatch[1]);
+        const source = db.prepare('SELECT id FROM sources WHERE id = ?').get(sourceId);
+        if (!source) return safeError(res, 404, 'source_not_found');
+        try {
+          const result = await runCheck(db, sourceId);
+          db.prepare(
+            `INSERT INTO audit_logs (actor, action, entity_type, entity_id, details) VALUES (?, 'manual_check_now', 'source', ?, ?)`
+          ).run(String(user.id), sourceId, JSON.stringify(result));
+          return json(res, 200, result);
+        } catch (err) {
+          return safeError(res, 500, 'check_failed', err);
+        }
       }
 
       const approveMatch = pathname.match(/^\/api\/admin\/change-events\/(\d+)\/approve$/);

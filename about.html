@@ -22,10 +22,14 @@
     <a href="index.html" class="brand"><span class="brand-mark"><svg viewBox="0 0 46 46" fill="none"><rect x="8" y="24" width="28" height="18" rx="5" stroke="var(--brand)" stroke-width="3.4"/><path d="M14 24V16A8 8 0 0 1 30 16" stroke="var(--brand)" stroke-width="3.4" stroke-linecap="round"/><path d="M32 14L40 10" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/><path d="M32 19L38 17" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/><path d="M8 31Q20 39 35 26" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/></svg></span>GovBabu</a>
     <div class="header-actions">
       <nav class="header-nav" id="headerNav"><a href="index.html" class="btn btn-outline btn-sm" data-i18n="nav.home">Home</a>
-      <a href="exams.html" class="btn btn-outline btn-sm" data-i18n="nav.browseExams">Browse Exams</a>
+      <a href="exams.html" class="btn btn-outline btn-sm" data-i18n="nav.browseExams">Find Your Exam</a>
       <a href="calendar.html" class="btn btn-outline btn-sm" data-i18n="nav.calendar">Calendar</a>
-      <a href="about.html" class="btn btn-outline btn-sm" data-i18n="nav.about" aria-current="page">About</a>
-      <a href="contact.html" class="btn btn-outline btn-sm" data-i18n="nav.contact">Contact</a></nav>
+      <a href="manjusha.html" class="btn btn-outline btn-sm" data-i18n="nav.manjusha">Manjusha</a>
+      <a href="tools.html" class="btn btn-outline btn-sm" data-i18n="nav.tools">Tools</a>
+      <div class="nav-more" id="navMore"><button type="button" class="btn btn-outline btn-sm nav-more-btn" id="navMoreBtn" aria-haspopup="true" aria-expanded="false" aria-current="page" data-i18n="nav.more">More</button>
+      <div class="nav-more-menu" id="navMoreMenu" role="menu"><a href="about.html" role="menuitem" aria-current="page" data-i18n="nav.about">About</a>
+      <a href="contact.html" role="menuitem" data-i18n="nav.contact">Contact</a>
+      <a href="privacy.html" role="menuitem" data-i18n="footer.privacyPolicy">Privacy Policy</a></div></div></nav>
       <button class="icon-btn lang-toggle" id="langToggle" aria-label="Change language" title="भाषा बदलें / Change language"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><rect x="2" y="4" width="13" height="13" rx="3" stroke="var(--brand)" stroke-width="1.6"/><text x="8.5" y="14" font-size="9" font-weight="700" text-anchor="middle" fill="var(--brand)" font-family="Arial, sans-serif">A</text><rect x="9" y="9" width="13" height="13" rx="3" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.6"/><text x="15.5" y="19" font-size="9" font-weight="700" text-anchor="middle" fill="var(--accent)" font-family="Arial, sans-serif">अ</text></svg></button>
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" aria-pressed="false"><span class="theme-toggle-track"><span class="theme-toggle-thumb"></span></span></button>
       <button class="icon-btn nav-toggle" id="navToggle" type="button" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/></svg></button>
@@ -157,30 +161,6 @@
     </div>
   </section>
 
-  <!-- 6. FROM DOCUMENT TO DECISION -->
-  <section class="section wrap" style="max-width:940px">
-    <div class="section-head">
-      <span class="tag" data-i18n="about.originTag">How GovBabu got here</span>
-      <h2 data-i18n="about.originHead">From a document problem to a bigger one</h2>
-    </div>
-    <div class="origin-flow">
-      <div class="origin-step">
-        <h3 data-i18n="about.origin1Label">Where we started</h3>
-        <p data-i18n="about.origin1Body">Why is preparing a photo, signature or PDF for a government form so unnecessarily difficult?</p>
-      </div>
-      <div class="origin-arrow" aria-hidden="true">→</div>
-      <div class="origin-step">
-        <h3 data-i18n="about.origin2Label">What we found</h3>
-        <p data-i18n="about.origin2Body">The paperwork was never the real problem. The whole application journey is hard to understand — vacancies, eligibility, dates and steps, scattered across sources that don't always agree.</p>
-      </div>
-      <div class="origin-arrow" aria-hidden="true">→</div>
-      <div class="origin-step">
-        <h3 data-i18n="about.origin3Label">Where we're going</h3>
-        <p data-i18n="about.origin3Body">Make the entire journey easier to get through — from discovering the right exam to submitting the application correctly.</p>
-      </div>
-    </div>
-  </section>
-
   <!-- 7. BUILT FOR ASPIRANTS ACROSS INDIA -->
   <section class="section wrap" style="max-width:900px">
     <div class="section-head">
@@ -204,6 +184,12 @@
           <li data-i18n="about.coverageNext1">Deeper coverage across every state, not just the largest ones</li>
           <li data-i18n="about.coverageNext2">More recruitment boards, including smaller but high-value exams</li>
           <li data-i18n="about.coverageNext3">Richer per-exam guidance as coverage grows</li>
+          <li><b data-i18n="about.roadmap1Title">More exams</b><span data-i18n="about.roadmap1Desc"> — expanding coverage across more states and major recruitment bodies.</span></li>
+          <li><b data-i18n="about.roadmap2Title">Better eligibility tools</b><span data-i18n="about.roadmap2Desc"> — an easier way to understand which exams you may actually be eligible for.</span></li>
+          <li><b data-i18n="about.roadmap3Title">Smarter application guidance</b><span data-i18n="about.roadmap3Desc"> — clearer, more specific steps for confusing government application processes.</span></li>
+          <li><b data-i18n="about.roadmap4Title">More document tools</b><span data-i18n="about.roadmap4Desc"> — exam-specific photo, signature and PDF preparation, built around what aspirants actually need.</span></li>
+          <li><b data-i18n="about.roadmap5Title">Alerts &amp; tracking</b><span data-i18n="about.roadmap5Desc"> — help staying on top of deadlines, correction windows, admit cards and results.</span></li>
+          <li><b data-i18n="about.roadmap6Title">Personalized exam discovery</b><span data-i18n="about.roadmap6Desc"> — eventually, exam suggestions based on your own profile, not just a static list.</span></li>
         </ul>
       </div>
     </div>
@@ -233,23 +219,6 @@
       <h2 data-i18n="about.freeHead">🎉 Free to use</h2>
       <p data-i18n="about.freeBody">GovBabu is currently free for every aspirant — no login, no payment required. We're building this with feedback from aspirants like you. If paid features are ever introduced, the plan is to limit them to document-preparation tools — core exam information stays free.</p>
     </div>
-  </section>
-
-  <!-- 10. WHAT WE ARE BUILDING NEXT -->
-  <section class="section wrap">
-    <div class="section-head">
-      <span class="tag" data-i18n="about.roadmapTag">Roadmap</span>
-      <h2 data-i18n="about.roadmapHead">What we're building next</h2>
-      <p data-i18n="about.roadmapIntro">Here's the direction we're headed in — not all of this exists yet.</p>
-    </div>
-    <ul class="roadmap">
-      <li><span class="dot"></span><div><b data-i18n="about.roadmap1Title">More exams</b><span data-i18n="about.roadmap1Desc"> — expanding coverage across more states and major recruitment bodies.</span></div></li>
-      <li><span class="dot"></span><div><b data-i18n="about.roadmap2Title">Better eligibility tools</b><span data-i18n="about.roadmap2Desc"> — an easier way to understand which exams you may actually be eligible for.</span></div></li>
-      <li><span class="dot"></span><div><b data-i18n="about.roadmap3Title">Smarter application guidance</b><span data-i18n="about.roadmap3Desc"> — clearer, more specific steps for confusing government application processes.</span></div></li>
-      <li><span class="dot"></span><div><b data-i18n="about.roadmap4Title">More document tools</b><span data-i18n="about.roadmap4Desc"> — exam-specific photo, signature and PDF preparation, built around what aspirants actually need.</span></div></li>
-      <li><span class="dot"></span><div><b data-i18n="about.roadmap5Title">Alerts &amp; tracking</b><span data-i18n="about.roadmap5Desc"> — help staying on top of deadlines, correction windows, admit cards and results.</span></div></li>
-      <li><span class="dot"></span><div><b data-i18n="about.roadmap6Title">Personalized exam discovery</b><span data-i18n="about.roadmap6Desc"> — eventually, exam suggestions based on your own profile, not just a static list.</span></div></li>
-    </ul>
   </section>
 
   <!-- 11. WHO GOVBABU IS FOR -->
@@ -296,8 +265,10 @@
     <div class="footer-col">
       <div class="footer-col-title" data-i18n="footer.explore">Explore</div>
       <a href="index.html" data-i18n="nav.home">Home</a>
-      <a href="exams.html" data-i18n="nav.browseExams">Browse Exams</a>
+      <a href="exams.html" data-i18n="nav.browseExams">Find Your Exam</a>
       <a href="calendar.html" data-i18n="nav.calendar">Calendar</a>
+      <a href="manjusha.html" data-i18n="nav.manjusha">Manjusha</a>
+      <a href="tools.html" data-i18n="nav.tools">Tools</a>
     </div>
     <div class="footer-col">
       <div class="footer-col-title" data-i18n="footer.company">Company</div>
@@ -310,6 +281,8 @@
     <div class="footer-col">
       <div class="footer-col-title" data-i18n="footer.connect">Connect</div>
       <a href="https://t.me/GovBabu_official" target="_blank" rel="noopener" data-i18n="footer.telegram">Telegram</a>
+      <a href="https://www.youtube.com/@GovBabu_official" target="_blank" rel="noopener" data-i18n="footer.youtube">YouTube</a>
+      <a href="https://www.instagram.com/govbabu_official" target="_blank" rel="noopener" data-i18n="footer.instagram">Instagram</a>
     </div>
   </div>
   <div class="wrap footer-bottom">
@@ -318,6 +291,7 @@
   </div>
 </footer>
 
-<script src="app.js"></script>
+<script src="data/applications.generated.js" defer></script>
+<script src="app.js" defer></script>
 </body>
 </html>

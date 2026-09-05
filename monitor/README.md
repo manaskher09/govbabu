@@ -65,21 +65,46 @@ will correctly surface as "needs manual review" until a real adapter for
 that type is written (see `adapters/index.js` — register it there, nothing
 else changes).
 
+## Daily automated check (GitHub Actions)
+
+`.github/workflows/daily-sanity-check.yml` (in the repo root, not here)
+runs `npm run daily-check` every day at 06:00 IST against every active
+source, and sends one Telegram summary regardless of outcome — separate
+from the per-change alerts `pipeline/runCheck.js` already sends for
+anything `CONFIRMED_CHANGE`/`NEEDS_HUMAN_REVIEW`. It never writes to
+`field_history` (see "one approval path" above) — a run only ever adds
+rows to `change_events` (status='pending') for a human to review.
+
+The database itself lives in a **separate private repo**
+(`manaskher09/govbabu-data`), never in this public one — it holds an admin
+password hash and must not be exposed. The workflow checks that repo out,
+runs the check against it, and commits the result back. To review/approve
+what it finds: `git clone` that private repo, point `MONITOR_DB_PATH` at
+its `monitor.sqlite3`, and run `npm run admin` here as usual.
+
+Required GitHub Actions secrets (repo Settings → Secrets and variables →
+Actions, on the **public** `govbabu` repo):
+- `DATA_REPO_TOKEN` — a fine-grained PAT scoped to only `govbabu-data`,
+  contents read+write.
+- `TELEGRAM_BOT_TOKEN` / `TELEGRAM_ADMIN_CHAT_ID` — same as the local
+  `.env.local` values, see `.env.example`.
+
 ## What this MVP deliberately does NOT do yet
 
 - **OCR** for scanned PDFs, and **headless-browser rendering** for
   JS-rendered pages — both route to manual review instead of guessing.
-- **Auto-sync approved changes back into `app.js`'s `APPLICATIONS`
-  array** — that array has no schema today, so writing to it safely is
-  separate work. For now, an approved change is GovBabu's recorded truth
-  inside `field_history`; updating the live site from it is a manual (or
-  future scripted) step.
+  4 exams (UPSC, NDA, CDS, IB-ACIO) actively block automated requests
+  (real HTTP 403s) and 1 (MPPSC) is disallowed by its own robots.txt —
+  none of these are bypassed; they're registered as manual reference
+  documents instead, needing a human to check periodically.
+- **Auto-publishing after approval** — approving a change updates
+  `field_history` (GovBabu's recorded truth) immediately, but regenerating
+  the live site is still a manual `npm run publish:site` + `git push`
+  step, by design (nothing auto-writes what the public sees).
 - **A real queue/worker system** (BullMQ, etc.) — `pipeline/scheduler.js`
-  is a single-process interval loop, correct for 2–20 sources. `runCheck`
-  itself doesn't change when you outgrow that; only the scheduler does.
-- **Multi-user admin auth** — one shared token via `MONITOR_ADMIN_TOKEN`.
-  `admin_users`/`audit_logs` already track *who* approved what, so real
-  per-user login is additive, not a schema change.
+  is a single-process interval loop, correct for 2–20 sources; the daily
+  GitHub Actions workflow above covers "run once a day" without needing
+  this at all. `runCheck` itself doesn't change if you ever outgrow both.
 
 ## Tests
 
@@ -87,9 +112,10 @@ else changes).
 npm test
 ```
 
-41 tests, zero network calls (everything network-shaped is dependency-
+149 tests, zero network calls (everything network-shaped is dependency-
 injected — see `test/helpers.js`), covering the 12 scenarios from the
-spec: no change, exam date change, deadline extension, vacancy change, new
+spec (no change, exam date change, deadline extension, vacancy change, new
 notification, revised/corrigendum notification, PDF replacement, source
-unavailable, parser failure, OCR failure (routes to manual review),
-conflicting sources, and duplicate/reworded notifications.
+unavailable, parser failure, OCR failure routes to manual review,
+conflicting sources, duplicate/reworded notifications) plus the admin API,
+publish pipeline, data-import sync, and WAL-checkpoint-on-exit behavior.

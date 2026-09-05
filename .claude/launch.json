@@ -5,7 +5,8 @@
       "name": "govtbabu-prototype",
       "runtimeExecutable": "node",
       "runtimeArgs": ["dev-server.js"],
-      "port": 8744
+      "port": 8744,
+      "autoPort": true
     },
     {
       "name": "monitor-admin",

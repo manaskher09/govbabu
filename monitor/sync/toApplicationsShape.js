@@ -49,7 +49,12 @@ function toApplicationsShape(currentExam) {
     cat: currentExam.category,
     status: f.status || 'open',
     popularity: f.popularity != null ? Number(f.popularity) : undefined,
-    vacancies: formatVacancies(f.vacancies),
+    // vacancies_display (the verbatim original string) wins whenever it
+    // exists — "~933", "25,000+", or a compound breakdown are real,
+    // meaningful values that formatVacancies' digit-only reformatting of
+    // the machine `vacancies` field would otherwise mangle or lose. See
+    // import-existing-exams.js for why both fields exist.
+    vacancies: f.vacancies_display || formatVacancies(f.vacancies),
     notifTitle: f.notif_title,
     applyStart: f.apply_start,
     applyEnd: f.apply_end,
@@ -63,6 +68,10 @@ function toApplicationsShape(currentExam) {
     tentativeNextMonth: tentative.month,
     tentativeNext: tentative.text,
     verified: f.verified,
+    // Free-text display strings (app.js's Important Dates panel reads these
+    // directly) — kept distinct from the machine-parsed ISO fields below.
+    examDate: f.exam_date_text,
+    admitCardDate: f.admit_card_date_text,
     // Canonical machine fields the monitor actually tracks live, exposed
     // alongside the display strings above rather than replacing them.
     examDateIso: f.exam_date,

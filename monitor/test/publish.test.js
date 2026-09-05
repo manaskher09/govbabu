@@ -185,7 +185,7 @@ test('a malicious exam name cannot break out of the JSON-LD <script> tag', () =>
   // The literal sequence "</script>" must never appear anywhere except at
   // the two real, intentional closing tags this function emits.
   const scriptCloseCount = (html.match(/<\/script>/g) || []).length;
-  assert.equal(scriptCloseCount, 3, 'expected exactly 3 real </script> tags (2 JSON-LD + 1 app.js) — any more means the payload broke out');
+  assert.equal(scriptCloseCount, 4, 'expected exactly 4 real </script> tags (2 JSON-LD + applications.generated.js + app.js) — any more means the payload broke out');
   assert.ok(html.includes('\\u003cscript>alert'), 'the payload should survive escaped, inert, inside the JSON-LD string');
 });
 
@@ -273,16 +273,18 @@ test('buildStagedSite failing never touches production, and cleans up its own st
   fs.rmSync(repoRoot, { recursive: true, force: true });
 });
 
-test('a full staged publish replaces all three outputs, in the documented safe order, leaving no staging residue', () => {
+test('a full staged publish replaces all four outputs, in the documented safe order, leaving no staging residue', () => {
   const repoRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'govbabu-staged-test-'));
   const examsDir = path.join(repoRoot, 'exams');
   const sitemapPath = path.join(repoRoot, 'sitemap.xml');
   const examsJsonPath = path.join(repoRoot, 'data', 'exams.json');
+  const applicationsJsPath = path.join(repoRoot, 'data', 'applications.generated.js');
   fs.mkdirSync(examsDir);
   fs.writeFileSync(path.join(examsDir, 'old-only.txt'), 'stale, must be gone after swap');
   fs.writeFileSync(sitemapPath, 'OLD SITEMAP');
   fs.mkdirSync(path.dirname(examsJsonPath), { recursive: true });
   fs.writeFileSync(examsJsonPath, 'OLD JSON');
+  fs.writeFileSync(applicationsJsPath, 'OLD APPLICATIONS JS');
 
   const stagingDir = buildStagedSite(repoRoot, (staging) => {
     fs.mkdirSync(path.join(staging, 'exams', 'ssc-cgl'), { recursive: true });
@@ -290,12 +292,14 @@ test('a full staged publish replaces all three outputs, in the documented safe o
     fs.writeFileSync(path.join(staging, 'sitemap.xml'), 'NEW SITEMAP');
     fs.mkdirSync(path.join(staging, 'data'), { recursive: true });
     fs.writeFileSync(path.join(staging, 'data', 'exams.json'), 'NEW JSON');
+    fs.writeFileSync(path.join(staging, 'data', 'applications.generated.js'), 'NEW APPLICATIONS JS');
   });
-  swapStagedSite(stagingDir, { examsDir, sitemapPath, examsJsonPath });
+  swapStagedSite(stagingDir, { examsDir, sitemapPath, examsJsonPath, applicationsJsPath });
 
   assert.deepEqual(fs.readdirSync(examsDir), ['ssc-cgl'], 'the old exams/ contents must be fully replaced, not merged');
   assert.equal(fs.readFileSync(sitemapPath, 'utf8'), 'NEW SITEMAP');
   assert.equal(fs.readFileSync(examsJsonPath, 'utf8'), 'NEW JSON');
+  assert.equal(fs.readFileSync(applicationsJsPath, 'utf8'), 'NEW APPLICATIONS JS');
   const rootEntries = fs.readdirSync(repoRoot);
   assert.ok(!rootEntries.some((e) => e.includes('.publish-staging-') || e.includes('.prev-')), 'no staging or rollback residue should remain after a successful publish');
   fs.rmSync(repoRoot, { recursive: true, force: true });
@@ -373,10 +377,26 @@ test('validateStagedSite accepts a correctly-built staged site', () => {
   fs.writeFileSync(path.join(stagingDir, 'sitemap.xml'), '<urlset><url><loc>https://x/exams/a/</loc></url></urlset>');
   fs.mkdirSync(path.join(stagingDir, 'exams', 'a'), { recursive: true });
   fs.writeFileSync(path.join(stagingDir, 'exams', 'a', 'index.html'), '<html>real content</html>');
+  fs.writeFileSync(path.join(stagingDir, 'data', 'applications.generated.js'), `const APPLICATIONS=${JSON.stringify([{ code: 'A' }])};\n`);
 
   const { ok, errors } = validateStagedSite(stagingDir, [{ code: 'A', slug: 'a' }]);
   assert.deepEqual(errors, []);
   assert.equal(ok, true);
+  fs.rmSync(stagingDir, { recursive: true, force: true });
+});
+
+test('validateStagedSite catches an applications.generated.js exam count mismatch', () => {
+  const stagingDir = fs.mkdtempSync(path.join(os.tmpdir(), 'govbabu-staged-validate-'));
+  fs.mkdirSync(path.join(stagingDir, 'data'), { recursive: true });
+  fs.writeFileSync(path.join(stagingDir, 'data', 'exams.json'), JSON.stringify({ exams: [{ code: 'A' }] }));
+  fs.writeFileSync(path.join(stagingDir, 'sitemap.xml'), '<urlset><url><loc>https://x/exams/a/</loc></url></urlset>');
+  fs.mkdirSync(path.join(stagingDir, 'exams', 'a'), { recursive: true });
+  fs.writeFileSync(path.join(stagingDir, 'exams', 'a', 'index.html'), '<html>real content</html>');
+  fs.writeFileSync(path.join(stagingDir, 'data', 'applications.generated.js'), `const APPLICATIONS=${JSON.stringify([])};\n`);
+
+  const { ok, errors } = validateStagedSite(stagingDir, [{ code: 'A', slug: 'a' }]);
+  assert.equal(ok, false);
+  assert.ok(errors.some((e) => e.includes('applications.generated.js has 0 exams, expected 1')));
   fs.rmSync(stagingDir, { recursive: true, force: true });
 });
 

@@ -39,6 +39,32 @@ const routes = {
   '/api/razorpay-webhook': require('./api/razorpay-webhook'),
 };
 
+// Static hosts like Cloudflare Pages/Netlify serve /exams/rrb-je/ by
+// resolving it to exams/rrb-je/index.html automatically — this dev server
+// didn't, so every clean exam-page URL (the canonical link every generated
+// page actually uses) 404'd locally despite working in production. Mirror
+// that resolution here: a path that's a directory (or has no extension and
+// doesn't exist as a file — e.g. /exams/rrb-je with no trailing slash)
+// falls back to its own index.html.
+function serveFile(filePath, res) {
+  fs.stat(filePath, (err, stat) => {
+    if (!err && stat.isDirectory()) {
+      return serveFile(path.join(filePath, 'index.html'), res);
+    }
+    if (err && !path.extname(filePath)) {
+      return serveFile(path.join(filePath, 'index.html'), res);
+    }
+    fs.readFile(filePath, (readErr, data) => {
+      if (readErr) {
+        res.statusCode = 404;
+        return res.end('Not found');
+      }
+      res.setHeader('Content-Type', MIME[path.extname(filePath)] || 'application/octet-stream');
+      res.end(data);
+    });
+  });
+}
+
 function readRawBody(req) {
   return new Promise((resolve, reject) => {
     let data = '';
@@ -73,14 +99,7 @@ const server = http.createServer(async (req, res) => {
     res.statusCode = 403;
     return res.end('Forbidden');
   }
-  fs.readFile(filePath, (err, data) => {
-    if (err) {
-      res.statusCode = 404;
-      return res.end('Not found');
-    }
-    res.setHeader('Content-Type', MIME[path.extname(filePath)] || 'application/octet-stream');
-    res.end(data);
-  });
+  serveFile(filePath, res);
 });
 
 server.listen(PORT, () => {

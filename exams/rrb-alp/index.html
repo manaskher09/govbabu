@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="/styles.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"JobPosting","title":"RRB ALP","description":"CEN 01/2026 — Assistant Loco Pilot (ALP), 11,127 vacancies across 21 RRBs/17 railway zones. Application window closed 14 Jun 2026; CBT 1 reported as tentatively scheduled for August 2026 by secondary sources (exact date not independently confirmed).","identifier":{"@type":"PropertyValue","name":"GovBabu","value":"RRB-ALP"},"hiringOrganization":{"@type":"Organization","name":"Railway Recruitment Boards"},"jobLocation":{"@type":"Place","address":{"@type":"PostalAddress","addressCountry":"IN"}},"employmentType":"FULL_TIME","datePosted":"2026-08-27","validThrough":"2026-06-14","totalJobOpenings":11127}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.govbabu.com/index.html"},{"@type":"ListItem","position":2,"name":"Browse Exams","item":"https://www.govbabu.com/exams.html"},{"@type":"ListItem","position":3,"name":"RRB ALP","item":"https://www.govbabu.com/exams/rrb-alp/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"If I score well in CBT-2 Part A but do poorly in the trade test (Part B), will I still be selected?","acceptedAnswer":{"@type":"Answer","text":"Only if you clear the minimum 35% qualifying mark in Part B — if you fall short there, your Part A marks are not considered at all regardless of how high they are."}},{"@type":"Question","name":"Does CBAT actually affect my final merit rank?","acceptedAnswer":{"@type":"Answer","text":"No, CBAT is purely qualifying (pass/fail) for ALP; it does not add marks to your final merit score, unlike CBT-2 Part A."}},{"@type":"Question","name":"Can I choose which trade syllabus to prepare for CBT-2 Part B?","acceptedAnswer":{"@type":"Answer","text":"No, the trade paper is fixed based on the trade option you selected at the time of application, so choose that option carefully before applying."}},{"@type":"Question","name":"Is there negative marking in the CBAT stage?","acceptedAnswer":{"@type":"Answer","text":"No, CBAT has no negative marking — it is scored purely as qualify/disqualify."}}]}</script>
 </head>
 <body>
 
@@ -27,10 +28,14 @@
     <a href="/index.html" class="brand"><span class="brand-mark"><svg viewBox="0 0 46 46" fill="none"><rect x="8" y="24" width="28" height="18" rx="5" stroke="var(--brand)" stroke-width="3.4"/><path d="M14 24V16A8 8 0 0 1 30 16" stroke="var(--brand)" stroke-width="3.4" stroke-linecap="round"/><path d="M32 14L40 10" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/><path d="M32 19L38 17" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/><path d="M8 31Q20 39 35 26" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/></svg></span>GovBabu</a>
     <div class="header-actions">
       <nav class="header-nav" id="headerNav"><a href="/index.html" class="btn btn-outline btn-sm">Home</a>
-      <a href="/exams.html" class="btn btn-outline btn-sm" aria-current="page">Browse Exams</a>
+      <a href="/exams.html" class="btn btn-outline btn-sm" aria-current="page">Find Your Exam</a>
       <a href="/calendar.html" class="btn btn-outline btn-sm">Calendar</a>
-      <a href="/about.html" class="btn btn-outline btn-sm">About</a>
-      <a href="/contact.html" class="btn btn-outline btn-sm">Contact</a></nav>
+      <a href="/manjusha.html" class="btn btn-outline btn-sm">Downloads</a>
+      <a href="/tools.html" class="btn btn-outline btn-sm">Tools</a>
+      <div class="nav-more" id="navMore"><button type="button" class="btn btn-outline btn-sm nav-more-btn" id="navMoreBtn" aria-haspopup="true" aria-expanded="false">More</button>
+      <div class="nav-more-menu" id="navMoreMenu" role="menu"><a href="/about.html" role="menuitem">About</a>
+      <a href="/contact.html" role="menuitem">Contact</a>
+      <a href="/privacy.html" role="menuitem">Privacy Policy</a></div></div></nav>
       <button class="icon-btn lang-toggle" id="langToggle" aria-label="Change language" title="भाषा बदलें / Change language"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><rect x="2" y="4" width="13" height="13" rx="3" stroke="var(--brand)" stroke-width="1.6"/><text x="8.5" y="14" font-size="9" font-weight="700" text-anchor="middle" fill="var(--brand)" font-family="Arial, sans-serif">A</text><rect x="9" y="9" width="13" height="13" rx="3" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.6"/><text x="15.5" y="19" font-size="9" font-weight="700" text-anchor="middle" fill="var(--accent)" font-family="Arial, sans-serif">अ</text></svg></button>
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" aria-pressed="false"><span class="theme-toggle-track"><span class="theme-toggle-thumb"></span></span></button>
       <button class="icon-btn nav-toggle" id="navToggle" type="button" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/></svg></button>
@@ -38,8 +43,10 @@
   </div>
 </header>
 <main id="main">
+  <div class="wrap exam-detail-topbar">
+    <a class="exam-back-link" href="/exams.html"><span class="exam-back-arrow" aria-hidden="true">←</span> Browse all exams</a>
+  </div>
   <div class="wrap flow-intro">
-    <p class="lead"><a href="/exams.html">← Browse all exams</a></p>
     <h1>RRB ALP</h1>
   </div>
   <div class="wrap">
@@ -50,29 +57,33 @@
       <a class="btn btn-outline btn-sm" href="https://www.rrbchennai.gov.in/downloads/CEN%2001_2026%20english%20.pdf" target="_blank" rel="noopener">Official Notice ↗</a>
     </div>
     <div class="exam-detail-panel">
-      <div class="quick-overview"><div class="quick-overview-item"><span class="quick-overview-label">Last Date</span><span class="quick-overview-value">14 Jun 2026 (11:59 PM)</span></div><div class="quick-overview-item"><span class="quick-overview-label">Qualification</span><span class="quick-overview-value">Matriculation/SSLC plus ITI (NCVT/SCVT-recognized) in one of: Fitter, Electrician, Instrument Mechanic, Millwright/Maintenance Mechanic, Mechanic (Radio &amp; TV), Electronics Mechanic, Mechanic (Motor Vehicle), Wireman, Tractor Mechanic, Armature &amp; Coil Winder, Mechanic (Diesel), Heat Engine, Turner, Machinist, Refrigeration &amp; Air-Conditioning Mechanic — OR Matriculation/SSLC plus a 3-year diploma in Mechanical/Electrical/Electronics/Automobile Engineering (or combination streams of these) in lieu of ITI, from a recognized institution.</span></div><div class="quick-overview-item"><span class="quick-overview-label">Vacancies</span><span class="quick-overview-value">11,127</span></div></div>
-      <details class="detail-note"><summary>ⓘ Data note</summary><p>Applicant volume for this exact cycle is confirmed: RRB&#39;s own zone-wise form fill-up data (as reported by secondary aggregators, e.g. Testbook) puts total applications at 8,40,944 for CEN 01/2026&#39;s 11,127 vacancies (≈76 applicants per vacancy), comfortably above the 2-lakh threshold. RE-VERIFIED 27 Aug 2026 against the primary CEN 01/2026 PDF (fetched directly from rrbchennai.gov.in): age reference date is confirmed as &quot;as on 01-07-2026&quot; — the &quot;1 Jan 2026&quot; figure circulating in some secondary sources was incorrect. Signature spec and the SC/ST-certificate spec are now also primary-confirmed. CBT 1 has NOT yet been officially scheduled as of 27 Aug 2026 — &quot;August 2026&quot; remains an unconfirmed secondary-source estimate; watch rrbapply.gov.in and regional RRB sites for the city intimation slip.</p></details>
+      <div class="quick-overview"><div class="quick-overview-item"><span class="quick-overview-label">Status</span><span class="quick-overview-value">Closed</span></div><div class="quick-overview-item"><span class="quick-overview-label">Vacancies</span><span class="quick-overview-value">11,127</span></div><div class="quick-overview-item"><span class="quick-overview-label">Category</span><span class="quick-overview-value">Railway</span></div></div>
+      <details class="detail-note"><summary>ⓘ Data note</summary><p>Applicant volume for this exact cycle is confirmed: RRB&#39;s own zone-wise form fill-up data (as reported by secondary aggregators) puts total applications at 8,40,944 for CEN 01/2026&#39;s 11,127 vacancies (≈76 applicants per vacancy), comfortably above the 2-lakh threshold. RE-VERIFIED 27 Aug 2026 against the primary CEN 01/2026 PDF (fetched directly from rrbchennai.gov.in): age reference date is confirmed as &quot;as on 01-07-2026&quot; — the &quot;1 Jan 2026&quot; figure circulating in some secondary sources was incorrect. Signature spec and the SC/ST-certificate spec are now also primary-confirmed. CBT 1 has NOT yet been officially scheduled as of 27 Aug 2026 — &quot;August 2026&quot; remains an unconfirmed secondary-source estimate; watch rrbapply.gov.in and regional RRB sites for the city intimation slip.</p></details>
       
       <div class="detail-grid">
+        <div class="detail-card detail-card-wide"><h4>Important Dates</h4><div class="dates-table"><div class="dates-row"><span class="dates-label">Apply Start</span><span class="dates-value">15 May 2026</span></div><div class="dates-row"><span class="dates-label">Applications Closed</span><span class="dates-value">14 Jun 2026 (11:59 PM)</span></div><div class="dates-row"><span class="dates-label">Last Verified</span><span class="dates-value">27 Aug 2026</span></div></div></div>
         <div class="detail-card"><h4>Posts &amp; Pay</h4><div class="pay-group"><b>Level 2 (7th CPC) · ₹19,900 (basic, initial pay)</b><span>Assistant Loco Pilot (ALP) — single post, 11,127 vacancies</span></div><p class="detail-footnote">Pay Level 2 / ₹19,900 initial basic confirmed directly against the primary CEN 01/2026 PDF, and matches the historical ALP pay level from prior cycles.</p></div>
         <div class="detail-card"><h4>Eligibility</h4>
         <div class="detail-row"><b>Age</b><span>18–30 years, as on 01 Jul 2026 — confirmed directly from the official CEN 01/2026 notification (Para 5, age table). The earlier &quot;1 Jan 2026&quot; figure circulating in some secondary sources is incorrect.</span></div>
         <div class="detail-row"><b>Age Relaxation</b><span>OBC-NCL +3 yrs, SC/ST +5 yrs, Ex-servicemen per standard formula — consistent with RRB&#39;s general norms.</span></div>
         <div class="detail-row"><b>Qualification</b><span>Matriculation/SSLC plus ITI (NCVT/SCVT-recognized) in one of: Fitter, Electrician, Instrument Mechanic, Millwright/Maintenance Mechanic, Mechanic (Radio &amp; TV), Electronics Mechanic, Mechanic (Motor Vehicle), Wireman, Tractor Mechanic, Armature &amp; Coil Winder, Mechanic (Diesel), Heat Engine, Turner, Machinist, Refrigeration &amp; Air-Conditioning Mechanic — OR Matriculation/SSLC plus a 3-year diploma in Mechanical/Electrical/Electronics/Automobile Engineering (or combination streams of these) in lieu of ITI, from a recognized institution.</span></div>
+        
       </div>
+        <div class="detail-card detail-card-wide"><h4>Exam Pattern</h4><div class="detail-row"><b>Online CBT, two stages (CBT-1 screening, CBT-2 merit-based with Part A + Part B), followed by CBAT (Computer Based Aptitude Test, qualifying only), Document Verification and Medical Examination. · CBT-1: 60 minutes. CBT-2 Part A: 90 minutes, Part B: 60 minutes. (PwBD candidates get extra time per rules.)</b></div><div class="detail-row"><b>CBT-1</b><span>75 questions/75 marks — Mathematics, General Intelligence &amp; Reasoning, General Science, General Awareness/Current Affairs (screening only, not counted in final merit)</span></div><div class="detail-row"><b>CBT-2 Part A</b><span>100 questions/90 minutes — Mathematics, Basic Science &amp; Engineering, General Awareness, General Intelligence &amp; Reasoning (counts toward merit)</span></div><div class="detail-row"><b>CBT-2 Part B</b><span>75 questions/60 minutes — Relevant Trade syllabus (qualifying, minimum 35% required to allow Part A marks to count)</span></div><div class="detail-row"><b>CBAT</b><span>Qualifying only, no negative marking, not added to merit score</span></div><div class="detail-row"><b>Negative Marking</b><span>-1/3 (0.33) mark per wrong answer in CBT-1 and CBT-2 (Parts A and B); no negative marking in CBAT.</span></div><div class="detail-row"><b>Passing Marks</b><span>N/A — merit-based/normalized ranking for CBT-2 Part A; Part B (Trade test) has a fixed qualifying threshold of 35% for all categories, but does not itself contribute marks to merit.</span></div><p class="detail-footnote">Figures agree across multiple secondary sources (secondary sources, moderate-high confidence); the RRB CDG official notification PDF could not be fetched directly (certificate/hostname errors), so treat exact marks split as indicative rather than verbatim-confirmed for the latest CEN.</p></div>
         <div class="detail-card"><h4>Career Progression</h4><p class="promotion-caveat">Not addressed in the official notification — coaching-site consensus, not RRB-confirmed.</p><ul class="promotion-steps"><li>Assistant Loco Pilot → Loco Pilot (Goods) — after a minimum of about 2 years&#39; service and about 60,000 km of running experience as an Assistant</li><li>Loco Pilot (Goods) → Loco Pilot (Mail/Express) → Senior Loco Pilot → Loco Inspector / Loco Supervisor</li><li>Departmental exams can also open routes to Power Controller, Crew Controller, or Loco Foreman</li><li>Reaching senior driving roles (e.g. Rajdhani/Shatabdi links) is commonly cited as taking 8–10+ years overall</li></ul></div>
         <div class="detail-card detail-card-wide"><h4>How to Apply</h4>
         <a class="btn btn-primary btn-sm apply-cta" href="https://www.rrbchennai.gov.in/downloads/CEN%2001_2026%20english%20.pdf" target="_blank" rel="noopener">Apply on the official site ↗</a>
         
         <ol class="apply-steps"><li>Create an account on rrbapply.gov.in (Aadhaar/DigiLocker verification recommended)</li><li>Select CEN 01/2026 (ALP) and register with mobile number, email ID and personal details</li><li>Fill the application form, choosing preferred RRB zone(s) per the notification&#39;s option rules</li><li>Live-capture your photo during the application — there is no separate upload</li><li>Upload your signature to spec (35mm × 20mm, 140×60px, 30–49KB, JPG/JPEG, cursive black ink)</li><li>Upload ITI/diploma and category certificates as required</li><li>Pay the fee — ₹500 for UR/OBC-NCL/EWS (₹400 refunded after appearing in CBT 1) or ₹250 for SC/ST/women/PwBD/Ex-servicemen/Transgender/Minorities/EBC (fully refunded after appearing in CBT 1); refund credited only to an Aadhaar-seeded bank account</li><li>Review and submit before the 14 Jun 2026 deadline</li><li>Download and retain the application confirmation/registration slip; watch rrbapply.gov.in and your regional RRB site for CBT 1 city/date intimation</li></ol>
         
-        
       </div>
+        <div class="detail-card detail-card-wide"><h4>Document Requirements</h4><div class="detail-row"><b>Photo</b><span>No separate upload — live webcam/front-camera capture during the application itself · Live capture — no cap, mask or glasses/spectacles; eyes open; look straight ahead with neutral expression; non-white/dark clothing preferred; photographing a printed or digital photo causes rejection</span></div><div class="detail-row"><b>Signature</b><span>35mm × 20mm scan box · 30–49 KB · JPG/JPEG — black ink, cursive/running handwriting (not block/capital/disjointed letters), scanned at ≥100 DPI — sourced from a secondary summary of the official CEN 01/2026 Application FAQ document.</span></div></div>
         <div class="detail-card detail-card-wide"><h4>Other Documents</h4><div class="detail-row"><b>SC/ST certificate (free travel pass claimants only)</b><span>PDF only, under 400 KB — confirmed pattern on other RRB CENs on the same portal, not independently reverified for this specific exam.</span></div></div>
+        <div class="detail-card detail-card-wide"><h4>Frequently Asked Questions</h4><details class="detail-note"><summary>If I score well in CBT-2 Part A but do poorly in the trade test (Part B), will I still be selected?</summary><p>Only if you clear the minimum 35% qualifying mark in Part B — if you fall short there, your Part A marks are not considered at all regardless of how high they are.</p></details><details class="detail-note"><summary>Does CBAT actually affect my final merit rank?</summary><p>No, CBAT is purely qualifying (pass/fail) for ALP; it does not add marks to your final merit score, unlike CBT-2 Part A.</p></details><details class="detail-note"><summary>Can I choose which trade syllabus to prepare for CBT-2 Part B?</summary><p>No, the trade paper is fixed based on the trade option you selected at the time of application, so choose that option carefully before applying.</p></details><details class="detail-note"><summary>Is there negative marking in the CBAT stage?</summary><p>No, CBAT has no negative marking — it is scored purely as qualify/disqualify.</p></details></div>
         <div class="detail-card detail-card-wide" style="text-align:center">
     <a class="btn btn-primary" href="/index.html?exam=RRB-ALP">Prepare your photo &amp; signature for RRB ALP →</a>
   </div>
-        <div class="detail-card detail-card-wide"><h4>Related exams in Railway</h4><ul class="apply-steps"><li><a href="/exams/rrb-ntpc/">RRB NTPC</a></li><li><a href="/exams/rrb-grp-d/">RRB Group D</a></li><li><a href="/exams/rrb-je/">RRB JE</a></li></ul></div>
+        <div class="detail-card detail-card-wide"><h4>Related exams in Railway</h4><ul class="apply-steps"><li><a href="/exams/rrb-ntpc/">RRB NTPC</a></li><li><a href="/exams/rrb-grp-d/">RRB Group D</a></li><li><a href="/exams/rrb-je/">RRB JE</a></li><li><a href="/exams/rpf-constable/">RPF Constable</a></li><li><a href="/exams/rrb-technician/">RRB Technician (Grade I Signal &amp; Grade III)</a></li></ul></div>
       </div>
       <div class="detail-updated">Last verified: 27 Aug 2026</div>
     </div>
@@ -89,8 +100,10 @@
     <div class="footer-col">
       <div class="footer-col-title">Explore</div>
       <a href="/index.html">Home</a>
-      <a href="/exams.html">Browse Exams</a>
+      <a href="/exams.html">Find Your Exam</a>
       <a href="/calendar.html">Calendar</a>
+      <a href="/manjusha.html">Downloads</a>
+      <a href="/tools.html">Tools</a>
     </div>
     <div class="footer-col">
       <div class="footer-col-title">Company</div>
@@ -103,6 +116,8 @@
     <div class="footer-col">
       <div class="footer-col-title">Connect</div>
       <a href="https://t.me/GovBabu_official" target="_blank" rel="noopener">Telegram</a>
+      <a href="https://www.youtube.com/@GovBabu_official" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://www.instagram.com/govbabu_official" target="_blank" rel="noopener">Instagram</a>
     </div>
   </div>
   <div class="wrap footer-bottom">
@@ -110,6 +125,7 @@
     <p class="footer-copyright">© 2026 GovBabu. All Rights Reserved.</p>
   </div>
 </footer>
-<script src="/app.js"></script>
+<script src="/data/applications.generated.js" defer></script>
+<script src="/app.js" defer></script>
 </body>
 </html>

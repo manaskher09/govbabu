@@ -1,7 +1,12 @@
 #!/usr/bin/env node
 // Publishes monitor's content_status='published' exams to the main site as
-// static output: data/exams.json, one exams/<slug>/index.html per exam, and
-// sitemap.xml.
+// static output: data/exams.json, data/applications.generated.js (the
+// frontend's exam data — index.html/exams.html/calendar.html load this
+// before app.js), one exams/<slug>/index.html per exam, and sitemap.xml.
+// This is the ONLY thing that writes to any of those paths — there used to
+// be a second, separate script generating exams/*/index.html straight from
+// app.js's old hand-written array; that array and that script are both
+// gone now that every exam has a real database row.
 //
 // Publish boundary: extract -> validate source data -> build the ENTIRE new
 // site into one staging directory -> validate the staged output as a whole
@@ -21,10 +26,13 @@ const { computeDiff } = require('../publish/diff');
 const { buildStagedSite, swapStagedSite, discardStagedSite } = require('../publish/atomicWrite');
 const { renderExamPage } = require('../publish/render');
 const { buildSitemap } = require('../publish/sitemap');
+const { checkNoUnexpectedShrinkage } = require('../publish/shrinkGuard');
+const { renderApplicationsJs } = require('../publish/renderApplications');
 
 const REPO_ROOT = path.join(__dirname, '..', '..');
 const DATA_DIR = path.join(REPO_ROOT, 'data');
 const EXAMS_JSON_PATH = path.join(DATA_DIR, 'exams.json');
+const APPLICATIONS_JS_PATH = path.join(DATA_DIR, 'applications.generated.js');
 const EXAMS_DIR = path.join(REPO_ROOT, 'exams');
 const SITEMAP_PATH = path.join(REPO_ROOT, 'sitemap.xml');
 
@@ -84,6 +92,17 @@ async function main() {
   const previousExams = readPreviousExams();
   const { newlyAdded, updated, archived } = computeDiff(previousExams, transformed);
 
+  // 5b. Guard against publishing a set that would delete real, live exam
+  // pages the database doesn't know about yet (see checkNoUnexpectedShrinkage).
+  const shrinkageError = checkNoUnexpectedShrinkage(EXAMS_DIR, transformed.length);
+  if (shrinkageError) {
+    console.log('GovBabu Publish\n');
+    console.log('❌ Publish aborted\n');
+    console.log(shrinkageError);
+    console.log('\nNo files were changed.');
+    process.exit(1);
+  }
+
   const lastContentUpdate = computeLastContentUpdate(transformed);
   const payload = { lastContentUpdate, count: transformed.length, exams: transformed };
   const sitemapXml = buildSitemap(transformed);
@@ -98,6 +117,7 @@ async function main() {
   const stagingDir = buildStagedSite(REPO_ROOT, (staging) => {
     fs.mkdirSync(path.join(staging, 'data'), { recursive: true });
     fs.writeFileSync(path.join(staging, 'data', 'exams.json'), JSON.stringify(payload, null, 2), 'utf8');
+    fs.writeFileSync(path.join(staging, 'data', 'applications.generated.js'), renderApplicationsJs(transformed), 'utf8');
     fs.writeFileSync(path.join(staging, 'sitemap.xml'), sitemapXml, 'utf8');
     const stagedExamsDir = path.join(staging, 'exams');
     for (const exam of transformed) {
@@ -123,7 +143,12 @@ async function main() {
 
   // 8. Only now does production get touched — the smallest possible number
   // of renames, back-to-back, in the order documented in atomicWrite.js.
-  swapStagedSite(stagingDir, { examsDir: EXAMS_DIR, sitemapPath: SITEMAP_PATH, examsJsonPath: EXAMS_JSON_PATH });
+  swapStagedSite(stagingDir, {
+    examsDir: EXAMS_DIR,
+    sitemapPath: SITEMAP_PATH,
+    examsJsonPath: EXAMS_JSON_PATH,
+    applicationsJsPath: APPLICATIONS_JS_PATH,
+  });
 
   printReport({ dryRun, transformed, newlyAdded, updated, archived });
 }

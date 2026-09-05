@@ -862,7 +862,7 @@ function openNewExamModal() {
 async function renderExamDetail(page, examId) {
   const detail = await api('/exams/' + examId);
   setPageTitle(detail.exam.name, `${detail.exam.code} · Exam detail`);
-  const tabs = ['Overview', 'Posts', 'Important Dates', 'Documents', 'Status'];
+  const tabs = ['Overview', 'Posts', 'Important Dates', 'Documents', 'Sources', 'Status'];
   let activeTab = 'Overview';
 
   page.innerHTML = `
@@ -885,6 +885,7 @@ async function renderExamDetail(page, examId) {
     if (tab === 'Posts') return renderExamPostsTab(tabBody, examId);
     if (tab === 'Important Dates') return renderExamDatesTab(tabBody, examId);
     if (tab === 'Documents') return renderExamDocumentsTab(tabBody, examId);
+    if (tab === 'Sources') return renderExamSourcesTab(tabBody, examId);
     if (tab === 'Status') return renderExamStatusTab(tabBody, examId, detail.exam.content_status);
   }
   page.querySelector('#examTabs').addEventListener('click', (e) => {
@@ -1104,6 +1105,94 @@ async function renderExamDocumentsTab(container, examId) {
       load();
     } catch {
       toast('Could not register the document.', 'error');
+    }
+  });
+  await load();
+}
+
+async function renderExamSourcesTab(container, examId) {
+  container.innerHTML = `<div class="card">
+    <div class="card-head"><h2>Sources</h2></div>
+    <p style="padding:0 18px;color:var(--muted)">Real monitored sources — the pipeline fetches these on a schedule and flags anything that changed for your review. (Different from Documents: those are just reference links, never auto-checked.)</p>
+    <div class="table-wrap"><table class="data-table">
+      <thead><tr><th>Label</th><th>Type</th><th>Role</th><th>Frequency</th><th>Last Checked</th><th>Status</th><th></th></tr></thead>
+      <tbody id="srcBody"><tr><td colspan="7"><div class="skel skel-line"></div></td></tr></tbody>
+    </table></div>
+    <div class="card-body" style="padding:16px 18px;border-top:1px solid var(--line)">
+      <form id="srcForm" style="display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end">
+        <div class="field" style="margin:0;flex:2;min-width:180px"><label>Label</label><input id="srcLabel" placeholder="Official notification PDF" required></div>
+        <div class="field" style="margin:0;flex:2;min-width:220px"><label>URL</label><input id="srcUrl" placeholder="https://…" required></div>
+        <div class="field" style="margin:0;flex:1;min-width:120px"><label>Type</label>
+          <select id="srcType">
+            <option value="html">HTML page</option>
+            <option value="pdf">PDF</option>
+            <option value="pdf_scanned_ocr">Scanned PDF (OCR)</option>
+            <option value="js_rendered">JS-rendered page</option>
+          </select>
+        </div>
+        <div class="field" style="margin:0;flex:1;min-width:140px"><label>Role</label>
+          <select id="srcRole">
+            <option value="notification">Notification</option>
+            <option value="corrigendum">Corrigendum</option>
+            <option value="admit_card">Admit Card</option>
+            <option value="result">Result</option>
+            <option value="website">Website</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="field" style="margin:0;flex:1;min-width:120px"><label>Check every (min)</label><input id="srcFreq" type="number" min="1" value="720"></div>
+        <button type="submit" class="btn btn-primary">Add Source</button>
+      </form>
+    </div>
+  </div>`;
+
+  async function load() {
+    const { sources } = await api(`/exams/${examId}/sources`);
+    const body = container.querySelector('#srcBody');
+    if (!sources.length) { body.innerHTML = stateRow(7, { icon: '◉', title: 'No sources configured — this exam is not being auto-checked yet' }); return; }
+    body.innerHTML = sources.map((s) => `
+      <tr>
+        <td>${esc(s.label)}<br><a href="${esc(s.url)}" target="_blank" rel="noopener" class="cell-muted">${esc(s.url)}</a></td>
+        <td>${badge(s.source_type, 'neutral')}</td>
+        <td>${badge(s.role, 'neutral')}</td>
+        <td class="cell-muted">${s.monitoring_frequency_minutes}m</td>
+        <td class="cell-muted">${fmtDate(s.last_checked_at)}</td>
+        <td>${s.consecutive_failures > 0 ? badge(`${s.consecutive_failures} failure(s)`, 'danger') : badge(s.last_success_at ? 'healthy' : 'not checked yet', s.last_success_at ? 'success' : 'neutral')}</td>
+        <td><button type="button" class="btn btn-outline btn-sm" data-check-source="${s.id}">Check now</button></td>
+      </tr>`).join('');
+    body.querySelectorAll('[data-check-source]').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        btn.disabled = true;
+        btn.textContent = 'Checking…';
+        try {
+          const result = await api(`/sources/${btn.dataset.checkSource}/check-now`, { method: 'POST' });
+          toast(`Check complete: ${result.result || result.classification || 'done'}`, 'success');
+        } catch {
+          toast('Check failed to run.', 'error');
+        } finally {
+          load();
+        }
+      });
+    });
+  }
+  container.querySelector('#srcForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const label = container.querySelector('#srcLabel').value.trim();
+    const url = container.querySelector('#srcUrl').value.trim();
+    const source_type = container.querySelector('#srcType').value;
+    const role = container.querySelector('#srcRole').value;
+    const monitoring_frequency_minutes = Number(container.querySelector('#srcFreq').value) || 720;
+    if (!label || !url) return;
+    try {
+      await api(`/exams/${examId}/sources`, {
+        method: 'POST', headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ label, url, source_type, role, monitoring_frequency_minutes }),
+      });
+      toast('Source added — it will be picked up on the next scheduled check.', 'success');
+      container.querySelector('#srcForm').reset();
+      load();
+    } catch {
+      toast('Could not add the source.', 'error');
     }
   });
   await load();

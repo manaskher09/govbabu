@@ -1,0 +1,61 @@
+name: Daily sanity check
+
+# 00:30 UTC = 06:00 IST. GitHub Actions cron runs on a best-effort schedule
+# (can be a few minutes late under load) — that's fine for a daily job.
+on:
+  schedule:
+    - cron: '30 0 * * *'
+  workflow_dispatch: {}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout govbabu (site + monitor code)
+        uses: actions/checkout@v4
+
+      # The monitor database lives in a SEPARATE PRIVATE repo, never in this
+      # (public) one — it holds an admin password hash and must not be
+      # exposed. See monitor/README.md and govbabu-data's own README.
+      - name: Checkout govbabu-data (private DB repo)
+        uses: actions/checkout@v4
+        with:
+          repository: manaskher09/govbabu-data
+          token: ${{ secrets.DATA_REPO_TOKEN }}
+          path: govbabu-data
+
+      - name: Place the database where monitor/db/db.js expects it
+        run: cp govbabu-data/monitor.sqlite3 monitor/db/monitor.sqlite3
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install monitor dependencies
+        working-directory: monitor
+        run: npm ci
+
+      - name: Run the daily check
+        working-directory: monitor
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ADMIN_CHAT_ID: ${{ secrets.TELEGRAM_ADMIN_CHAT_ID }}
+        run: npm run daily-check
+
+      # Only ever writes change_events (status='pending') and source health
+      # columns — see pipeline/runCheck.js. Nothing here can change what the
+      # public site shows; that still requires a human approval (see
+      # monitor/README.md) and a separate `npm run publish:site` + push.
+      - name: Commit the updated database back to govbabu-data
+        working-directory: govbabu-data
+        run: |
+          cp ../monitor/db/monitor.sqlite3 monitor.sqlite3
+          git config user.name "govbabu-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add monitor.sqlite3
+          if git diff --cached --quiet; then
+            echo "No database changes to commit."
+          else
+            git commit -m "Daily check: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            git push
+          fi

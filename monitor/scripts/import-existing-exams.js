@@ -8,6 +8,14 @@
 // imported data is immediately part of "current exam data," attributable
 // to a real system actor, and carries the same audit trail machinery as a
 // live-detected change).
+//
+// Safe to re-run at any time (a sync, not a one-shot): an exam whose code
+// already exists gets its fields refreshed rather than skipped, using the
+// exact same is_current=0-then-insert-new-current-row pattern
+// pipeline/applyApproval.js uses for a normal approved change — so re-
+// running this after app.js gains more detail (e.g. a fuller `hi` object)
+// actually picks up the new content instead of leaving the DB stuck with
+// whatever was true the first time it ran.
 const path = require('path');
 const { getDb } = require('../db/db');
 const { extractApplications } = require('./extractApplications');
@@ -32,6 +40,13 @@ const SIMPLE_FIELD_MAP = {
   applyEnd: 'apply_end',
   officialUrl: 'official_url',
   verified: 'verified',
+  // Free-text display strings the UI reads directly (app.js's Important
+  // Dates panel: `a.examDate`, `a.admitCardDate`) — distinct from the
+  // machine-parsed `exam_date` ISO field the monitoring pipeline tracks
+  // for sanity checks (validate/sanityChecks.js's DATE_FIELDS), so these
+  // must never collide with that field_name.
+  examDate: 'exam_date_text',
+  admitCardDate: 'admit_card_date_text',
 };
 const JSON_FIELD_MAP = {
   photo: 'photo_json',
@@ -60,24 +75,53 @@ function ensureOrg(db, category) {
   return db.prepare('SELECT id FROM organizations WHERE short_code = ?').get(meta.code).id;
 }
 
-function importOne(db, exam, systemActorId, needsMapping) {
+function importOne(db, exam, systemActorId, needsMapping, existingId) {
   const orgId = ensureOrg(db, exam.cat);
-  const examId = db
-    .prepare('INSERT INTO exams (org_id, code, external_code, name, category) VALUES (?, ?, ?, ?, ?)')
-    .run(orgId, exam.code, exam.code, exam.name, exam.cat || null).lastInsertRowid;
+  let examId = existingId;
+  if (examId) {
+    db.prepare('UPDATE exams SET org_id = ?, external_code = ?, name = ?, category = ? WHERE id = ?')
+      .run(orgId, exam.code, exam.name, exam.cat || null, examId);
+  } else {
+    examId = db
+      .prepare('INSERT INTO exams (org_id, code, external_code, name, category) VALUES (?, ?, ?, ?, ?)')
+      .run(orgId, exam.code, exam.code, exam.name, exam.cat || null).lastInsertRowid;
+  }
 
+  let changedFields = 0;
   const setField = (fieldName, value) => {
     if (value === undefined || value === null || value === '') return;
+    const serialized = typeof value === 'string' ? value : JSON.stringify(value);
+    const current = db
+      .prepare('SELECT value FROM field_history WHERE exam_id = ? AND field_name = ? AND is_current = 1')
+      .get(examId, fieldName);
+    if (current && current.value === serialized) return; // already up to date, no churn
+    db.prepare(
+      `UPDATE field_history SET is_current = 0 WHERE exam_id = ? AND field_name = ? AND is_current = 1`
+    ).run(examId, fieldName);
     db.prepare(
       `INSERT INTO field_history (exam_id, field_name, value, source_id, change_event_id, approved_by, is_current)
        VALUES (?, ?, ?, NULL, NULL, ?, 1)`
-    ).run(examId, fieldName, typeof value === 'string' ? value : JSON.stringify(value), systemActorId);
+    ).run(examId, fieldName, serialized, systemActorId);
+    changedFields += 1;
   };
 
   for (const [srcKey, fieldName] of Object.entries(SIMPLE_FIELD_MAP)) {
     let value = exam[srcKey];
     if (srcKey === 'vacancies') value = cleanVacancies(value);
     setField(fieldName, value);
+  }
+  // vacancies is often NOT a clean number in app.js — "~933", "25,000+",
+  // "8,868 (5,810 Graduate + 3,058 Undergraduate)", "No single total (21
+  // separate notifications)" are all real, meaningful values for real
+  // exams. cleanVacancies() above exists for the machine-numeric `vacancies`
+  // field the live monitoring pipeline validates (sanityChecks.js expects
+  // digits-only), but stripping non-digits from a compound string like the
+  // RRB-NTPC example silently concatenates unrelated numbers into
+  // nonsense. vacancies_display preserves the exact original string
+  // verbatim so the site can keep showing the real, honest figure — see
+  // toApplicationsShape.js, which prefers this over the cleaned number.
+  if (exam.vacancies !== undefined && exam.vacancies !== null && exam.vacancies !== '') {
+    setField('vacancies_display', String(exam.vacancies));
   }
   for (const [srcKey, fieldName] of Object.entries(JSON_FIELD_MAP)) {
     if (exam[srcKey] !== undefined) setField(fieldName, exam[srcKey]);
@@ -95,14 +139,14 @@ function importOne(db, exam, systemActorId, needsMapping) {
 
   needsMapping.push({ code: exam.code, field: 'exam_date', reason: 'not present as a structured field in APPLICATIONS (only embedded in free text)' });
 
-  return examId;
+  return { examId, changedFields };
 }
 
 function runImport(db, applications, { dryRun = false } = {}) {
   const systemActorId = db.prepare(`INSERT OR IGNORE INTO admin_users (username, display_name) VALUES ('import-script', 'Data Migration')`).run() &&
     db.prepare(`SELECT id FROM admin_users WHERE username = 'import-script'`).get().id;
 
-  const summary = { found: applications.length, imported: 0, duplicates: 0, failed: 0, needsManualMapping: [] };
+  const summary = { found: applications.length, created: 0, updated: 0, unchanged: 0, duplicates: 0, failed: 0, needsManualMapping: [] };
   const seenCodes = new Set();
 
   const doImport = () => {
@@ -117,13 +161,11 @@ function runImport(db, applications, { dryRun = false } = {}) {
       }
       seenCodes.add(exam.code);
       const existing = db.prepare('SELECT id FROM exams WHERE code = ?').get(exam.code);
-      if (existing) {
-        summary.duplicates += 1;
-        continue;
-      }
       try {
-        importOne(db, exam, systemActorId, summary.needsManualMapping);
-        summary.imported += 1;
+        const { changedFields } = importOne(db, exam, systemActorId, summary.needsManualMapping, existing && existing.id);
+        if (!existing) summary.created += 1;
+        else if (changedFields > 0) summary.updated += 1;
+        else summary.unchanged += 1;
       } catch (err) {
         summary.failed += 1;
         summary.needsManualMapping.push({ code: exam.code, field: '(entire record)', reason: err.message });
@@ -154,8 +196,10 @@ function runImport(db, applications, { dryRun = false } = {}) {
 function printSummary(summary) {
   console.log('\nMigration complete\n');
   console.log(`Exam records found: ${summary.found}`);
-  console.log(`Imported: ${summary.imported}`);
-  console.log(`Duplicates: ${summary.duplicates}`);
+  console.log(`Created: ${summary.created}`);
+  console.log(`Updated: ${summary.updated}`);
+  console.log(`Unchanged: ${summary.unchanged}`);
+  console.log(`Duplicates (repeated code within app.js): ${summary.duplicates}`);
   console.log(`Needs manual mapping: ${summary.needsManualMapping.length} field(s)`);
   console.log(`Failed: ${summary.failed}`);
   if (summary.needsManualMapping.length) {

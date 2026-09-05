@@ -86,13 +86,18 @@ function swapDir(stagedDir, targetDir) {
 //
 //   1. exams/     first — once this lands, every exam page a visitor can
 //                 reach is already fully correct for the new publish.
-//   2. sitemap.xml second — worst case if interrupted here: the sitemap
+//   2. data/applications.generated.js second — the other user-facing,
+//                 immediately-consumed output: index.html/exams.html/
+//                 calendar.html read this at page load to drive the
+//                 interactive tool. Same urgency as exams/, so it swaps
+//                 right after.
+//   3. sitemap.xml third — worst case if interrupted here: the sitemap
 //                 (still old) is missing a brand-new exam's URL, or still
 //                 lists an archived one whose page briefly still exists
 //                 from before this swap even started. Neither is a broken
 //                 page — search engines re-crawl and self-correct.
-//   3. data/exams.json last — nothing on the live site consumes this file
-//                 yet, so its timing matters least of the three.
+//   4. data/exams.json last — nothing on the live site consumes this file
+//                 yet, so its timing matters least of the four.
 //
 // The reverse order (json/sitemap first, exams/ last) is the one that
 // actually risks a bad outcome: a crawler could follow a brand-new sitemap
@@ -100,6 +105,7 @@ function swapDir(stagedDir, targetDir) {
 // exams/ — the highest-stakes, user-facing output — always goes first.
 function swapStagedSite(stagingDir, targets) {
   swapDir(path.join(stagingDir, 'exams'), targets.examsDir);
+  swapFile(path.join(stagingDir, 'data', 'applications.generated.js'), targets.applicationsJsPath);
   swapFile(path.join(stagingDir, 'sitemap.xml'), targets.sitemapPath);
   swapFile(path.join(stagingDir, 'data', 'exams.json'), targets.examsJsonPath);
   fs.rmSync(stagingDir, { recursive: true, force: true }); // staging/data/ dir itself, now empty

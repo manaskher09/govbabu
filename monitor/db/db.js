@@ -17,6 +17,24 @@ function getDb() {
   db.exec('PRAGMA foreign_keys = ON');
   db.exec('PRAGMA journal_mode = WAL');
   runMigrations(db);
+  // Every short-lived CLI entry point (check-now, publish, daily-check,
+  // import-existing-exams, ...) opens this DB, writes, and lets the process
+  // exit — none of them call a graceful close(). In WAL mode, a commit is
+  // durable in monitor.sqlite3-wal immediately, but isn't folded back into
+  // monitor.sqlite3 itself until a checkpoint runs. Anything that reads or
+  // copies just the single .sqlite3 file — which is exactly what the daily
+  // GitHub Actions workflow does when it hands the file to the private
+  // govbabu-data repo — would silently miss whatever's still sitting in the
+  // WAL file. Checkpointing on exit keeps monitor.sqlite3 itself always a
+  // complete, self-contained snapshot, independent of whether anything ever
+  // explicitly closes the connection.
+  process.on('exit', () => {
+    try {
+      db.exec('PRAGMA wal_checkpoint(TRUNCATE)');
+    } catch {
+      // best-effort — a failed checkpoint here must never crash process exit
+    }
+  });
   return db;
 }
 

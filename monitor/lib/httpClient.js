@@ -1,8 +1,39 @@
+const crypto = require('crypto');
+const { Agent } = require('undici'); // bundled with Node's own fetch impl, no new dependency
 const { isAllowed, USER_AGENT } = require('./robots');
 
 const MIN_INTERVAL_MS = Number(process.env.MONITOR_MIN_INTERVAL_MS || 3000);
 const MAX_RESPONSE_BYTES = Number(process.env.MONITOR_MAX_RESPONSE_BYTES || 25 * 1024 * 1024); // 25MB
 const lastRequestAtByHost = new Map();
+
+// Some Indian government sites serve a genuinely broken TLS setup — an
+// incomplete certificate chain, a certificate for the wrong hostname, or a
+// server that requires legacy SSL renegotiation modern Node refuses by
+// default. Confirmed by hand against each of these exact hostnames (not
+// guessed) before being added here. Verification is relaxed ONLY for exact
+// hostnames on this list, via a dedicated Agent used solely for them —
+// every other domain still gets full default certificate verification.
+// These are read-only GET requests for public recruitment documents; no
+// credentials ever flow through this client.
+const RELAXED_TLS_HOSTS = new Set([
+  'www.ibps.in', // UNABLE_TO_VERIFY_LEAF_SIGNATURE (incomplete chain)
+  'esb.mp.gov.in', // UNABLE_TO_VERIFY_LEAF_SIGNATURE
+  'bpsc.bihar.gov.in', // UNABLE_TO_VERIFY_LEAF_SIGNATURE
+  'www.rrbchennai.gov.in', // ERR_TLS_CERT_ALTNAME_INVALID (cert for wrong host)
+  'rsmssb.rajasthan.gov.in', // ERR_SSL_UNSAFE_LEGACY_RENEGOTIATION_DISABLED
+  'upsssc.gov.in', // ERR_SSL_UNSAFE_LEGACY_RENEGOTIATION_DISABLED
+]);
+
+const relaxedTlsAgent = new Agent({
+  connect: {
+    rejectUnauthorized: false,
+    secureOptions: crypto.constants.SSL_OP_LEGACY_SERVER_CONNECT,
+  },
+});
+
+function dispatcherFor(hostname) {
+  return RELAXED_TLS_HOSTS.has(hostname) ? relaxedTlsAgent : undefined;
+}
 
 // Government notification URLs are admin-configured, but treated as
 // untrusted input anyway (spec STEP 16): only fetch http(s), and refuse
@@ -89,7 +120,12 @@ async function politeFetch(url, { etag, lastModified, timeoutMs = 20000, maxAtte
     await throttle(host);
     const startedAt = Date.now();
     try {
-      const res = await fetch(url, { headers, signal: AbortSignal.timeout(timeoutMs), redirect: 'follow' });
+      const res = await fetch(url, {
+        headers,
+        signal: AbortSignal.timeout(timeoutMs),
+        redirect: 'follow',
+        dispatcher: dispatcherFor(parsed.hostname),
+      });
       const responseTimeMs = Date.now() - startedAt;
 
       if (res.status === 304) {
@@ -135,4 +171,4 @@ function headersToObject(h) {
   return o;
 }
 
-module.exports = { politeFetch, isPrivateHostname, assertSafeUrl, MAX_RESPONSE_BYTES };
+module.exports = { politeFetch, isPrivateHostname, assertSafeUrl, MAX_RESPONSE_BYTES, dispatcherFor, RELAXED_TLS_HOSTS };

@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="/styles.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"JobPosting","title":"RRB Group D","description":"CEN 09/2025 — Level-1 posts (Track Maintainer, Pointsman and others). Window closed; CBT held 3–25 Aug 2026.","identifier":{"@type":"PropertyValue","name":"GovBabu","value":"RRB-GRP-D"},"hiringOrganization":{"@type":"Organization","name":"Railway Recruitment Boards"},"jobLocation":{"@type":"Place","address":{"@type":"PostalAddress","addressCountry":"IN"}},"employmentType":"FULL_TIME","datePosted":"2026-08-26","validThrough":"2026-03-02","totalJobOpenings":22195}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.govbabu.com/index.html"},{"@type":"ListItem","position":2,"name":"Browse Exams","item":"https://www.govbabu.com/exams.html"},{"@type":"ListItem","position":3,"name":"RRB Group D","item":"https://www.govbabu.com/exams/rrb-grp-d/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is Group D really just one written exam, or is there a separate physical test round like Group D used to have?","acceptedAnswer":{"@type":"Answer","text":"Selection is CBT followed by a qualifying Physical Efficiency Test (PET) and Document Verification/Medical — there's no separate second written stage like NTPC's CBT-2."}},{"@type":"Question","name":"If I fail the PET, can I retake it?","acceptedAnswer":{"@type":"Answer","text":"No, each PET event (carrying weight, running) is a single-attempt qualifying test — there's no retry within the same cycle."}},{"@type":"Question","name":"Do women have easier PET norms than men?","acceptedAnswer":{"@type":"Answer","text":"Yes, the weight-carry and running distance/time norms are relaxed for female candidates compared to male candidates."}},{"@type":"Question","name":"Is the CBT fee refund automatic?","acceptedAnswer":{"@type":"Answer","text":"No — RRB processes refunds separately after the exam and typically requires your bank account to be Aadhaar-seeded; check the RRB refund portal/link rather than assuming it arrives automatically."}}]}</script>
 </head>
 <body>
 
@@ -27,10 +28,14 @@
     <a href="/index.html" class="brand"><span class="brand-mark"><svg viewBox="0 0 46 46" fill="none"><rect x="8" y="24" width="28" height="18" rx="5" stroke="var(--brand)" stroke-width="3.4"/><path d="M14 24V16A8 8 0 0 1 30 16" stroke="var(--brand)" stroke-width="3.4" stroke-linecap="round"/><path d="M32 14L40 10" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/><path d="M32 19L38 17" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/><path d="M8 31Q20 39 35 26" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/></svg></span>GovBabu</a>
     <div class="header-actions">
       <nav class="header-nav" id="headerNav"><a href="/index.html" class="btn btn-outline btn-sm">Home</a>
-      <a href="/exams.html" class="btn btn-outline btn-sm" aria-current="page">Browse Exams</a>
+      <a href="/exams.html" class="btn btn-outline btn-sm" aria-current="page">Find Your Exam</a>
       <a href="/calendar.html" class="btn btn-outline btn-sm">Calendar</a>
-      <a href="/about.html" class="btn btn-outline btn-sm">About</a>
-      <a href="/contact.html" class="btn btn-outline btn-sm">Contact</a></nav>
+      <a href="/manjusha.html" class="btn btn-outline btn-sm">Downloads</a>
+      <a href="/tools.html" class="btn btn-outline btn-sm">Tools</a>
+      <div class="nav-more" id="navMore"><button type="button" class="btn btn-outline btn-sm nav-more-btn" id="navMoreBtn" aria-haspopup="true" aria-expanded="false">More</button>
+      <div class="nav-more-menu" id="navMoreMenu" role="menu"><a href="/about.html" role="menuitem">About</a>
+      <a href="/contact.html" role="menuitem">Contact</a>
+      <a href="/privacy.html" role="menuitem">Privacy Policy</a></div></div></nav>
       <button class="icon-btn lang-toggle" id="langToggle" aria-label="Change language" title="भाषा बदलें / Change language"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><rect x="2" y="4" width="13" height="13" rx="3" stroke="var(--brand)" stroke-width="1.6"/><text x="8.5" y="14" font-size="9" font-weight="700" text-anchor="middle" fill="var(--brand)" font-family="Arial, sans-serif">A</text><rect x="9" y="9" width="13" height="13" rx="3" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.6"/><text x="15.5" y="19" font-size="9" font-weight="700" text-anchor="middle" fill="var(--accent)" font-family="Arial, sans-serif">अ</text></svg></button>
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" aria-pressed="false"><span class="theme-toggle-track"><span class="theme-toggle-thumb"></span></span></button>
       <button class="icon-btn nav-toggle" id="navToggle" type="button" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/></svg></button>
@@ -38,8 +43,10 @@
   </div>
 </header>
 <main id="main">
+  <div class="wrap exam-detail-topbar">
+    <a class="exam-back-link" href="/exams.html"><span class="exam-back-arrow" aria-hidden="true">←</span> Browse all exams</a>
+  </div>
   <div class="wrap flow-intro">
-    <p class="lead"><a href="/exams.html">← Browse all exams</a></p>
     <h1>RRB Group D</h1>
   </div>
   <div class="wrap">
@@ -50,29 +57,33 @@
       <a class="btn btn-outline btn-sm" href="https://rrbajmer.gov.in/Upload_PDF/Final-Detailed%20CEN%2009-2025%20Level-1-updated%20on%2030012026-639054049190206941.pdf" target="_blank" rel="noopener">Official Notice ↗</a>
     </div>
     <div class="exam-detail-panel">
-      <div class="quick-overview"><div class="quick-overview-item"><span class="quick-overview-label">Last Date</span><span class="quick-overview-value">02 Mar 2026</span></div><div class="quick-overview-item"><span class="quick-overview-label">Qualification</span><span class="quick-overview-value">10th pass / Matriculation / SSLC or equivalent from a recognized board, OR ITI/NCVT National Apprenticeship Certificate for specific posts.</span></div><div class="quick-overview-item"><span class="quick-overview-label">Vacancies</span><span class="quick-overview-value">22,195</span></div></div>
+      <div class="quick-overview"><div class="quick-overview-item"><span class="quick-overview-label">Status</span><span class="quick-overview-value">Closed</span></div><div class="quick-overview-item"><span class="quick-overview-label">Vacancies</span><span class="quick-overview-value">22,195</span></div><div class="quick-overview-item"><span class="quick-overview-label">Category</span><span class="quick-overview-value">Railway</span></div></div>
       <details class="detail-note"><summary>ⓘ Data note</summary><p>This is the CEN 09/2025 cycle (22,195 vacancies) — the older CEN 08/2024 cycle already concluded. &quot;CEN 01/2026&quot; is a different exam (RRB Assistant Loco Pilot), not Group D — no new Group D cycle has opened since 09/2025.</p></details>
       
       <div class="detail-grid">
+        <div class="detail-card detail-card-wide"><h4>Important Dates</h4><div class="dates-table"><div class="dates-row"><span class="dates-label">Apply Start</span><span class="dates-value">31 Jan 2026</span></div><div class="dates-row"><span class="dates-label">Applications Closed</span><span class="dates-value">02 Mar 2026</span></div><div class="dates-row"><span class="dates-label">Last Verified</span><span class="dates-value">26 Aug 2026</span></div></div></div>
         <div class="detail-card"><h4>Posts &amp; Pay</h4><div class="pay-group"><b>Level 1 · ₹18,000 (basic, initial pay)</b><span>Track Maintainer-IV, Assistant Bridge, Assistant P.Way, Assistant Track Machine, Pointsman B, Assistant (S&amp;T), Assistant TRD, Assistant Operations (Electrical), Assistant TL&amp;AC, Assistant Carriage &amp; Wagon, Assistant Loco Shed (Electrical) and other Level-1 posts — 14 designations total</span></div><p class="detail-footnote">Confirmed directly from the official CEN 09/2025 notification — all Group D posts share the same Level 1 initial pay.</p></div>
         <div class="detail-card"><h4>Eligibility</h4>
         <div class="detail-row"><b>Age</b><span>18–33 years as on 01 Jan 2026</span></div>
         <div class="detail-row"><b>Age Relaxation</b><span>OBC-NCL +3 yrs · SC/ST +5 yrs · PwBD +10/13/15 yrs depending on category · Ex-servicemen per formula</span></div>
         <div class="detail-row"><b>Qualification</b><span>10th pass / Matriculation / SSLC or equivalent from a recognized board, OR ITI/NCVT National Apprenticeship Certificate for specific posts.</span></div>
+        
       </div>
+        <div class="detail-card detail-card-wide"><h4>Exam Pattern</h4><div class="detail-row"><b>Online CBT (single stage, Level-1 posts), followed by Physical Efficiency Test (PET) and Document Verification/Medical. · CBT: 90 minutes (120 minutes for PwBD candidates).</b></div><div class="detail-row"><b>CBT</b><span>100 questions/100 marks total — Mathematics, General Intelligence &amp; Reasoning, General Science, General Awareness &amp; Current Affairs (approx. 25 questions each, exact split varies by notification)</span></div><div class="detail-row"><b>PET</b><span>Qualifying only — Male: carry 35kg for 100m in 2 min + run 1000m in 4 min 15 sec; Female: carry 20kg for 100m in 2 min + run 1000m in 5 min 40 sec (one attempt each)</span></div><div class="detail-row"><b>Negative Marking</b><span>-1/3 mark per wrong answer in CBT.</span></div><div class="detail-row"><b>Passing Marks</b><span>Qualifying percentage in CBT: UR/EWS 40%, OBC(NCL)/SC 30%, ST 30%. (PET is qualifying only, pass/fail, no marks.)</span></div><p class="detail-footnote">Fee, CBT pattern (100Q/100 marks/90 min, -1/3 negative marking) and qualifying percentages agree multiple coaching-site sources — secondary-sourced, moderate-high confidence. The exact section-wise question split (25/25/25/25) is commonly cited but not confirmed against an official PDF for this cycle.</p></div>
         <div class="detail-card"><h4>Career Progression</h4><p class="promotion-caveat">Not addressed in the official notification — coaching-site consensus, not RRB-confirmed.</p><ul class="promotion-steps"><li>Track Maintainer IV → III → II → I, then Senior / Gangman roles over time</li></ul></div>
         <div class="detail-card detail-card-wide"><h4>How to Apply</h4>
         <a class="btn btn-primary btn-sm apply-cta" href="https://rrbajmer.gov.in/Upload_PDF/Final-Detailed%20CEN%2009-2025%20Level-1-updated%20on%2030012026-639054049190206941.pdf" target="_blank" rel="noopener">Apply on the official site ↗</a>
         
         <ol class="apply-steps"><li>Create an account on rrbapply.gov.in (Aadhaar/DigiLocker verification recommended)</li><li>Fill the application form</li><li>Live-capture your photo during the application — there is no separate upload</li><li>Upload your signature to spec</li><li>Pay the fee — ₹500 for UR/OBC-NCL/EWS (₹400 refunded after appearing in CBT) or ₹250 for SC/ST/women/PwBD/Ex-servicemen/Transgender/Minorities/EBC (fully refunded after appearing in CBT); refund credited only to an Aadhaar-seeded bank account</li></ol>
         
-        
       </div>
+        <div class="detail-card detail-card-wide"><h4>Document Requirements</h4><div class="detail-row"><b>Photo</b><span>No separate upload — live webcam/front-camera capture during the application itself · Live capture — no cap, mask or glasses; eyes open; non-white clothing; photographing a printed photo causes summary rejection</span></div><div class="detail-row"><b>Signature</b><span>35mm × 20mm scan box · 30–49 KB · JPG/JPEG — black ink, cursive/running handwriting (not block letters), scanned at ≥100 DPI</span></div></div>
         <div class="detail-card detail-card-wide"><h4>Other Documents</h4><div class="detail-row"><b>SC/ST certificate (free travel pass claimants only)</b><span>PDF only, under 400 KB — confirmed directly from the official CEN 09/2025 notification.</span></div></div>
+        <div class="detail-card detail-card-wide"><h4>Frequently Asked Questions</h4><details class="detail-note"><summary>Is Group D really just one written exam, or is there a separate physical test round like Group D used to have?</summary><p>Selection is CBT followed by a qualifying Physical Efficiency Test (PET) and Document Verification/Medical — there&#39;s no separate second written stage like NTPC&#39;s CBT-2.</p></details><details class="detail-note"><summary>If I fail the PET, can I retake it?</summary><p>No, each PET event (carrying weight, running) is a single-attempt qualifying test — there&#39;s no retry within the same cycle.</p></details><details class="detail-note"><summary>Do women have easier PET norms than men?</summary><p>Yes, the weight-carry and running distance/time norms are relaxed for female candidates compared to male candidates.</p></details><details class="detail-note"><summary>Is the CBT fee refund automatic?</summary><p>No — RRB processes refunds separately after the exam and typically requires your bank account to be Aadhaar-seeded; check the RRB refund portal/link rather than assuming it arrives automatically.</p></details></div>
         <div class="detail-card detail-card-wide" style="text-align:center">
     <a class="btn btn-primary" href="/index.html?exam=RRB-GRP-D">Prepare your photo &amp; signature for RRB Group D →</a>
   </div>
-        <div class="detail-card detail-card-wide"><h4>Related exams in Railway</h4><ul class="apply-steps"><li><a href="/exams/rrb-ntpc/">RRB NTPC</a></li><li><a href="/exams/rrb-alp/">RRB ALP</a></li><li><a href="/exams/rrb-je/">RRB JE</a></li></ul></div>
+        <div class="detail-card detail-card-wide"><h4>Related exams in Railway</h4><ul class="apply-steps"><li><a href="/exams/rrb-ntpc/">RRB NTPC</a></li><li><a href="/exams/rrb-alp/">RRB ALP</a></li><li><a href="/exams/rrb-je/">RRB JE</a></li><li><a href="/exams/rpf-constable/">RPF Constable</a></li><li><a href="/exams/rrb-technician/">RRB Technician (Grade I Signal &amp; Grade III)</a></li></ul></div>
       </div>
       <div class="detail-updated">Last verified: 26 Aug 2026</div>
     </div>
@@ -89,8 +100,10 @@
     <div class="footer-col">
       <div class="footer-col-title">Explore</div>
       <a href="/index.html">Home</a>
-      <a href="/exams.html">Browse Exams</a>
+      <a href="/exams.html">Find Your Exam</a>
       <a href="/calendar.html">Calendar</a>
+      <a href="/manjusha.html">Downloads</a>
+      <a href="/tools.html">Tools</a>
     </div>
     <div class="footer-col">
       <div class="footer-col-title">Company</div>
@@ -103,6 +116,8 @@
     <div class="footer-col">
       <div class="footer-col-title">Connect</div>
       <a href="https://t.me/GovBabu_official" target="_blank" rel="noopener">Telegram</a>
+      <a href="https://www.youtube.com/@GovBabu_official" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://www.instagram.com/govbabu_official" target="_blank" rel="noopener">Instagram</a>
     </div>
   </div>
   <div class="wrap footer-bottom">
@@ -110,6 +125,7 @@
     <p class="footer-copyright">© 2026 GovBabu. All Rights Reserved.</p>
   </div>
 </footer>
-<script src="/app.js"></script>
+<script src="/data/applications.generated.js" defer></script>
+<script src="/app.js" defer></script>
 </body>
 </html>
