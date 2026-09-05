@@ -78,9 +78,28 @@ rows to `change_events` (status='pending') for a human to review.
 The database itself lives in a **separate private repo**
 (`manaskher09/govbabu-data`), never in this public one — it holds an admin
 password hash and must not be exposed. The workflow checks that repo out,
-runs the check against it, and commits the result back. To review/approve
-what it finds: `git clone` that private repo, point `MONITOR_DB_PATH` at
-its `monitor.sqlite3`, and run `npm run admin` here as usual.
+runs the check against it, and commits the result back.
+
+### The daily review loop
+
+One-time setup: `git clone https://github.com/manaskher09/govbabu-data.git
+~/Desktop/govbabu-data` (or anywhere — set `GOVBABU_DATA_DIR` if not
+`~/Desktop/govbabu-data`).
+
+Then, each day:
+
+```bash
+npm run morning       # pulls last night's results, (re)starts the dashboard
+#   ... review/approve in the dashboard at http://localhost:8745 ...
+npm run save-review   # commits + pushes your approvals to govbabu-data
+npm run deploy        # regenerates the site, commits it locally
+git push               # from the repo root — the one deliberately manual step
+```
+
+`save-review` matters even if you change nothing else: skip it and
+tomorrow's automated check starts from the *pre-approval* database and
+overwrites what you just approved. `deploy` never auto-pushes to the public
+repo — that stays a conscious, separate action.
 
 Required GitHub Actions secrets (repo Settings → Secrets and variables →
 Actions, on the **public** `govbabu` repo):
