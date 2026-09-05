@@ -147,7 +147,7 @@ function organizationsList(db) {
   return db.prepare('SELECT * FROM organizations ORDER BY name').all();
 }
 
-function examListForAdmin(db, { content_status, org_id, search } = {}) {
+function examListForAdmin(db, { content_status, org_id, category, search } = {}) {
   let sql = `SELECT e.*, o.name AS org_name FROM exams e JOIN organizations o ON o.id = e.org_id WHERE 1=1`;
   const params = [];
   if (content_status) {
@@ -158,12 +158,25 @@ function examListForAdmin(db, { content_status, org_id, search } = {}) {
     sql += ' AND e.org_id = ?';
     params.push(Number(org_id));
   }
+  if (category) {
+    sql += ' AND e.category = ?';
+    params.push(category);
+  }
   if (search) {
     sql += ' AND (e.name LIKE ? OR e.code LIKE ?)';
     params.push(`%${search}%`, `%${search}%`);
   }
-  sql += ' ORDER BY e.updated_at DESC';
+  sql += ' ORDER BY e.category, e.updated_at DESC';
   return db.prepare(sql).all(...params);
+}
+
+// Distinct categories actually in use — drives the admin Exams filter
+// dropdown, so it never drifts from real data (no hardcoded category list).
+function examCategoriesList(db) {
+  return db
+    .prepare(`SELECT DISTINCT category FROM exams WHERE category IS NOT NULL AND category != '' ORDER BY category`)
+    .all()
+    .map((r) => r.category);
 }
 
 function documentsListForExam(db, examId) {
@@ -319,9 +332,13 @@ const server = http.createServer(async (req, res) => {
           exams: examListForAdmin(db, {
             content_status: url.searchParams.get('content_status') || undefined,
             org_id: url.searchParams.get('org_id') || undefined,
+            category: url.searchParams.get('category') || undefined,
             search: url.searchParams.get('search') || undefined,
           }),
         });
+      }
+      if (pathname === '/api/admin/exam-categories' && req.method === 'GET') {
+        return json(res, 200, { categories: examCategoriesList(db) });
       }
       if (pathname === '/api/admin/exams' && req.method === 'POST') {
         const body = JSON.parse((await readBody(req)) || '{}');

@@ -97,3 +97,35 @@ test('registering a document creates a manual, inactive source so the scheduler 
   assert.equal(documents.length, 1);
   assert.equal(documents[0].label, 'Official Notification');
 });
+
+test('/exam-categories returns the distinct categories actually in use, alphabetically, no duplicates', async () => {
+  const cookie = await login();
+  const db = getDb();
+  const orgId = db.prepare(`INSERT INTO organizations (name, short_code) VALUES ('Cat Org', 'CATORG')`).run().lastInsertRowid;
+  db.prepare(`INSERT INTO exams (org_id, code, name, category) VALUES (?, 'CAT-A', 'Cat Exam A', 'Zebra Category')`).run(orgId);
+  db.prepare(`INSERT INTO exams (org_id, code, name, category) VALUES (?, 'CAT-B', 'Cat Exam B', 'Zebra Category')`).run(orgId);
+  db.prepare(`INSERT INTO exams (org_id, code, name, category) VALUES (?, 'CAT-C', 'Cat Exam C', 'Alpha Category')`).run(orgId);
+  db.prepare(`INSERT INTO exams (org_id, code, name, category) VALUES (?, 'CAT-D', 'Cat Exam D', NULL)`).run(orgId);
+
+  const res = await fetch(`${baseUrl}/api/admin/exam-categories`, { headers: { cookie } });
+  assert.equal(res.status, 200);
+  const { categories } = await res.json();
+  assert.ok(categories.includes('Zebra Category'));
+  assert.ok(categories.includes('Alpha Category'));
+  assert.equal(categories.filter((c) => c === 'Zebra Category').length, 1, 'no duplicates even though 2 exams share it');
+  assert.ok(categories.indexOf('Alpha Category') < categories.indexOf('Zebra Category'), 'alphabetical order');
+});
+
+test('GET /exams?category filters to only that category', async () => {
+  const cookie = await login();
+  const db = getDb();
+  const orgId = db.prepare(`INSERT INTO organizations (name, short_code) VALUES ('Filter Org', 'FILTORG')`).run().lastInsertRowid;
+  db.prepare(`INSERT INTO exams (org_id, code, name, category) VALUES (?, 'FILT-RAIL', 'Filter Rail Exam', 'Filter-Railway')`).run(orgId);
+  db.prepare(`INSERT INTO exams (org_id, code, name, category) VALUES (?, 'FILT-BANK', 'Filter Bank Exam', 'Filter-Banking')`).run(orgId);
+
+  const res = await fetch(`${baseUrl}/api/admin/exams?category=Filter-Railway`, { headers: { cookie } });
+  const { exams } = await res.json();
+  assert.ok(exams.every((e) => e.category === 'Filter-Railway'));
+  assert.ok(exams.some((e) => e.code === 'FILT-RAIL'));
+  assert.ok(!exams.some((e) => e.code === 'FILT-BANK'));
+});

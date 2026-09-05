@@ -275,6 +275,8 @@ table.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
 .data-table th { color: var(--muted); font-weight: 700; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.05em; position: sticky; top: 0; background: var(--surface); }
 .data-table tbody tr:last-child td { border-bottom: none; }
 .data-table tbody tr:hover { background: var(--surface-hover); }
+.table-group-row td { background: var(--surface-hover); color: var(--muted); font-weight: 700; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap; }
+.table-group-row:hover td { background: var(--surface-hover); }
 .cell-muted { color: var(--muted); }
 .cell-mono { font-family: var(--font-mono); font-size: 12px; }
 

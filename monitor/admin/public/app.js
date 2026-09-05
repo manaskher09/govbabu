@@ -749,6 +749,7 @@ async function renderExamsList(page) {
           <option value="published">Published</option>
           <option value="archived">Archived</option>
         </select>
+        <select class="filter-select" id="exCategory"><option value="">All categories</option></select>
         <div class="toolbar-spacer"></div>
         <span class="result-count" id="exCount"></span>
       </div>
@@ -760,17 +761,35 @@ async function renderExamsList(page) {
 
   page.querySelector('#newExamBtn').onclick = () => openNewExamModal();
 
+  api('/exam-categories').then(({ categories }) => {
+    const select = page.querySelector('#exCategory');
+    select.insertAdjacentHTML('beforeend', categories.map((c) => `<option value="${esc(c)}">${esc(c)}</option>`).join(''));
+  });
+
   const load = async () => {
     const status = page.querySelector('#exStatus').value;
+    const category = page.querySelector('#exCategory').value;
     const search = page.querySelector('#exSearch').value.trim();
     const qs = new URLSearchParams();
     if (status) qs.set('content_status', status);
+    if (category) qs.set('category', category);
     if (search) qs.set('search', search);
     const { exams } = await api('/exams?' + qs.toString());
     page.querySelector('#exCount').textContent = `${exams.length} exam${exams.length === 1 ? '' : 's'}`;
     const body = page.querySelector('#exBody');
     if (!exams.length) { body.innerHTML = stateRow(6, { icon: '🎓', title: 'No exams match', sub: 'Try a different search or filter, or create one.' }); return; }
-    body.innerHTML = exams.map((e) => `
+    // Exams already arrive sorted by category (server-side ORDER BY) — a
+    // group header row per category turns the plain column into an actual
+    // browse-by-category view, matching how the public exams.html groups
+    // its cards, instead of just a value you have to scan for.
+    let lastCategory;
+    const rows = [];
+    for (const e of exams) {
+      if (e.category !== lastCategory) {
+        lastCategory = e.category;
+        rows.push(`<tr class="table-group-row"><td colspan="6">${esc(e.category || 'Uncategorized')}</td></tr>`);
+      }
+      rows.push(`
       <tr class="row-link" data-id="${e.id}" style="cursor:pointer">
         <td><strong>${esc(e.name)}</strong></td>
         <td class="cell-mono">${esc(e.code)}</td>
@@ -778,13 +797,16 @@ async function renderExamsList(page) {
         <td class="cell-muted">${esc(e.category || '—')}</td>
         <td>${badge(e.content_status.replace(/_/g, ' '), CONTENT_STATUS_BADGE[e.content_status] || 'neutral')}</td>
         <td class="cell-muted">${relTime(e.updated_at)}</td>
-      </tr>`).join('');
+      </tr>`);
+    }
+    body.innerHTML = rows.join('');
     body.querySelectorAll('tr[data-id]').forEach((row) => {
       row.addEventListener('click', () => goTo('exams/' + row.dataset.id));
     });
   };
   page.querySelector('#exSearch').addEventListener('input', load);
   page.querySelector('#exStatus').addEventListener('change', load);
+  page.querySelector('#exCategory').addEventListener('change', load);
   await load();
 }
 
