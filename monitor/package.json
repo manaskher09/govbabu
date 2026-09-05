@@ -4,6 +4,9 @@
   "private": true,
   "description": "GovBabu recruitment notification monitoring & change-detection MVP",
   "type": "commonjs",
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
     "init-db": "node db/init.js",
     "check-now": "node bin/check-now.js",
