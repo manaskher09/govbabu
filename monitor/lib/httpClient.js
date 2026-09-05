@@ -22,6 +22,7 @@ const RELAXED_TLS_HOSTS = new Set([
   'www.rrbchennai.gov.in', // ERR_TLS_CERT_ALTNAME_INVALID (cert for wrong host)
   'rsmssb.rajasthan.gov.in', // ERR_SSL_UNSAFE_LEGACY_RENEGOTIATION_DISABLED
   'upsssc.gov.in', // ERR_SSL_UNSAFE_LEGACY_RENEGOTIATION_DISABLED
+  'policerecruitment2025.mahait.org', // ERR_SSL_UNSAFE_LEGACY_RENEGOTIATION_DISABLED
 ]);
 
 const relaxedTlsAgent = new Agent({
