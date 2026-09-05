@@ -1,5 +1,5 @@
 {
-  "lastContentUpdate": "2026-09-05 06:15:33",
+  "lastContentUpdate": "2026-09-05 10:08:10",
   "count": 53,
   "exams": [
     {
@@ -594,7 +594,7 @@
       "verified": "26 Aug 2026",
       "applicationStartDateIso": "2025-06-23",
       "applicationEndDateIso": "2025-07-18",
-      "lastUpdated": "2026-08-31 15:37:39",
+      "lastUpdated": "2026-09-05 10:03:31",
       "orgName": "Central Government Recruiting Bodies (SSC/UPSC/etc.)",
       "slug": "ssc-chsl"
     },
@@ -751,7 +751,7 @@
       "verified": "26 Aug 2026",
       "applicationStartDateIso": "2025-12-01",
       "applicationEndDateIso": "2025-12-31",
-      "lastUpdated": "2026-08-31 15:37:39",
+      "lastUpdated": "2026-09-05 10:03:43",
       "orgName": "Police Recruitment Boards",
       "slug": "ssc-gd"
     },
@@ -903,7 +903,7 @@
       "verified": "26 Aug 2026",
       "applicationStartDateIso": "2025-06-26",
       "applicationEndDateIso": "2025-07-24",
-      "lastUpdated": "2026-08-31 15:37:39",
+      "lastUpdated": "2026-09-05 10:08:07",
       "orgName": "Central Government Recruiting Bodies (SSC/UPSC/etc.)",
       "slug": "ssc-mts"
     },
@@ -1074,7 +1074,7 @@
       "verified": "26 Aug 2026",
       "applicationStartDateIso": "2025-09-26",
       "applicationEndDateIso": "2025-10-16",
-      "lastUpdated": "2026-08-31 15:37:39",
+      "lastUpdated": "2026-09-05 10:03:57",
       "orgName": "Police Recruitment Boards",
       "slug": "ssc-cpo"
     },
@@ -1515,8 +1515,8 @@
       ],
       "verified": "26 Aug 2026",
       "applicationStartDateIso": "2026-08-01",
-      "applicationEndDateIso": "2026-08-28",
-      "lastUpdated": "2026-08-31 15:37:39",
+      "applicationEndDateIso": "2027-08-20",
+      "lastUpdated": "2026-09-05 10:03:56",
       "orgName": "Banking Recruitment Bodies (IBPS/SBI/RBI)",
       "slug": "ibps-cl"
     },
@@ -1736,7 +1736,7 @@
       "verified": "26 Aug 2026",
       "applicationStartDateIso": "2026-06-18",
       "applicationEndDateIso": "2026-07-08",
-      "lastUpdated": "2026-08-31 15:37:39",
+      "lastUpdated": "2026-09-05 10:08:10",
       "orgName": "Banking Recruitment Bodies (IBPS/SBI/RBI)",
       "slug": "sbi-po"
     },
@@ -1949,7 +1949,7 @@
       "verified": "27 Aug 2026",
       "applicationStartDateIso": "2026-08-11",
       "applicationEndDateIso": "2026-08-31",
-      "lastUpdated": "2026-08-31 15:37:39",
+      "lastUpdated": "2026-09-05 10:04:34",
       "orgName": "Banking Recruitment Bodies (IBPS/SBI/RBI)",
       "slug": "sbi-cl"
     },
@@ -2265,7 +2265,7 @@
       "verified": "26 Aug 2026",
       "applicationStartDateIso": "2026-01-31",
       "applicationEndDateIso": "2026-03-02",
-      "lastUpdated": "2026-08-31 15:37:39",
+      "lastUpdated": "2026-09-05 10:04:29",
       "orgName": "Railway Recruitment Boards",
       "slug": "rrb-grp-d"
     },
@@ -8264,7 +8264,7 @@
       "verified": "03 Sep 2026",
       "applicationStartDateIso": "2023-11-30",
       "applicationEndDateIso": "2024-01-03",
-      "lastUpdated": "2026-09-05 06:15:33",
+      "lastUpdated": "2026-09-05 10:04:28",
       "orgName": "State Public Service Commissions",
       "slug": "kpsc-ldc"
     },
