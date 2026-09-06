@@ -27,7 +27,7 @@ jobs:
       - name: Place the database where monitor/db/db.js expects it
         run: cp govbabu-data/monitor.sqlite3 monitor/db/monitor.sqlite3
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 24 # node:sqlite (monitor/db/db.js) needs 24+ to be unflagged
 
