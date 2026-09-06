@@ -69,8 +69,21 @@ const LANG_STRINGS={
  'home.noExamsInCat':'No exams match this filter right now.',
  'home.journeyTag':'How GovBabu helps','home.journeyHead':'One place to go from discovery to application.',
  'home.prepareTag':'Prepare','home.prepareHead':'Prepare your documents',
- 'home.toolPhotoTitle':'Photo Resizer','home.toolSigTitle':'Signature Resizer','home.toolMoreTitle':'All Other Tools',
+ 'home.toolPhotoTitle':'Photo Resizer','home.toolSigTitle':'Signature Resizer',
  'home.toolCompressTitle':'Compress PDF','home.toolMergeTitle':'Merge PDF','home.toolRotateTitle':'Rotate PDF','home.toolSignPdfTitle':'Sign PDF',
+ 'home.toolImgToPdfTitle':'Image to PDF','home.toolPdfToJpgTitle':'PDF → JPG',
+ 'home.toolSplitTitle':'Split PDF','home.toolWatermarkTitle':'Watermark PDF','home.toolUnlockTitle':'Unlock PDF',
+ 'home.toolPhotoDesc':'Resize your photo to any exam\'s exact dimensions and file size.',
+ 'home.toolSigDesc':'Resize your signature scan to the exact size an exam wants.',
+ 'home.toolCompressDesc':'Shrink a PDF\'s file size without losing readability.',
+ 'home.toolMergeDesc':'Combine multiple PDFs or images into one file, in order.',
+ 'home.toolSplitDesc':'Pull a page range out into its own PDF.',
+ 'home.toolRotateDesc':'Fix a sideways or upside-down scanned page.',
+ 'home.toolSignPdfDesc':'Place your signature image anywhere on a PDF.',
+ 'home.toolWatermarkDesc':'Stamp text like "DRAFT" or your name across every page.',
+ 'home.toolUnlockDesc':'Remove a password from a PDF you already know the password for.',
+ 'home.toolImgToPdfDesc':'Turn one or more photos into a single PDF file.',
+ 'home.toolPdfToJpgDesc':'Save a PDF\'s first page as a JPG image.',
  'home.toolsStartHint':'Looking for a specific exam\'s spec? <a href="#top">Search above ↑</a> or pick one from <a href="#popularExams">popular exams</a>.',
  'home.personalizedHead':'Get matched automatically',
  'home.personalizedDesc':'Enter your age and qualification — see which exams fit, right now. Saved profiles and alerts are coming next.',
@@ -80,7 +93,7 @@ const LANG_STRINGS={
  'home.showcaseStatusOpen':'Applications open',
  'home.badgeFormOpened':'Form opened','home.badgeAdmitCard':'Admit card',
  'home.badgeResultDeclared':'Result declared','home.badgeDeadlineSoon':'Deadline soon',
- 'home.viewAllExams':'View all exams →',
+ 'home.viewAllExams':'View all exams →','home.viewFullCalendar':'Open full calendar →',
  'home.tryNowBadge':'Try it now',
  'home.browseAll':'Browse all exams →','home.calendar':'Calendar →',
  'home.skip':'Skip — I just need to resize a file →',
@@ -88,7 +101,7 @@ const LANG_STRINGS={
  'home.searchPlaceholder':'Search exams, departments, qualifications',
  'step.exam':'Exam','step.analysis':'Check out our analysis','step.upload':'Upload','step.download':'Download',
  'sidebar.noticeBoard':'📌 Notice Board','sidebar.results':'🏆 Results',
- 'detail.postsPay':'💰 Posts &amp; Pay','detail.eligibility':'🎓 Eligibility','detail.promotion':'📈 Promotion',
+ 'detail.postsPay':'💰 Posts &amp; Pay','detail.eligibility':'🎓 Eligibility','detail.promotion':'📈 Career Path',
  'detail.howToApply':'📝 How to Apply','detail.otherDocs':'📄 Other Documents Required',
  'detail.examPattern':'📋 Exam Pattern','detail.negativeMarking':'Negative Marking','detail.passingMarks':'Passing Marks',
  'detail.faq':'❓ Frequently Asked Questions',
@@ -103,19 +116,28 @@ const LANG_STRINGS={
  'overview.status':'Status','overview.category':'Category',
  'detail.datesHead':'📅 Important Dates','detail.applyStart':'Apply Start','detail.result':'Result','detail.lastVerified':'Last Verified',
  'detail.examDate':'Exam Date','detail.admitCard':'Admit Card','detail.fee':'Application Fee',
+ 'detail.vacanciesHead':'🎟️ Vacancies &amp; Posts','detail.totalVacancies':'Total Vacancies','detail.payLevel':'Pay Level','detail.payBand':'Pay Band','detail.posts':'Posts','detail.post':'Post',
+ 'detail.beforeApply':'🧾 Before You Apply','detail.photo':'Photo','detail.signature':'Signature','detail.prepDocsCta':'Prepare these now →','detail.notAvailable':'Not available yet',
+ 'detail.aboutExam':'ℹ️ About the Exam','detail.conductedBy':'Conducted By',
+ 'detail.selectionProcess':'🧭 Selection Process','detail.section':'Section','detail.details':'Details',
+ 'detail.syllabusHead':'📘 Full Syllabus','detail.syllabusLede':'Want the complete topic-by-topic syllabus for this exam?','detail.viewSyllabus':'View Full Syllabus →',
+ 'detail.importantLinks':'🔗 Important Links','detail.quickLinks':'Quick Links','detail.relatedExams':'Related Exams',
+ 'detail.applyNow':'Apply Now ↗','detail.checkEligibility':'Check Eligibility','detail.notAnnounced':'Not announced yet',
+ 'nav.sec.dates':'Dates','nav.sec.vacancies':'Vacancies &amp; Posts','nav.sec.eligibility':'Eligibility','nav.sec.before':'Before You Apply','nav.sec.apply':'How to Apply','nav.sec.about':'About','nav.sec.career':'Career Path','nav.sec.selection':'Selection','nav.sec.pattern':'Exam Pattern','nav.sec.faq':'FAQs','nav.sec.syllabus':'Syllabus','nav.sec.links':'Links',
  'status.open':'Open','status.closing':'Closing Soon','status.closed':'Closed','status.expected':'Expected',
  'card.lastDate':'Last date:','card.closedOn':'Closed:','card.vacancies':'vacancies','card.viewDetails':'View Details',
  'card.knowMore':'Know more','card.lastCycle':'(last cycle)','card.deadlineLabel':'Application deadline',
  'card.expectedLabel':'Expected','card.closedPrefix':'Closed',
  'cal.eyebrow':'📅 Exam Calendar','cal.title':'Never miss an application deadline',
  'cal.lead':'Track government exams, application deadlines, vacancies and salary — all in one place.',
- 'cal.filterAll':'All','cal.filterLive':'Live',
+ 'cal.filterAll':'All','cal.filterLive':'Live','cal.filterResults':'Results','cal.filterAdmitCard':'Admit Card',
  'cal.chipExams':'Exams','cal.chipOpen':'Open','cal.chipClosing':'Closing Soon',
  'cal.noneInWindow':'No exams in this window right now — see','cal.allExamsLink':'all exams',
  'exams.title':'Browse all exams',
  'exams.lead':'Not sure of the exact name? Every exam GovBabu covers, grouped by field — pick yours to see seats, pay, eligibility, reservation policy, how to apply, and get your documents ready.',
  'exams.searchLabel':'Search exams','exams.searchPlaceholder':'Search e.g. SSC, Railway, Banking…',
- 'tools.title':'Tools','tools.lead':'Resize your photo and signature to spec, compress, merge, rotate and sign PDFs — processed entirely in your browser. Applying for a specific exam? Its exact spec is on that exam\'s own page.',
+ 'exams.allStates':'All states',
+ 'tools.title':'Tools','tools.lead':'Free, browser-based document tools — nothing you upload ever leaves your device. Applying for a specific exam? Its exact spec is on that exam\'s own page.',
  'elig.title':'Check My Eligibility','elig.lead':'Enter your age and qualification — see which exams on GovBabu you\'re likely eligible for, right now. No account, no saved profile — just a straight answer from what you enter below.',
  'elig.ageLabel':'Your age (years)','elig.qualLabel':'Highest qualification','elig.categoryLabel':'Category (optional)','elig.stateLabel':'State / domicile (optional)',
  'elig.selectOne':'Select…','elig.anyState':'Any state','elig.categoryAny':'Prefer not to say',
@@ -139,12 +161,19 @@ const LANG_STRINGS={
  'search.noMatch':'No match — try a shorter search, or','search.skipInstead':'skip and resize a file',
  'slot.photo':'Photo','slot.signature':'Signature',
  'slot.moreToolsHint':'Most exams want photo &amp; signature as JPG — that\'s covered above. Need something else for another document?',
- 'slot.toolOtherDoc':'📄 Other document (PDF)','slot.toolPdfToJpg':'🖼️ PDF → JPG (first page)','slot.toolPdfCompress':'🗜️ Shrink a PDF',
+ 'slot.moreToolsLink':'🧰 Open all tools',
+ 'slot.toolOtherDoc':'📑 Image to PDF','slot.toolPdfToJpg':'🖼️ PDF → JPG (first page)','slot.toolPdfCompress':'🗜️ Shrink a PDF',
  'slot.toolPdfMerge':'🧩 Merge PDFs','slot.toolPdfRotate':'↻ Rotate a PDF','slot.toolPdfSign':'🖊️ Sign a PDF',
+ 'slot.toolPdfSplit':'✂️ Split a PDF','slot.toolPdfWatermark':'💧 Watermark a PDF','slot.toolPdfUnlock':'🔓 Unlock a PDF',
  'slot.chooseMergeFiles':'Click to choose 2 or more PDFs/images to merge','slot.mergeOrderHint':'Files merge in the order shown above.',
  'slot.mergeNow':'Merge into one PDF','slot.merging':'Merging…',
  'slot.mergeRasterNote':'Merged as images for reliability — text inside the original PDFs won\'t be selectable in the result.',
  'slot.rotateNow':'Rotate & download','slot.rotating':'Rotating…',
+ 'slot.splitFromLabel':'From page','slot.splitToLabel':'To page','slot.splitNow':'Split & download','slot.splitting':'Splitting…',
+ 'slot.watermarkTextLabel':'Watermark text','slot.watermarkPlaceholder':'e.g. SAMPLE, DRAFT, your name',
+ 'slot.watermarkNow':'Add watermark & download','slot.watermarking':'Adding watermark…',
+ 'slot.unlockPasswordLabel':'PDF password','slot.unlockPasswordPlaceholder':'Enter the PDF\'s password',
+ 'slot.unlockNow':'Unlock & download','slot.unlocking':'Unlocking…',
  'slot.choosePdfToSign':'Click to choose the PDF you want to sign','slot.loadingPreview':'Loading preview…',
  'slot.chooseSignatureImage':'Click to choose your signature image','slot.changeSignature':'Change signature',
  'slot.signClickHint':'Click anywhere on the page to place your signature there.',
@@ -153,7 +182,7 @@ const LANG_STRINGS={
  'slot.download':'Download','slot.payToDownload':'Pay once below to download every file',
  'slot.processBatch':'Process a different batch','slot.choosePhotos':'📷 Click to choose one or more photos',
  'slot.targetKb':'Target KB','slot.targetKbHint':'Not sure what to enter? Photos are usually 20–50 KB, signatures 10–20 KB — check your exam\'s notice for the exact number.',
- 'slot.process':'Process','slot.chooseImageToConvert':'Click to choose an image to convert','slot.choosePdf':'Click to choose a PDF',
+ 'slot.process':'Process','slot.chooseImageToConvert':'Click to choose an image to convert to PDF','slot.choosePdf':'Click to choose a PDF',
  'slot.chooseYour':'Click to choose your','slot.tryAnother':'Try another file',
  'slot.processing':'Processing…','slot.converting':'Converting…','slot.extracting':'Extracting page 1…','slot.compressing':'Compressing…',
  'slot.closestPossible':'⚠️ Closest possible:','slot.ready':'✅ Ready:',
@@ -167,6 +196,8 @@ const LANG_STRINGS={
  'err.corruptedConvert':'Couldn\'t convert that file — it may be corrupted. Try a different photo.',
  'err.corruptedPdfRead':'Couldn\'t read that PDF — it may be corrupted or password-protected.',
  'err.corruptedPdfProcess':'Couldn\'t process that PDF — it may be corrupted or password-protected.',
+ 'err.wrongPassword':'That password didn\'t work — check it and try again.',
+ 'err.watermarkTextRequired':'Type the text you want stamped on the PDF first.',
  'alert.chooseFileFirst':'Choose at least one file first.',
  'alert.chooseTarget5kb':'Choose a target of at least 5 KB.',
  'alert.choosePdfFirst':'Choose a PDF first.',
@@ -376,7 +407,7 @@ const LANG_STRINGS={
  'home.searchPlaceholder':'परीक्षा, विभाग, योग्यता खोजें',
  'step.exam':'परीक्षा','step.analysis':'हमारा विश्लेषण देखें','step.upload':'अपलोड','step.download':'डाउनलोड',
  'sidebar.noticeBoard':'📌 सूचना पट्ट','sidebar.results':'🏆 परिणाम',
- 'detail.postsPay':'💰 पद और वेतन','detail.eligibility':'🎓 पात्रता','detail.promotion':'📈 पदोन्नति',
+ 'detail.postsPay':'💰 पद और वेतन','detail.eligibility':'🎓 पात्रता','detail.promotion':'📈 करियर पथ',
  'detail.howToApply':'📝 आवेदन कैसे करें','detail.otherDocs':'📄 अन्य आवश्यक दस्तावेज़',
  'detail.examPattern':'📋 परीक्षा पैटर्न','detail.negativeMarking':'नकारात्मक अंकन','detail.passingMarks':'उत्तीर्ण अंक',
  'detail.faq':'❓ अक्सर पूछे जाने वाले प्रश्न',
@@ -391,19 +422,28 @@ const LANG_STRINGS={
  'overview.status':'स्थिति','overview.category':'श्रेणी',
  'detail.datesHead':'📅 महत्वपूर्ण तिथियां','detail.applyStart':'आवेदन शुरू','detail.result':'परिणाम','detail.lastVerified':'अंतिम सत्यापन',
  'detail.examDate':'परीक्षा तिथि','detail.admitCard':'प्रवेश पत्र','detail.fee':'आवेदन शुल्क',
+ 'detail.vacanciesHead':'🎟️ रिक्तियां और पद','detail.totalVacancies':'कुल रिक्तियां','detail.payLevel':'वेतन स्तर','detail.payBand':'वेतन बैंड','detail.posts':'पद','detail.post':'पद',
+ 'detail.beforeApply':'🧾 आवेदन से पहले','detail.photo':'फ़ोटो','detail.signature':'हस्ताक्षर','detail.prepDocsCta':'अभी तैयार करें →','detail.notAvailable':'अभी उपलब्ध नहीं',
+ 'detail.aboutExam':'ℹ️ परीक्षा के बारे में','detail.conductedBy':'आयोजक निकाय',
+ 'detail.selectionProcess':'🧭 चयन प्रक्रिया','detail.section':'खंड','detail.details':'विवरण',
+ 'detail.syllabusHead':'📘 पूर्ण पाठ्यक्रम','detail.syllabusLede':'इस परीक्षा का पूरा विषयवार पाठ्यक्रम चाहिए?','detail.viewSyllabus':'पूर्ण पाठ्यक्रम देखें →',
+ 'detail.importantLinks':'🔗 महत्वपूर्ण लिंक','detail.quickLinks':'त्वरित लिंक','detail.relatedExams':'संबंधित परीक्षाएं',
+ 'detail.applyNow':'अभी आवेदन करें ↗','detail.checkEligibility':'पात्रता जांचें','detail.notAnnounced':'अभी घोषित नहीं हुआ',
+ 'nav.sec.dates':'तिथियां','nav.sec.vacancies':'रिक्तियां और पद','nav.sec.eligibility':'पात्रता','nav.sec.before':'आवेदन से पहले','nav.sec.apply':'आवेदन कैसे करें','nav.sec.about':'परिचय','nav.sec.career':'करियर पथ','nav.sec.selection':'चयन','nav.sec.pattern':'परीक्षा पैटर्न','nav.sec.faq':'प्रश्नोत्तर','nav.sec.syllabus':'पाठ्यक्रम','nav.sec.links':'लिंक',
  'status.open':'खुला','status.closing':'जल्द बंद होगा','status.closed':'बंद','status.expected':'अपेक्षित',
  'card.lastDate':'अंतिम तिथि:','card.closedOn':'बंद हुआ:','card.vacancies':'रिक्तियां','card.viewDetails':'विवरण देखें',
  'card.knowMore':'अधिक जानें','card.lastCycle':'(पिछला चक्र)','card.deadlineLabel':'आवेदन की अंतिम तिथि',
  'card.expectedLabel':'अपेक्षित','card.closedPrefix':'बंद',
  'cal.eyebrow':'📅 परीक्षा कैलेंडर','cal.title':'आवेदन की समय सीमा कभी न चूकें',
  'cal.lead':'सरकारी परीक्षाएं, आवेदन की समय सीमा, रिक्तियां और वेतन — सब एक ही जगह देखें।',
- 'cal.filterAll':'सभी','cal.filterLive':'लाइव',
+ 'cal.filterAll':'सभी','cal.filterLive':'लाइव','cal.filterResults':'परिणाम','cal.filterAdmitCard':'प्रवेश पत्र',
  'cal.chipExams':'परीक्षाएं','cal.chipOpen':'खुला','cal.chipClosing':'जल्द बंद होगा',
  'cal.noneInWindow':'इस अवधि में अभी कोई परीक्षा नहीं है — देखें','cal.allExamsLink':'सभी परीक्षाएं',
  'exams.title':'सभी परीक्षाएं देखें',
  'exams.lead':'सही नाम याद नहीं? GovBabu की हर परीक्षा क्षेत्र अनुसार यहां है — अपनी परीक्षा चुनें और सीटें, वेतन, पात्रता, आरक्षण नीति, आवेदन प्रक्रिया देखें, और अपने दस्तावेज़ तैयार करें।',
  'exams.searchLabel':'परीक्षा खोजें','exams.searchPlaceholder':'खोजें जैसे SSC, रेलवे, बैंकिंग…',
- 'tools.title':'टूल्स','tools.lead':'अपनी फोटो और हस्ताक्षर को सही आकार में लाएं, PDF को कंप्रेस, मर्ज, घुमाएं और उस पर हस्ताक्षर करें — पूरी तरह आपके ब्राउज़र में प्रोसेस किया गया। किसी खास परीक्षा के लिए आवेदन कर रहे हैं? उसकी सटीक स्पेसिफिकेशन उसी परीक्षा के पेज पर है।',
+ 'exams.allStates':'सभी राज्य',
+ 'tools.title':'टूल्स','tools.lead':'मुफ़्त, ब्राउज़र-आधारित डॉक्यूमेंट टूल्स — जो भी आप अपलोड करें, वह कभी आपकी डिवाइस से बाहर नहीं जाता। किसी खास परीक्षा के लिए आवेदन कर रहे हैं? उसकी सटीक स्पेसिफिकेशन उसी परीक्षा के पेज पर है।',
  'elig.title':'अपनी पात्रता जांचें','elig.lead':'अपनी उम्र और योग्यता बताएं — देखें कि GovBabu की किन परीक्षाओं के लिए आप अभी पात्र हो सकते हैं। कोई खाता नहीं, कोई सेव प्रोफ़ाइल नहीं — बस नीचे दी गई जानकारी से सीधा जवाब।',
  'elig.ageLabel':'आपकी उम्र (वर्ष)','elig.qualLabel':'उच्चतम योग्यता','elig.categoryLabel':'श्रेणी (वैकल्पिक)','elig.stateLabel':'राज्य / निवास (वैकल्पिक)',
  'elig.selectOne':'चुनें…','elig.anyState':'कोई भी राज्य','elig.categoryAny':'बताना नहीं चाहते',
@@ -427,12 +467,19 @@ const LANG_STRINGS={
  'search.noMatch':'कोई मेल नहीं मिला — छोटा खोजशब्द आज़माएं, या','search.skipInstead':'सीधे फ़ाइल का साइज़ बदलें',
  'slot.photo':'फोटो','slot.signature':'हस्ताक्षर',
  'slot.moreToolsHint':'अधिकतर परीक्षाओं के लिए फोटो और हस्ताक्षर JPG में चाहिए — वह ऊपर हो चुका है। किसी अन्य दस्तावेज़ के लिए कुछ और चाहिए?',
- 'slot.toolOtherDoc':'📄 अन्य दस्तावेज़ (PDF)','slot.toolPdfToJpg':'🖼️ PDF → JPG (पहला पेज)','slot.toolPdfCompress':'🗜️ PDF छोटा करें',
+ 'slot.moreToolsLink':'🧰 सभी टूल खोलें',
+ 'slot.toolOtherDoc':'📑 इमेज को PDF बनाएं','slot.toolPdfToJpg':'🖼️ PDF → JPG (पहला पेज)','slot.toolPdfCompress':'🗜️ PDF छोटा करें',
  'slot.toolPdfMerge':'🧩 PDF मर्ज करें','slot.toolPdfRotate':'↻ PDF घुमाएं','slot.toolPdfSign':'🖊️ PDF पर हस्ताक्षर करें',
+ 'slot.toolPdfSplit':'✂️ PDF को विभाजित करें','slot.toolPdfWatermark':'💧 PDF पर वॉटरमार्क लगाएं','slot.toolPdfUnlock':'🔓 PDF अनलॉक करें',
  'slot.chooseMergeFiles':'मर्ज करने के लिए 2 या अधिक PDF/इमेज चुनने के लिए क्लिक करें','slot.mergeOrderHint':'फ़ाइलें ऊपर दिखाए गए क्रम में मर्ज होंगी।',
  'slot.mergeNow':'एक PDF में मर्ज करें','slot.merging':'मर्ज हो रहा है…',
  'slot.mergeRasterNote':'विश्वसनीयता के लिए इमेज के रूप में मर्ज किया गया — मूल PDF के अंदर का टेक्स्ट परिणाम में चुना नहीं जा सकेगा।',
  'slot.rotateNow':'घुमाएं और डाउनलोड करें','slot.rotating':'घुमाया जा रहा है…',
+ 'slot.splitFromLabel':'किस पेज से','slot.splitToLabel':'किस पेज तक','slot.splitNow':'विभाजित करें और डाउनलोड करें','slot.splitting':'विभाजित हो रहा है…',
+ 'slot.watermarkTextLabel':'वॉटरमार्क टेक्स्ट','slot.watermarkPlaceholder':'जैसे SAMPLE, DRAFT, आपका नाम',
+ 'slot.watermarkNow':'वॉटरमार्क लगाएं और डाउनलोड करें','slot.watermarking':'वॉटरमार्क लगाया जा रहा है…',
+ 'slot.unlockPasswordLabel':'PDF पासवर्ड','slot.unlockPasswordPlaceholder':'PDF का पासवर्ड डालें',
+ 'slot.unlockNow':'अनलॉक करें और डाउनलोड करें','slot.unlocking':'अनलॉक हो रहा है…',
  'slot.choosePdfToSign':'जिस PDF पर हस्ताक्षर करना है उसे चुनने के लिए क्लिक करें','slot.loadingPreview':'पूर्वावलोकन लोड हो रहा है…',
  'slot.chooseSignatureImage':'अपने हस्ताक्षर की इमेज चुनने के लिए क्लिक करें','slot.changeSignature':'हस्ताक्षर बदलें',
  'slot.signClickHint':'हस्ताक्षर वहां रखने के लिए पेज पर कहीं भी क्लिक करें।',
@@ -441,7 +488,7 @@ const LANG_STRINGS={
  'slot.download':'डाउनलोड','slot.payToDownload':'हर फ़ाइल डाउनलोड करने के लिए नीचे एक बार भुगतान करें',
  'slot.processBatch':'अलग बैच प्रोसेस करें','slot.choosePhotos':'📷 एक या अधिक फोटो चुनने के लिए क्लिक करें',
  'slot.targetKb':'लक्ष्य KB','slot.targetKbHint':'समझ नहीं आ रहा क्या डालें? आमतौर पर फोटो 20–50 KB और हस्ताक्षर 10–20 KB होते हैं — सटीक संख्या के लिए अपनी परीक्षा की सूचना देखें।',
- 'slot.process':'प्रोसेस करें','slot.chooseImageToConvert':'बदलने के लिए एक इमेज चुनने के लिए क्लिक करें','slot.choosePdf':'PDF चुनने के लिए क्लिक करें',
+ 'slot.process':'प्रोसेस करें','slot.chooseImageToConvert':'PDF बनाने के लिए एक इमेज चुनने के लिए क्लिक करें','slot.choosePdf':'PDF चुनने के लिए क्लिक करें',
  'slot.chooseYour':'चुनने के लिए क्लिक करें','slot.tryAnother':'दूसरी फ़ाइल आज़माएं',
  'slot.processing':'प्रोसेस हो रहा है…','slot.converting':'बदला जा रहा है…','slot.extracting':'पहला पेज निकाला जा रहा है…','slot.compressing':'छोटा किया जा रहा है…',
  'slot.closestPossible':'⚠️ नज़दीकी संभव साइज़:','slot.ready':'✅ तैयार:',
@@ -455,6 +502,8 @@ const LANG_STRINGS={
  'err.corruptedConvert':'इस फ़ाइल को बदला नहीं जा सका — शायद यह खराब है। कोई दूसरी फोटो आज़माएं।',
  'err.corruptedPdfRead':'यह PDF पढ़ी नहीं जा सकी — शायद यह खराब है या पासवर्ड-सुरक्षित है।',
  'err.corruptedPdfProcess':'इस PDF को प्रोसेस नहीं किया जा सका — शायद यह खराब है या पासवर्ड-सुरक्षित है।',
+ 'err.wrongPassword':'वह पासवर्ड काम नहीं आया — जांचें और फिर कोशिश करें।',
+ 'err.watermarkTextRequired':'पहले वह टेक्स्ट लिखें जो PDF पर लगाना है।',
  'alert.chooseFileFirst':'पहले कम से कम एक फ़ाइल चुनें।',
  'alert.chooseTarget5kb':'कम से कम 5 KB का टारगेट चुनें।',
  'alert.choosePdfFirst':'पहले एक PDF चुनें।',
@@ -688,9 +737,33 @@ function trCat(cat){
 const STATE_HI={
  'Bihar':'बिहार','Uttar Pradesh':'उत्तर प्रदेश','Madhya Pradesh':'मध्य प्रदेश',
  'Delhi':'दिल्ली','Haryana':'हरियाणा','Rajasthan':'राजस्थान',
- 'West Bengal':'पश्चिम बंगाल','Tamil Nadu':'तमिलनाडु','Kerala':'केरल'
+ 'West Bengal':'पश्चिम बंगाल','Tamil Nadu':'तमिलनाडु','Kerala':'केरल',
+ 'Maharashtra':'महाराष्ट्र','Odisha':'ओडिशा','Jharkhand':'झारखंड','Telangana':'तेलंगाना'
 };
 function trState(st){ return currentLang==='hi'&&STATE_HI[st]?STATE_HI[st]:st; }
+
+// No exam in the published data carries a `state` field yet (the admin
+// dashboard/database don't collect one) — this fills the gap client-side
+// from each exam's own code, which already encodes its state (BPSC,
+// UP-LEKHPAL, RAJ-POLICE-CONST, ...). examState() prefers a real a.state
+// if the data ever grows one, so this map becomes redundant on its own
+// rather than needing to be ripped out.
+const EXAM_STATE={
+ 'BPSC':'Bihar','BIHAR-POLICE-CONSTABLE':'Bihar','BIHAR-SI':'Bihar','BIHAR-TRE-4':'Bihar',
+ 'UPPSC':'Uttar Pradesh','UP-POLICE-CONST':'Uttar Pradesh','UP-LEKHPAL':'Uttar Pradesh','UPSSSC-PET':'Uttar Pradesh',
+ 'MPPSC':'Madhya Pradesh','MP-POLICE-CONST':'Madhya Pradesh',
+ 'RSMSSB-PATWARI':'Rajasthan','RAJ-POLICE-CONST':'Rajasthan',
+ 'MAH-POLICE-CONST':'Maharashtra',
+ 'WBPSC-WBCS':'West Bengal',
+ 'TNPSC-GRP4':'Tamil Nadu',
+ 'KPSC-LDC':'Kerala','KPSC-DEGREE-PRELIMS':'Kerala',
+ 'OPSC-OCS':'Odisha',
+ 'JPSC-CCE':'Jharkhand',
+ 'TGPSC-GROUP1':'Telangana',
+ 'DSSSB-TGT-CS':'Delhi',
+ 'HSSC-GRP-C':'Haryana'
+};
+function examState(a){ return a.state||EXAM_STATE[a.code]||null; }
 
 function applyLang(lang){
  currentLang=lang;
@@ -902,10 +975,12 @@ function loadPdfJs(){
  return pdfjsLibPromise;
 }
 
-async function pdfFileToCanvases(file,scale){
+async function pdfFileToCanvases(file,scale,password){
  const pdfjsLib=await loadPdfJs();
  const buf=await file.arrayBuffer();
- const doc=await pdfjsLib.getDocument({data:buf}).promise;
+ const params={data:buf};
+ if(password) params.password=password;
+ const doc=await pdfjsLib.getDocument(params).promise;
  const canvases=[];
  for(let i=1;i<=doc.numPages;i++){
  const page=await doc.getPage(i);
@@ -1024,6 +1099,56 @@ async function mergeFilesToPdfBlob(files){
  return new Blob([imagesToPdfBytes(pages)],{type:'application/pdf'});
 }
 
+// Extracts pages [from,to] (1-indexed, inclusive) from an already-rasterized
+// page set into their own PDF — the same slice-and-rebuild trick as every
+// other tool here, just without any per-page transform.
+async function splitPdfBlob(canvases,from,to){
+ const pages=[];
+ for(const c of canvases.slice(from-1,to)){
+ const blob=await new Promise(r=>c.toBlob(r,'image/jpeg',0.88));
+ pages.push({bytes:new Uint8Array(await blob.arrayBuffer()),w:c.width,h:c.height});
+ }
+ return new Blob([imagesToPdfBytes(pages)],{type:'application/pdf'});
+}
+
+// Stamps semi-transparent diagonal text across every page — drawn on a copy
+// of each source canvas so the original stays untouched if re-applied.
+async function watermarkPdfBlob(file,text){
+ const canvases=await pdfFileToCanvases(file,1.5);
+ const pages=[];
+ for(const src of canvases){
+ const c=document.createElement('canvas');c.width=src.width;c.height=src.height;
+ const ctx=c.getContext('2d');
+ ctx.drawImage(src,0,0);
+ ctx.save();
+ ctx.globalAlpha=0.25;
+ ctx.fillStyle='#666';
+ ctx.font='bold '+Math.round(c.width/10)+'px Arial, sans-serif';
+ ctx.textAlign='center';
+ ctx.textBaseline='middle';
+ ctx.translate(c.width/2,c.height/2);
+ ctx.rotate(-Math.PI/6);
+ ctx.fillText(text,0,0);
+ ctx.restore();
+ const blob=await new Promise(r=>c.toBlob(r,'image/jpeg',0.88));
+ pages.push({bytes:new Uint8Array(await blob.arrayBuffer()),w:c.width,h:c.height});
+ }
+ return new Blob([imagesToPdfBytes(pages)],{type:'application/pdf'});
+}
+
+// Opens a password-protected PDF with the given password (pdf.js decrypts
+// it while rendering) and rebuilds it through the same reader/writer as
+// every other PDF tool here — the output PDF carries no password.
+async function unlockPdfBlob(file,password){
+ const canvases=await pdfFileToCanvases(file,1.5,password);
+ const pages=[];
+ for(const c of canvases){
+ const blob=await new Promise(r=>c.toBlob(r,'image/jpeg',0.9));
+ pages.push({bytes:new Uint8Array(await blob.arrayBuffer()),w:c.width,h:c.height});
+ }
+ return new Blob([imagesToPdfBytes(pages)],{type:'application/pdf'});
+}
+
 // Draws a signature image onto one page of an already-rasterized page set
 // (pageIndex, default the first) at posFrac (a fraction of that page's own
 // width/height, {x,y}, matching wherever the user clicked in the preview)
@@ -1094,6 +1219,7 @@ function renderExamListingCard(a){
  if(d) meta.push('<li><span class="cal-bullet-ic">⏰</span><span>'+(a.status==='open'?T('card.lastDate'):T('card.closedOn'))+' '+d.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})+'</span></li>');
  if(dtl.eligibility&&dtl.eligibility.qualification) meta.push('<li><span class="cal-bullet-ic">🎓</span><span class="listing-clamp">'+dtl.eligibility.qualification+'</span></li>');
  if(a.vacancies) meta.push('<li><span class="cal-bullet-ic">👥</span><span>'+a.vacancies+' '+T('card.vacancies')+'</span></li>');
+ const st=examState(a);
  return '<a class="cal-notice-card exam-listing-card" href="'+examPageUrl(a.code)+'">'+
  '<div class="cal-notice-card-head">'+
  '<span class="exam-badge-sm '+(CAT_CLASS[a.cat]||'')+'">'+a.code.slice(0,2)+'</span>'+
@@ -1101,7 +1227,7 @@ function renderExamListingCard(a){
  '</div>'+
  '<div class="cal-notice-card-body">'+
  '<b class="cal-notice-card-name">'+tr(a,'name')+'</b>'+
- '<small class="cal-notice-card-cat">'+trCat(a.cat)+'</small>'+
+ '<small class="cal-notice-card-cat">'+trCat(a.cat)+(st?' · '+trState(st):'')+'</small>'+
  '</div>'+
  (meta.length?'<ul class="cal-notice-bullets">'+meta.join('')+'</ul>':'')+
  '<span class="cal-notice-more">'+T('card.viewDetails')+' <span class="cal-notice-arrow" aria-hidden="true">→</span></span>'+
@@ -1158,17 +1284,26 @@ function renderExamDirectory(filterKey){
  // State Exams is grouped by state rather than shown as one flat list —
  // it spans many different state recruitment bodies (PSCs, staff
  // selection boards, teacher recruitment, etc.), so state is the useful
- // grouping here, the same way category groups the "All" view below.
+ // grouping here, the same way category groups the "All" view below. A
+ // second, state-level chip row (scoped to this category, not a
+ // page-wide control) lets a visitor jump straight to their own state
+ // instead of scanning every section.
  if(filter==='State PSC'){
  const list=APPLICATIONS.filter(a=>a.cat==='State PSC');
  const groups={};
- list.forEach(a=>{const st=a.state||'Other';(groups[st]=groups[st]||[]).push(a)});
+ list.forEach(a=>{const st=examState(a)||'Other';(groups[st]=groups[st]||[]).push(a)});
  const states=Object.keys(groups).sort((s1,s2)=>{
  const m1=Math.min(...groups[s1].map(a=>a.popularity));
  const m2=Math.min(...groups[s2].map(a=>a.popularity));
  return m1-m2;
  });
- box.innerHTML=states.length?states.map(st=>{
+ const activeState=box.dataset.activeState||'all';
+ const shownStates=activeState==='all'?states:states.filter(st=>st===activeState);
+ const chipsHtml='<div class="cal-filter-bar state-chip-row" id="stateSubFilters">'+
+ '<button type="button" class="cal-filter-btn'+(activeState==='all'?' is-active':'')+'" data-state="all">'+T('exams.allStates')+'</button>'+
+ states.map(st=>'<button type="button" class="cal-filter-btn'+(activeState===st?' is-active':'')+'" data-state="'+st+'">'+trState(st)+'</button>').join('')+
+ '</div>';
+ const sectionsHtml=shownStates.length?shownStates.map(st=>{
  const exams=groups[st].slice().sort((a,b)=>a.popularity-b.popularity);
  return '<div class="directory-section">'+
  '<div class="directory-cat-label">'+trState(st)+'</div>'+
@@ -1177,6 +1312,11 @@ function renderExamDirectory(filterKey){
  '</div>'+
  '</div>';
  }).join(''):'<p class="notice-empty">'+T('home.noExamsInCat')+'</p>';
+ box.innerHTML=states.length?chipsHtml+sectionsHtml:sectionsHtml;
+ box.querySelectorAll('#stateSubFilters .cal-filter-btn').forEach(btn=>btn.addEventListener('click',()=>{
+ box.dataset.activeState=btn.dataset.state;
+ renderExamDirectory('State PSC');
+ }));
  return;
  }
  let list=[...APPLICATIONS];
@@ -1335,7 +1475,11 @@ function renderNoticeCard(item){
  if(a.vacancies) bullets.push('<li><span class="cal-bullet-ic">👥</span><span><b>'+a.vacancies+'</b> '+T('card.vacancies')+lastCycleTag+'</span></li>');
  const pay=payBullet(a.details);
  if(pay) bullets.push('<li><span class="cal-bullet-ic">💰</span><span>'+pay+lastCycleTag+'</span></li>');
- return '<div class="cal-notice-card cal-notice-card-'+status+'" data-status="'+status+'" data-cat="'+a.cat+'">'+
+ const hasResult=!!(a.results&&a.results.stage);
+ if(hasResult) bullets.push('<li><span class="cal-bullet-ic">🏆</span><span>'+a.results.stage+(a.results.date?' — '+a.results.date:'')+'</span></li>');
+ const hasAdmitCard=!!a.admitCardDate;
+ if(hasAdmitCard) bullets.push('<li><span class="cal-bullet-ic">🎫</span><span>'+T('detail.admitCard')+': '+a.admitCardDate+'</span></li>');
+ return '<div class="cal-notice-card cal-notice-card-'+status+'" data-status="'+status+'" data-cat="'+a.cat+'" data-has-result="'+(hasResult?1:0)+'" data-has-admitcard="'+(hasAdmitCard?1:0)+'">'+
  '<div class="cal-notice-card-head">'+
  '<span class="exam-badge-sm '+(CAT_CLASS[a.cat]||'')+'">'+a.code.slice(0,2)+'</span>'+
  '<span class="status-pill '+status+'">'+calStatusLabel(status)+'</span>'+
@@ -1350,10 +1494,12 @@ function renderNoticeCard(item){
  '</div>';
 }
 
-// Two independent things share one filter value, same convention as the
+// Several independent things share one filter value, same convention as the
 // homepage/exams-directory filter bars: 'all' shows everything, 'live'
-// matches status (open/closing), anything else is a category name matched
-// against data-cat. A raw status word ('open'/'closing'/'closed'/
+// matches status (open/closing), 'results'/'admitcard' match the card's own
+// has-result/has-admitcard flag (set in renderNoticeCard from real a.results/
+// a.admitCardDate data — never guessed), anything else is a category name
+// matched against data-cat. A raw status word ('open'/'closing'/'closed'/
 // 'tentative') is also still accepted for callers that pass one directly.
 function applyCalendarFilter(filterKey){
  const box=$('examCalendar');
@@ -1363,6 +1509,8 @@ function applyCalendarFilter(filterKey){
  const status=card.dataset.status;
  const match=filterKey==='all'
  ||(filterKey==='live'?(status==='open'||status==='closing'):
+ filterKey==='results'?card.dataset.hasResult==='1':
+ filterKey==='admitcard'?card.dataset.hasAdmitcard==='1':
  isStatus?status===filterKey:card.dataset.cat===filterKey);
  card.style.display=match?'':'none';
  });
@@ -1370,9 +1518,18 @@ function applyCalendarFilter(filterKey){
  const anyVisible=[...col.querySelectorAll('.cal-notice-card')].some(c=>c.style.display!=='none');
  col.style.display=anyVisible?'':'none';
  });
+ // A year-nav link (e.g. "2025") whose year has zero visible cards under
+ // the current filter is a dead button — it jumps to a now-hidden section
+ // and does nothing, which reads as broken rather than just empty. Hide the
+ // link itself alongside its section rather than leaving it clickable.
+ const yearNav=$('calYearNav');
  box.querySelectorAll('.cal-year-block').forEach(yb=>{
  const anyVisible=[...yb.querySelectorAll('.cal-notice-card')].some(c=>c.style.display!=='none');
  yb.style.display=anyVisible?'':'none';
+ if(yearNav){
+ const link=yearNav.querySelector('a[href="#'+yb.id+'"]');
+ if(link) link.style.display=anyVisible?'':'none';
+ }
  });
 }
 
@@ -1392,9 +1549,29 @@ function renderCalFilters(){
  const m2=Math.min(...APPLICATIONS.filter(a=>a.cat===c2).map(a=>a.popularity));
  return m1-m2;
  });
- const active=box.dataset.active||'live';
+ const requestedActive=box.dataset.active||'live';
+ // "Results" and "Admit Card" are extra status-style views alongside
+ // Live, but — unlike Live/category, which always have something to show
+ // — each only appears once at least one exam actually has that data.
+ // GovBabu never fabricates a result or admit-card date, so most exams
+ // simply don't have one yet; showing the filter anyway would just be a
+ // button that always lands on an empty calendar — the exact "not working
+ // button" complaint that got the year-nav fix, so avoid the same mistake
+ // here. Each check runs fresh on every render, so a filter appears the
+ // moment real data for it shows up — no code change needed later.
+ const hasResults=APPLICATIONS.some(a=>a.results&&a.results.stage);
+ const hasAdmitCard=APPLICATIONS.some(a=>a.admitCardDate);
+ // If the previously-active filter is one of these and its data has since
+ // disappeared, fall back to 'live' rather than leaving the UI with no
+ // button highlighted and a filter key nothing can match.
+ const requestedStillValid=requestedActive==='all'||requestedActive==='live'||cats.includes(requestedActive)
+ ||(requestedActive==='results'&&hasResults)||(requestedActive==='admitcard'&&hasAdmitCard);
+ const active=requestedStillValid?requestedActive:'live';
+ box.dataset.active=active;
  box.innerHTML='<button type="button" class="cal-filter-btn'+(active==='all'?' is-active':'')+'" data-filter="all">'+T('cal.filterAll')+'</button>'+
  '<button type="button" class="cal-filter-btn cal-filter-btn-live'+(active==='live'?' is-active':'')+'" data-filter="live"><span class="live-dot" aria-hidden="true"></span>'+T('cal.filterLive')+'</button>'+
+ (hasResults?'<button type="button" class="cal-filter-btn'+(active==='results'?' is-active':'')+'" data-filter="results">🏆 '+T('cal.filterResults')+'</button>':'')+
+ (hasAdmitCard?'<button type="button" class="cal-filter-btn'+(active==='admitcard'?' is-active':'')+'" data-filter="admitcard">🎫 '+T('cal.filterAdmitCard')+'</button>':'')+
  cats.map(c=>'<button type="button" class="cal-filter-btn'+(active===c?' is-active':'')+'" data-filter="'+c+'">'+trCat(c)+'</button>').join('');
  box.querySelectorAll('.cal-filter-btn').forEach(btn=>btn.addEventListener('click',()=>{
  box.querySelectorAll('.cal-filter-btn').forEach(b=>b.classList.remove('is-active'));
@@ -1632,21 +1809,54 @@ function renderExamResults(query){
  if(popularBox) popularBox.style.display=q?'none':'block';
  if(categoryBox) categoryBox.style.display=q?'none':'block';
  if(!q){box.innerHTML='';box.classList.remove('open');return}
- const matches=APPLICATIONS.filter(a=>
- tr(a,'name').toLowerCase().includes(q)||a.code.toLowerCase().includes(q)||a.cat.toLowerCase().includes(q)
- ).sort((a,b)=>a.popularity-b.popularity).slice(0,8);
+ const matches=APPLICATIONS.filter(a=>{
+ const st=examState(a);
+ return tr(a,'name').toLowerCase().includes(q)||a.code.toLowerCase().includes(q)||a.cat.toLowerCase().includes(q)
+ ||(st&&trState(st).toLowerCase().includes(q));
+ }).sort((a,b)=>a.popularity-b.popularity).slice(0,8);
  box.classList.add('open');
  if(!matches.length){
  box.innerHTML='<div class="exam-empty">'+T('search.noMatch')+' <button type="button" class="link-btn" onclick="skipExam()">'+T('search.skipInstead')+'</button>.</div>';
  return;
  }
- box.innerHTML=matches.map(a=>
- '<a class="exam-result-row" href="'+examPageUrl(a.code)+'">'+
+ box.innerHTML=matches.map(a=>{
+ const st=examState(a);
+ return '<a class="exam-result-row" href="'+examPageUrl(a.code)+'">'+
  '<span class="exam-badge-sm '+(CAT_CLASS[a.cat]||'')+'">'+a.code.slice(0,2)+'</span>'+
- '<span class="exam-result-text"><b>'+tr(a,'name')+'</b><small>'+trCat(a.cat)+'</small></span>'+
+ '<span class="exam-result-text"><b>'+tr(a,'name')+'</b><small>'+trCat(a.cat)+(st?' · '+trState(st):'')+'</small></span>'+
  '<span class="status-pill '+(a.status==='open'?'open':'closed')+'">'+calStatusLabel(a.status==='open'?'open':'closed')+'</span>'+
- '</a>'
- ).join('');
+ '</a>';
+ }).join('');
+}
+
+// Same matching logic as renderExamResults() (name/code/category/state
+// substring match, popularity-sorted, capped at 8), but for the header's
+// search dropdown — independent of the homepage hero search, so typing here
+// never touches #popularExams/#examByCategory visibility the way the hero
+// search does.
+function renderHeaderSearchResults(query){
+ const box=$('headerSearchResults');
+ if(!box) return;
+ const q=(query||'').trim().toLowerCase();
+ if(!q){box.innerHTML='';box.classList.remove('open');return}
+ const matches=APPLICATIONS.filter(a=>{
+ const st=examState(a);
+ return tr(a,'name').toLowerCase().includes(q)||a.code.toLowerCase().includes(q)||a.cat.toLowerCase().includes(q)
+ ||(st&&trState(st).toLowerCase().includes(q));
+ }).sort((a,b)=>a.popularity-b.popularity).slice(0,8);
+ box.classList.add('open');
+ if(!matches.length){
+ box.innerHTML='<div class="exam-empty">'+T('search.noMatch')+'</div>';
+ return;
+ }
+ box.innerHTML=matches.map(a=>{
+ const st=examState(a);
+ return '<a class="exam-result-row" href="'+examPageUrl(a.code)+'">'+
+ '<span class="exam-badge-sm '+(CAT_CLASS[a.cat]||'')+'">'+a.code.slice(0,2)+'</span>'+
+ '<span class="exam-result-text"><b>'+tr(a,'name')+'</b><small>'+trCat(a.cat)+(st?' · '+trState(st):'')+'</small></span>'+
+ '<span class="status-pill '+(a.status==='open'?'open':'closed')+'">'+calStatusLabel(a.status==='open'?'open':'closed')+'</span>'+
+ '</a>';
+ }).join('');
 }
 
 function selectExam(code){
@@ -1685,28 +1895,21 @@ function addGenericSlot(kind){
  state.slots[kind]={label:null,kind,spec:null,file:null,result:null,targetKb:preset.targetKb};
 }
 
-// tools.html's tool-chip entry point. Unlike index.html's exam flow, there
-// is no exam step and no step indicator here — general-purpose tools
-// (Merge/Rotate/Sign/Compress/Photo/Signature) just add themselves as one
-// more slot in this page's own workspace, so picking several in a row
-// works exactly like the "more tools" toggle already does inside an
-// exam's own upload step.
+// tools.html's tool-box entry point. Unlike index.html's exam flow (where
+// several documents genuinely get prepared side by side), tools.html is a
+// pick-one-thing-at-a-time page — switching tools replaces the workspace
+// instead of piling another upload box on top of whatever was open before.
 function openToolsPageTool(kind){
+ state.slots={};
  if(kind==='photo'||kind==='signature') addGenericSlot(kind);
  else addToolSlot(kind);
  renderUploadSlots();
  renderPayBar();
- const target=$('toolsWorkspace');
- if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
-}
-
-// "All Other Tools" on tools.html — reveals the workspace without adding
-// any specific slot, so the more-tools toggle shows everything not
-// already picked (image→PDF, PDF→JPG, and any of the above).
-function openToolsPageMore(){
- renderUploadSlots();
- renderPayBar();
- const target=$('toolsWorkspace');
+ // Scroll to the freshly-populated upload area itself, not the whole
+ // #toolsWorkspace section — that section starts at the tool grid, which is
+ // exactly where the visitor already is, so scrolling to it did nothing
+ // visible and the newly-rendered upload box stayed off-screen below.
+ const target=$('uploadSlots');
  if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
@@ -1755,11 +1958,21 @@ function renderSelectedExamBar(){
  const d=parseExamDate(a.applyEnd);
  const status=calItemStatus({a,d,tentative:false});
  const deadline=(a.status==='open'&&a.applyEnd)?'<div class="exam-deadline">Apply by '+a.applyEnd+'</div>':'';
+ // Open exams lead with a primary "Apply Now" action (plus a same-page
+ // jump to Eligibility, the next thing a candidate actually needs);
+ // closed exams keep the lower-emphasis "Official Notice" link, since
+ // there's nothing left to apply for.
+ const applyBtn=a.officialUrl?
+ (a.status==='open'
+ ?'<a class="btn btn-primary btn-sm" href="'+a.officialUrl+'" target="_blank" rel="noopener">'+T('detail.applyNow')+'</a>'
+ :'<a class="btn btn-outline btn-sm" href="'+a.officialUrl+'" target="_blank" rel="noopener">'+T('detail.officialNotice')+'</a>')
+ :'';
+ const eligBtn=a.status==='open'?'<a class="btn btn-outline btn-sm" href="#sec-eligibility">'+T('detail.checkEligibility')+'</a>':'';
  bar.innerHTML=
  '<span class="exam-badge-sm '+(CAT_CLASS[a.cat]||'')+'">'+a.code.slice(0,2)+'</span>'+
  '<span class="exam-result-text"><b>'+tr(a,'name')+'</b><small>'+trCat(a.cat)+'</small>'+deadline+'</span>'+
  '<span class="status-pill '+status+'">'+calStatusLabel(status)+'</span>'+
- (a.officialUrl?'<a class="btn btn-outline btn-sm" href="'+a.officialUrl+'" target="_blank" rel="noopener">'+T('detail.officialNotice')+'</a>':'');
+ applyBtn+eligBtn;
 }
 
 // Full picture for the selected exam — posts & pay, promotion, eligibility,
@@ -1769,6 +1982,15 @@ function renderSelectedExamBar(){
 // Age/qualification fields are either a plain string or an array of short
 // bullet points (exams with more than one age band, e.g. per-post or
 // per-category) — render whichever shape the data uses.
+// Splits compiled research prose into one line per sentence (on ". "/"; "
+// before a capital letter, digit or ₹ — never touching abbreviations like
+// "SC/ST" that have no following period) so a run-on paragraph reads as
+// separate lines on a phone instead of one dense block of tiny text.
+function sentenceBreak(text){
+ if(!text) return text;
+ return text.split(/(?<=[.;])\s+(?=[A-Z0-9₹])/).map(s=>'<span class="sentence-break">'+s+'</span>').join('');
+}
+
 function renderFieldValue(v){
  if(Array.isArray(v)) return '<ul>'+v.map(x=>'<li>'+x+'</li>').join('')+'</ul>';
  return '<span>'+v+'</span>';
@@ -1786,6 +2008,135 @@ function renderPromotion(p){
  return html;
 }
 
+// ---- Exam analysis page: one data-driven section builder per topic ----
+// Every helper below takes the exam (a) and/or its merged details (d) and
+// returns either a {navLabel, html} pair or '' when the exam has nothing
+// for that topic — never a fabricated placeholder. renderExamDetailPanel
+// assembles only the sections that actually produced content, so the
+// quick-nav never contains a dead link and the page never shows an empty
+// section for exam-to-exam variation (a post-heavy exam vs. a single-post
+// one, an exam with a confirmed promotion path vs. one with none, etc).
+
+function renderVacanciesSection(a,d){
+ if(!a.vacancies&&!d.payGroups&&!(a.posts&&a.posts.length)) return '';
+ let body='';
+ if(a.vacancies) body+='<span class="vacancy-total-label">'+T('detail.totalVacancies')+'</span><span class="vacancy-total-value">'+a.vacancies+'</span>';
+ if(a.posts&&a.posts.length){
+ const hPost=T('detail.post'),hQual=T('detail.qualification'),hPay=T('detail.payLevel'),hVac=T('overview.vacancies');
+ body+='<div class="table-scroll"><table class="data-table"><thead><tr><th>'+hPost+'</th><th>'+hQual+'</th><th>'+hPay+'</th><th>'+hVac+'</th></tr></thead><tbody>'+
+ a.posts.map(p=>'<tr><td data-label="'+hPost+'">'+p.postName+'</td><td data-label="'+hQual+'">'+(p.qualification||'—')+'</td><td data-label="'+hPay+'">'+([p.payLevel,p.payBand].filter(Boolean).join(' · ')||'—')+'</td><td data-label="'+hVac+'">'+(p.vacancies!=null?p.vacancies:(p.vacanciesDisplay||'—'))+'</td></tr>').join('')+
+ '</tbody></table></div>';
+ }else if(d.payGroups){
+ const hLevel=T('detail.payLevel'),hBand=T('detail.payBand'),hPosts=T('detail.posts');
+ body+='<div class="table-scroll"><table class="data-table"><thead><tr><th>'+hLevel+'</th><th>'+hBand+'</th><th>'+hPosts+'</th></tr></thead><tbody>'+
+ d.payGroups.map(g=>'<tr><td data-label="'+hLevel+'">'+g.level+'</td><td data-label="'+hBand+'">'+g.band+'</td><td data-label="'+hPosts+'">'+g.posts+'</td></tr>').join('')+
+ '</tbody></table></div>';
+ if(d.payNote) body+='<p class="detail-footnote">'+sentenceBreak(d.payNote)+'</p>';
+ }
+ return {navLabel:T('nav.sec.vacancies'),html:'<section id="sec-vacancies" class="exam-section"><h2>'+T('detail.vacanciesHead')+'</h2>'+body+'</section>'};
+}
+
+function renderEligibilitySection(d,feeText){
+ if(!d.eligibility) return '';
+ const e=d.eligibility;
+ const body=
+ '<div class="detail-row"><b>'+T('detail.qualification')+'</b><span>'+(e.qualification?sentenceBreak(e.qualification):T('detail.notAvailable'))+'</span></div>'+
+ '<div class="detail-row"><b>'+T('detail.age')+'</b>'+renderFieldValue(e.age||T('detail.notAvailable'))+'</div>'+
+ (e.ageRelax?'<div class="detail-row"><b>'+T('detail.relaxation')+'</b><span>'+sentenceBreak(e.ageRelax)+'</span></div>':'')+
+ (feeText?'<div class="detail-row"><b>'+T('detail.fee')+'</b><span>'+sentenceBreak(feeText)+'</span></div>':'');
+ return {navLabel:T('nav.sec.eligibility'),html:'<section id="sec-eligibility" class="exam-section"><h2>'+T('detail.eligibility')+'</h2>'+body+'</section>'};
+}
+
+// Built entirely from fields that already exist for virtually every exam
+// (photo/signature specs, application fee, any info-only otherDocs) —
+// never a generic hardcoded checklist, per this page's "don't invent
+// requirements" rule.
+function renderBeforeApplySection(a,d,feeText){
+ const items=[];
+ if(a.photo) items.push(['📷 '+T('detail.photo'),specLine(a.photo)+(a.photo.notes?(specLine(a.photo)?' — ':'')+sentenceBreak(a.photo.notes):'')]);
+ if(a.signature) items.push(['✍️ '+T('detail.signature'),specLine(a.signature)+(a.signature.notes?(specLine(a.signature)?' — ':'')+sentenceBreak(a.signature.notes):'')]);
+ if(feeText) items.push(['💳 '+T('detail.fee'),sentenceBreak(feeText)]);
+ (a.otherDocs||[]).forEach(o=>{
+ items.push([o.label,o.spec?specLine(o.spec)+(o.spec.notes?(specLine(o.spec)?' — ':'')+sentenceBreak(o.spec.notes):''):sentenceBreak(o.notes)]);
+ });
+ if(!items.length) return '';
+ const body='<ul class="doc-checklist">'+items.map(([label,val])=>'<li><span><b>'+label+'</b><span>'+val+'</span></span></li>').join('')+'</ul>'+
+ '<p style="margin-top:14px"><a class="btn btn-primary btn-sm" href="#uploadSlots">'+T('detail.prepDocsCta')+'</a></p>';
+ return {navLabel:T('nav.sec.before'),html:'<section id="sec-before" class="exam-section"><h2>'+T('detail.beforeApply')+'</h2>'+body+'</section>'};
+}
+
+function renderHowToApplySection(a,d){
+ if(!d.howToApply) return '';
+ let body='';
+ if(a.officialUrl) body+='<a class="btn btn-primary btn-sm apply-cta" href="'+a.officialUrl+'" target="_blank" rel="noopener">'+T('detail.applyOnOfficial')+'</a>';
+ if(d.beforeYouStart) body+='<div class="apply-subhead">'+T('detail.beforeYouStart')+'</div><ul class="apply-checklist">'+d.beforeYouStart.map(s=>'<li>'+s+'</li>').join('')+'</ul>';
+ body+='<ol class="step-list">'+d.howToApply.map(s=>'<li>'+s+'</li>').join('')+'</ol>';
+ if(d.commonMistakes) body+='<div class="apply-subhead apply-subhead-warn">'+T('detail.commonMistakes')+'</div><ul class="apply-checklist">'+d.commonMistakes.map(s=>'<li>'+s+'</li>').join('')+'</ul>';
+ return {navLabel:T('nav.sec.apply'),html:'<section id="sec-apply" class="exam-section"><h2>'+T('detail.howToApply')+'</h2>'+body+'</section>'};
+}
+
+function renderAboutSection(a){
+ const body=
+ '<div class="detail-row"><b>'+T('detail.conductedBy')+'</b><span>'+(a.orgName||trCat(a.cat))+'</span></div>'+
+ '<div class="detail-row"><b>'+T('overview.category')+'</b><span>'+trCat(a.cat)+'</span></div>'+
+ (a.notifTitle?'<p class="section-lede">'+sentenceBreak(tr(a,'notifTitle'))+'</p>':'');
+ return {navLabel:T('nav.sec.about'),html:'<section id="sec-about" class="exam-section"><h2>'+T('detail.aboutExam')+'</h2>'+body+'</section>'};
+}
+
+function renderCareerSection(d){
+ if(!d.promotion) return '';
+ return {navLabel:T('nav.sec.career'),html:'<section id="sec-career" class="exam-section"><h2>'+T('detail.promotion')+'</h2>'+renderPromotion(d.promotion)+'</section>'};
+}
+
+// The real per-exam "selection process" narrative already lives in
+// examPattern.mode (e.g. "CBT-1, CBT-2, ... then Document Verification/
+// Medical") — there's no separate structured stages list in the data, so
+// this surfaces that same sentence as its own section instead of drawing
+// an invented stage-by-stage pipeline graphic.
+function renderSelectionSection(d){
+ const mode=d.examPattern&&d.examPattern.mode;
+ if(!mode) return '';
+ return {navLabel:T('nav.sec.selection'),html:'<section id="sec-selection" class="exam-section"><h2>'+T('detail.selectionProcess')+'</h2><p class="section-lede">'+sentenceBreak(mode)+'</p></section>'};
+}
+
+function renderPatternSection(d){
+ if(!d.examPattern) return '';
+ const ep=d.examPattern;
+ const chips=[ep.duration,ep.negativeMarking?T('detail.negativeMarking')+': '+ep.negativeMarking:'',ep.passingMarks?T('detail.passingMarks')+': '+ep.passingMarks:''].filter(Boolean);
+ let body=chips.length?'<p class="section-lede">'+chips.join(' · ')+'</p>':'';
+ if(ep.sections&&ep.sections.length){
+ body+='<div class="table-scroll"><table class="data-table"><thead><tr><th>'+T('detail.section')+'</th><th>'+T('detail.details')+'</th></tr></thead><tbody>'+
+ ep.sections.map(s=>'<tr><td data-label="'+T('detail.section')+'">'+s.name+'</td><td data-label="'+T('detail.details')+'">'+s.detail+'</td></tr>').join('')+
+ '</tbody></table></div>';
+ }
+ if(ep.note) body+='<p class="detail-footnote">'+sentenceBreak(ep.note)+'</p>';
+ if(!body) return '';
+ return {navLabel:T('nav.sec.pattern'),html:'<section id="sec-pattern" class="exam-section"><h2>'+T('detail.examPattern')+'</h2>'+body+'</section>'};
+}
+
+function renderFaqSection(d){
+ if(!d.faqs||!d.faqs.length) return '';
+ const body=d.faqs.map(f=>'<details class="detail-note"><summary>'+f.q+'</summary><p>'+f.a+'</p></details>').join('');
+ return {navLabel:T('nav.sec.faq'),html:'<section id="sec-faq" class="exam-section"><h2>'+T('detail.faq')+'</h2>'+body+'</section>'};
+}
+
+// Routes to the site's real Downloads/Syllabus destination (manjusha.html)
+// rather than a syllabus route that doesn't exist yet — GovBabu's syllabus
+// content isn't live per-exam, so this is the honest current destination.
+function renderSyllabusSection(){
+ const body='<p class="section-lede">'+T('detail.syllabusLede')+'</p><a class="btn btn-primary btn-sm" href="/manjusha.html">'+T('detail.viewSyllabus')+'</a>';
+ return {navLabel:T('nav.sec.syllabus'),html:'<section id="sec-syllabus" class="exam-section"><h2>'+T('detail.syllabusHead')+'</h2>'+body+'</section>'};
+}
+
+function renderLinksSection(a){
+ const links=[];
+ if(a.officialUrl) links.push('<a class="btn btn-outline btn-sm" href="'+a.officialUrl+'" target="_blank" rel="noopener">'+T('detail.officialNotice')+'</a>');
+ const related=APPLICATIONS.filter(e=>e.cat===a.cat&&e.code!==a.code).slice(0,5);
+ const relatedHtml=related.length?
+ '<div class="apply-subhead">'+T('detail.relatedExams')+'</div><ul class="apply-steps">'+related.map(e=>'<li><a href="'+examPageUrl(e.code)+'">'+tr(e,'name')+'</a></li>').join('')+'</ul>':'';
+ return {navLabel:T('nav.sec.links'),html:'<section id="sec-links" class="exam-section"><h2>'+T('detail.importantLinks')+'</h2><div class="links-grid">'+links.join('')+'</div>'+relatedHtml+'</section>'};
+}
+
 function renderExamDetailPanel(){
  const box=$('examDetailPanel');
  if(!box) return;
@@ -1799,28 +2150,23 @@ function renderExamDetailPanel(){
  // its own Hindi-override check rather than riding along with the merge above.
  const feeText=(currentLang==='hi'&&a.hi&&a.hi.applicationFee)?a.hi.applicationFee:a.applicationFee;
 
- // Entries with a structured spec become their own upload slot below (like
- // photo/signature) — only show info-only entries here, so the spec isn't
- // duplicated in two places.
- const infoOnlyDocs=(a.otherDocs||[]).filter(o=>!o.spec);
- const otherDocsCard=infoOnlyDocs.length?
- '<div class="detail-card detail-card-wide"><h4>'+T('detail.otherDocs')+'</h4>'+
- infoOnlyDocs.map(o=>'<div class="detail-row"><b>'+o.label+'</b><span>'+o.notes+'</span></div>').join('')+
- '</div>':'';
-
- const hasCoreDetails=d.payGroups||d.eligibility||d.promotion||d.howToApply;
- if(!hasCoreDetails&&!otherDocsCard){
+ const hasCoreDetails=d.payGroups||(a.posts&&a.posts.length)||d.eligibility||d.promotion||d.howToApply;
+ if(!hasCoreDetails){
  box.innerHTML='<div class="detail-missing">'+T('detail.missing')+'</div>';
  return;
  }
 
- // Short scalar values only — a KPI tile truncates to one line, so
- // free-text fields that sometimes run long (applyEnd occasionally carries
- // a parenthetical caveat, qualification is a full sentence) go in
- // Important Dates / Eligibility below instead, where wrapping is fine.
+ // At-a-glance strip: everything a candidate wants in the first 30 seconds
+ // (status/vacancies/dates/who's-conducting-it/qualification/age), all
+ // short scalar values so each tile stays one line — the free-text detail
+ // for age/qualification lives in the Eligibility section below.
  const overviewItems=[[T('overview.status'),T(a.status==='open'?'status.open':'status.closed')]];
  if(a.vacancies) overviewItems.push([T('overview.vacancies'),a.vacancies]);
- if(a.cat) overviewItems.push([T('overview.category'),trCat(a.cat)]);
+ if(a.applyStart) overviewItems.push([T('detail.applyStart'),a.applyStart]);
+ if(a.applyEnd) overviewItems.push([T(a.status==='open'?'overview.lastDate':'detail.applicationsClosed'),a.applyEnd]);
+ overviewItems.push([T('detail.conductedBy'),a.orgName||trCat(a.cat)]);
+ if(d.eligibility&&d.eligibility.qualification) overviewItems.push([T('detail.qualification'),d.eligibility.qualification]);
+ if(d.eligibility&&d.eligibility.age) overviewItems.push([T('detail.age'),Array.isArray(d.eligibility.age)?d.eligibility.age.join(' · '):d.eligibility.age]);
  const quickOverview=
  '<div class="quick-overview">'+overviewItems.map(([label,value])=>
  '<div class="quick-overview-item"><span class="quick-overview-label">'+label+'</span><span class="quick-overview-value">'+value+'</span></div>'
@@ -1829,74 +2175,68 @@ function renderExamDetailPanel(){
 
  // Apply Start/End, Correction Window, Exam Date, Admit Card, Result and
  // Last Verified — each shown only when the exam actually has that field.
- // examDate/admitCardDate are new, real fields (not every exam has one
- // yet — populated as GovBabu confirms them, never guessed); Result now
- // shows a.results.date alongside.stage, since that date was already
- // being compiled into the data and simply wasn't rendered before.
+ // An open exam missing examDate says so explicitly ("Not announced yet")
+ // rather than just omitting the row, since that's the one date an open
+ // exam's candidates are actively waiting on.
  const dateRows=[];
  if(a.applyStart) dateRows.push([T('detail.applyStart'),a.applyStart]);
  if(a.applyEnd) dateRows.push([T(a.status==='open'?'overview.lastDate':'detail.applicationsClosed'),a.applyEnd]);
  if(d.correctionWindow) dateRows.push([T('detail.correctionWindow'),d.correctionWindow]);
  if(a.examDate) dateRows.push([T('detail.examDate'),a.examDate]);
+ else if(a.status==='open') dateRows.push([T('detail.examDate'),T('detail.notAnnounced')]);
  if(a.admitCardDate) dateRows.push([T('detail.admitCard'),a.admitCardDate]);
  if(a.results&&a.results.stage) dateRows.push([T('detail.result'),a.results.stage+(a.results.date?' — '+a.results.date:'')]);
  if(a.verified) dateRows.push([T('detail.lastVerified'),a.verified]);
- const importantDatesCard=dateRows.length?
- '<div class="detail-card detail-card-wide"><h4>'+T('detail.datesHead')+'</h4><div class="dates-table">'+
- dateRows.map(([label,value])=>'<div class="dates-row"><span class="dates-label">'+label+'</span><span class="dates-value">'+value+'</span></div>').join('')+
- '</div></div>':'';
+ // The two dates a candidate cares about most (apply start → last date)
+ // get the prominent hero treatment; everything else is a plain row below.
+ const heroDates=[];
+ const secondaryRows=[...dateRows];
+ if(a.applyStart){heroDates.push([T('detail.applyStart'),a.applyStart]);secondaryRows.shift()}
+ if(a.applyEnd){heroDates.push([T(a.status==='open'?'overview.lastDate':'detail.applicationsClosed'),a.applyEnd]);if(secondaryRows.length&&secondaryRows[0][1]===a.applyEnd)secondaryRows.shift()}
+ const datesHtml=heroDates.length?
+ '<div class="dates-hero">'+heroDates.map(([label,value],i)=>
+ (i>0?'<span class="dates-hero-arrow">→</span>':'')+'<div class="dates-hero-item"><span class="dates-hero-label">'+label+'</span><span class="dates-hero-value">'+value+'</span></div>'
+ ).join('')+'</div>':'';
+ const secondaryHtml=secondaryRows.length?
+ '<div class="dates-table">'+secondaryRows.map(([label,value])=>'<div class="dates-row"><span class="dates-label">'+label+'</span><span class="dates-value">'+value+'</span></div>').join('')+'</div>':'';
+ const datesSection=(datesHtml||secondaryHtml)?
+ {navLabel:T('nav.sec.dates'),html:'<section id="sec-dates" class="exam-section"><h2>'+T('detail.datesHead')+'</h2>'+datesHtml+secondaryHtml+'</section>'}:'';
 
- // Exam Pattern (duration, sections, negative-marking, passing marks) and
- // FAQ are optional, research-backed additions — most exams won't have
- // either populated yet, so both render to '' and vanish cleanly rather
- // than showing an empty card.
- const examPatternCard=d.examPattern?
- '<div class="detail-card detail-card-wide"><h4>'+T('detail.examPattern')+'</h4>'+
- (d.examPattern.mode||d.examPattern.duration?'<div class="detail-row"><b>'+[d.examPattern.mode,d.examPattern.duration].filter(Boolean).join(' · ')+'</b></div>':'')+
- (d.examPattern.sections?d.examPattern.sections.map(s=>'<div class="detail-row"><b>'+s.name+'</b><span>'+s.detail+'</span></div>').join(''):'')+
- (d.examPattern.negativeMarking?'<div class="detail-row"><b>'+T('detail.negativeMarking')+'</b><span>'+d.examPattern.negativeMarking+'</span></div>':'')+
- (d.examPattern.passingMarks?'<div class="detail-row"><b>'+T('detail.passingMarks')+'</b><span>'+d.examPattern.passingMarks+'</span></div>':'')+
- (d.examPattern.note?'<p class="detail-footnote">'+d.examPattern.note+'</p>':'')+
- '</div>':'';
- const faqsCard=(d.faqs&&d.faqs.length)?
- '<div class="detail-card detail-card-wide"><h4>'+T('detail.faq')+'</h4>'+
- d.faqs.map(f=>'<details class="detail-note"><summary>'+f.q+'</summary><p>'+f.a+'</p></details>').join('')+
- '</div>':'';
+ const sections=[
+ datesSection,
+ renderVacanciesSection(a,d),
+ renderEligibilitySection(d,feeText),
+ renderBeforeApplySection(a,d,feeText),
+ renderHowToApplySection(a,d),
+ renderAboutSection(a),
+ renderCareerSection(d),
+ renderSelectionSection(d),
+ renderPatternSection(d),
+ renderFaqSection(d),
+ renderSyllabusSection(),
+ renderLinksSection(a),
+ ].filter(Boolean);
+
+ const quicknav='<nav class="exam-quicknav" aria-label="Section navigation">'+
+ sections.map(s=>{const id=s.html.match(/id="([^"]+)"/)[1];return '<a href="#'+id+'">'+s.navLabel+'</a>'}).join('')+
+ '</nav>';
+
+ // Just the primary CTA — every fact and every other link here (status,
+ // vacancies, dates, syllabus, official notice, prep-docs) is already
+ // shown once, in its own section a scroll away; a second summary/"Quick
+ // Links" list in the sidebar was pure duplication of the same page.
+ const asideCard='<div class="aside-card">'+
+ (a.officialUrl?'<a class="btn btn-primary btn-sm aside-cta" href="'+a.officialUrl+'" target="_blank" rel="noopener">'+(a.status==='open'?T('detail.applyNow'):T('detail.officialNotice'))+'</a>':'')+
+ '</div>';
 
  box.innerHTML=
+ (a.notifTitle?'<p class="exam-hero-desc">'+sentenceBreak(tr(a,'notifTitle'))+'</p>':'')+
  quickOverview+
- (d.dataNote?'<details class="detail-note"><summary>ⓘ '+T('detail.dataNoteToggle')+'</summary><p>'+d.dataNote+'</p></details>':'')+
- (hasCoreDetails?'':'<div class="detail-missing">'+T('detail.missing')+'</div>')+
- '<div class="detail-grid">'+
- importantDatesCard+
- (d.payGroups?
- '<div class="detail-card"><h4>'+T('detail.postsPay')+'</h4>'+
- d.payGroups.map(g=>'<div class="pay-group"><b>'+g.level+' · '+g.band+'</b><span>'+g.posts+'</span></div>').join('')+
- (d.payNote?'<p class="detail-footnote">'+d.payNote+'</p>':'')+
- '</div>':'')+
- (d.eligibility?
- '<div class="detail-card"><h4>'+T('detail.eligibility')+'</h4>'+
- '<div class="detail-row"><b>'+T('detail.age')+'</b>'+renderFieldValue(d.eligibility.age)+'</div>'+
- (d.eligibility.ageRelax?'<div class="detail-row"><b>'+T('detail.relaxation')+'</b><span>'+d.eligibility.ageRelax+'</span></div>':'')+
- '<div class="detail-row"><b>'+T('detail.qualification')+'</b><span>'+d.eligibility.qualification+'</span></div>'+
- (feeText?'<div class="detail-row"><b>'+T('detail.fee')+'</b><span>'+feeText+'</span></div>':'')+
- '</div>':'')+
- examPatternCard+
- (d.promotion?
- '<div class="detail-card"><h4>'+T('detail.promotion')+'</h4>'+renderPromotion(d.promotion)+'</div>':'')+
- (d.howToApply?
- '<div class="detail-card detail-card-wide"><h4>'+T('detail.howToApply')+'</h4>'+
- (a.officialUrl?'<a class="btn btn-primary btn-sm apply-cta" href="'+a.officialUrl+'" target="_blank" rel="noopener">'+T('detail.applyOnOfficial')+'</a>':'')+
- (d.beforeYouStart?
- '<div class="apply-subhead">'+T('detail.beforeYouStart')+'</div>'+
- '<ul class="apply-checklist">'+d.beforeYouStart.map(s=>'<li>'+s+'</li>').join('')+'</ul>':'')+
- '<ol class="apply-steps">'+d.howToApply.map(s=>'<li>'+s+'</li>').join('')+'</ol>'+
- (d.commonMistakes?
- '<div class="apply-subhead apply-subhead-warn">'+T('detail.commonMistakes')+'</div>'+
- '<ul class="apply-checklist">'+d.commonMistakes.map(s=>'<li>'+s+'</li>').join('')+'</ul>':'')+
- '</div>':'')+
- otherDocsCard+
- faqsCard+
+ (d.dataNote?'<details class="detail-note"><summary>ⓘ '+T('detail.dataNoteToggle')+'</summary><p>'+sentenceBreak(d.dataNote)+'</p></details>':'')+
+ quicknav+
+ '<div class="exam-layout">'+
+ '<div class="exam-main">'+sections.map(s=>s.html).join('')+'</div>'+
+ '<aside class="exam-aside">'+asideCard+'</aside>'+
  '</div>'+
  lastUpdated;
 }
@@ -1945,18 +2285,21 @@ function renderUploadSlots(){
 
 const TOOL_SLOT_KEYS={
  pdf:'slot.toolOtherDoc',pdftojpg:'slot.toolPdfToJpg',pdfcompress:'slot.toolPdfCompress',
- pdfmerge:'slot.toolPdfMerge',pdfrotate:'slot.toolPdfRotate',pdfsign:'slot.toolPdfSign'
+ pdfmerge:'slot.toolPdfMerge',pdfrotate:'slot.toolPdfRotate',pdfsign:'slot.toolPdfSign',
+ pdfsplit:'slot.toolPdfSplit',pdfwatermark:'slot.toolPdfWatermark',pdfunlock:'slot.toolPdfUnlock'
 };
 function toolSlotLabel(kind){ return T(TOOL_SLOT_KEYS[kind]); }
 
+// tools.html already lists every tool up front (see its own tool-grid),
+// so this hint would just repeat itself there — only render it on pages
+// (index.html's exam flow) where the rest of the toolset isn't visible.
 function renderMoreToolsToggle(){
+ if($('toolsWorkspace')) return '';
  const remaining=Object.keys(TOOL_SLOT_KEYS).filter(k=>!state.slots[k]);
  if(!remaining.length) return '';
  return '<div class="upload-slot upload-slot-pdf" id="more-tools-toggle">'+
  '<div class="slot-hint" style="margin-bottom:8px">'+T('slot.moreToolsHint')+'</div>'+
- '<div class="more-tools-row">'+
- remaining.map(k=>'<button type="button" class="btn btn-outline btn-sm" onclick="addToolSlot(\''+k+'\')">'+toolSlotLabel(k)+'</button>').join('')+
- '</div>'+
+ '<a class="btn btn-outline btn-sm" href="tools.html">'+T('slot.moreToolsLink')+'</a>'+
  '</div>';
 }
 
@@ -2086,6 +2429,73 @@ function renderSlotBody(key){
  '<button type="button" class="btn btn-outline btn-sm'+(angle===a?' is-active':'')+'" onclick="setRotateAngle(\''+key+'\','+a+')">'+a+'°</button>'
  ).join('')+'</div>'+
  '<button type="button" class="btn btn-primary btn-sm" '+(slot.file?'':'disabled')+' onclick="processRotateSlot(\''+key+'\')">'+T('slot.rotateNow')+'</button>';
+ document.getElementById('input-'+key).addEventListener('change',e=>{
+ slot.error=null;
+ if(e.target.files[0]) slot.file=e.target.files[0];
+ renderSlotBody(key);
+ });
+ return;
+ }
+
+ if(slot.kind==='pdfsplit'){
+ const errHtml=slot.error?'<div class="slot-error">⚠️ '+slot.error+'</div>':'';
+ if(!slot.file){
+ body.innerHTML=errHtml+
+ '<div class="slot-dropzone" onclick="document.getElementById(\'input-'+key+'\').click()">'+T('slot.choosePdf')+
+ '<input type="file" id="input-'+key+'" accept="application/pdf" style="display:none"></div>';
+ document.getElementById('input-'+key).addEventListener('change',async e=>{
+ const f=e.target.files[0];
+ if(!f) return;
+ const err=validatePdfFile(f);
+ if(err){slot.error=err;renderSlotBody(key);return}
+ slot.error=null;slot.file=f;slot.pageCanvases=null;
+ renderSlotBody(key);
+ try{
+ slot.pageCanvases=await pdfFileToCanvases(f,1.5);
+ slot.fromPage=1;slot.toPage=slot.pageCanvases.length;
+ }catch{
+ slot.error=T('err.corruptedPdfRead');slot.file=null;
+ }
+ renderSlotBody(key);
+ });
+ return;
+ }
+ if(!slot.pageCanvases){
+ body.innerHTML=errHtml+'<div class="slot-processing">'+T('slot.loadingPreview')+'</div>';
+ return;
+ }
+ const total=slot.pageCanvases.length;
+ const pageCountNote=currentLang==='hi'?('इस PDF में कुल '+total+' पेज हैं।'):('This PDF has '+total+' page'+(total>1?'s':'')+'.');
+ body.innerHTML=errHtml+
+ '<div class="slot-hint">'+pageCountNote+'</div>'+
+ '<div class="row"><label>'+T('slot.splitFromLabel')+'</label><input id="from-'+key+'" type="number" min="1" max="'+total+'" value="'+slot.fromPage+'"></div>'+
+ '<div class="row"><label>'+T('slot.splitToLabel')+'</label><input id="to-'+key+'" type="number" min="1" max="'+total+'" value="'+slot.toPage+'"></div>'+
+ '<button type="button" class="btn btn-primary btn-sm" onclick="processSplitSlot(\''+key+'\')">'+T('slot.splitNow')+'</button>';
+ return;
+ }
+
+ if(slot.kind==='pdfwatermark'){
+ body.innerHTML=
+ (slot.error?'<div class="slot-error">⚠️ '+slot.error+'</div>':'')+
+ '<div class="slot-dropzone" onclick="document.getElementById(\'input-'+key+'\').click()">'+(slot.file?slot.file.name:T('slot.choosePdf'))+
+ '<input type="file" id="input-'+key+'" accept="application/pdf" style="display:none"></div>'+
+ '<div class="row"><label>'+T('slot.watermarkTextLabel')+'</label><input id="wm-'+key+'" type="text" maxlength="40" placeholder="'+T('slot.watermarkPlaceholder')+'" value="'+(slot.text||'').replace(/"/g,'&quot;')+'"></div>'+
+ '<button type="button" class="btn btn-primary btn-sm" '+(slot.file?'':'disabled')+' onclick="processWatermarkSlot(\''+key+'\')">'+T('slot.watermarkNow')+'</button>';
+ document.getElementById('input-'+key).addEventListener('change',e=>{
+ slot.error=null;
+ if(e.target.files[0]) slot.file=e.target.files[0];
+ renderSlotBody(key);
+ });
+ return;
+ }
+
+ if(slot.kind==='pdfunlock'){
+ body.innerHTML=
+ (slot.error?'<div class="slot-error">⚠️ '+slot.error+'</div>':'')+
+ '<div class="slot-dropzone" onclick="document.getElementById(\'input-'+key+'\').click()">'+(slot.file?slot.file.name:T('slot.choosePdf'))+
+ '<input type="file" id="input-'+key+'" accept="application/pdf" style="display:none"></div>'+
+ '<div class="row"><label>'+T('slot.unlockPasswordLabel')+'</label><input id="pw-'+key+'" type="password" placeholder="'+T('slot.unlockPasswordPlaceholder')+'"></div>'+
+ '<button type="button" class="btn btn-primary btn-sm" '+(slot.file?'':'disabled')+' onclick="processUnlockSlot(\''+key+'\')">'+T('slot.unlockNow')+'</button>';
  document.getElementById('input-'+key).addEventListener('change',e=>{
  slot.error=null;
  if(e.target.files[0]) slot.file=e.target.files[0];
@@ -2378,6 +2788,71 @@ async function processRotateSlot(key){
  }
 }
 
+async function processSplitSlot(key){
+ const slot=state.slots[key];
+ const total=slot.pageCanvases.length;
+ const fromEl=document.getElementById('from-'+key),toEl=document.getElementById('to-'+key);
+ let from=Math.min(Math.max(parseInt(fromEl.value,10)||1,1),total);
+ let to=Math.min(Math.max(parseInt(toEl.value,10)||total,1),total);
+ if(to<from){const t=from;from=to;to=t}
+ slot.fromPage=from;slot.toPage=to;
+ const body=$('slot-body-'+key);
+ body.innerHTML='<div class="slot-processing">'+T('slot.splitting')+'</div>';
+ try{
+ const blob=await splitPdfBlob(slot.pageCanvases,from,to);
+ const url=URL.createObjectURL(blob);
+ slot.result={url,previewUrl:null,filename:'govbabu-pages-'+from+'-'+to+'.pdf',sizeKB:(blob.size/1024).toFixed(1),overTarget:false};
+ renderSlotBody(key);
+ renderPayBar();
+ }catch{
+ slot.error=T('err.corruptedPdfProcess');
+ renderSlotBody(key);
+ }
+}
+
+async function processWatermarkSlot(key){
+ const slot=state.slots[key];
+ if(!slot.file){alert(T('alert.choosePdfFirst'));return}
+ const err=validatePdfFile(slot.file);
+ if(err){slot.error=err;renderSlotBody(key);return}
+ const text=(document.getElementById('wm-'+key).value||'').trim();
+ if(!text){slot.error=T('err.watermarkTextRequired');renderSlotBody(key);return}
+ slot.text=text;slot.error=null;
+ const body=$('slot-body-'+key);
+ body.innerHTML='<div class="slot-processing">'+T('slot.watermarking')+'</div>';
+ try{
+ const blob=await watermarkPdfBlob(slot.file,text);
+ const url=URL.createObjectURL(blob);
+ slot.result={url,previewUrl:null,filename:'govbabu-watermarked.pdf',sizeKB:(blob.size/1024).toFixed(1),overTarget:false};
+ renderSlotBody(key);
+ renderPayBar();
+ }catch{
+ slot.error=T('err.corruptedPdfProcess');
+ renderSlotBody(key);
+ }
+}
+
+async function processUnlockSlot(key){
+ const slot=state.slots[key];
+ if(!slot.file){alert(T('alert.choosePdfFirst'));return}
+ const err=validatePdfFile(slot.file);
+ if(err){slot.error=err;renderSlotBody(key);return}
+ const password=document.getElementById('pw-'+key).value||'';
+ slot.error=null;
+ const body=$('slot-body-'+key);
+ body.innerHTML='<div class="slot-processing">'+T('slot.unlocking')+'</div>';
+ try{
+ const blob=await unlockPdfBlob(slot.file,password);
+ const url=URL.createObjectURL(blob);
+ slot.result={url,previewUrl:null,filename:'govbabu-unlocked.pdf',sizeKB:(blob.size/1024).toFixed(1),overTarget:false};
+ renderSlotBody(key);
+ renderPayBar();
+ }catch(e){
+ slot.error=(e&&e.name==='PasswordException')?T('err.wrongPassword'):T('err.corruptedPdfProcess');
+ renderSlotBody(key);
+ }
+}
+
 function setSignWidth(key,val){
  state.slots[key].widthFrac=Number(val)/100;
  renderSlotBody(key);
@@ -2542,6 +3017,96 @@ function eligUncertainCard({a,reason}){
  return '<div class="elig-result-group elig-result-uncertain"><div class="elig-match-note">❓ '+reason+'</div>'+renderExamListingCard(a)+'</div>';
 }
 
+// Replaces a native <select>'s own popup with a custom-styled trigger +
+// dropdown, since the browser's native select-options popup renders at a
+// size/style we can't control via CSS and comes out tiny and cramped on
+// some browser+device combinations. The <select> itself stays in the DOM
+// (opacity:0, not display:none — display:none would exempt it from
+// `required` validation) so any existing code reading its .value or
+// listening for its 'change' event keeps working completely unchanged;
+// this only replaces what the user actually sees and clicks. Re-reads
+// select.options fresh every time the menu opens, so it stays correct even
+// when a caller repopulates the select's options later (e.g.
+// renderEligibilityForm() setting innerHTML on eligQual/eligState).
+function enhanceSelect(select){
+ if(!select||select.dataset.enhanced) return;
+ select.dataset.enhanced='1';
+ select.tabIndex=-1;
+ const wrap=document.createElement('div');
+ wrap.className='custom-select';
+ select.parentNode.insertBefore(wrap,select);
+ wrap.appendChild(select);
+ const trigger=document.createElement('button');
+ trigger.type='button';
+ trigger.className='custom-select-trigger';
+ trigger.setAttribute('aria-haspopup','listbox');
+ trigger.setAttribute('aria-expanded','false');
+ const valueSpan=document.createElement('span');
+ valueSpan.className='custom-select-value';
+ trigger.appendChild(valueSpan);
+ wrap.appendChild(trigger);
+ const menu=document.createElement('div');
+ menu.className='custom-select-menu';
+ menu.setAttribute('role','listbox');
+ wrap.appendChild(menu);
+
+ function syncTriggerLabel(){
+ const opt=select.options[select.selectedIndex];
+ valueSpan.textContent=opt?opt.textContent:'';
+ valueSpan.classList.toggle('is-placeholder',!!(opt&&opt.value===''&&select.selectedIndex===0));
+ }
+ function closeMenu(){
+ menu.classList.remove('open');
+ trigger.setAttribute('aria-expanded','false');
+ }
+ function selectIndex(idx){
+ if(select.selectedIndex!==idx){
+ select.selectedIndex=idx;
+ select.dispatchEvent(new Event('change',{bubbles:true}));
+ }
+ syncTriggerLabel();
+ closeMenu();
+ trigger.focus();
+ }
+ function openMenu(){
+ menu.innerHTML=[...select.options].map((o,i)=>
+ '<button type="button" class="custom-select-option'+(i===select.selectedIndex?' is-selected':'')+'" data-index="'+i+'" role="option" aria-selected="'+(i===select.selectedIndex)+'">'+
+ '<span class="custom-select-option-check">'+(i===select.selectedIndex?'✓':'')+'</span><span>'+o.textContent+'</span></button>'
+ ).join('');
+ menu.querySelectorAll('.custom-select-option').forEach(btn=>btn.addEventListener('click',()=>selectIndex(Number(btn.dataset.index))));
+ menu.classList.add('open');
+ trigger.setAttribute('aria-expanded','true');
+ const sel=menu.querySelector('.is-selected');
+ if(sel) sel.scrollIntoView({block:'nearest'});
+ }
+ trigger.addEventListener('click',()=>{ menu.classList.contains('open')?closeMenu():openMenu(); });
+ trigger.addEventListener('keydown',e=>{
+ if(e.key==='ArrowDown'||e.key==='ArrowUp'){
+ e.preventDefault();
+ if(!menu.classList.contains('open')){ openMenu(); return; }
+ const opts=[...menu.querySelectorAll('.custom-select-option')];
+ const focused=menu.querySelector('.is-focused');
+ let idx=focused?opts.indexOf(focused):-1;
+ idx=e.key==='ArrowDown'?Math.min(idx+1,opts.length-1):Math.max(idx-1,0);
+ opts.forEach(o=>o.classList.remove('is-focused'));
+ opts[idx].classList.add('is-focused');
+ opts[idx].scrollIntoView({block:'nearest'});
+ }else if((e.key==='Enter'||e.key===' ')&&menu.classList.contains('open')){
+ e.preventDefault();
+ const focused=menu.querySelector('.is-focused')||menu.querySelector('.is-selected');
+ if(focused) focused.click();
+ }else if(e.key==='Escape'){
+ closeMenu();
+ }
+ });
+ document.addEventListener('click',e=>{ if(!wrap.contains(e.target)) closeMenu(); });
+ // A <label for="..."> click focuses the (invisible, pointer-events:none)
+ // select directly — redirect that focus to the visible trigger so the
+ // label still visibly does something.
+ select.addEventListener('focus',()=>trigger.focus());
+ syncTriggerLabel();
+}
+
 function populateEligStateOptions(){
  const sel=$('eligState');
  if(!sel) return;
@@ -2640,10 +3205,32 @@ document.addEventListener('DOMContentLoaded',()=>{
  document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeMore(); });
  }
 
+ // Header search — present in every page's header (not just the homepage
+ // hero), so an exam is reachable from wherever a visitor already is.
+ const headerSearchToggle=$('headerSearchToggle');
+ const headerSearchBox=$('headerSearchBox');
+ const headerSearchInput=$('headerSearchInput');
+ if(headerSearchToggle&&headerSearchBox&&headerSearchInput){
+ const closeHeaderSearch=()=>{headerSearchBox.hidden=true;headerSearchToggle.setAttribute('aria-expanded','false')};
+ headerSearchToggle.addEventListener('click',e=>{
+ e.stopPropagation();
+ const opening=headerSearchBox.hidden;
+ headerSearchBox.hidden=!opening;
+ headerSearchToggle.setAttribute('aria-expanded',opening?'true':'false');
+ if(opening) headerSearchInput.focus();
+ });
+ headerSearchInput.addEventListener('input',()=>renderHeaderSearchResults(headerSearchInput.value));
+ document.addEventListener('click',e=>{
+ if(!headerSearchBox.hidden&&!headerSearchBox.contains(e.target)&&!headerSearchToggle.contains(e.target)) closeHeaderSearch();
+ });
+ document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeHeaderSearch(); });
+ }
+
  // Eligibility checker (eligibility.html only)
  const eligForm=$('eligForm');
  if(eligForm){
  renderEligibilityForm();
+ ['eligQual','eligHasExp','eligExpField','eligCategory','eligState'].forEach(id=>enhanceSelect($(id)));
  eligForm.addEventListener('submit',e=>{ e.preventDefault(); runEligibilityCheck(); });
  const eligHasExp=$('eligHasExp');
  const eligExpFieldWrap=$('eligExpFieldWrap');

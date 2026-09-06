@@ -59,6 +59,7 @@ function toApplicationsShape(currentExam) {
     applyStart: f.apply_start,
     applyEnd: f.apply_end,
     officialUrl: f.official_url,
+    applicationFee: f.application_fee,
     photo: f.photo_json || undefined,
     signature: f.signature_json || undefined,
     details: f.details_json || undefined,

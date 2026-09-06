@@ -28,13 +28,14 @@
     <a href="index.html" class="brand"><span class="brand-mark"><svg viewBox="0 0 46 46" fill="none"><rect x="8" y="24" width="28" height="18" rx="5" stroke="var(--brand)" stroke-width="3.4"/><path d="M14 24V16A8 8 0 0 1 30 16" stroke="var(--brand)" stroke-width="3.4" stroke-linecap="round"/><path d="M32 14L40 10" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/><path d="M32 19L38 17" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/><path d="M8 31Q20 39 35 26" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/></svg></span>GovBabu</a>
     <div class="header-actions">
       <nav class="header-nav" id="headerNav"><a href="exams.html" class="btn btn-outline btn-sm" data-i18n="nav.browseExams">Find Your Exam</a>
-      <a href="calendar.html" class="btn btn-outline btn-sm" data-i18n="nav.calendar">Calendar</a>
-      <a href="manjusha.html" class="btn btn-outline btn-sm" data-i18n="nav.manjusha">Manjusha</a>
       <a href="tools.html" class="btn btn-outline btn-sm" data-i18n="nav.tools">Tools</a>
+      <a href="manjusha.html" class="btn btn-outline btn-sm" data-i18n="nav.manjusha">Downloads</a>
       <div class="nav-more" id="navMore"><button type="button" class="btn btn-outline btn-sm nav-more-btn" id="navMoreBtn" aria-haspopup="true" aria-expanded="false" data-i18n="nav.more">More</button>
       <div class="nav-more-menu" id="navMoreMenu" role="menu"><a href="about.html" role="menuitem" data-i18n="nav.about">About</a>
       <a href="contact.html" role="menuitem" data-i18n="nav.contact">Contact</a>
       <a href="privacy.html" role="menuitem" data-i18n="footer.privacyPolicy">Privacy Policy</a></div></div></nav>
+      <button class="icon-btn header-search-toggle" id="headerSearchToggle" type="button" aria-label="Search exams" aria-expanded="false"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="var(--ink)" stroke-width="2"/><path d="M21 21l-4.35-4.35" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/></svg></button>
+      <div class="header-search-box" id="headerSearchBox" hidden><input id="headerSearchInput" class="search-input" type="text" aria-label="Search exams, departments, qualifications" placeholder="Search exams, departments, qualifications" autocomplete="off"><div id="headerSearchResults" class="exam-result-list"></div></div>
       <button class="icon-btn lang-toggle" id="langToggle" aria-label="Change language" title="भाषा बदलें / Change language"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><rect x="2" y="4" width="13" height="13" rx="3" stroke="var(--brand)" stroke-width="1.6"/><text x="8.5" y="14" font-size="9" font-weight="700" text-anchor="middle" fill="var(--brand)" font-family="Arial, sans-serif">A</text><rect x="9" y="9" width="13" height="13" rx="3" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.6"/><text x="15.5" y="19" font-size="9" font-weight="700" text-anchor="middle" fill="var(--accent)" font-family="Arial, sans-serif">अ</text></svg></button>
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" aria-pressed="false"><span class="theme-toggle-track"><span class="theme-toggle-thumb"></span></span></button>
       <button class="icon-btn nav-toggle" id="navToggle" type="button" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/></svg></button>
@@ -64,15 +65,28 @@
     </div>
   </section>
 
-  <!-- 2. POPULAR / RELEVANT EXAMS -->
-  <section class="section wrap-wide" id="popularExams">
-    <div class="section-head">
-      <span class="tag" data-i18n="home.discoveryTag">Start here</span>
-      <h2 data-i18n="home.discoveryHead">Explore Government Exams</h2>
-    </div>
-    <div class="cal-filter-bar" id="examCatFilters" role="group" aria-label="Filter exams by category" style="justify-content:center;margin-bottom:26px"></div>
-    <div class="directory-grid" id="examCardGrid" style="justify-content:center"></div>
-    <p style="text-align:center;margin-top:30px"><a href="exams.html" class="link-btn" data-i18n="home.viewAllExams">View all exams →</a></p>
+  <!-- 2. EXAM CALENDAR (current updates — every exam notification, sorted
+       by deadline). Same markup/element IDs as calendar.html's own body, so
+       app.js's renderExamCalendar()/renderCalFilters() (already called
+       unconditionally on every page, no-op where their target IDs don't
+       exist) populate this section with zero JS changes. calendar.html
+       itself stays live as a standalone page for a dedicated full-calendar
+       view — this is not a redirect, just the same content shown twice. -->
+  <section class="wrap cal-hero" style="max-width:1100px">
+    <span class="eyebrow" data-i18n="cal.eyebrow">📅 Exam Calendar</span>
+    <h2 data-i18n="cal.title">Never miss an application deadline</h2>
+    <p class="lead" data-i18n="cal.lead">Track government exams, application deadlines, vacancies and salary — all in one place.</p>
+    <div class="cal-summary-chips" id="calSummaryChips" aria-live="polite"></div>
+  </section>
+
+  <section class="wrap cal-toolbar" style="max-width:1100px">
+    <div class="cal-filter-bar" id="calFilterBar" role="group" aria-label="Filter exams by status or category"></div>
+    <nav class="cal-year-nav" id="calYearNav" aria-label="Jump to year"></nav>
+  </section>
+
+  <section class="wrap section-compact" style="max-width:1100px">
+    <div id="examCalendar"></div>
+    <p style="text-align:center;margin-top:10px"><a href="calendar.html" class="link-btn" data-i18n="home.viewFullCalendar">Open full calendar →</a></p>
   </section>
 
   <!-- 3. HOW GOVBABU HELPS YOU -->

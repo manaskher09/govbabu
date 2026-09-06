@@ -1,5 +1,5 @@
 {
-  "lastContentUpdate": "2026-09-05 10:08:10",
+  "lastContentUpdate": "2026-09-05 06:15:33",
   "count": 53,
   "exams": [
     {
@@ -13,6 +13,7 @@
       "applyStart": "21 May 2026",
       "applyEnd": "25 Jun 2026 (extended from 22 Jun 2026)",
       "officialUrl": "https://ssc.gov.in/api/attachment/uploads/masterData/NoticeBoards/Notice_of_adv_cgl_2026.pdf",
+      "applicationFee": "Rs 100 for General/OBC/EWS candidates. Fully exempt for all women candidates (any category), SC, ST, PwBD, and Ex-Servicemen.",
       "photo": {
         "dims": "3.5 cm × 4.5 cm",
         "px": {
@@ -263,6 +264,7 @@
       "applyStart": "04 Feb 2026",
       "applyEnd": "27 Feb 2026 (extended)",
       "officialUrl": "https://www.upsc.gov.in/sites/default/files/Notif-CSP-2026-Engl-060226Rev.pdf",
+      "applicationFee": "Rs 100 for General/EWS/OBC candidates (all categories, incl. male and female). SC, ST, and PwBD candidates are fully exempt. This is a single fee for the Preliminary exam application; no separate fee is charged for Mains admission.",
       "photo": {
         "dims": "350 × 350 px",
         "px": {
@@ -409,6 +411,7 @@
       "applyStart": "23 Jun 2025",
       "applyEnd": "18 Jul 2025",
       "officialUrl": "https://ssc.gov.in/api/attachment/uploads/masterData/NoticeBoards/Notice_of_adv_chsl_2025.pdf",
+      "applicationFee": "Rs 100 for General/OBC/EWS candidates. Fully exempt for women (all categories), SC, ST, PwBD, and Ex-Servicemen.",
       "photo": {
         "dims": "3.5 cm × 4.5 cm",
         "px": {
@@ -594,7 +597,7 @@
       "verified": "26 Aug 2026",
       "applicationStartDateIso": "2025-06-23",
       "applicationEndDateIso": "2025-07-18",
-      "lastUpdated": "2026-09-05 10:03:31",
+      "lastUpdated": "2026-08-31 15:37:39",
       "orgName": "Central Government Recruiting Bodies (SSC/UPSC/etc.)",
       "slug": "ssc-chsl"
     },
@@ -609,6 +612,7 @@
       "applyStart": "01 Dec 2025",
       "applyEnd": "31 Dec 2025 (23:00 hrs)",
       "officialUrl": "https://ssc.gov.in/api/attachment/uploads/masterData/NoticeBoards/Notice_of_CTGD_2026.pdf",
+      "applicationFee": "Rs 100 for General/OBC/EWS candidates. Fully exempt for women, SC, ST, and Ex-Servicemen. (PwBD exemption for GD Constable was not independently confirmed in the sources checked — most SSC exams extend the same PwBD waiver, but flagging as unconfirmed for this specific exam.)",
       "photo": {
         "dims": "No separate upload — live webcam/front-camera capture during the Online Application Form itself (candidate cannot upload a pre-existing photo)",
         "format": "Live capture",
@@ -751,7 +755,7 @@
       "verified": "26 Aug 2026",
       "applicationStartDateIso": "2025-12-01",
       "applicationEndDateIso": "2025-12-31",
-      "lastUpdated": "2026-09-05 10:03:43",
+      "lastUpdated": "2026-08-31 15:37:39",
       "orgName": "Police Recruitment Boards",
       "slug": "ssc-gd"
     },
@@ -766,6 +770,7 @@
       "applyStart": "26 Jun 2025",
       "applyEnd": "24 Jul 2025 (23:00 hrs)",
       "officialUrl": "https://ssc.gov.in/api/attachment/uploads/masterData/NoticeBoards/Notice_of_adv_mts_2025.pdf",
+      "applicationFee": "Rs 100 for General/OBC/EWS candidates. Fully exempt for women, SC, ST, and PwBD (Ex-Servicemen exemption also commonly cited but not independently double-checked for this specific exam cycle).",
       "photo": {
         "dims": "No separate upload — live webcam/front-camera capture during the Online Application Form itself",
         "format": "Live capture",
@@ -903,7 +908,7 @@
       "verified": "26 Aug 2026",
       "applicationStartDateIso": "2025-06-26",
       "applicationEndDateIso": "2025-07-24",
-      "lastUpdated": "2026-09-05 10:08:07",
+      "lastUpdated": "2026-08-31 15:37:39",
       "orgName": "Central Government Recruiting Bodies (SSC/UPSC/etc.)",
       "slug": "ssc-mts"
     },
@@ -918,6 +923,7 @@
       "applyStart": "26 Sep 2025",
       "applyEnd": "16 Oct 2025 (23:00 hrs)",
       "officialUrl": "https://ssc.gov.in/api/attachment/uploads/masterData/NoticeBoards/Notice_of_adv_capf_2025.pdf",
+      "applicationFee": "Rs 100 for General/OBC/EWS male candidates. Fully exempt for women (all categories), SC, ST, and Ex-Servicemen.",
       "photo": {
         "dims": "No separate upload — live webcam/front-camera capture during the Online Application Form itself",
         "format": "Live capture",
@@ -1074,7 +1080,7 @@
       "verified": "26 Aug 2026",
       "applicationStartDateIso": "2025-09-26",
       "applicationEndDateIso": "2025-10-16",
-      "lastUpdated": "2026-09-05 10:03:57",
+      "lastUpdated": "2026-08-31 15:37:39",
       "orgName": "Police Recruitment Boards",
       "slug": "ssc-cpo"
     },
@@ -1089,6 +1095,7 @@
       "applyStart": "01 Jul 2026",
       "applyEnd": "26 Jul 2026 (extended)",
       "officialUrl": "https://www.ibps.in/wp-content/uploads/Detailed-Notification_CRP-PO-XVI_Final_V1_30.06.2026.pdf",
+      "applicationFee": "General/OBC/EWS: Rs. 850 | SC/ST/PwBD: Rs. 175",
       "photo": {
         "dims": "3.5 cm × 4.5 cm (200 × 230 px)",
         "px": {
@@ -1315,6 +1322,7 @@
       "applyStart": "01 Aug 2026",
       "applyEnd": "28 Aug 2026 (extended)",
       "officialUrl": "https://www.ibps.in/wp-content/uploads/Notification_CRP_CSA_XVI-Final.pdf",
+      "applicationFee": "General/OBC/EWS: Rs. 850 | SC/ST/PwBD: Rs. 175",
       "photo": {
         "dims": "3.5 cm × 4.5 cm (200 × 230 px)",
         "px": {
@@ -1515,8 +1523,8 @@
       ],
       "verified": "26 Aug 2026",
       "applicationStartDateIso": "2026-08-01",
-      "applicationEndDateIso": "2027-08-20",
-      "lastUpdated": "2026-09-05 10:03:56",
+      "applicationEndDateIso": "2026-08-28",
+      "lastUpdated": "2026-08-31 15:37:39",
       "orgName": "Banking Recruitment Bodies (IBPS/SBI/RBI)",
       "slug": "ibps-cl"
     },
@@ -1531,6 +1539,7 @@
       "applyStart": "18 Jun 2026",
       "applyEnd": "08 Jul 2026",
       "officialUrl": "https://sbi.bank.in/csfile/18062026_1_Detailed_Adv.2026.pdf",
+      "applicationFee": "General/OBC/EWS: Rs. 750 | SC/ST/PwBD: Exempted (no fee)",
       "photo": {
         "dims": "200 × 230 px (preferred)",
         "px": {
@@ -1736,7 +1745,7 @@
       "verified": "26 Aug 2026",
       "applicationStartDateIso": "2026-06-18",
       "applicationEndDateIso": "2026-07-08",
-      "lastUpdated": "2026-09-05 10:08:10",
+      "lastUpdated": "2026-08-31 15:37:39",
       "orgName": "Banking Recruitment Bodies (IBPS/SBI/RBI)",
       "slug": "sbi-po"
     },
@@ -1751,6 +1760,7 @@
       "applyStart": "11 Aug 2026",
       "applyEnd": "31 Aug 2026",
       "officialUrl": "https://sbi.bank.in/webfiles/uploads/files_2627/08/JA_2026_Detailed_Advt_Eng.pdf",
+      "applicationFee": "General/OBC/EWS: Rs. 750 | SC/ST/PwBD/XS/DXS: Exempted (no fee)",
       "photo": {
         "dims": "200 × 230 px (preferred)",
         "px": {
@@ -1949,7 +1959,7 @@
       "verified": "27 Aug 2026",
       "applicationStartDateIso": "2026-08-11",
       "applicationEndDateIso": "2026-08-31",
-      "lastUpdated": "2026-09-05 10:04:34",
+      "lastUpdated": "2026-08-31 15:37:39",
       "orgName": "Banking Recruitment Bodies (IBPS/SBI/RBI)",
       "slug": "sbi-cl"
     },
@@ -1964,6 +1974,7 @@
       "applyStart": "21 Oct 2025",
       "applyEnd": "27 Nov 2025 (extended)",
       "officialUrl": "https://rrbajmer.gov.in/Upload_PDF/CEN%2007-2025-NTPC%20(Under%20Graduate)%20English_compressed-638971975510934173.pdf",
+      "applicationFee": "General/OBC/EWS: Rs 500 (Rs 400 refunded after appearing for CBT-1). SC/ST/PwBD/Ex-Servicemen/Women: Rs 250 (fully refunded after appearing for CBT-1).",
       "photo": {
         "dims": "No separate upload — live webcam/front-camera capture during the application itself",
         "format": "Live capture",
@@ -2135,6 +2146,7 @@
       "applyStart": "31 Jan 2026",
       "applyEnd": "02 Mar 2026",
       "officialUrl": "https://rrbajmer.gov.in/Upload_PDF/Final-Detailed%20CEN%2009-2025%20Level-1-updated%20on%2030012026-639054049190206941.pdf",
+      "applicationFee": "General/OBC/EWS: Rs 500 (Rs 400 refunded after appearing for CBT). SC/ST/PwBD/Ex-Servicemen/Women/Transgender/Minority/EBC: Rs 250 (fully refunded after appearing for CBT).",
       "photo": {
         "dims": "No separate upload — live webcam/front-camera capture during the application itself",
         "format": "Live capture",
@@ -2265,7 +2277,7 @@
       "verified": "26 Aug 2026",
       "applicationStartDateIso": "2026-01-31",
       "applicationEndDateIso": "2026-03-02",
-      "lastUpdated": "2026-09-05 10:04:29",
+      "lastUpdated": "2026-08-31 15:37:39",
       "orgName": "Railway Recruitment Boards",
       "slug": "rrb-grp-d"
     },
@@ -2280,6 +2292,7 @@
       "applyStart": "15 May 2026",
       "applyEnd": "14 Jun 2026 (11:59 PM)",
       "officialUrl": "https://www.rrbchennai.gov.in/downloads/CEN%2001_2026%20english%20.pdf",
+      "applicationFee": "General/OBC/EWS: Rs 500 (Rs 400 refunded after appearing in CBT-1). SC/ST/Ex-Servicemen/Women/Transgender/Minorities/EBC: Rs 250 (fully refunded after appearing in CBT-1).",
       "photo": {
         "dims": "No separate upload — live webcam/front-camera capture during the application itself",
         "format": "Live capture",
@@ -2448,6 +2461,7 @@
       "applyStart": "14 Aug 2026",
       "applyEnd": "13 Sep 2026 (fee payment allowed through 15 Sep; modification window 16–25 Sep — confirmed directly against the primary CEN 04/2026 PDF)",
       "officialUrl": "https://rrb.indianrailways.gov.in/chandigarh",
+      "applicationFee": "General/OBC/EWS: Rs 500 (Rs 400 refunded after appearing in CBT-1). SC/ST/PwBD/Ex-Servicemen/Women: Rs 250 (fully refunded after appearing in CBT-1). Application correction fee (if applicable): Rs 250.",
       "photo": {
         "dims": "No separate upload — live webcam/front-camera capture during the application itself",
         "format": "Live capture",
@@ -2608,6 +2622,7 @@
       "applyStart": "20 May 2026",
       "applyEnd": "11 Jun 2026 (secondary-sourced correction — the original notification implies 09 Jun)",
       "officialUrl": "https://www.upsc.gov.in/sites/default/files/Notif-NDA-II-2026-Engl-200526.pdf",
+      "applicationFee": "General/OBC male candidates: Rs 100. SC/ST candidates and all female candidates (NDA now admits women): exempted from fee.",
       "photo": {
         "dims": "No fixed pixel dimensions given in the current official instructions — file-size range only",
         "minKB": 20,
@@ -2763,6 +2778,7 @@
       "applyStart": "20 May 2026",
       "applyEnd": "11 Jun 2026 (secondary-sourced correction — the original notification implies 09 Jun)",
       "officialUrl": "https://www.upsc.gov.in",
+      "applicationFee": "General/OBC male candidates: Rs 200. SC/ST candidates and all female candidates: exempted from fee.",
       "photo": {
         "dims": "No fixed pixel dimensions given in the current official instructions — file-size range only",
         "minKB": 20,
@@ -2936,6 +2952,7 @@
       "applyStart": "13 Feb 2026",
       "applyEnd": "01 Apr 2026 (some secondary sources report an extension to 10 Apr 2026 — not independently confirmed against a primary Army addendum)",
       "officialUrl": "https://joinindianarmy.nic.in/",
+      "applicationFee": "Rs 250 (flat, plus bank charges) for all applicants — no category-wise differentiation found in sources. This differs from Navy Agniveer (reported Rs 550) — figures are exam-specific, do not assume parity across the three Agnipath services.",
       "photo": {
         "dims": "~413×531 px (unconfirmed against the live portal — this figure comes from third-party exam-photo-resizing tool sites, not a fetched official instruction page; verify on joinindianarmy.nic.in before applying)",
         "minKB": 20,
@@ -3121,6 +3138,7 @@
       "applyStart": "07 May 2026",
       "applyEnd": "31 May 2026",
       "officialUrl": "https://bpsc.bihar.gov.in/wp-content/uploads/BPSC_content/Notices/Advertisement-Integrated-72th-CCE-PT_BPSC-20260505-p1euvo.pdf",
+      "applicationFee": "General/OBC/EWS: Rs 600. SC/ST (all-India) and PwD and women who are permanent residents of Bihar: Rs 150. Plus a Rs 200 biometric fee unless Aadhaar-based verification is used (waives biometric fee). (Figures from 70th CCE 2024 notification cycle; confirm against the latest CCE notification as fee can be revised.)",
       "photo": {
         "dims": "No separate upload — captured live via webcam during the application",
         "format": "Live webcam capture",
@@ -3309,6 +3327,7 @@
       "applyStart": "25 Jun 2026",
       "applyEnd": "03 Aug 2026 (correction window to 10 Aug 2026 — some sources instead say 27 Jul/3 Aug; both are past either way)",
       "officialUrl": "https://uppsc.up.nic.in",
+      "applicationFee": "General/OBC/EWS: Rs 125. SC/ST: Rs 65. PwD: Rs 25. Ex-servicemen: Rs 40. (Figures are for the Combined State/Upper Subordinate Services exam application; secondary-sourced from careers360.com, consistent across recent cycles but confirm against the specific year's notification as UPPSC periodically revises fees.)",
       "photo": {
         "dims": "5 cm × 6 cm @ 200 DPI (≈394×472 px, derived from the official cm/DPI spec — the source states cm/DPI, not px directly)",
         "maxKB": 50,
@@ -3475,6 +3494,7 @@
       "applyStart": "10 Jan 2026",
       "applyEnd": "09 Feb 2026 (late-fee extensions to 01 Apr 2026)",
       "officialUrl": "https://mppsc.mp.gov.in/uploads/advertisement/Advt_State_Service_Exam_2026_Dated_31_12_2025.pdf",
+      "applicationFee": "Prelims (State Service Exam) registration — General/unreserved: Rs 500. SC/ST/OBC: Rs 250. (2025 SSE cycle.) Separately, Mains registration (2024 cycle) — General: Rs 800. SC/ST/OBC(non-creamy layer)/EWS/PwD: Rs 400. MPPSC charges application fees separately at Prelims and Mains stages; figures above are from two different recent cycles (2025 prelims notification, 2024 mains registration) and may not both be current for a single upcoming cycle — verify against the live notification.",
       "photo": {
         "dims": "Pixel dimensions not found anywhere in the official notification text (a 29-page search found no cm/px/DPI pattern) — may only exist as a non-extractable graphic, or be enforced only by the upload widget itself",
         "minKB": 25,
@@ -3675,6 +3695,7 @@
       "applyStart": "25 Aug 2026",
       "applyEnd": "01 Sep 2026",
       "officialUrl": "https://ctet.nic.in",
+      "applicationFee": "₹1,000 (either Paper I or II) / ₹1,200 (both papers) — General/OBC; ₹500 / ₹600 — SC/ST/Persons with Disability (secondary-sourced: testbook.com and careers360.com independently agree on these figures; ctet.nic.in itself could not be fetched directly this pass — confirm against the live application form before paying)",
       "photo": {
         "dims": "3.5 cm × 4.5 cm",
         "px": {
@@ -3822,6 +3843,7 @@
       "applyStart": "31 Dec 2025",
       "applyEnd": "30 Jan 2026 (fee payment window extended to 02 Feb 2026)",
       "officialUrl": "https://uppbpb.gov.in/",
+      "applicationFee": "General/OBC/EWS: ₹500. SC/ST: ₹400. (Secondary-sourced, multiple aggregator sites; could not confirm against official uppbpb.gov.in notification PDF.)",
       "photo": {
         "dims": "3.5 cm × 4.5 cm",
         "minKB": 20,
@@ -3997,6 +4019,7 @@
       "applyStart": "01 Sep 2025",
       "applyEnd": "28 Sep 2025 (extended via corrigendum from original 21 Sep 2025)",
       "officialUrl": "https://www.ibps.in/wp-content/uploads/CRP-RRBs-XIV_Final_AD-27.09.25.pdf",
+      "applicationFee": "General/OBC/EWS: Rs. 850 | SC/ST/PwBD: Rs. 175 (common fee structure for Officer Scale I/II/III and Office Assistant)",
       "photo": {
         "dims": "4.5 cm × 3.5 cm (200 × 230 px, preferred)",
         "px": {
@@ -4234,6 +4257,7 @@
       "applyStart": "30 Jun 2025",
       "applyEnd": "21 Jul 2025 (23:00 hrs)",
       "officialUrl": "https://ssc.gov.in/api/attachment/uploads/masterData/NoticeBoards/tentative_vacancies_05082025.pdf",
+      "applicationFee": "Rs 100 for General/OBC/EWS candidates. Fully exempt for women, SC, ST, PwBD, and Ex-Servicemen.",
       "photo": {
         "dims": "3.5 cm × 4.5 cm (unverified against primary PDF — see dataNote)",
         "minKB": 20,
@@ -4376,6 +4400,7 @@
       "applyStart": "27 Mar 2023",
       "applyEnd": "26 Apr 2023",
       "officialUrl": "https://www.epfo.gov.in/recruitments/",
+      "applicationFee": "General/OBC/EWS: Rs. 700. SC/ST/PwBD/Female/Ex-Servicemen: exempted (no fee).",
       "photo": {
         "dims": "not stated in accessible secondary sources — verify cm dimensions against the official PDF",
         "minKB": 10,
@@ -4542,6 +4567,7 @@
       "applyStart": "16 Feb 2026",
       "applyEnd": "10 Mar 2026 (extended from original 08 Mar 2026 — secondary sources now consistently agree on this specific pairing; primary RBI PDF still unreachable to confirm directly)",
       "officialUrl": "https://opportunities.rbi.org.in",
+      "applicationFee": "General/OBC/EWS: Rs. 450 + 18% GST | SC/ST/PwBD/Ex-Servicemen: Rs. 50 + 18% GST",
       "photo": {
         "dims": "4.5 cm × 3.5 cm (200 × 230 px)",
         "px": {
@@ -4763,6 +4789,7 @@
       "applyStart": "19 Jul 2025",
       "applyEnd": "10 Aug 2025 (fee payment till 12 Aug 2025)",
       "officialUrl": "https://www.mha.gov.in/en/notification/vacancies/recruitment-post-of-acio-iiexe-ib-reg",
+      "applicationFee": "Total for General/EWS/OBC male candidates is Rs 650 (Rs 100 exam fee + Rs 550 recruitment/processing charge). For women (all categories), SC, ST, and Ex-Servicemen, the Rs 100 exam fee is waived but the Rs 550 processing charge still applies (total Rs 550). Note this differs structurally from SSC exams, which usually waive the entire fee for these categories — IB ACIO only waives the \"exam fee\" portion, not the separate processing charge.",
       "photo": {
         "dims": "not confirmed — see dataNote",
         "minKB": 100,
@@ -4913,6 +4940,7 @@
       "applyStart": "15 Apr 2024",
       "applyEnd": "14 May 2024 (23:59 hrs)",
       "officialUrl": "https://rrbsecunderabad.gov.in/wp-content/uploads/2024/04/Final-Notice-RPF-Constable-02-2024_English.pdf",
+      "applicationFee": "General/OBC: Rs 500. SC/ST/Ex-Servicemen/Women/Economically Backward Class: Rs 250. General/OBC candidates get Rs 400 refunded (less bank charges) on appearing for CBT; SC/ST/ExSM/Women/EBC get the full Rs 250 refunded on appearing for CBT. Fee is NOT refunded for cancelled vacancies or rejected/incomplete applications.",
       "photo": {
         "dims": "Recent colour passport-size photo",
         "minKB": 30,
@@ -5046,6 +5074,7 @@
       "applyStart": "02 Sep 2026",
       "applyEnd": "21 Sep 2026 (17:00 hrs)",
       "officialUrl": "https://www.indiapost.gov.in/gdsonlineengagement/pdf/descriptive-notification.pdf",
+      "applicationFee": "Rs. 100 (all applicable posts/circles combined in one application). Female, SC/ST, PwBD, and Transwomen applicants are exempted from the fee.",
       "photo": {
         "dims": "320 × 400 px (recommended, 4:5 aspect ratio)",
         "px": {
@@ -5170,6 +5199,7 @@
       "applyStart": "20 May 2026 (1100 hrs)",
       "applyEnd": "21 Jun 2026 (2359 hrs) (extended from 19 Jun 2026)",
       "officialUrl": "https://afcat.edcil.co.in/assets/images/news/AFCAT_02_2026/Notification%20for%20AFCAT%20Cycle%2002-2026.pdf",
+      "applicationFee": "Rs 250 for all applicants (no fee for NCC Special Entry candidates).",
       "photo": {
         "dims": "Recent passport-size colour photograph",
         "minKB": 100,
@@ -5323,6 +5353,7 @@
       "applyStart": "29 Apr 2026",
       "applyEnd": "20 May 2026 (till 18:00 hrs)",
       "officialUrl": "https://opportunities.rbi.org.in/Scripts/bs_viewcontent.aspx?Id=4997",
+      "applicationFee": "General/OBC (EWS not separately confirmed): Rs. 600 | SC/ST/PwBD: Rs. 100",
       "photo": {
         "dims": "Standard IBPS-style passport photo specs (not independently confirmed from the accessible notification text)",
         "px": {
@@ -5504,6 +5535,7 @@
       "applyStart": "14 Nov 2025",
       "applyEnd": "04 Dec 2025",
       "officialUrl": "https://kvsangathan.nic.in/en/document/recruitment-notification-no-1-2025-filling-up-the-teaching-and-non-teaching-posts-in-kvs-through-direct-recruitment/",
+      "applicationFee": "General/OBC/EWS: sources disagree between Rs. 1,500 and Rs. 2,000 (examination fee) + Rs. 500 processing fee (secondary sources disagree on the exact exam-fee figure across recruitment cycles). SC/ST/PwBD/Ex-servicemen: exempted from exam fee, pay only Rs. 500 processing fee.",
       "photo": {
         "dims": "3.5 cm × 4.5 cm",
         "minKB": 20,
@@ -5710,6 +5742,7 @@
       "applyStart": "16 Jun 2026 (12:00 noon)",
       "applyEnd": "15 Jul 2026 (11:59 PM)",
       "officialUrl": "https://dsssb.delhi.gov.in/sites/default/files/DSSSB/circulars-orders/final_advt-03-2026.pdf",
+      "applicationFee": "General/OBC/EWS: Rs. 100 (payable only via SBI e-Pay, non-refundable). SC/ST/PwD(PwBD)/Women/Sportsperson/Ex-servicemen: fully exempted (no fee).",
       "photo": {
         "dims": "Not stated with exact px/KB in the advertisement PDF",
         "format": "JPG/JPEG (implied)",
@@ -5879,6 +5912,7 @@
       "applyStart": "16 Aug 2025",
       "applyEnd": "08 Sep 2025",
       "officialUrl": "https://licindia.in/documents/d/guest/aao-generalist-notification-2025-final",
+      "applicationFee": "General/OBC/EWS: Rs. 700 + GST + transaction charges | SC/ST/PwBD: Rs. 85 + GST + transaction charges",
       "photo": {
         "dims": "4.5 cm × 3.5 cm",
         "px": {
@@ -6098,6 +6132,7 @@
       "applyStart": "09 Feb 2026",
       "applyEnd": "23 Feb 2026 (11:59 PM)",
       "officialUrl": "https://hssc.gov.in/file/ac1f23cd-99c4-13a6-819c-32aaa1600063/advertisements",
+      "applicationFee": "Secondary sources report no application fee is required for HSSC CET Phase-II / Group C recruitment (any category) — this is unusual so treat with some caution and verify against the current HSSC notification, since fee waivers have varied across CET cycles.",
       "photo": {
         "dims": "Not stated with exact px/KB in the advertisement PDF",
         "format": "JPG/JPEG (implied)",
@@ -6317,6 +6352,7 @@
       "applyStart": "18 Mar 2025",
       "applyEnd": "25 Apr 2025",
       "officialUrl": "https://csbc.bihar.gov.in/",
+      "applicationFee": "DISPUTED / cycle-dependent. For the main \"Constable General Duty\" large recruitment drives, secondary sources report ₹675 for General/OBC and ₹180 for SC/ST/Female (Bihar-domicile). For smaller 2026 drives (Constable Operator, Constable Special Branch), sources report a flat ₹100 for all categories. Since fee structure clearly changes by recruitment notification, treat as NOT CONFIRMED for any single upcoming cycle — verify against the live CSBC notification.",
       "photo": {
         "dims": "Not specified precisely in any source I could verify",
         "format": "JPG/JPEG",
@@ -6604,6 +6640,7 @@
       "applyStart": "01 Sep 2026",
       "applyEnd": "30 Sep 2026",
       "officialUrl": "https://onlinebpsc.bihar.gov.in/",
+      "applicationFee": "Rs. 100 flat for all categories (General/OBC/EWS/SC/ST/Female/PwD) — no category-based differentiation found. An additional Rs. 200 biometric fee applies only if the candidate does not provide their Aadhaar number. Candidates applying for more than one post/subject must pay the fee separately for each.",
       "photo": {
         "dims": "Not specified precisely in any source I could verify",
         "format": "JPG/JPEG, reportedly under ~50–100 KB",
@@ -6803,6 +6840,7 @@
       "applyStart": "29 Dec 2025",
       "applyEnd": "28 Jan 2026",
       "officialUrl": "https://upsssc.gov.in/",
+      "applicationFee": "Reported as a flat Rs. 25 for all categories (General/OBC/EWS/SC/ST/PH) by secondary sources — this figure is unusually low for a UPSSSC exam and may reflect only a partial/registration fee rather than the full application fee, or may be specific to candidates who already paid the PET fee; treat as unconfirmed and verify against the official UPSSSC notification.",
       "photo": {
         "dims": "Not specified precisely in any source I could verify",
         "format": "JPG/JPEG",
@@ -6956,6 +6994,7 @@
       "applyStart": "03 Aug 2026",
       "applyEnd": "07 Sep 2026 (extended; online fee payment allowed till 08 Sep 2026)",
       "officialUrl": "https://upsssc.gov.in/",
+      "applicationFee": "General/OBC(NCL): Rs. 185. SC/ST: Rs. 95. PwD (Divyang): Rs. 25 (online processing fee only).",
       "photo": {
         "dims": "3.5 cm × 4.5 cm (exact px/KB not confirmed)",
         "format": "JPG/JPEG",
@@ -7196,6 +7235,7 @@
       "applyStart": "23 Jun 2025",
       "applyEnd": "29 Jun 2025",
       "officialUrl": "https://rsmssb.rajasthan.gov.in/",
+      "applicationFee": "General category: Rs. 800. OBC/EBC/EWS/SC/ST (non-creamy layer, Rajasthan domicile): Rs. 400. Persons with Disability: Rs. 400.",
       "photo": {
         "dims": "Recent passport-size photo (exact px not confirmed)",
         "minKB": 0,
@@ -7369,6 +7409,7 @@
       "applyStart": "28 Apr 2025",
       "applyEnd": "25 May 2025 (extended)",
       "officialUrl": "https://police.rajasthan.gov.in/",
+      "applicationFee": "General/OBC(creamy layer)/EWS/out-of-state: ₹600. SC/ST/OBC(non-creamy layer): ₹400. (Secondary-sourced; not verified against police.rajasthan.gov.in official notification.)",
       "photo": {
         "dims": "Recent passport-size photo (exact px/KB not confirmed)",
         "format": "JPG/JPEG",
@@ -7529,6 +7570,7 @@
       "applyStart": "29 Oct 2025",
       "applyEnd": "07 Dec 2025 (extended from 30 Nov 2025)",
       "officialUrl": "https://www.mahapolice.gov.in/ (application portal: https://policerecruitment2025.mahait.org/)",
+      "applicationFee": "Open category: ₹450. Reserved categories: ₹350. (Secondary-sourced only — could not verify against mahapolice.gov.in / policerecruitment2025.mahait.org official notification.)",
       "photo": {
         "dims": "165 × 125 px (as reported by secondary aggregators; not independently confirmed against the official notification)",
         "px": {
@@ -7676,6 +7718,7 @@
       "applyStart": "15 Sep 2025",
       "applyEnd": "29 Sep 2025 (correction window till 04 Oct 2025)",
       "officialUrl": "https://esb.mp.gov.in/",
+      "applicationFee": "General: ₹500. SC/ST/OBC/EWS (MP domicile only): ₹250. Plus a portal/processing fee of ₹60, and separately-cited MP Online wallet charges of ₹150 + 18% GST reported by one source (these additional charges may be portal-specific rather than official exam fee — flagging lower confidence on the exact \"extra charges\" figure). Note: reservation/fee-concession benefits apply only to MP-domicile candidates; out-of-state candidates are treated as Unreserved/General.",
       "photo": {
         "dims": "No confirmed official px/KB spec found in available sources — MPESB requires candidates to generate a combined \"Photo + Signature + Declaration\" image via the MPOnline \"Template Maker\" tool rather than uploading a plain photo file",
         "format": "JPG (combined MPOnline template)",
@@ -7811,6 +7854,7 @@
       "applyStart": "18 Nov 2025",
       "applyEnd": "09 Dec 2025 (secondary sources differ on the exact extended date — see dataNote)",
       "officialUrl": "https://psc.wb.gov.in",
+      "applicationFee": "General/OBC: Rs 210. SC/ST of West Bengal domicile and PwD of West Bengal domicile: exempted (no fee). SC/ST/OBC candidates from OTHER states do not get the fee waiver and must pay the full Rs 210 like General candidates. (Secondary-sourced from adda247.com/careers360-linked aggregator pages for the WBCS 2024-25 cycle; confirm against the official WBPSC notification.)",
       "photo": {
         "dims": "~3.5 cm × 4.5 cm — exact px/KB spec not confirmed against the primary WBPSC notification; third-party exam photo-resizer tools commonly cite ~138×177 px at 100 dpi, under 100 KB",
         "format": "JPEG",
@@ -8005,6 +8049,7 @@
       "applyStart": "25 Apr 2025",
       "applyEnd": "24 May 2025 (edit window 29–31 May 2025)",
       "officialUrl": "https://www.tnpsc.gov.in",
+      "applicationFee": "One-time Registration Fee: Rs 150 (valid 5 years, paid once regardless of category). Examination Fee: Rs 100 for General/BC/MBC/DC candidates who have exhausted free-exemption chances. SC, SC(Arunthathiyar), ST, PwBD (persons with benchmark disability), and Destitute Widows: fully exempted from the Rs 100 exam fee (still pay the Rs 150 registration fee). MBC/DC/BC-O/BC-M categories get 3 free exam-fee exemption chances and Ex-servicemen get 2 free chances, after which they pay like General candidates.",
       "photo": {
         "dims": "3.5 cm × 4.5 cm",
         "minKB": 20,
@@ -8159,6 +8204,7 @@
       "applyStart": "30 Nov 2023 (Gazette notification date)",
       "applyEnd": "03 Jan 2024",
       "officialUrl": "https://www.keralapsc.gov.in/sites/default/files/2023-11/noti-503-23.pdf",
+      "applicationFee": "No application fee — Kerala PSC does not charge an application fee for LD Clerk (or most of its other) recruitments; this is corroborated across multiple secondary sources for the 2024-2026 cycles.",
       "photo": {
         "dims": "No pixel/KB spec published in the notification — candidates upload one photo to their Kerala PSC \"One Time Registration\" (OTR) profile, which then stays valid for 10 years",
         "format": "JPEG (via OTR profile)",
@@ -8264,7 +8310,7 @@
       "verified": "03 Sep 2026",
       "applicationStartDateIso": "2023-11-30",
       "applicationEndDateIso": "2024-01-03",
-      "lastUpdated": "2026-09-05 10:04:28",
+      "lastUpdated": "2026-09-05 06:15:33",
       "orgName": "State Public Service Commissions",
       "slug": "kpsc-ldc"
     },
@@ -8279,6 +8325,7 @@
       "applyStart": "30 Jun 2026",
       "applyEnd": "29 Jul 2026 (fee payment till 31 Jul 2026)",
       "officialUrl": "https://www.rrbapply.gov.in/ (application link hosted on the relevant RRB zonal site, e.g. rrbthiruvananthapuram.gov.in)",
+      "applicationFee": "₹500 for General/OBC/EWS (₹400 refunded on appearing in the CBT) · ₹250 for SC/ST/Ex-servicemen/PwBD/Female/Transgender/Minorities/EBC (₹250 refunded on appearing in the CBT) — confirmed from the official CEN 02/2026 PDF, Para 10.",
       "photo": {
         "dims": "Live webcam/front-camera capture only during the application — no pre-existing photo file can be uploaded",
         "format": "Live capture (no file upload)",
@@ -8413,6 +8460,7 @@
       "applyStart": "24 Apr 2026",
       "applyEnd": "15 May 2026 (fee payment till 16 May 2026)",
       "officialUrl": "https://ssc.gov.in",
+      "applicationFee": "₹100 — waived for women and SC/ST/PwBD/Ex-servicemen candidates. Confirmed from the official Notice of Examination PDF.",
       "photo": {
         "dims": "Live webcam capture only — a pre-existing photo file is rejected unless the candidate uses Aadhaar-based authentication",
         "format": "Live capture (no file upload), except for Aadhaar-authenticated applicants",
@@ -8590,6 +8638,7 @@
       "applyStart": "20 Jan 2026",
       "applyEnd": "Sources disagree on the exact date — 20 Feb, 27 Feb and 12 Mar 2026 are all cited; verify against the official notification",
       "officialUrl": "https://www.opsc.gov.in",
+      "applicationFee": "₹700 for General/SEBC (reported as refundable for candidates who attempt the Preliminary exam — unconfirmed against the official notification) · exempted for SC/ST and PwBD — secondary-sourced, not verified against the primary document.",
       "photo": {
         "dims": "Not published/found in the sources available for this entry",
         "format": "Not confirmed",
@@ -8772,6 +8821,7 @@
       "applyStart": "31 Jan 2026",
       "applyEnd": "14 Feb 2026 (fee payment extended to 16 Feb 2026)",
       "officialUrl": "https://www.jpsc.gov.in",
+      "applicationFee": "Reported as ₹100 for General/OBC/EWS, ₹50 for SC/ST, exempt for PwD — the official notice PDF uses a non-Unicode Hindi font that blocked automated verification, so treat these as secondary-sourced and unconfirmed.",
       "photo": {
         "dims": "Recent passport-size colour photo (exact px not confirmed)",
         "minKB": 15,
@@ -8934,6 +8984,7 @@
       "applyStart": "23 Feb 2024",
       "applyEnd": "14 Mar 2024",
       "officialUrl": "https://www.tgpsc.gov.in",
+      "applicationFee": "2024 cycle: ₹200 registration + ₹120 examination fee — reportedly waived for unemployed candidates and government employees. No fresh notification is open to confirm this for a future cycle.",
       "photo": {
         "dims": "275 × 354 px, 3.5 × 4.5 cm (as reported by third-party resizer-tool sites, not the official notification)",
         "px": {
@@ -9131,6 +9182,7 @@
       "applyStart": "Ongoing One-Time Registration (OTR) system — no fixed application-open date found for this specific notification",
       "applyEnd": "27 Feb – 18 Mar 2026 (candidate confirmation window)",
       "officialUrl": "https://www.keralapsc.gov.in",
+      "applicationFee": "No application fee — confirmed officially (keralapsc.gov.in/tips-applicants): Kerala PSC exams charge nothing, candidates use a free One-Time Registration profile instead.",
       "photo": {
         "dims": "Reported by secondary sources as ~150 × 200 px, though not confirmed officially",
         "px": {

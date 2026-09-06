@@ -107,6 +107,17 @@ p{margin:0}
 .nav-more-menu a:hover{background:var(--surface-2)}
 .nav-more-menu a[aria-current="page"]{background:var(--brand);color:#fff}
 
+/* Header search — a compact icon that reveals a dropdown search box, so
+   the exam search is reachable from every page's header, not just the
+   homepage hero. Reuses .search-input/.exam-result-list's own styling
+   (already built for the hero search) rather than duplicating it. */
+.header-search-toggle[aria-expanded="true"]{background:var(--surface-2);color:var(--brand)}
+.header-search-box{display:none;position:absolute;top:calc(100% + 6px);right:0;width:340px;max-width:calc(100vw - 32px);background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow-md);padding:12px;z-index:30}
+.header-search-box:not([hidden]){display:block}
+.header-search-box .search-input{width:100%;box-sizing:border-box}
+.header-search-box .exam-result-list.open{margin-top:10px}
+@media(max-width:980px){.header-search-box{position:static;width:100%;box-shadow:none;margin-top:8px}}
+
 .icon-btn.nav-toggle{display:none}
 /* 980px, not 760px — the nav grew from 4 items to 6 (All Govt Exams, Exam
    Calendar, Syllabus, Free Downloads, Tools, More) plus the primary CTA,
@@ -233,6 +244,26 @@ p{margin:0}
 /* ---------- eligibility checker (eligibility.html) ---------- */
 .elig-field{margin-bottom:18px}
 .elig-field select{appearance:auto}
+
+/* ---------- custom select (replaces the native <select> popup, which
+   renders at a browser/OS-controlled size we can't reliably style — on some
+   browser+device combinations that comes out tiny and cramped. The real
+   <select> stays in the DOM (opacity:0, not display:none, so `required`
+   validation still applies) purely so existing code reading/listening to
+   its .value keeps working untouched; this is what the user actually sees
+   and clicks. ---------- */
+.custom-select{position:relative}
+.custom-select select{position:absolute;inset:0;width:100%;height:100%;opacity:0;pointer-events:none}
+.custom-select-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;text-align:left;font:inherit;color:inherit;cursor:pointer}
+.custom-select-trigger::after{content:"";width:9px;height:9px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);margin-top:-4px;flex:none}
+.custom-select-trigger[aria-expanded="true"]::after{margin-top:2px;transform:rotate(-135deg)}
+.custom-select-value.is-placeholder{color:var(--muted)}
+.custom-select-menu{display:none;flex-direction:column;gap:1px;position:absolute;top:calc(100% + 6px);left:0;right:0;max-height:280px;overflow-y:auto;background:var(--surface);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow-md);padding:6px;z-index:30}
+.custom-select-menu.open{display:flex}
+.custom-select-option{display:flex;align-items:center;gap:8px;width:100%;text-align:left;padding:9px 10px;border-radius:7px;font:inherit;font-size:14.5px;color:var(--ink);background:none;border:none;cursor:pointer}
+.custom-select-option:hover,.custom-select-option.is-focused{background:var(--surface-2)}
+.custom-select-option.is-selected{font-weight:700;color:var(--brand)}
+.custom-select-option-check{width:16px;flex:none;color:var(--brand)}
 .elig-disclaimer{max-width:460px;margin:16px auto 0;text-align:center;color:var(--muted);font-size:12px;line-height:1.6}
 .elig-summary{font-size:15px;margin-bottom:20px}
 .elig-group-head{font-family:inherit;font-weight:800;font-size:16px;margin:28px 0 12px}
@@ -309,10 +340,6 @@ p{margin:0}
 .slot-status{font-size:14px;font-weight:700;margin-bottom:8px;text-align:center}
 .slot-waiting{font-size:12.5px;color:var(--muted);text-align:center}
 .upload-slot-pdf{border:1px dashed var(--line);background:transparent;text-align:center}
-/* One line, not a wrapped grid — scrolls sideways if it's wider than the
-   viewport instead of breaking into a second row/column. */
-.more-tools-row{display:flex;gap:14px;flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}
-.more-tools-row .btn{flex:none}
 
 .batch-list{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
 .batch-row{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);padding:9px 12px;font-size:13px}
@@ -349,9 +376,12 @@ p{margin:0}
 
 .exam-detail-panel{margin-bottom:20px}
 .quick-overview{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
-.quick-overview-item{flex:1 1 140px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:10px 14px}
+.quick-overview-item{flex:1 1 140px;min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:10px 14px}
 .quick-overview-label{display:block;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:3px}
-.quick-overview-value{display:block;font-size:13.5px;font-weight:800;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* Deliberately no nowrap/ellipsis — a truncated qualification or age
+   sentence is worse than a two-line tile, especially on mobile where the
+   tile is narrow enough that ellipsis used to hide most of the text. */
+.quick-overview-value{display:block;font-size:13.5px;font-weight:800;color:var(--ink);line-height:1.4;overflow-wrap:break-word}
 .detail-updated{font-size:11.5px;color:var(--muted);margin-top:14px;text-align:right}
 .detail-missing{font-size:13px;color:var(--muted);background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:20px}
 .detail-note{font-size:12.5px;color:var(--accent-dark);background:color-mix(in srgb,var(--accent) 14%,transparent);border:1px solid color-mix(in srgb,var(--accent) 35%,transparent);border-radius:10px;padding:10px 14px;margin-bottom:14px;line-height:1.5}
@@ -394,6 +424,108 @@ p{margin:0}
 .dates-value{color:var(--ink);font-weight:700;text-align:left}
 @media(max-width:640px){.detail-grid{grid-template-columns:1fr}.dates-row{flex-direction:column;gap:2px}.dates-value{text-align:left}}
 
+/* ===== Exam analysis page: hero, sticky quick-nav, two-column layout ===== */
+
+.exam-hero-desc{font-size:13.5px;color:var(--muted);line-height:1.6;margin:0 0 16px}
+
+/* Horizontally scrollable pill-nav on mobile; sticky just under the fixed
+   site header (68px tall) once the viewport is wide enough for a desktop
+   two-column layout. Section links only ever point at sections that
+   actually rendered (built from the same presence checks as the sections
+   themselves), so there's never a dead anchor. */
+.exam-quicknav{display:flex;gap:6px;overflow-x:auto;padding:6px 2px 14px;margin-bottom:6px;border-bottom:1px solid var(--line);scrollbar-width:none}
+.exam-quicknav::-webkit-scrollbar{display:none}
+.exam-quicknav a{flex:none;padding:6px 13px;border-radius:999px;font-size:12.5px;font-weight:700;color:var(--muted);white-space:nowrap;text-decoration:none;background:var(--surface-2);border:1px solid transparent;transition:background .15s,color .15s,border-color .15s}
+.exam-quicknav a:hover{color:var(--ink);border-color:var(--line)}
+@media(min-width:960px){.exam-quicknav{position:sticky;top:68px;background:var(--surface);z-index:15;padding-top:14px}}
+
+.exam-layout{display:grid;grid-template-columns:1fr;gap:28px;align-items:start}
+.exam-main{min-width:0}
+.exam-aside{min-width:0}
+@media(min-width:960px){
+  .exam-layout{grid-template-columns:minmax(0,1fr) 300px}
+  .exam-aside{position:sticky;top:92px}
+}
+.aside-card{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+.aside-card h4{font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:0 0 12px;font-weight:700}
+.aside-cta{display:block;text-align:center;margin-bottom:10px}
+.aside-link-list{display:flex;flex-direction:column;gap:9px}
+.aside-link-list a{font-size:13px;font-weight:600;color:var(--brand-dark);text-decoration:none}
+:root[data-theme="dark"] .aside-link-list a{color:var(--brand-light)}
+.aside-link-list a:hover{text-decoration:underline}
+
+/* Each section is spacing + a divider + heading, not another bordered
+   card — the thing this redesign is explicitly trying to get away from.
+   scroll-margin-top keeps an anchor jump from landing under the sticky
+   header + quicknav. */
+.exam-section{padding-top:28px;margin-top:28px;border-top:1px solid var(--line);scroll-margin-top:130px}
+.exam-section:first-child{padding-top:0;margin-top:0;border-top:none}
+.exam-section h2{font-size:16.5px;margin:0 0 14px;font-weight:800;color:var(--ink);display:flex;align-items:center;gap:8px}
+.section-lede{font-size:13px;color:var(--muted);line-height:1.6;margin:0 0 14px}
+
+.dates-hero{display:flex;align-items:center;gap:16px;flex-wrap:wrap;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:14px}
+.dates-hero-item{flex:1 1 160px}
+.dates-hero-label{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dates-hero-value{display:block;font-size:18px;font-weight:800;color:var(--ink)}
+.dates-hero-arrow{font-size:20px;color:var(--accent);flex:none}
+@media(max-width:640px){.dates-hero-arrow{display:none}}
+
+.vacancy-total-label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:2px}
+.vacancy-total-value{display:block;font-size:26px;font-weight:800;color:var(--ink);margin-bottom:16px}
+
+.table-scroll{overflow-x:auto;margin-bottom:4px}
+table.data-table{width:100%;border-collapse:collapse;font-size:12.5px}
+table.data-table th{text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;padding:8px 12px;border-bottom:2px solid var(--line);white-space:nowrap}
+table.data-table td{padding:10px 12px;border-bottom:1px solid var(--line);color:var(--ink);vertical-align:top}
+table.data-table tr:last-child td{border-bottom:none}
+
+/* Below 640px, a real <table> is the wrong shape for cells that hold a
+   full sentence or a comma-separated list of post names — the browser
+   either forces a tiny unreadable font or a horizontal scroll that hides
+   most of the row. Below that width each row becomes its own labelled
+   card instead, using the same header text via `data-label` so nothing
+   needs re-fetching or re-computing. */
+@media(max-width:640px){
+  table.data-table,table.data-table thead,table.data-table tbody,table.data-table tr,table.data-table td{display:block;width:100%}
+  table.data-table thead{position:absolute;left:-9999px}
+  table.data-table tr{border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:10px}
+  table.data-table tr:last-child{margin-bottom:0}
+  table.data-table td{border-bottom:none;padding:6px 0;font-size:13.5px;line-height:1.5}
+  table.data-table td::before{content:attr(data-label);display:block;font-size:10px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:2px}
+}
+
+.doc-checklist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+.doc-checklist li{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;color:var(--ink);line-height:1.5}
+.doc-checklist li::before{content:"☐";flex:none;color:var(--brand);font-size:14px;line-height:1.3}
+.doc-checklist b{font-weight:700}
+.doc-checklist span{display:block;color:var(--muted)}
+
+/* Numbered vertical timeline for the how-to-apply steps — same content as
+   a plain <ol>, just given a visual sequence since "what do I do, in
+   order" is the single most load-bearing list on this page. */
+.step-list{list-style:none;margin:0;padding:0;counter-reset:step}
+.step-list li{position:relative;padding:0 0 16px 34px;font-size:12.5px;color:var(--ink);line-height:1.6}
+.step-list li::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:0;width:24px;height:24px;border-radius:50%;background:var(--brand);color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.step-list li:not(:last-child)::after{content:"";position:absolute;left:11px;top:24px;bottom:0;width:2px;background:var(--line)}
+.step-list li:last-child{padding-bottom:0}
+
+.links-grid{display:flex;flex-wrap:wrap;gap:10px}
+
+/* The exam-analysis page's prose (eligibility, fee, exam-pattern notes,
+   data notes) is compiled research text — often 2-3 sentences run
+   together. On a phone, the desktop-tuned ~12.5px size reads as a dense
+   wall of tiny text, so mobile gets a real bump in both size and
+   line-height. sentenceBreak() (in app.js/render.js) also turns each
+   "X. Y" boundary into its own line so a run-on paragraph doesn't have to
+   be parsed as one block to find where one fact ends and the next
+   begins. */
+@media(max-width:640px){
+  .detail-row span,.detail-row ul,.section-lede,.detail-footnote,.doc-checklist li,.step-list li,.apply-steps li,.apply-checklist li,.promotion-steps li,.exam-hero-desc,.pay-group span{font-size:14.5px;line-height:1.6}
+  .detail-row b{font-size:13.5px}
+}
+.sentence-break{display:block}
+.sentence-break+.sentence-break{margin-top:6px}
+
 .slot-hint{font-size:12px;color:var(--muted);margin-top:6px}
 
 .flow-links{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:14px}
@@ -423,6 +555,8 @@ p{margin:0}
 .cal-filter-btn.is-active{background:var(--brand);border-color:var(--brand);color:#fff;box-shadow:0 3px 10px color-mix(in srgb,var(--brand) 35%,transparent)}
 .cal-filter-btn:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
 .cal-filter-btn-live{display:inline-flex;align-items:center;gap:7px}
+.state-chip-row{margin-bottom:22px}
+.state-chip-row .cal-filter-btn{padding:6px 14px;font-size:12.5px}
 .live-dot{width:8px;height:8px;border-radius:50%;background:#e0263a;flex:none;box-shadow:0 0 0 0 rgba(224,38,58,.6);animation:live-dot-pulse 1.4s ease-out infinite}
 @keyframes live-dot-pulse{
   0%{box-shadow:0 0 0 0 rgba(224,38,58,.6)}
@@ -720,14 +854,17 @@ p{margin:0}
 }
 
 
-/* ---------- application tools (homepage) ----------
-   Compact chip row, not full feature cards — there's really one tool
-   underneath (the generic resize/upload flow just below), these are three
-   convenient entry points into it, not three separate products. */
-/* Same reasoning as .more-tools-row above: one straight line of boxes,
-   scrolling sideways rather than wrapping into a second row. */
-.tool-chip-row{display:flex;flex-wrap:nowrap;gap:12px;overflow-x:auto;padding-bottom:4px}
-.tool-chip{gap:8px;font-size:14.5px;flex:none}
+/* ---------- application tools (tools.html) ----------
+   Each tool gets its own full-size box rather than a cramped pill, and
+   the grid wraps to fill the available width instead of scrolling
+   sideways — every tool is visible at once, on any screen size. */
+.tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}
+.tool-box{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:6px;padding:22px 16px;background:var(--surface);border:1.5px solid var(--line);border-radius:var(--radius);color:var(--ink);text-align:center;cursor:pointer;transition:border-color .15s ease,transform .1s ease,box-shadow .15s ease}
+.tool-box:hover{border-color:var(--brand);box-shadow:var(--shadow-sm)}
+.tool-box:active{transform:translateY(1px)}
+.tool-box-icon{font-size:28px;line-height:1;margin-bottom:4px}
+.tool-box-title{font-weight:700;font-size:14.5px}
+.tool-box-desc{font-weight:400;font-size:12.5px;line-height:1.4;color:var(--muted)}
 .tool-privacy-note{text-align:center;margin-top:18px}
 .tools-start-hint{text-align:center;font-size:13px;color:var(--muted);margin-bottom:18px}
 .tools-start-hint a{color:var(--brand-dark);font-weight:700;text-decoration:none}

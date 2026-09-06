@@ -39,6 +39,7 @@ const SIMPLE_FIELD_MAP = {
   applyStart: 'apply_start',
   applyEnd: 'apply_end',
   officialUrl: 'official_url',
+  applicationFee: 'application_fee',
   verified: 'verified',
   // Free-text display strings the UI reads directly (app.js's Important
   // Dates panel: `a.examDate`, `a.admitCardDate`) — distinct from the
