@@ -1,0 +1,19 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/monitor"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    # pdf-parse's 2.x is a ground-up rewrite (a different class-based API,
+    # not the old plain function) — not something to auto-bump without
+    # dedicated testing against real government PDFs. Left open for every
+    # other dependency so real security/bugfix updates still surface.
+    ignore:
+      - dependency-name: "pdf-parse"
+        update-types: ["version-update:semver-major"]
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"

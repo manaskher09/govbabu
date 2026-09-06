@@ -59,3 +59,22 @@ jobs:
             git commit -m "Daily check: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
             git push
           fi
+
+      # Dead-man's-switch, not an error alert — daily-check.js already pages
+      # Telegram if IT crashes (see bin/daily-check.js's alertOnCrash), but
+      # that can't cover the job never running at all (GitHub disables a
+      # scheduled workflow after 60 days of repo inactivity; a cron trigger
+      # can silently misfire). A ping service notices the ABSENCE of a ping
+      # by its expected time and alerts on its own — the one failure mode
+      # nothing inside this workflow can detect for itself. No-ops entirely
+      # until HEALTHCHECK_PING_URL is set (see monitor/README.md).
+      - name: Ping healthcheck (success)
+        if: success() && env.HEALTHCHECK_PING_URL != ''
+        env:
+          HEALTHCHECK_PING_URL: ${{ secrets.HEALTHCHECK_PING_URL }}
+        run: curl -fsS --retry 3 "$HEALTHCHECK_PING_URL" || true
+      - name: Ping healthcheck (failure)
+        if: failure() && env.HEALTHCHECK_PING_URL != ''
+        env:
+          HEALTHCHECK_PING_URL: ${{ secrets.HEALTHCHECK_PING_URL }}
+        run: curl -fsS --retry 3 "$HEALTHCHECK_PING_URL/fail" || true

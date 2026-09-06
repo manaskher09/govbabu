@@ -107,6 +107,32 @@ Actions, on the **public** `govbabu` repo):
   contents read+write.
 - `TELEGRAM_BOT_TOKEN` / `TELEGRAM_ADMIN_CHAT_ID` — same as the local
   `.env.local` values, see `.env.example`.
+- `HEALTHCHECK_PING_URL` — optional, but closes a real gap: `daily-check.js`
+  can only alert you if it *runs and then crashes* (see `alertOnCrash`).
+  It can't alert you if the workflow never ran at all — GitHub disables a
+  scheduled workflow after 60 days of repo inactivity, and a cron trigger
+  can misfire silently. A dead-man's-switch ping service solves exactly
+  this: it notices the *absence* of a ping by the expected time and alerts
+  you itself. Free, no card needed: sign up at
+  [healthchecks.io](https://healthchecks.io), create a check with a ~26h
+  period (some slack past the daily schedule), copy its ping URL into this
+  secret. Every other part of the workflow no-ops harmlessly until you do.
+
+## Backup & recovery
+
+The database's backup strategy is deliberate, not accidental: every write
+that matters goes through `git commit` to the private `govbabu-data` repo
+(daily automated checks, `save-review`), so **git history there already is
+the backup** — a full point-in-time snapshot per commit, kept forever by
+default (git never deletes history on its own). To restore any past state:
+`git log` in that repo, `git checkout <commit> -- monitor.sqlite3`.
+
+That said, GitHub itself is a single point of failure for it — there's no
+second copy anywhere else today. If you want real belt-and-suspenders
+protection, the cheapest option is enabling GitHub's own repo backups
+(Settings → or a scheduled `git clone --mirror` to another machine/cloud
+storage) for `govbabu-data` specifically, since that repo (unlike the
+public site) has no other copy of its content in the world.
 
 ## What this MVP deliberately does NOT do yet
 
@@ -131,10 +157,12 @@ Actions, on the **public** `govbabu` repo):
 npm test
 ```
 
-149 tests, zero network calls (everything network-shaped is dependency-
+164 tests, zero network calls (everything network-shaped is dependency-
 injected — see `test/helpers.js`), covering the 12 scenarios from the
 spec (no change, exam date change, deadline extension, vacancy change, new
 notification, revised/corrigendum notification, PDF replacement, source
 unavailable, parser failure, OCR failure routes to manual review,
 conflicting sources, duplicate/reworded notifications) plus the admin API,
-publish pipeline, data-import sync, and WAL-checkpoint-on-exit behavior.
+publish pipeline, data-import sync, login rate-limiting, and
+WAL-checkpoint-on-exit behavior. Runs automatically on every push/PR via
+`.github/workflows/test.yml`.

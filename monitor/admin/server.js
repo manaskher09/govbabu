@@ -23,6 +23,7 @@ const {
   SESSION_TTL_MS,
 } = require('../auth/sessions');
 const { verifyPassword } = require('../auth/passwords');
+const loginRateLimit = require('../auth/loginRateLimit');
 const { getCurrentExam, listCurrentExams, getAllFieldHistory } = require('../db/currentExam');
 const { toApplicationsShape } = require('../sync/toApplicationsShape');
 const { transitionContentStatus } = require('../pipeline/contentStatus');
@@ -239,8 +240,16 @@ const server = http.createServer(async (req, res) => {
     // ---------- Auth ----------
     if (pathname === '/api/admin/login' && req.method === 'POST') {
       const body = JSON.parse((await readBody(req)) || '{}');
-      const result = login(db, String(body.username || ''), String(body.password || ''));
-      if (!result) return safeError(res, 401, 'invalid_credentials');
+      const username = String(body.username || '');
+      // Checked before touching the DB/scrypt at all — a locked-out username
+      // shouldn't even pay the cost of a real verification attempt.
+      if (loginRateLimit.isLocked(username)) return safeError(res, 429, 'too_many_attempts');
+      const result = login(db, username, String(body.password || ''));
+      if (!result) {
+        loginRateLimit.recordFailure(username);
+        return safeError(res, 401, 'invalid_credentials');
+      }
+      loginRateLimit.recordSuccess(username);
       setSessionCookie(res, result.token);
       return json(res, 200, { user: result.user });
     }
