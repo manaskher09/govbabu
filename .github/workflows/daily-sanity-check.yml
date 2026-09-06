@@ -12,13 +12,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout govbabu (site + monitor code)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       # The monitor database lives in a SEPARATE PRIVATE repo, never in this
       # (public) one — it holds an admin password hash and must not be
       # exposed. See monitor/README.md and govbabu-data's own README.
       - name: Checkout govbabu-data (private DB repo)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: manaskher09/govbabu-data
           token: ${{ secrets.DATA_REPO_TOKEN }}
