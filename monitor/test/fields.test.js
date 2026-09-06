@@ -47,5 +47,5 @@ test('extractAllFields extracts multiple fields from one notification', () => {
   assert.equal(fields.application_end_date.value, '2026-05-31');
   assert.equal(fields.vacancies.value, '1189');
   assert.equal(fields.exam_date.value, '2026-10-25');
-  assert.equal(fields.fee.value, '600');
+  assert.equal(fields.application_fee.value, '600');
 });

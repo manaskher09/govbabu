@@ -11,6 +11,14 @@ const ALLOWED_MANUAL_FIELDS = new Set([
   // with extract/fields.js's auto-detection vocabulary; admit_card_release_date and
   // result_date are new in this phase, manual-entry-only until regex patterns exist for them.
   'application_start_date', 'application_end_date', 'exam_date', 'admit_card_release_date', 'result_date',
+  // Free-text display strings the site actually renders (see
+  // sync/toApplicationsShape.js) — these have no admin-editable path
+  // otherwise, since they're distinct from the machine-parsed fields above
+  // (vacancies_display can be "~933" or a compound figure, not a bare
+  // number; exam_date_text/admit_card_date_text are display strings
+  // alongside the ISO fields; application_fee matches the field name
+  // extract/fields.js's regex/AI detection now also uses).
+  'vacancies_display', 'exam_date_text', 'admit_card_date_text', 'application_fee',
 ]);
 // JSON-shaped fields (photo_json, details_json, etc.) are deliberately excluded — they're
 // legacy shapes from the static-site import, not part of this structured workflow, and

@@ -1,0 +1,33 @@
+name: Test
+
+# Runs the monitor backend's test suite on every push and pull request that
+# touches it, so a broken change is caught in minutes — not "whenever the
+# daily sanity check happens to run into it."
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'monitor/**'
+      - '.github/workflows/test.yml'
+  pull_request:
+    paths:
+      - 'monitor/**'
+      - '.github/workflows/test.yml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24 # node:sqlite (monitor/db/db.js) needs 24+ to be unflagged
+
+      - name: Install dependencies
+        working-directory: monitor
+        run: npm ci
+
+      - name: Run tests
+        working-directory: monitor
+        run: npm test

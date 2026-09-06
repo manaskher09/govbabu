@@ -6,6 +6,13 @@ set -euo pipefail
 # automated check starts from the OLD (pre-approval) database and will
 # overwrite what you just did.
 DATA_DIR="${GOVBABU_DATA_DIR:-$HOME/Desktop/govbabu-data}"
+MONITOR_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+# The admin server is long-running and only checkpoints its WAL file on its
+# OWN exit — a write made through the dashboard just now can still be
+# sitting in monitor.sqlite3-wal, invisible to the git diff below, unless
+# forced out now. (Found by testing this exact script end-to-end.)
+MONITOR_DB_PATH="$DATA_DIR/monitor.sqlite3" node "$MONITOR_DIR/bin/checkpoint-db.js"
 
 cd "$DATA_DIR"
 git add monitor.sqlite3

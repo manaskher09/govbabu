@@ -45,7 +45,11 @@ const FIELD_RULES = {
     labels: [/total\s+(?:number\s+of\s+)?vacanc(?:y|ies)/i, /no\.?\s+of\s+vacanc(?:y|ies)/i, /number\s+of\s+vacanc(?:y|ies)/i],
     type: 'number',
   },
-  fee: {
+  // Matches the `application_fee` field_history/display field the site
+  // actually reads (sync/toApplicationsShape.js) — this used to be named
+  // `fee` here, a different field_name that nothing displayed, so a
+  // detected-and-approved fee change could never reach the live site.
+  application_fee: {
     labels: [/application\s+fee/i, /examination\s+fee/i, /fee\s+for\s+general/i],
     type: 'currency',
   },

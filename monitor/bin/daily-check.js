@@ -60,10 +60,27 @@ async function main() {
   return tally;
 }
 
-if (require.main === module) {
-  main().catch((err) => {
-    console.error(err);
-    process.exit(1);
-  });
+// A normal day's summary (bad sources, flagged changes) is loud on purpose.
+// A day where the job crashes outright must be at least as loud — silence
+// is the one outcome nobody notices, since "no message today" looks
+// identical to "nothing happened to run." Separated from the process-exit
+// side effect below so it's testable without killing the test runner.
+async function alertOnCrash(err, deps = {}) {
+  const telegram = deps.telegram || TelegramProvider;
+  console.error(err);
+  let alertSent = false;
+  try {
+    if (telegram.isConfigured()) {
+      const result = await telegram.sendAdmin(`🚨 GovBabu daily sanity check CRASHED — no sources were checked today.\n${err.message}`);
+      alertSent = result.status === 'sent';
+    }
+  } catch {
+    // a failed alert must not mask the original crash — alertSent stays false
+  }
+  return alertSent;
 }
-module.exports = { main, classify };
+
+if (require.main === module) {
+  main().catch((err) => alertOnCrash(err).then(() => process.exit(1)));
+}
+module.exports = { main, classify, alertOnCrash };

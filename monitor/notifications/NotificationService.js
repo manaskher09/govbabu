@@ -12,7 +12,7 @@ const FIELD_LABELS = {
   application_start_date: 'Application start date changed',
   application_end_date: 'Application deadline changed',
   vacancies: 'Vacancy count revised',
-  fee: 'Application fee changed',
+  application_fee: 'Application fee changed',
   __manual_review__: 'Notification changed — needs manual review',
   __unstructured_change__: 'Notification updated — worth a manual look',
 };

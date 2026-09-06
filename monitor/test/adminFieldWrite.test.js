@@ -103,3 +103,14 @@ test('a field outside the manual-write allowlist is rejected', async () => {
   const count = db.prepare(`SELECT COUNT(*) n FROM field_history WHERE exam_id = ? AND field_name = 'photo_json'`).get(examId).n;
   assert.equal(count, 0);
 });
+
+test('the site-facing display fields (vacancies_display, exam_date_text, admit_card_date_text, application_fee) are manually settable', async () => {
+  const cookie = await login();
+  for (const field of ['vacancies_display', 'exam_date_text', 'admit_card_date_text', 'application_fee']) {
+    const res = await fetch(`${baseUrl}/api/admin/exams/${examId}/fields/${field}`, {
+      method: 'PUT', headers: { 'content-type': 'application/json', cookie },
+      body: JSON.stringify({ value: `test value for ${field}` }),
+    });
+    assert.equal(res.status, 200, `expected ${field} to be settable`);
+  }
+});

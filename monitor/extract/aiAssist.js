@@ -22,7 +22,7 @@ async function aiAssistExtract(oldText, newText) {
     'Compare OLD and NEW text from an Indian government recruitment notification.',
     'Return ONLY JSON matching this schema, nothing else:',
     '{"changes_detected": boolean, "changes": [{"field": string, "old_value": string, "new_value": string, "confidence": number, "evidence": string}]}',
-    'Only include fields you are confident actually changed in meaning (not formatting). Known field names to prefer: exam_date, application_start_date, application_end_date, vacancies, fee, eligibility, age_limit.',
+    'Only include fields you are confident actually changed in meaning (not formatting). Known field names to prefer: exam_date, application_start_date, application_end_date, vacancies, application_fee, eligibility, age_limit.',
     '--- OLD ---', oldText.slice(0, 6000),
     '--- NEW ---', newText.slice(0, 6000),
   ].join('\n');

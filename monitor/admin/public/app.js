@@ -115,10 +115,20 @@ const CANONICAL_DATE_FIELDS = [
 const OVERVIEW_TEXT_FIELDS = [
   { key: 'status', label: 'Status (open/closed)' },
   { key: 'popularity', label: 'Popularity rank' },
-  { key: 'vacancies', label: 'Vacancies (display)' },
+  // vacancies (machine, digits-only, used for validation) and
+  // vacancies_display (the verbatim string the site actually shows —
+  // "~933", "25,000+", a compound breakdown) are deliberately separate
+  // fields, see import-existing-exams.js and toApplicationsShape.js.
+  // Editing "vacancies" alone does NOT change what visitors see whenever
+  // vacancies_display is set, which is why both are exposed here.
+  { key: 'vacancies', label: 'Vacancies (machine number, for validation only)' },
+  { key: 'vacancies_display', label: 'Vacancies (shown on site)' },
   { key: 'notif_title', label: 'Notification title' },
   { key: 'apply_start', label: 'Apply start (display)' },
   { key: 'apply_end', label: 'Apply end (display)' },
+  { key: 'exam_date_text', label: 'Exam date (display)' },
+  { key: 'admit_card_date_text', label: 'Admit card date (display)' },
+  { key: 'application_fee', label: 'Application fee' },
   { key: 'official_url', label: 'Official URL' },
   { key: 'verified', label: 'Last verified' },
 ];
